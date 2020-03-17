@@ -1,0 +1,98 @@
+package Test1;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Room {
+
+	private List<TileTestImpl> textures;
+	private Map<TileTestImpl, List<Pair<Integer, Integer>>> room = new LinkedHashMap<>();
+	
+	private int cols;
+	private int rows;
+	private int tilesize;
+	
+	public Room(final int rows, final int cols, final int tilesize, final List<TileTestImpl> textures) {
+		this.cols = cols;
+		this.rows = rows;
+		this.textures = textures;
+		this.tilesize = tilesize;
+		this.setFloor();
+		this.setWalls();
+	}
+
+	public void newResolution(final int cols, final int rows, final int tilesize) {
+		this.cols = cols;
+		this.rows = rows;
+		this.tilesize = tilesize;
+		this.setFloor();
+		this.setWalls();
+	}
+	
+	private void setFloor() {
+		List<Pair<Integer, Integer>> tmp = new ArrayList<>();	
+		
+			
+		for(int i = 0; i < cols; i = i + tilesize) {
+			for(int j = 0; j < rows; j = j + tilesize) {
+				tmp.add(new Pair<>(j, i));
+			}
+		}
+		room.put(textures.get(0), tmp);
+	}
+	
+	public void setWalls() {
+		List<Pair<Integer, Integer>> wallLeft = new ArrayList<>();	
+		List<Pair<Integer, Integer>> wallRight = new ArrayList<>();	
+		List<Pair<Integer, Integer>> wallUp = new ArrayList<>();	
+		List<Pair<Integer, Integer>> wallDown = new ArrayList<>();	
+		List<Pair<Integer, Integer>> topLeft = new ArrayList<>();
+		List<Pair<Integer, Integer>> topRight = new ArrayList<>();
+		List<Pair<Integer, Integer>> bottomLeft = new ArrayList<>();
+		List<Pair<Integer, Integer>> bottomRight = new ArrayList<>();
+		
+		
+		for(int i = 0; i < cols; i = i + tilesize) {
+			for(int j = 0; j < rows; j = j + tilesize) {
+				if(j == 0 && i < cols - tilesize && i > 0) {
+					wallLeft.add(new Pair<>(j, i));
+				} else if(j == rows - tilesize && i < cols - tilesize && i > 0) {
+					wallRight.add(new Pair<>(j, i));
+				} else if(i == 0 && j > 0 && j < rows - tilesize) {
+					wallUp.add(new Pair<>(j,i));
+				} else if(i == cols - tilesize && j > 0 && j < rows - tilesize) {
+					wallDown.add(new Pair<>(j, i));
+				} else if(i == cols - tilesize & j == 0) {
+					bottomLeft.add(new Pair<>(j, i));
+				} else if(i == cols - tilesize & j == rows - tilesize) {
+					bottomRight.add(new Pair<>(j, i));
+				} else if(i == 0 & j == 0) {
+					topLeft.add(new Pair<>(j, i));
+				} else if(i == 0 & j == rows - tilesize) {
+					topRight.add(new Pair<>(j, i));
+				}
+			}
+		}
+		
+		room.put(textures.get(1), wallLeft);
+		room.put(textures.get(2), wallRight);
+		room.put(textures.get(3), wallUp);
+		room.put(textures.get(4), wallDown);
+		
+		room.put(textures.get(5), bottomLeft);
+		room.put(textures.get(6), bottomRight);
+		room.put(textures.get(7), topLeft);
+		room.put(textures.get(8), topRight);
+	}
+
+	public Map<TileTestImpl, List<Pair<Integer, Integer>>> getRoom() {
+		return room;
+	}
+	
+	
+	
+
+	
+}
