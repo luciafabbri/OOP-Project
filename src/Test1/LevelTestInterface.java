@@ -3,6 +3,8 @@ package Test1;
 import java.util.List;
 import java.util.Map;
 
+import org.newdawn.slick.Image;
+
 public interface LevelTestInterface {
 	
 	final static int WIDTH = 1296;
@@ -11,6 +13,6 @@ public interface LevelTestInterface {
 	
 	void loadScreenTest();
 
-	Map<TileTestImpl, List<Pair<Integer, Integer>>> getRoom();
+	Map<Image, List<Pair<Integer, Integer>>> getRoom();
 
 }
