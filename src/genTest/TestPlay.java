@@ -1,14 +1,17 @@
-package Test1;
+package genTest;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import levels.Level;
+import levels.Level1;
+
 public class TestPlay extends BasicGameState{
 	
-	private GraphicsInterfaceTest graphics;
-	private LevelTestInterface level;
+	private Rendering graphics;
+	private Level level;
 	
 	public TestPlay(final int state) {
 		super();
@@ -20,19 +23,21 @@ public class TestPlay extends BasicGameState{
 		//per poi aggiornare la logica in update e la grafica in render
 		level = new Level1();
 		
-		graphics = new GraphicsImpl(level.getRoom());	
+		graphics = new RenderingImpl(level);
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
-		graphics.drawRoom();
+		graphics.drawFloor();
+		graphics.drawWalls();
+		graphics.drawItems();
 		
 		arg2.clearClip();
 	}
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		// TODO Auto-generated method stub
+		
 	}
 	
 	public int getID() {

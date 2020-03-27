@@ -1,0 +1,13 @@
+27/03/2020
+-Renamed interface "TestInterfaceLevel" to "Level";
+-Implementation of Graphics (GraphicsImp) now takes a 'Level' argument, not Room (previously did this only to test);
+-Removed function "New Resolution" from Room1 class;
+-Complete re-work of how Room handles tiles and their coords;
+-Added packages items, levels, tiles and genTest to distinguish classes inside project;
+-Implemented interface GameSettings containing width, height and tilesize of objects;
+-Created class Floor1 containing texture and point of origin and end of drawing;
+-Created class walls1, same as floor1, containing all of 4 walls;
+-Renamed class and interface Graphics to Rendering because of name issues;
+-Revamped RenderingImpl class;
+-Revamped Tile class to have different types of implementation, each with their own characteristics;
+-Same with Items class;

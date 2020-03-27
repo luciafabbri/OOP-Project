@@ -1,4 +1,4 @@
-package Test1;
+package genTest;
 
 import java.io.File;
 import java.util.logging.Level;
@@ -9,15 +9,13 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class TestState extends StateBasedGame {
+
+public class TestState extends StateBasedGame implements GameSettings {
 
 	private static final String GAMENAME = "Test";
 //	private static final int MENU = 0;  // Not useful now
 	private static final int LEVEL1 = 1;
 	
-	private final static int WIDTH = 1296;
-	private final static int HEIGHT = 720;
-//	private final static int TILESIZE = 48;  // Not useful now
 	
 	public TestState(String name) {
 		super(name);
@@ -37,10 +35,14 @@ public class TestState extends StateBasedGame {
 
 	public static void main(String[] args) {
 		//Set the path for Slick2D libraries
-		System.setProperty("java.library.path", "./lib/natives");
+		System.setProperty("java.library.path", new File("./lib/libraries").getAbsolutePath());
 		
-		//Set the path for Slick2D resources
+		//Set the path for Slick2D natives
 		System.setProperty("org.lwjgl.librarypath", new File("./lib/natives").getAbsolutePath());
+		
+		//Set the path for JInput
+		System.setProperty("net.java.games.input.librarypath", new File("./lib/natives").getAbsolutePath());
+		
 		
 		try {
 			AppGameContainer appgc;

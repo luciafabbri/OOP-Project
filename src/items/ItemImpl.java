@@ -1,6 +1,8 @@
-package Test1;
+package items;
 
 import org.newdawn.slick.Image;
+
+import genTest.Pair;
 
 public class ItemImpl {
 	

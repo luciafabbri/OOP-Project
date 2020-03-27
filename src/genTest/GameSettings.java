@@ -1,11 +1,10 @@
-package Test1;
+package genTest;
 
-public interface GraphicsInterfaceTest {
-
+public interface GameSettings {
+	
 	final static int WIDTH = 1296;
 	final static int HEIGHT = 720;
 	final static int TILESIZE = 48;
 	
-	void drawRoom();
-
+	
 }
