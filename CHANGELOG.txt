@@ -11,3 +11,8 @@
 -Revamped RenderingImpl class;
 -Revamped Tile class to have different types of implementation, each with their own characteristics;
 -Same with Items class;
+
+28/03/2020
+-Implemented object Key;
+-Added comments in classes RenderingImpl;
+-Implemented inside TestState some tests for sprite movement for later real implementation (very basic movement in four cardinal directions);

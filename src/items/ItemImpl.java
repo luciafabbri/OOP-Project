@@ -7,19 +7,23 @@ import genTest.Pair;
 public class ItemImpl {
 	
 	 private Image texture;
-	 private Pair<Integer, Integer> coords;
-	
-	 public ItemImpl(final Image texture, final Pair<Integer, Integer> coords){
+	 private Pair<Integer, Integer> coord;
+		
+	 public ItemImpl(final Image texture, final Pair<Integer, Integer> coord){
 		 this.texture = texture;
-		 this.coords = coords;
-	 }
+		 this.coord = coord;
+	}
 
 	public Image getTexture() {
 		return texture;
 	}
-
-	public Pair<Integer, Integer> getCoords() {
-		return coords;
-	}
 	
+	public Pair<Integer, Integer> getCoord() {
+		return coord;
+	}
+
+	public void setCoord(Pair<Integer, Integer> coord) {
+		this.coord = coord;
+	}
+ 
 }

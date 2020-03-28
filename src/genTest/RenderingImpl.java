@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import items.ItemImpl;
 import levels.Level;
-import tiles.Tile;
 
 public class RenderingImpl implements Rendering {
 	
@@ -17,15 +17,11 @@ public class RenderingImpl implements Rendering {
 	
 	@Override
 	public void drawItems() {
-		Map<Tile, List<Pair<Integer, Integer>>> room = level.getLevel().get(0).getItems();
-		
-		for(Entry<Tile, List<Pair<Integer, Integer>>> entry : room.entrySet()) {
-			for(int i = 0; i < entry.getValue().size(); i++) {
-				
-				int x = entry.getValue().get(i).getX();
-				int y = entry.getValue().get(i).getY();
-				entry.getKey().getTexture().draw(x, y, TILESIZE, TILESIZE);
-			}
+		for(int i = 0; i < level.getLevel().get(0).getItems().size(); i++) {
+			
+			int x = level.getLevel().get(0).getItems().get(i).getCoord().getX();
+			int y = level.getLevel().get(0).getItems().get(i).getCoord().getY();
+			level.getLevel().get(0).getItems().get(0).getTexture().draw(x, y, TILESIZE, TILESIZE);
 		}
 	}
 	
@@ -39,6 +35,7 @@ public class RenderingImpl implements Rendering {
 	
 	
 	public void drawWalls() {
+		//Based on the position, it draws the appropriate walls
 		for(int x = 0; x < WIDTH; x += TILESIZE) {
 			for(int y = 0; y < HEIGHT; y += TILESIZE) {
 				if(x == 0 && y > 0 && y < HEIGHT - TILESIZE) {
@@ -52,6 +49,8 @@ public class RenderingImpl implements Rendering {
 				}
 			}
 		}
+		
+		//Here a draw the corners, since they're always in the same position (the corners), I don't need to draw the dinamically
 		level.getLevel().get(0).getCorners().getTexture().draw(0, 0, TILESIZE, TILESIZE);
 		level.getLevel().get(0).getCorners().getTexture().getFlippedCopy(false, true).draw(0, HEIGHT - TILESIZE, TILESIZE, TILESIZE);
 		level.getLevel().get(0).getCorners().getTexture().getFlippedCopy(true, false).draw(WIDTH - TILESIZE, 0, TILESIZE, TILESIZE);

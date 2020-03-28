@@ -8,6 +8,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import genTest.Pair;
+import items.*;
 import tiles.*;
 
 
@@ -17,7 +18,7 @@ public class Room1 {
 	private Tile wallVert;
 	private Tile wallHor;
 	private Tile corners;
-	private Map<Tile, List<Pair<Integer, Integer>>> items = new LinkedHashMap<>();
+	private List<ItemImpl> items = new ArrayList<>();
 
 	public Room1() {	
 		try {
@@ -34,13 +35,11 @@ public class Room1 {
 	}
 	
 	public void setItems() {
-		List<Pair<Integer, Integer>> coord = new ArrayList<>();	
-		
-		coord.add(new Pair<>(48 * 5, 48 * 6)); //TEST ESEMPIO DA CAMBIARE
 		
 		try {
-			items.put(new Tile(new Image("./res/key.png")), coord);
+			items.add(new Key(new Pair<>(48 * 5, 48 * 7)));
 		} catch (SlickException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -49,9 +48,6 @@ public class Room1 {
 		return floor;
 	}
 
-	public Map<Tile, List<Pair<Integer, Integer>>> getItems() {
-		return items;
-	}
 
 	public Tile getWallVert() {
 		return wallVert;
@@ -63,5 +59,9 @@ public class Room1 {
 
 	public Tile getCorners() {
 		return corners;
+	}
+
+	public List<ItemImpl> getItems() {
+		return items;
 	}
 }
