@@ -1,0 +1,8 @@
+minRooms 8
+maxRooms 10
+minEnemies 1
+maxEnemies 3
+minObjects 2
+maxObjects 4
+enemyHealth 999
+enemyDamage 999
