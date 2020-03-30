@@ -1,8 +1,10 @@
 package design;
 
+import java.io.IOException;
+
 public interface LevelDesignGenerator {
 
-	LevelDesign levelGenerator(Integer levelNumber);
+	LevelDesign generateLevel(Integer levelNumber) throws IOException;
 	
-	RoomDesign roomGenerator(Integer levelNumber);
+	RoomDesign generateRoom(Integer levelNumber, int roomID);
 }

@@ -4,5 +4,7 @@ minEnemies 1
 maxEnemies 3
 minObjects 2
 maxObjects 4
+minObstacles% 0
+maxObstacles% 5
 enemyHealth 999
 enemyDamage 999
