@@ -1,0 +1,74 @@
+package bullet;
+
+import org.newdawn.slick.Image;
+
+import bullet.move.MovePosBull;
+import bullet.move.straightBull;
+import enemy.Pair;
+import enemy.TypeMove;
+import utility.Debuff;
+import utility.Direction;
+
+
+public class bulletImpl implements Bullet {
+	
+	private Pair<Integer, Integer> pos;
+	private int dmg;
+	private Debuff debuff;
+	private Direction dir;
+	private MovePosBull move;
+	
+	bulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove){
+		this.pos=position;
+		this.dmg=damage;
+		this.debuff=debuff;
+		this.dir=direction;	
+		this.move=selectMove(typeMove);		
+	}
+	
+	private MovePosBull selectMove(TypeMove typeMove) {
+		
+		switch (typeMove) {
+			case STRAIGHT: return new straightBull();
+			
+			default: throw new IllegalArgumentException();			
+		}
+	}	
+	
+	@Override
+	public boolean isAlive() {
+		return move.isAlive();
+	}
+
+	@Override
+	public Pair<Integer, Integer> getPos() {
+		return this.pos;
+	}
+	
+	@Override
+	public void updatePos() {
+		this.pos = move.nextPos(this.pos,dir);
+		
+	}
+
+	@Override
+	public int getDmg() {
+		return this.dmg;
+	}
+
+	@Override
+	public Debuff getDebuff() {
+		return this.debuff;
+	}
+
+	@Override
+	public Direction getDirection() {
+		return this.dir;
+	}
+
+	@Override
+	public Image getImage() {
+		return null;
+	}
+
+}

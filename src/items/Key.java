@@ -3,7 +3,7 @@ package items;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import genTest.Pair;
+import utility.Pair;
 
 public class Key extends ItemImpl{
 	

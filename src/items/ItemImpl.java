@@ -2,7 +2,7 @@ package items;
 
 import org.newdawn.slick.Image;
 
-import genTest.Pair;
+import utility.Pair;
 
 public class ItemImpl {
 	

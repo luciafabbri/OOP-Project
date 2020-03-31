@@ -9,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import items.ItemImpl;
 import levels.Level;
 import levels.Level1;
+import utility.Pair;
 
 public class TestPlay extends BasicGameState implements GameSettings{
 	

@@ -7,9 +7,9 @@ import java.util.Map;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import genTest.Pair;
 import items.*;
 import tiles.*;
+import utility.Pair;
 
 
 public class Room1 {
