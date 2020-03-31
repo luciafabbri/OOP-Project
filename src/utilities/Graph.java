@@ -1,6 +1,6 @@
 package utilities;
 
-import java.util.List;
+import java.util.*;
 
 public interface Graph<T> {
 	
@@ -14,5 +14,5 @@ public interface Graph<T> {
 	
 	List<T> getEdges(T n);
 	
-	List<T> getNodes();
+	Set<T> getNodes();
 }

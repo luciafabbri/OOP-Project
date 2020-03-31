@@ -46,5 +46,11 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		}
 		return room;
 	}
+	
+	public utilities.BidirectionalGraph<RoomDesign> generateGraph() {
+		// TO DO
+		return null;
+		
+	}
 
 }
