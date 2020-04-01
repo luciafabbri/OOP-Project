@@ -21,7 +21,7 @@ public class RenderingImpl implements Rendering {
 			
 			int x = level.getLevel().get(0).getItems().get(i).getCoord().getX();
 			int y = level.getLevel().get(0).getItems().get(i).getCoord().getY();
-			level.getLevel().get(0).getItems().get(0).getTexture().draw(x, y, TILESIZE, TILESIZE);
+			level.getLevel().get(0).getItems().get(0).getTexture().draw(x, y, 64, 96);
 		}
 	}
 	

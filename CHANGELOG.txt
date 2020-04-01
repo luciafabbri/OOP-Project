@@ -16,3 +16,6 @@
 -Implemented object Key;
 -Added comments in classes RenderingImpl;
 -Implemented inside TestState some tests for sprite movement for later real implementation (very basic movement in four cardinal directions);
+
+31/03/2020 - 01/04/2020
+-Change the static variables inside GameSettings, so to have more flexibility when implementing sprites

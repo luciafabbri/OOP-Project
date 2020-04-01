@@ -47,7 +47,9 @@ public class TestPlay extends BasicGameState implements GameSettings{
 		
 		if((tmp.getCoord().getY() - 1 >= TILESIZE && tmp.getCoord().getX() - 1 >= TILESIZE) && input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_A)) {
 			level.getLevel().get(0).getItems().get(0).setCoord(new Pair<>(tmp.getCoord().getX() - 1, tmp.getCoord().getY() - 1));
+			
 		} else if(tmp.getCoord().getY() - 1 >= TILESIZE && input.isKeyDown(Input.KEY_W)) {
+			
 			level.getLevel().get(0).getItems().get(0).setCoord(new Pair<>(tmp.getCoord().getX(), tmp.getCoord().getY() - 1));
 		} else if(tmp.getCoord().getX() - 1 >= TILESIZE && input.isKeyDown(Input.KEY_A)){
 			level.getLevel().get(0).getItems().get(0).setCoord(new Pair<>(tmp.getCoord().getX() - 1, tmp.getCoord().getY()));

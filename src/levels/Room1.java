@@ -37,7 +37,7 @@ public class Room1 {
 	public void setItems() {
 		
 		try {
-			items.add(new Key(new Pair<>(48 * 5, 48 * 7)));
+			items.add(new Key(new Pair<>(64 * 5, 64 * 7)));
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

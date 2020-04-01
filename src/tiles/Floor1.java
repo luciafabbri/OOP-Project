@@ -6,7 +6,7 @@ import org.newdawn.slick.SlickException;
 public class Floor1 extends Tile {
 	
 	public Floor1() throws SlickException {
-		super(new Image("./res/floor_1.png"));
+		super(new Image("./res/floor/floor_1.png"));
 	}
 
 }
