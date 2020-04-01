@@ -2,7 +2,7 @@ package bullet;
 
 import org.newdawn.slick.Image;
 
-import enemy.Pair;
+import utility.Pair;
 import utility.Debuff;
 import utility.Direction;
 

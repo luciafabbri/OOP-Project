@@ -1,6 +1,6 @@
 package enemy.move;
 
-import enemy.Pair;
+import utility.Pair;
 import levels.Level;
 import utility.CheckPosDir;
 import utility.Direction;
@@ -8,8 +8,8 @@ import utility.Direction;
 public class checkMonster implements CheckPosDir{
 	
 	private int limitRight=Level.WIDTH-Level.TILESIZE*2;
-	private int limitLeft=Level.TILESIZE;
-	private int limitUp=Level.TILESIZE;
+	private int limitLeft=Level.TILESIZE-1;
+	private int limitUp=Level.TILESIZE-1;
 	private int limitDown=Level.HEIGHT-Level.TILESIZE*2;
 	
 	private int x, y;
@@ -17,13 +17,14 @@ public class checkMonster implements CheckPosDir{
 
 	@Override
 	public Direction checkLimits(Pair<Integer, Integer> pos, Direction dir) {
-		
+
 		if(pos.getX() >= limitRight) {
 			this.x = -1;
 		} else if (pos.getX() <= limitLeft) {
 			this.x = 1;
 		}
 		if(pos.getY() >= limitDown) {
+			
 			y = -1;
 		} else if (pos.getY() <= limitUp) {
 			y = 1;

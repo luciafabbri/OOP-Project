@@ -1,6 +1,6 @@
 package utility;
 
-import enemy.Pair;
+import utility.Pair;
 
 public interface CheckPosDir extends CheckPos {
 	

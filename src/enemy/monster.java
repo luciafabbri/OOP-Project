@@ -1,13 +1,16 @@
 package enemy;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 import enemy.move.MovePosMonst;
 import enemy.move.straightMove;
 import utility.Direction;
+import utility.Pair;
 
 public class monster implements Enemy {
 	
+	private Image texture; 
 	private String name;
 	private Pair<Integer,Integer> position;
 	private String typeLevel;
@@ -17,7 +20,7 @@ public class monster implements Enemy {
 	private MovePosMonst move;
 	private Direction direct;
 
-	public monster(String name, Pair<Integer,Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir) {
+	public monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir) {
 		this.name=name;
 		this.position=pos;
 		this.typeLevel=typeLevel;
@@ -25,6 +28,7 @@ public class monster implements Enemy {
 		this.maxLife=life;
 		this.actLife=life;
 		this.move=selectMove(move);
+		this.direct=dir;
 	}
 	
 	private MovePosMonst selectMove(TypeMove typeMove) {
@@ -49,12 +53,12 @@ public class monster implements Enemy {
 	}
 
 	@Override
-	public Pair<Integer, Integer> getPos() {
+	public Pair<Integer,Integer> getPos() {
 		return this.position;
 	}
 	
 	@Override
-	public void updatePos() {
+	public void updatePos() {		
 		this.position=move.nextPos(this.position, this.direct);
 		this.direct=move.getDirection();
 	}
@@ -91,7 +95,7 @@ public class monster implements Enemy {
 
 	@Override
 	public Image getImage() {
-		return null;
+		return texture;
 	}
 
 	@Override

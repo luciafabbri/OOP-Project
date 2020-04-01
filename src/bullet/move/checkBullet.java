@@ -1,6 +1,6 @@
 package bullet.move;
 
-import enemy.Pair;
+import utility.Pair;
 import levels.Level;
 import utility.CheckPos;
 

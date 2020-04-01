@@ -1,7 +1,7 @@
 package bullet.move;
 
 
-import enemy.Pair;
+import utility.Pair;
 import utility.CheckPos;
 import utility.Direction;
 

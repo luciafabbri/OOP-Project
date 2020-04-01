@@ -3,6 +3,7 @@ package enemy;
 import org.newdawn.slick.Image;
 
 import utility.Direction;
+import utility.Pair;
 
 public interface Enemy {
 	

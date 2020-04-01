@@ -7,8 +7,12 @@ import java.util.Map;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import enemy.Enemy;
+import enemy.TypeMove;
+import enemy.monster;
 import items.*;
 import tiles.*;
+import utility.Direction;
 import utility.Pair;
 
 
