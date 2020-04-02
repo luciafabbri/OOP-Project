@@ -1,7 +1,6 @@
 package player.movement;
 
 import org.newdawn.slick.Input;
-
 import utility.Pair;
 
 /**
@@ -19,4 +18,5 @@ public interface Movement {
 	 * 
 	 */
 	public Pair<Integer, Integer> movePlayer (Input input, Pair<Integer, Integer> pos);
+	
 }
