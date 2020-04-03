@@ -39,7 +39,7 @@ public class PlayerImpl implements Player {
 		Pair<Integer,Integer> newPos;
 		Direction oldDir = this.direction;  // appoggio se non viene cambiata position 
 		newPos = move.movePlayer(input, this.position, this.direction);  
-		if(check.checkLimitsPosition(newPos, this.direction) == null) {
+		if(check.checkLimitsPosition(newPos, this.direction) == true) {
 			this.position = move.movePlayer(input, this.position, this.direction);  
 			this.direction = move.getDirection();
 		}
@@ -50,11 +50,6 @@ public class PlayerImpl implements Player {
 	@Override
 	public Pair<Integer, Integer> getPosition() {
 		return this.position;
-	}
-	
-	@Override
-	public void setDirection(Direction direction) {
-		this.direction = direction;
 	}
 	
 	@Override

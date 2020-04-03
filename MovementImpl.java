@@ -82,9 +82,16 @@ public class MovementImpl implements Movement {
 		
 	}
 
+	
 	@Override
 	public Direction getDirection() {
 		return this.direction;
+	}
+	
+	
+	@Override
+	public void setDirection(Direction direction) {
+		this.direction = direction;
 	}
 
 }

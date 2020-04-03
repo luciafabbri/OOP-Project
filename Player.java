@@ -30,14 +30,6 @@ public interface Player {
 	
 	/**
 	 * 
-	 * Methods used to set Player's direction
-	 *  
-	 */
-	public void setDirection(Direction direction);
-	
-	
-	/**
-	 * 
 	 * Methods used to get Player's actual life
 	 *  
 	 */
