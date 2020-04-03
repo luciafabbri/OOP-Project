@@ -1,10 +1,10 @@
 package enemy;
 
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 import enemy.move.MovePosMonst;
 import enemy.move.straightMove;
+import enemy.move.teleportMove;
 import utility.Direction;
 import utility.Pair;
 
@@ -35,6 +35,9 @@ public class monster implements Enemy {
 		switch (typeMove) {
 			case STRAIGHT:
 				return new straightMove();
+				
+			case TELEPORT:
+				return new teleportMove();
 			
 			default: 
 				throw new IllegalArgumentException();

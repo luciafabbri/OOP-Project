@@ -1,5 +1,7 @@
 package utility;
 
+import java.util.Random;
+
 public enum Direction {
 
 	NORD(0, -1),
@@ -27,4 +29,8 @@ public enum Direction {
 		return this.ordinate;
 	}
 	
+	public static Direction getRandomDir() {
+		Random random = new Random();
+		return values()[random.nextInt(values().length)];
+	}
 }

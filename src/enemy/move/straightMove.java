@@ -16,7 +16,7 @@ public class straightMove implements MovePosMonst{
 		newDir=dir;
 		
 		if(check.isEnd(nextPos)) {
-			this.newDir = check.checkLimits(nextPos, dir);	
+			this.newDir = check.changeDir(nextPos, dir);	
 			return pos;			
 		} else {	
 			return nextPos;

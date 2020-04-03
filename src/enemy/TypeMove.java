@@ -2,6 +2,6 @@ package enemy;
 
 public enum TypeMove {
 	
-	STRAIGHT, IMMOBILIZED, SQUARE, TO_PLAYER
+	STRAIGHT, IMMOBILIZED, TELEPORT, TO_PLAYER
 
 }

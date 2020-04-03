@@ -16,24 +16,31 @@ public class checkMonster implements CheckPosDir{
 	private Direction newDir;
 
 	@Override
-	public Direction checkLimits(Pair<Integer, Integer> pos, Direction dir) {
+	public Direction changeDir(Pair<Integer, Integer> pos, Direction dir) {
 
 		if(pos.getX() >= limitRight) {
 			this.x = -1;
 		} else if (pos.getX() <= limitLeft) {
 			this.x = 1;
+		} else {
+			this.x = dir.getAbscissa();
 		}
+		
 		if(pos.getY() >= limitDown) {
 			
 			y = -1;
 		} else if (pos.getY() <= limitUp) {
 			y = 1;
+		} else {
+			this.y = dir.getOrdinate();
 		}
+		
 		for(Direction d : Direction.values()) {
 			if(d.getAbscissa() == x && d.getOrdinate() == y) {
 				this.newDir=d;
 			}
 		}
+		
 		return newDir;
 	}
 	

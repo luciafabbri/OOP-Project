@@ -1,10 +1,6 @@
 package genTest;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
-import items.ItemImpl;
 import levels.Level;
 
 public class RenderingImpl implements Rendering {

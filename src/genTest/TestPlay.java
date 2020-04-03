@@ -6,13 +6,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import enemy.Enemy;
-import enemy.TypeMove;
-import enemy.monster;
+
 import items.ItemImpl;
 import levels.Level;
 import levels.Level1;
-import utility.Direction;
 import utility.Pair;
 
 public class TestPlay extends BasicGameState implements GameSettings{

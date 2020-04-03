@@ -1,18 +1,12 @@
 package levels;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import enemy.Enemy;
-import enemy.TypeMove;
-import enemy.monster;
+
 import items.*;
 import tiles.*;
-import utility.Direction;
 import utility.Pair;
 
 
