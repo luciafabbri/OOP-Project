@@ -38,14 +38,6 @@ public interface Player {
 	
 	/**
 	 * 
-	 * Methods used to get Player's direction
-	 *  
-	 */
-	public Direction getDirection();
-	
-	
-	/**
-	 * 
 	 * Methods used to get Player's actual life
 	 *  
 	 */
@@ -89,7 +81,7 @@ public interface Player {
 	 * Methods used to tell the player to start shooting enemies
 	 *  
 	 */
-	public void startShooting(); 
+	public void shoot(); 
 	
 	
 	/**
@@ -98,7 +90,6 @@ public interface Player {
 	 *  
 	 */
 	public int isAlive(int currentHealth);
-	
 	
 	//public Debuff setDebuff();
 	//public Buff setBuff();

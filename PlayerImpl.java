@@ -37,11 +37,13 @@ public class PlayerImpl implements Player {
 	@Override 
 	public void setPosition(Input input) {
 		Pair<Integer,Integer> newPos;
-		newPos = move.movePlayer(input, this.position);  
-		if(check.checkLimitsPosition(newPos) == null) {
-			this.position = move.movePlayer(input, this.position);  
+		newPos = move.movePlayer(input, this.position, this.direction);  
+		if(check.checkLimitsPosition(newPos, this.direction) == null) {
+			this.position = move.movePlayer(input, this.position, this.direction);  
+			this.direction = move.getDirection();
 		}
 		this.position = position;
+		this.direction = direction;
 	}
 
 	@Override
@@ -50,14 +52,8 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override
-	//DA SISTEMARE E METTERE DENTRO SET POSITION
 	public void setDirection(Direction direction) {
 		this.direction = direction;
-	}
-
-	@Override
-	public Direction getDirection() {
-		return this.direction;
 	}
 	
 	@Override
@@ -86,8 +82,7 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override
-	public void startShooting() {
-		// TODO Auto-generated method stub
+	public void shoot() {
 	}
 
 	@Override

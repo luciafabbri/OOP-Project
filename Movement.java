@@ -1,6 +1,8 @@
 package player.movement;
 
 import org.newdawn.slick.Input;
+
+import player.movement.Direction;
 import utility.Pair;
 
 /**
@@ -17,6 +19,8 @@ public interface Movement {
 	 * It returns the new coordinates of the player 
 	 * 
 	 */
-	public Pair<Integer, Integer> movePlayer (Input input, Pair<Integer, Integer> pos);
+	public Pair<Integer, Integer> movePlayer (Input input, Pair<Integer, Integer> pos, Direction dir); 
+	
+	public Direction getDirection();
 	
 }
