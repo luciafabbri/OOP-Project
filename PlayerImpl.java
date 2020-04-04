@@ -25,13 +25,17 @@ public class PlayerImpl implements Player {
 	private MovementImpl move = new MovementImpl();
 	private CheckPositionPlayerImpl check = new CheckPositionPlayerImpl();
 	
-	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level, int health, Image texture) {		
-		this.position = pos;
+	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level, int health, Image texture) {	
+		this.position = POSITION;
 		this.level = level;
-		this.totalHealth = health;
-		this.currentHealth = health;
+		this.totalHealth = HEALTH;
+		this.currentHealth = HEALTH;
 		this.texture = texture;
-		this.direction = dir;
+		this.direction = DIRECTION;
+	}
+	
+	public PlayerImpl(int level, Image texture) {	
+		this(POSITION, DIRECTION, level, HEALTH, texture);
 	}
 	
 	@Override 
@@ -39,7 +43,7 @@ public class PlayerImpl implements Player {
 		Pair<Integer,Integer> newPos;
 		Direction oldDir = this.direction;  // appoggio se non viene cambiata position 
 		newPos = move.movePlayer(input, this.position, this.direction);  
-		if(check.checkLimitsPosition(newPos, this.direction) == true) {
+		if(check.checkLimitsPosition(newPos) == true) {
 			this.position = move.movePlayer(input, this.position, this.direction);  
 			this.direction = move.getDirection();
 		}

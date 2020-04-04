@@ -3,14 +3,14 @@ package player;
 import utility.Pair;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-import player.movement.Direction;
+
 /**
  * 
  * Interface that presents all the methods needed or that can be used with regards to the player 
  * 
  */
 
-public interface Player {
+public interface Player extends DefaultPlayer {
 	
 	/**
 	 * 
