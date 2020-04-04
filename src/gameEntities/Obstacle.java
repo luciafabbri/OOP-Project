@@ -1,7 +1,13 @@
 package gameEntities;
 
+import utilities.Pair;
+
 public class Obstacle {
 
-	utilities.Pair<Integer, Integer> position;
+	Pair<Integer, Integer> position;
 	
+	
+	public Obstacle(Pair<Integer, Integer> position) {
+		this.position = position;
+	}
 }

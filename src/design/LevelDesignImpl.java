@@ -10,6 +10,14 @@ public class LevelDesignImpl implements LevelDesign {
 	LinkedList<RoomDesign> rooms = new LinkedList<>();
 	BidirectionalGraph<RoomDesign> roomsGraph;
 
+	public LinkedList<RoomDesign> getRooms() {
+		return rooms;
+	}
+	
+	public BidirectionalGraph<RoomDesign> getRoomsGraph() {
+		return roomsGraph;
+	}
+
 	public void addRoom(RoomDesign room) {
 		if(isGraphSet) {	//rooms may be added so long as the graph is not set yet
 			throw new IllegalStateException();

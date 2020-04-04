@@ -2,6 +2,8 @@ package design;
 
 public interface RoomDesign {
 	
+	int getRoomID();
+	
 	void addEnemy(tokens.Enemy enemy);
 	
 	void addWorldObject(tokens.WorldObject object);

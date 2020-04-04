@@ -2,6 +2,8 @@ package utilities;
 
 import java.util.*;
 
+import design.RoomDesign;
+
 
 public class BidirectionalGraph<T> implements Graph<T> {
 

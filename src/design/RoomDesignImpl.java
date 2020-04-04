@@ -29,4 +29,9 @@ public class RoomDesignImpl implements RoomDesign {
 		
 	}
 
+	@Override
+	public int getRoomID() {
+		return this.roomID;
+	}
+
 }

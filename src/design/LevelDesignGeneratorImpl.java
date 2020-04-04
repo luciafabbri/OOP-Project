@@ -1,6 +1,8 @@
 package design;
 import java.io.*;
+import utilities.BidirectionalGraph;
 import java.util.*;
+import utilities.GameSettings;
 
 import tokens.Enemy;
 import tokens.Obstacle;
@@ -30,12 +32,13 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		for(int i = 0; i < numOfRooms; i++) {
 			level.addRoom(generateRoom(levelNumber, i));
 		}
+		level.addGraph(generateRoomsGraph(level.getRooms()));
+		
 		return level;
 	}
 
-	@Override
-	public RoomDesign generateRoom(Integer levelNumber, int i) {
-		RoomDesign room = new RoomDesignImpl(i);
+	private RoomDesign generateRoom(Integer levelNumber, int index) {
+		RoomDesign room = new RoomDesignImpl(index);
 		int numOfEnemies = currentConfig.get("minEnemies") + random.nextInt(1 + currentConfig.get("maxEnemies") - currentConfig.get("minEnemies"));
 		for(int j = 0; j < numOfEnemies; j++) {
 			room.addEnemy(new Enemy());
@@ -47,10 +50,30 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		return room;
 	}
 	
-	public utilities.BidirectionalGraph<RoomDesign> generateGraph() {
-		// TO DO
-		return null;
+	private BidirectionalGraph<RoomDesign> generateRoomsGraph(LinkedList<RoomDesign> rooms) {
+
+		BidirectionalGraph<RoomDesign> graph = new BidirectionalGraph<RoomDesign>();
+		
+		rooms.forEach( r -> {
+			graph.addNode(r);
+		});
+		
+		graph.getNodes().forEach( n -> {
+			int numOfRemainingEdges = random.nextInt(GameSettings.MAXDOORS) + GameSettings.MINDOORS; // between 1 and 4 edge
+			while(numOfRemainingEdges > 0 && graph.getEdges(n).size() < GameSettings.MAXDOORS ) {
+				int randomNodeIndex = random.nextInt(rooms.size());
+				if(randomNodeIndex != n.getRoomID() && !graph.getEdges(n).contains(rooms.get(randomNodeIndex))) {
+					if(graph.getEdges(rooms.get(randomNodeIndex)).size() < GameSettings.MAXDOORS) {
+						graph.addEdge(n, rooms.get(randomNodeIndex));
+						numOfRemainingEdges--;
+					}
+				}
+			}
+			
+		});
+		
+		return graph;
 		
 	}
-
+	
 }
