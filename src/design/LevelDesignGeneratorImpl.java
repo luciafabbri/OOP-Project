@@ -1,15 +1,18 @@
 package design;
 import java.io.*;
 import utilities.BidirectionalGraph;
+import utilities.CoherentRandomPosition;
+
 import java.util.*;
 import utilities.GameSettings;
-
+import utilities.Pair;
+import utilities.RandomPosition;
 import tokens.Enemy;
-import tokens.Obstacle;
 
 public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 	
 	Random random = new Random();
+	RandomPosition randomPosition = new CoherentRandomPosition();
 	Map<String, Integer> currentConfig = new HashMap<>();
 	
 	private Map<String, Integer> getLevelConfig(Integer levelNumber) throws IOException {
@@ -39,13 +42,23 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 
 	private RoomDesign generateRoom(Integer levelNumber, int index) {
 		RoomDesign room = new RoomDesignImpl(index);
+		Pair<Integer, Integer> pos;
 		int numOfEnemies = currentConfig.get("minEnemies") + random.nextInt(1 + currentConfig.get("maxEnemies") - currentConfig.get("minEnemies"));
 		for(int j = 0; j < numOfEnemies; j++) {
-			room.addEnemy(new Enemy());
+			pos = randomPosition.generateRandomPosition();
+			while(!room.getOccupiedTiles().contains(pos)) {
+				pos = randomPosition.generateRandomPosition();
+			}
+			room.addEnemy(new Enemy(pos));
 		}
-		int numOfObstacles = currentConfig.get("minObstacles%") + random.nextInt(1 + currentConfig.get("maxObstacles%") - currentConfig.get("minObstacles%"));
+		int obstaclePercentage = currentConfig.get("minObstacles%") + random.nextInt(1 + currentConfig.get("maxObstacles%") - currentConfig.get("minObstacles%"));
+		int numOfObstacles = GameSettings.TOTALTILES % obstaclePercentage;
 		for(int k = 0; k < numOfObstacles; k++) {
-			room.addObstacle(new Obstacle());
+			pos = randomPosition.generateRandomPosition();
+			while(!room.getOccupiedTiles().contains(pos)) {
+				pos = randomPosition.generateRandomPosition();
+			}
+			room.addObstacle(new gameEntities.Obstacle(pos));
 		}
 		return room;
 	}

@@ -3,13 +3,15 @@ package design;
 import java.util.*;
 
 import tokens.*;
+import utilities.Pair;
 
 public class RoomDesignImpl implements RoomDesign {
 
 	private int roomID;
-	HashSet<tokens.Enemy> enemySet = new HashSet<>();
-	HashSet<tokens.WorldObject> worldObjectsSet = new HashSet<>();
-	HashSet<tokens.Obstacle> obstacleSet = new HashSet<>();
+	private HashSet<Pair<Integer, Integer>> occupiedTiles = new HashSet<>();
+	private HashSet<tokens.Enemy> enemySet = new HashSet<>();
+	private HashSet<tokens.WorldObject> worldObjectsSet = new HashSet<>();
+	private HashSet<gameEntities.Obstacle> obstacleSet = new HashSet<>();
 	
 	public RoomDesignImpl(int roomID) {
 		this.roomID = roomID;
@@ -24,14 +26,19 @@ public class RoomDesignImpl implements RoomDesign {
 		
 	}
 
-	public void addObstacle(Obstacle obstacle) {
-		obstacleSet.add(obstacle);
-		
-	}
-
 	@Override
 	public int getRoomID() {
 		return this.roomID;
+	}
+	
+	public HashSet<Pair<Integer, Integer>> getOccupiedTiles() {
+		return this.occupiedTiles;
+	}
+
+	@Override
+	public void addObstacle(gameEntities.Obstacle obstacle) {
+		obstacleSet.add(obstacle);
+		
 	}
 
 }
