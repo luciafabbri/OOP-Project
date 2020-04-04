@@ -1,8 +1,8 @@
 package player.movement;
 
 import org.newdawn.slick.Input;
-import player.movement.Direction;
 import utility.Pair;
+import utility.Direction;
 
 /**
  * 
@@ -27,13 +27,5 @@ public interface Movement {
 	 *  
 	 */	
 	public Direction getDirection();
-	
-	
-	/**
-	 * 
-	 * Methods used to set Player's direction
-	 *  
-	 */	
-	public void setDirection(Direction direction);
 	
 }

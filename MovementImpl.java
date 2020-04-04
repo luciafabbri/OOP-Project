@@ -1,7 +1,7 @@
 package player.movement;
 
-import player.movement.Direction;
 import utility.Pair;
+import utility.Direction;
 import org.newdawn.slick.Input;
 
 /**
@@ -25,56 +25,56 @@ public class MovementImpl implements Movement {
 		
 		//control UP input   
 		if( input.isKeyDown(Input.KEY_W) ) {
-			this.direction = Direction.UP;
+			this.direction = Direction.NORD;
 			return new Pair<Integer,Integer>(pos.getX(),pos.getY() - 1);
 		}
 		
 		
 		//control DOWN input   
 		else if( input.isKeyDown(Input.KEY_S) ) {
-			direction = Direction.DOWN;
+			this.direction = Direction.SOUTH;
 			return new Pair<Integer,Integer>(pos.getX(),pos.getY() + 1);
 		}
 
 		
 		//control LEFT input   
 		else if( input.isKeyDown(Input.KEY_A) ) {
-			this.direction = Direction.LEFT;
+			this.direction = Direction.WEST;
 			return new Pair<Integer,Integer>(pos.getX() - 1,pos.getY());
 		}
 
 		
 		//control RIGHT input   
 		else if( input.isKeyDown(Input.KEY_D) ) {
-			this.direction = Direction.RIGHT;
+			this.direction = Direction.EAST;
 			return new Pair<Integer,Integer>(pos.getX() + 1,pos.getY());
 		}
 		
 		
 		//control UP-RIGHT input
 		else if( input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_D) ) {
-			this.direction = Direction.UPRIGHT;
+			this.direction = Direction.NORD_EAST;
 			return new Pair<Integer,Integer>(pos.getX() + 1,pos.getY() - 1);
 		}
 		
 		
 		//control UP-LEFT input
 		else if( input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_A) ) {
-			direction = Direction.UPLEFT;
+			direction = Direction.NORD_WEST;
 			return new Pair<Integer,Integer>(pos.getX() - 1,pos.getY() - 1);
 		}
 		
 		
 		//control DOWN-LEFT input
 		else if( input.isKeyDown(Input.KEY_S) && input.isKeyDown(Input.KEY_A) ) {
-			this.direction = Direction.DOWNLEFT;
+			this.direction = Direction.SOUTH_WEST;
 			return new Pair<Integer,Integer>(pos.getX() - 1,pos.getY() + 1);
 		}
 		
 		
 		//control DOWN-RIGHT input 
 		else if( input.isKeyDown(Input.KEY_S) && input.isKeyDown(Input.KEY_D) ) {
-			this.direction = Direction.DOWNRIGHT;
+			this.direction = Direction.SOUTH_EAST;
 			return new Pair<Integer,Integer>(pos.getX() + 1,pos.getY() + 1);
 		}
 		
@@ -86,12 +86,6 @@ public class MovementImpl implements Movement {
 	@Override
 	public Direction getDirection() {
 		return this.direction;
-	}
-	
-	
-	@Override
-	public void setDirection(Direction direction) {
-		this.direction = direction;
 	}
 
 }

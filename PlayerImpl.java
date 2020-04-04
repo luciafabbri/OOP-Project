@@ -1,12 +1,12 @@
 package player;
 
 import utility.Pair;
+import utility.Direction;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 
 import player.movement.CheckPositionPlayerImpl;
 import player.movement.MovementImpl;
-import player.movement.Direction;
 
 /**
  * 
@@ -41,14 +41,11 @@ public class PlayerImpl implements Player {
 	@Override 
 	public void setPosition(Input input) {
 		Pair<Integer,Integer> newPos;
-		Direction oldDir = this.direction;  // appoggio se non viene cambiata position 
 		newPos = move.movePlayer(input, this.position, this.direction);  
-		if(check.checkLimitsPosition(newPos) == true) {
-			this.position = move.movePlayer(input, this.position, this.direction);  
-			this.direction = move.getDirection();
+		if(check.isEnd(newPos) == true) {
+			this.position = newPos;  
 		}
-		this.position = position;
-		this.direction = oldDir;
+		this.direction = move.getDirection();   // perchè la direzione cambia anche se non posso muovervi nella posizione
 	}
 
 	@Override
