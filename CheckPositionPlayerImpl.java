@@ -12,7 +12,7 @@ import levels.Level;
 public class CheckPositionPlayerImpl implements CheckPositionPlayer{
 
 	@Override
-	public boolean checkLimitsPosition(Pair<Integer, Integer> pos, Direction dir) {
+	public boolean checkLimitsPosition(Pair<Integer, Integer> pos) {
 		if( (pos.getX() >= Level.TILESIZE || pos.getX() >= Level.WIDTH-Level.TILESIZE) 			|| 
 				(pos.getY() >= Level.TILESIZE || pos.getY() >= Level.HEIGHT-Level.TILESIZE))
 			return false;

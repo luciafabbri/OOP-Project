@@ -11,6 +11,6 @@ public interface CheckPositionPlayer {
 	 * Otherwise it will return null value
 	 * 
 	 */
-	public boolean checkLimitsPosition(Pair<Integer,Integer> pos, Direction dir);
+	public boolean checkLimitsPosition(Pair<Integer,Integer> pos);
 
 }
