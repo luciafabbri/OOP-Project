@@ -3,9 +3,10 @@ package bullet;
 import org.newdawn.slick.Image;
 
 import bullet.move.MovePosBull;
-import bullet.move.straightBull;
+import bullet.move.moveBull;
 import utility.Pair;
 import enemy.TypeMove;
+import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;
 
@@ -29,7 +30,7 @@ public class bulletImpl implements Bullet {
 	private MovePosBull selectMove(TypeMove typeMove) {
 		
 		switch (typeMove) {
-			case STRAIGHT: return new straightBull();
+			case STRAIGHT: return new moveBull();
 			
 			default: throw new IllegalArgumentException();			
 		}
@@ -46,8 +47,8 @@ public class bulletImpl implements Bullet {
 	}
 	
 	@Override
-	public void updatePos() {
-		this.pos = move.nextPos(this.pos,dir);
+	public void updatePos(CheckPos check) {
+		this.pos = move.nextPos(this.pos, dir, check);
 		
 	}
 

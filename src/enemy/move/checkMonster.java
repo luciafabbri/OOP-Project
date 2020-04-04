@@ -45,7 +45,7 @@ public class checkMonster implements CheckPosDir{
 	}
 	
 	@Override
-	public boolean isEnd(Pair<Integer,Integer> pos) {
+	public boolean isOutOfLimits(Pair<Integer,Integer> pos) {
 		return (pos.getX() <= limitLeft || pos.getX() >= limitRight) || (pos.getY() <= limitUp || pos.getY() >= limitDown);
 	}
 

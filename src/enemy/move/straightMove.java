@@ -4,7 +4,7 @@ import utility.Pair;
 import utility.CheckPosDir;
 import utility.Direction;
 
-public class straightMove implements MovePosMonst{
+public class straightMove implements MovePosMonster{
 	
 	private CheckPosDir check = new checkMonster();
 	private Direction newDir;
@@ -15,7 +15,7 @@ public class straightMove implements MovePosMonst{
 		Pair<Integer,Integer> nextPos = new Pair<Integer,Integer>(pos.getX() + dir.getAbscissa(), pos.getY() + dir.getOrdinate());
 		newDir=dir;
 		
-		if(check.isEnd(nextPos)) {
+		if(check.isOutOfLimits(nextPos)) {
 			this.newDir = check.changeDir(nextPos, dir);	
 			return pos;			
 		} else {	

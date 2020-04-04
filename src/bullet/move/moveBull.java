@@ -5,15 +5,14 @@ import utility.Pair;
 import utility.CheckPos;
 import utility.Direction;
 
-public class straightBull implements MovePosBull {
+public class moveBull implements MovePosBull {
 
-	private CheckPos limitCheck = new checkBullet();
 	private boolean alive = true;
 	
 	@Override
-	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir) {
+	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir, CheckPos check) {
 		Pair<Integer,Integer> nextPos = new Pair<Integer,Integer>(pos.getX() + dir.getAbscissa(), pos.getY() + dir.getOrdinate());
-		alive = !limitCheck.isEnd(nextPos);
+		alive = !check.isOutOfLimits(nextPos);
 		return nextPos;
 	}
 

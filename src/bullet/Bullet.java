@@ -3,6 +3,7 @@ package bullet;
 import org.newdawn.slick.Image;
 
 import utility.Pair;
+import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;
 
@@ -12,7 +13,7 @@ public interface Bullet {
 	
 	public Pair<Integer,Integer> getPos();
 	
-	public void updatePos();
+	public void updatePos(CheckPos check);
 	
 	public int getDmg();
 	

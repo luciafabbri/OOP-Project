@@ -2,7 +2,7 @@ package enemy;
 
 import org.newdawn.slick.Image;
 
-import enemy.move.MovePosMonst;
+import enemy.move.MovePosMonster;
 import enemy.move.straightMove;
 import enemy.move.teleportMove;
 import utility.Direction;
@@ -17,7 +17,7 @@ public class monster implements Enemy {
 	private int level;
 	private int maxLife;
 	private int actLife;
-	private MovePosMonst move;
+	private MovePosMonster move;
 	private Direction direct;
 
 	public monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir) {
@@ -31,7 +31,7 @@ public class monster implements Enemy {
 		this.direct=dir;
 	}
 	
-	private MovePosMonst selectMove(TypeMove typeMove) {
+	private MovePosMonster selectMove(TypeMove typeMove) {
 		switch (typeMove) {
 			case STRAIGHT:
 				return new straightMove();

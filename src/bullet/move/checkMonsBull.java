@@ -4,7 +4,7 @@ import utility.Pair;
 import levels.Level;
 import utility.CheckPos;
 
-public class checkBullet implements CheckPos {
+public class checkMonsBull implements CheckPos {
 	
 	private int limitRight=Level.WIDTH-Level.TILESIZE*2;
 	private int limitLeft=Level.TILESIZE;
@@ -13,7 +13,7 @@ public class checkBullet implements CheckPos {
 	
 
 	@Override
-	public boolean isEnd(Pair<Integer, Integer> pos) {
+	public boolean isOutOfLimits(Pair<Integer, Integer> pos) {
 		return (pos.getX() <= limitLeft || pos.getX() >= limitRight) || (pos.getY() <= limitUp || pos.getY() >= limitDown);
 	}
 
