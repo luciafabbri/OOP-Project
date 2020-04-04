@@ -1,21 +1,26 @@
 27/03/2020
 -Renamed interface "TestInterfaceLevel" to "Level";
--Implementation of Graphics (GraphicsImp) now takes a 'Level' argument, not Room (previously did this only to test);
+-Implementation of "Graphics" ("GraphicsImpl") now takes a "Level" argument, not Room (previously did this only to test);
 -Removed function "New Resolution" from Room1 class;
--Complete re-work of how Room handles tiles and their coords;
+-Complete re-work of how "Room" handles tiles and their coords;
 -Added packages items, levels, tiles and genTest to distinguish classes inside project;
--Implemented interface GameSettings containing width, height and tilesize of objects;
--Created class Floor1 containing texture and point of origin and end of drawing;
--Created class walls1, same as floor1, containing all of 4 walls;
--Renamed class and interface Graphics to Rendering because of name issues;
--Revamped RenderingImpl class;
--Revamped Tile class to have different types of implementation, each with their own characteristics;
--Same with Items class;
+-Implemented interface "GameSettings" containing width, height and tilesize of objects;
+-Created class "Floor1" containing texture and point of origin and end of drawing;
+-Created class "walls1", same as "floor1", containing all of 4 walls;
+-Renamed class and interface "Graphics" to "Rendering" because of name issues;
+-Revamped "RenderingImpl" class;
+-Revamped "Tile" class to have different types of implementation, each with their own characteristics;
+-Same with "Items" class;
 
 28/03/2020
 -Implemented object Key;
 -Added comments in classes RenderingImpl;
--Implemented inside TestState some tests for sprite movement for later real implementation (very basic movement in four cardinal directions);
+-Implemented inside "TestState" some tests for sprite movement for later real implementation (very basic movement in four cardinal directions);
 
 31/03/2020 - 01/04/2020
--Change the static variables inside GameSettings, so to have more flexibility when implementing sprites
+-Change the static variables inside "GameSettings", so to have more flexibility when implementing sprites
+
+04/04/2020
+-Renamed class "Level1" to "LevelImpl" and "Room1" to "RoomImpl" to accomodate new implementation regarding the random generating levels
+-Added a List of obstacles for future implementation inside RoomImpl
+-Added a List of Doors to implement dinamically based on number of rooms connected to the current one

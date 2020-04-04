@@ -12,15 +12,17 @@ import items.*;
 import tiles.*;
 
 
-public class Room1 {
+public class RoomImpl {
 
 	private Tile floor;
 	private Tile wallVert;
 	private Tile wallHor;
 	private Tile corners;
+	private List<Tile> doors = new ArrayList<>();
 	private List<ItemImpl> items = new ArrayList<>();
-
-	public Room1() {	
+//	private List<Obstacles> obst = new ArrayList<>();
+	
+	public RoomImpl() {	
 		try {
 			this.floor = new Floor1();
 			this.wallVert = new WallVert1();
@@ -38,6 +40,20 @@ public class Room1 {
 		
 		try {
 			items.add(new Key(new Pair<>(64 * 5, 64 * 7)));
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void setDoors(final int numDoors) {
+		
+		try {
+			doors.add(new Door1());
+			
+			if(numDoors > 2) {
+				doors.add(new Door2());
+			}
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,5 +79,9 @@ public class Room1 {
 
 	public List<ItemImpl> getItems() {
 		return items;
+	}
+
+	public List<Tile> getDoors() {
+		return doors;
 	}
 }
