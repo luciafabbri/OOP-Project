@@ -23,14 +23,13 @@ public class HealthPlayerImpl implements Health {
 	}
 	
 	@Override
-	public int isAlive(int currentHealth) {
-		if(this.currentHealth <= 0);
-		return 0;
+	public void takeDmg(int dmg) {
+		this.currentHealth = this.currentHealth - dmg;
 	}
 	
 	@Override
-	public void takeDmg(int dmg) {
-		this.currentHealth = this.currentHealth - dmg;
+	public boolean isAlive(int currentHealth) {
+		return (this.currentHealth > 0);
 	}
 	
 }

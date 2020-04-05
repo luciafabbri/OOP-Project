@@ -8,6 +8,6 @@ public interface Health {
 	
 	public void takeDmg(int dmg);
 	
-	public int isAlive(int currentHealth);
+	public boolean isAlive(int currentHealth);
 
 }
