@@ -1,0 +1,36 @@
+package player;
+
+import utility.Health;
+
+public class HealthPlayerImpl implements Health {
+	
+	private int totalHealth;
+	private int currentHealth;
+	
+	public HealthPlayerImpl(int health) {
+		this.totalHealth = health;
+		this.currentHealth = health;
+	}
+	
+	@Override
+	public int getMaxHealth() {
+		return this.totalHealth;
+	}
+	
+	@Override
+	public int getCurrentHealth() {
+		return this.currentHealth;
+	}
+	
+	@Override
+	public int isAlive(int currentHealth) {
+		if(this.currentHealth <= 0);
+		return 0;
+	}
+	
+	@Override
+	public void takeDmg(int dmg) {
+		this.currentHealth = this.currentHealth - dmg;
+	}
+	
+}

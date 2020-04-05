@@ -3,6 +3,7 @@ package player;
 import utility.Pair;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import utility.Health;
 
 /**
  * 
@@ -30,14 +31,6 @@ public interface Player extends DefaultPlayer {
 	
 	/**
 	 * 
-	 * Methods used to get Player's actual life
-	 *  
-	 */
-	public int getCurrentHealth();
-	
-	
-	/**
-	 * 
 	 * Methods used to set the level in which the player should go
 	 *  
 	 */
@@ -58,31 +51,15 @@ public interface Player extends DefaultPlayer {
 	 *  
 	 */
 	public Image getImage();
+	
+	/**
+	 * 
+	 * Methods used to get Player's health
+	 *  
+	 */
+	public int getHealth();
 
-	
-	/**
-	 * 
-	 * Methods used to know the damage of an event
-	 *  
-	 */
-	public int getDamage();
-	
-	
-	/**
-	 * 
-	 * Methods used to tell the player to start shooting enemies
-	 *  
-	 */
-	public void shoot(); 
-	
-	
-	/**
-	 * 
-	 * Methods used to check if the player is still alive
-	 *  
-	 */
-	public int isAlive(int currentHealth);
-	
+
 	//public Debuff setDebuff();
 	//public Buff setBuff();
 	//public Debuff getDebuff();

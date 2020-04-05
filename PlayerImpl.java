@@ -2,9 +2,9 @@ package player;
 
 import utility.Pair;
 import utility.Direction;
+import utility.Health;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-
 import player.movement.CheckPositionPlayerImpl;
 import player.movement.MovementImpl;
 
@@ -18,31 +18,28 @@ public class PlayerImpl implements Player {
 
 	private Pair<Integer,Integer> position;
 	private int level;
-	private int totalHealth;
-	private int currentHealth;
 	private Image texture;
 	private Direction direction;
 	private MovementImpl move = new MovementImpl();
 	private CheckPositionPlayerImpl check = new CheckPositionPlayerImpl();
+	private Health health = new HealthPlayerImpl(HEALTH);
 	
-	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level, int health, Image texture) {	
-		this.position = POSITION;
+	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level, Image texture) {	
+		this.position = pos;
 		this.level = level;
-		this.totalHealth = HEALTH;
-		this.currentHealth = HEALTH;
 		this.texture = texture;
-		this.direction = DIRECTION;
+		this.direction = dir;
 	}
 	
 	public PlayerImpl(int level, Image texture) {	
-		this(POSITION, DIRECTION, level, HEALTH, texture);
+		this(POSITION, DIRECTION, level, texture);
 	}
 	
 	@Override 
 	public void setPosition(Input input) {
 		Pair<Integer,Integer> newPos;
 		newPos = move.movePlayer(input, this.position, this.direction);  
-		if(check.isEnd(newPos) == true) {
+		if(check.isOutOfLimits(newPos) == true) {
 			this.position = newPos;  
 		}
 		this.direction = move.getDirection();   // perchè la direzione cambia anche se non posso muovervi nella posizione
@@ -51,11 +48,6 @@ public class PlayerImpl implements Player {
 	@Override
 	public Pair<Integer, Integer> getPosition() {
 		return this.position;
-	}
-	
-	@Override
-	public int getCurrentHealth() {
-		return this.currentHealth;
 	}
 	
 	@Override
@@ -74,18 +66,8 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override
-	public int getDamage() {
-		return 0;
-	}
-	
-	@Override
-	public void shoot() {
-	}
-
-	@Override
-	public int isAlive(int currentHealth) {
-		if(this.currentHealth <= 0);
-		return 0;
+	public int getHealth() {
+		return this.health.getCurrentHealth();
 	}
 
 }
