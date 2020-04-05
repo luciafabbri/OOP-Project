@@ -4,6 +4,6 @@ import utility.Pair;
 
 public interface CheckPos {
 	
-	public boolean isEnd(Pair<Integer,Integer> pos);
+	public boolean isOutOfLimits(Pair<Integer,Integer> pos);
 
 }

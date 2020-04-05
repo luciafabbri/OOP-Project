@@ -1,62 +1,36 @@
-package player.movement;
+package utility;
+
+import java.util.Random;
 
 public enum Direction {
 
-	    /**
-	     * 
-	     * It represents the right direction
-	     * 
-	     */
-	    RIGHT,
-
-	    /**
-	     * 
-	     * It represents the left direction
-	     * 
-	     */
-	    LEFT,
-	    
-	    /**
-	     * 
-	     * It represents the up direction
-	     * 
-	     */
-	    UP,
-	    
-	    /**
-	     * 
-	     * It represents the down direction
-	     * 
-	     */
-	    DOWN,
-	    
-	    /**
-	     * 
-	     * It represents the up-right direction
-	     * 
-	     */
-	    UPRIGHT,
-	    
-	    /**
-	     * 
-	     * It represents the up-left direction
-	     * 
-	     */
-	    UPLEFT,
-	    
-	    /**
-	     * 
-	     * It represents the down-right direction
-	     * 
-	     */
-	    DOWNRIGHT,
-	    
-	    /**
-	     * 
-	     * It represents the down-left direction
-	     * 
-	     */
-	    DOWNLEFT,
-
-
+	NORD(0, -1),
+	NORD_EAST(1, -1),
+	EAST(1, 0),
+	SOUTH_EAST(1, 1),
+	SOUTH(0, 1),
+	SOUTH_WEST(-1, 1),
+	WEST(-1, 0),
+	NORD_WEST(-1, -1);
+	
+	private int abscissa;
+	private int ordinate;
+	
+	Direction(final int x, final int y) {
+		this.abscissa = x;
+		this.ordinate = y;
+	}
+	
+	public int getAbscissa() {
+		return this.abscissa;
+	}
+	
+	public int getOrdinate() {
+		return this.ordinate;
+	}
+	
+	public static Direction getRandomDir() {
+		Random random = new Random();
+		return values()[random.nextInt(values().length)];
+	}
 }
