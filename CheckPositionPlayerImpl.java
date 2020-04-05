@@ -20,7 +20,7 @@ public class CheckPositionPlayerImpl implements CheckPositionPlayer{
 	 */
 
 	@Override
-	public boolean isEnd(Pair<Integer, Integer> pos) {
+	public boolean isOutOfLimits(Pair<Integer, Integer> pos) {
 		return !( (pos.getX() <= Level.TILESIZE || pos.getX() >= Level.WIDTH-Level.TILESIZE*2) 			|| 
 				(pos.getY() <= Level.TILESIZE || pos.getY() >= Level.HEIGHT-Level.TILESIZE*2));		
 	}
