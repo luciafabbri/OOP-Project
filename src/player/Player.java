@@ -1,0 +1,64 @@
+package player;
+
+import utility.Pair;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import utility.Health;
+
+/**
+ * 
+ * Interface that presents all the methods needed or that can be used with regards to the player 
+ * 
+ */
+
+public interface Player extends DefaultPlayer {
+	
+	/**
+	 * 
+	 * Methods used to set Player's position
+	 *  
+	 */
+	public void setPosition(Input input);
+
+	
+	/**
+	 * 
+	 * Methods used to get Player's position
+	 *  
+	 */
+	public Pair<Integer, Integer> getPosition();
+	
+	
+	/**
+	 * 
+	 * Methods used to set the level in which the player should go
+	 *  
+	 */
+	public void setLevel(int level);
+	
+	
+	/**
+	 * 
+	 * Methods used to know in which level the player is 
+	 *  
+	 */
+	public int getLevel();
+	
+	
+	/**
+	 * 
+	 * Methods used to get Player's image
+	 *  
+	 */
+	public Image getImage();
+	
+	
+	public HealthPlayerImpl getHealth();
+
+	
+	//public Debuff setDebuff();
+	//public Buff setBuff();
+	//public Debuff getDebuff();
+	//public Buff getBuff();
+
+}
