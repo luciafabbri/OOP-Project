@@ -3,6 +3,7 @@ package enemy;
 import org.newdawn.slick.Image;
 
 import enemy.move.MovePosMonster;
+import enemy.move.randomMove;
 import enemy.move.straightMove;
 import enemy.move.teleportMove;
 import utility.Direction;
@@ -38,6 +39,9 @@ public class monster implements Enemy {
 				
 			case TELEPORT:
 				return new teleportMove();
+				
+			case RANDOM:
+				return new randomMove();
 			
 			default: 
 				throw new IllegalArgumentException();
@@ -102,8 +106,8 @@ public class monster implements Enemy {
 	}
 
 	@Override
-	public void setDirection(Direction dir) {
-		this.direct=dir;
+	public Direction getDirection() {
+		return this.direct;
 	}
 
 

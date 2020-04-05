@@ -62,7 +62,7 @@ class TestMove {
 	@Test
 	void testTeleport() {
 		
-		Enemy mon = new monster("Mon", new Pair<Integer,Integer>(100, 100), "ciao", 1, 1, TypeMove.TELEPORT, Direction.getRandomDir());
+		/*Enemy mon = new monster("Mon", new Pair<Integer,Integer>(100, 100), "ciao", 1, 1, TypeMove.TELEPORT, Direction.getRandomDir());
 		int x = 0;
 		
 		while(x<25) {
@@ -70,9 +70,22 @@ class TestMove {
 			mon.updatePos();
 			System.out.println(mon.getName() + " -> " + mon.getPos());
 			
+		}*/
+		
+	}
+	
+	@Test
+	void testRandom() {
+		Enemy mon = new monster("Mon", new Pair<Integer,Integer>(100, 615), "ciao", 1, 1, TypeMove.RANDOM, Direction.SOUTH);
+		int x = 0;
+		
+		while(x<35) {
+			x++;
+			mon.updatePos();
+			System.out.println(mon.getName() + " -> " + mon.getPos());
+			System.out.println(mon.getDirection());
+			
 		}
-		
-		
 	}
 
 }

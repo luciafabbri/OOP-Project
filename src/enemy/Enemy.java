@@ -25,7 +25,7 @@ public interface Enemy {
 	
 	public TypeAttack getAttack();
 	
-	public void setDirection(Direction dir);
+	public Direction getDirection();
 	
 	public Image getImage();
 	
