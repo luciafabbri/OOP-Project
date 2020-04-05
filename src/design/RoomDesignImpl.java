@@ -41,4 +41,22 @@ public class RoomDesignImpl implements RoomDesign {
 		
 	}
 
+	@Override
+	public void addOccupiedTile(Pair<Integer, Integer> tile) {
+		occupiedTiles.add(tile);
+		
+	}
+
+	public HashSet<tokens.Enemy> getEnemySet() {
+		return enemySet;
+	}
+
+	public HashSet<tokens.WorldObject> getWorldObjectsSet() {
+		return worldObjectsSet;
+	}
+
+	public HashSet<gameEntities.Obstacle> getObstacleSet() {
+		return obstacleSet;
+	}
+
 }

@@ -17,4 +17,11 @@ public interface RoomDesign {
 	
 	HashSet<Pair<Integer, Integer>> getOccupiedTiles();
 	
+	void addOccupiedTile(Pair<Integer, Integer> tile);
+	
+	HashSet<tokens.Enemy> getEnemySet();
+
+	HashSet<tokens.WorldObject> getWorldObjectsSet();
+		
+	HashSet<gameEntities.Obstacle> getObstacleSet();
 }
