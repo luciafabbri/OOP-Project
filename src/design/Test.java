@@ -2,7 +2,7 @@ package design;
 
 import java.io.IOException;
 
-import utilities.BidirectionalGraph;
+import designUtilities.BidirectionalGraph;
 
 public class Test {
 	

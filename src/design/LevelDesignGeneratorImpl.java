@@ -1,13 +1,13 @@
 package design;
 import java.io.*;
-import utilities.BidirectionalGraph;
-import utilities.CoherentRandomPosition;
-
 import java.util.*;
-import utilities.GameSettings;
-import utilities.Pair;
-import utilities.RandomPosition;
-import tokens.Enemy;
+
+import designTokens.Enemy;
+import designUtilities.BidirectionalGraph;
+import designUtilities.CoherentRandomPosition;
+import designUtilities.GameSettings;
+import designUtilities.Pair;
+import designUtilities.RandomPosition;
 
 public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 	

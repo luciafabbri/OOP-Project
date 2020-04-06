@@ -1,4 +1,4 @@
-package tokens;
+package designTokens;
 
 public class WorldObject {
 

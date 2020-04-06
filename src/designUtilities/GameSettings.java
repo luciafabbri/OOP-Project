@@ -1,4 +1,4 @@
-package utilities;
+package designUtilities;
 
 public interface GameSettings {
 	

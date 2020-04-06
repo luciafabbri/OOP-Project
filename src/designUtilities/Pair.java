@@ -1,4 +1,4 @@
-package utilities;
+package designUtilities;
 
 /*
  * A standard generic Pair<X,Y>, with getters, hashCode, equals, and toString well implemented. 
