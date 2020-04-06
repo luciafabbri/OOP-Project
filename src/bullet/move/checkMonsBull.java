@@ -1,15 +1,14 @@
 package bullet.move;
 
 import utility.Pair;
-import levels.Level;
 import utility.CheckPos;
 
 public class checkMonsBull implements CheckPos {
 	
-	private int limitRight=Level.WIDTH-Level.TILESIZE*2;
-	private int limitLeft=Level.TILESIZE;
-	private int limitUp=Level.TILESIZE;
-	private int limitDown=Level.HEIGHT-Level.TILESIZE*2;
+	private int limitRight=1296-48*2;
+	private int limitLeft=48;
+	private int limitUp=48;
+	private int limitDown=720-48*2;
 	
 
 	@Override

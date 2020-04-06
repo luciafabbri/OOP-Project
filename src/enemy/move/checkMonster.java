@@ -1,16 +1,15 @@
 package enemy.move;
 
 import utility.Pair;
-import levels.Level;
 import utility.CheckPosDir;
 import utility.Direction;
 
 public class checkMonster implements CheckPosDir{
 	
-	private int limitRight=Level.WIDTH-Level.TILESIZE*2;
-	private int limitLeft=Level.TILESIZE-1;
-	private int limitUp=Level.TILESIZE-1;
-	private int limitDown=Level.HEIGHT-Level.TILESIZE*2;
+	private int limitRight=1296-48*2;
+	private int limitLeft=48-1;
+	private int limitUp=48-1;
+	private int limitDown=720-48*2;
 	
 	private int x, y;
 	private Direction newDir;
