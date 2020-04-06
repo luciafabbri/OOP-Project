@@ -10,7 +10,6 @@ import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;
 
-
 public class BulletImpl implements Bullet {
 	
 	private Pair<Integer, Integer> pos;

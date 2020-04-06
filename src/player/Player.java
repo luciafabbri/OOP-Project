@@ -53,6 +53,11 @@ public interface Player extends DefaultPlayer {
 	public Image getImage();
 	
 	
+	/**
+	 * 
+	 * Methods used to get Player's health
+	 *  
+	 */
 	public HealthPlayerImpl getHealth();
 
 	

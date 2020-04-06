@@ -10,7 +10,7 @@ import player.movement.MovementImpl;
 
 /**
  * 
- * Class that implements all the methods of Interface Player  
+ * Class that implements all the methods of Interface Player and create an object PlayerImpl
  * 
  */
 
@@ -42,7 +42,7 @@ public class PlayerImpl implements Player {
 		if(check.isOutOfLimits(newPos) == true) {
 			this.position = newPos;  
 		}
-		this.direction = move.getDirection();   // perchè la direzione cambia anche se non posso muovervi nella posizione
+		this.direction = move.getDirection();   /** direction changes even if the player can't actually go in that position */
 	}
 
 	@Override

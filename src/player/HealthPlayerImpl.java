@@ -2,6 +2,13 @@ package player;
 
 import utility.Health;
 
+/**
+ * 
+ * Class that implements Interface Health and create an object HealthPlayerImpl
+ * 
+ */
+
+
 public class HealthPlayerImpl implements Health {
 	
 	private int totalHealth;

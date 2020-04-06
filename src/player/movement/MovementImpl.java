@@ -5,10 +5,8 @@ import utility.Direction;
 import org.newdawn.slick.Input;
 
 /**
- * Class that implements all the methods of Interface Movement
  * 
- * It allows the player to move in the environment: 
- * based on the command pressed, the player will be able to move in that direction
+ * Class that implements all the methods of Interface Movement
  * 
  */
 public class MovementImpl implements Movement {
