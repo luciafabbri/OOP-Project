@@ -11,7 +11,7 @@ import utility.Debuff;
 import utility.Direction;
 
 
-public class bulletImpl implements Bullet {
+public class BulletImpl implements Bullet {
 	
 	private Pair<Integer, Integer> pos;
 	private int dmg;
@@ -19,7 +19,7 @@ public class bulletImpl implements Bullet {
 	private Direction dir;
 	private MovePosBull move;
 	
-	bulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove){
+	BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove){
 		this.pos=position;
 		this.dmg=damage;
 		this.debuff=debuff;
