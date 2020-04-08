@@ -11,5 +11,13 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/kryas/OneDrive/Desktop/OOP/OOP19-JARG/lib/natives"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/libraries/jinput.jar"/>
+	<classpathentry kind="lib" path="lib/libraries/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="lib/libraries/lwjgl-natives-windows.jar"/>
+	<classpathentry kind="lib" path="lib/libraries/lwjgl-sources.jar"/>
+	<classpathentry kind="lib" path="lib/libraries/lwjgl.jar"/>
+	<classpathentry kind="lib" path="lib/libraries/natives-windows.jar"/>
+	<classpathentry kind="lib" path="lib/libraries/slick.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
