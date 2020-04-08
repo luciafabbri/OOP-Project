@@ -5,12 +5,12 @@ import java.util.Random;
 import utility.Direction;
 import utility.Pair;
 
-public class randomMove implements MovePosMonster {
+public class RandomMove implements MovePosMonster {
 	
 	private static final int MINIMUM_STEPS = 20;
 	private static final int RANDOM_ADD = 10;
 
-	private MovePosMonster move = new straightMove();
+	private MovePosMonster move = new StraightMove();
 	private int moveCounter = 0;
 	private Random random = new Random();	
 	private Direction nextDir;

@@ -9,6 +9,8 @@ import utility.Direction;
 
 public interface Bullet {
 	
+	public final static int DIMENSION = 48;
+	
 	public boolean isAlive();
 	
 	public Pair<Integer,Integer> getPos();

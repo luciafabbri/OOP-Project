@@ -21,10 +21,14 @@ public class CheckPositionPlayerImpl implements CheckPositionPlayer, GameSetting
 	 *  
 	 */
 
-	@Override
-	public boolean isOutOfLimits(Pair<Integer, Integer> pos) {
+	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
 		return !( (pos.getX() <= TILESIZE || pos.getX() >= WIDTH-TILESIZE*2) 			|| 
 				(pos.getY() <= TILESIZE || pos.getY() >= HEIGHT-TILESIZE*2) );		
+	}
+	
+	@Override
+	public boolean possiblePos(Pair<Integer, Integer> pos) {
+		return isOutOfLimits(pos);
 	}
 	
 }

@@ -76,7 +76,7 @@ class TestMove {
 	
 	@Test
 	void testRandom() {
-		Enemy mon = new monster("Mon", new Pair<Integer,Integer>(100, 615), "ciao", 1, 1, TypeMove.RANDOM, Direction.SOUTH);
+		Enemy mon = new Monster("Mon", new Pair<Integer,Integer>(100, 615), "ciao", 1, 1, TypeMove.RANDOM, Direction.SOUTH);
 		int x = 0;
 		
 		while(x<35) {

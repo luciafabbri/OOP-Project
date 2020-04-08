@@ -2,12 +2,12 @@ package enemy;
 
 import utility.Life;
 
-public class monsterLifeImpl implements Life {
+public class MonsterLifeImpl implements Life {
 	
 	private int maxLife = 0;
 	private int actualLife = 0;
 	
-	public monsterLifeImpl(int health) {
+	public MonsterLifeImpl(int health) {
 		this.maxLife = health;
 		this.actualLife = health;
 	}

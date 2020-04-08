@@ -1,6 +1,6 @@
 package bullet;
 
-import bullet.move.checkMonsBull;
+import bullet.move.CheckMonsBull;
 import enemy.TypeMove;
 import utility.CheckPos;
 import utility.Debuff;
@@ -9,7 +9,7 @@ import utility.Pair;
 
 public class BulletMonster extends BulletImpl {
 	
-	private CheckPos check = new checkMonsBull();
+	private CheckPos check = new CheckMonsBull();
 
 	BulletMonster(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove) {
 		super(position, damage, debuff, direction, typeMove);

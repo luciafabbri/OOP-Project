@@ -3,7 +3,7 @@ package bullet;
 import org.newdawn.slick.Image;
 
 import bullet.move.MovePosBull;
-import bullet.move.moveBull;
+import bullet.move.MoveBull;
 import utility.Pair;
 import enemy.TypeMove;
 import utility.CheckPos;
@@ -30,7 +30,7 @@ public class BulletImpl implements Bullet {
 	private MovePosBull selectMove(TypeMove typeMove) {
 		
 		switch (typeMove) {
-			case STRAIGHT: return new moveBull();
+			case STRAIGHT: return new MoveBull();
 			
 			default: throw new IllegalArgumentException();			
 		}
