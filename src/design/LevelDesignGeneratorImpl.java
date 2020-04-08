@@ -2,12 +2,12 @@ package design;
 import java.io.*;
 import java.util.*;
 
-import designTokens.Enemy;
-import designUtilities.BidirectionalGraph;
-import designUtilities.CoherentRandomPosition;
-import designUtilities.GameSettings;
-import designUtilities.Pair;
-import designUtilities.RandomPosition;
+import design.tokens.Enemy;
+import design.utilities.BidirectionalGraph;
+import design.utilities.CoherentRandomPosition;
+import design.utilities.GameSettings;
+import design.utilities.Pair;
+import design.utilities.RandomPosition;
 
 public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 	
@@ -17,7 +17,7 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 	
 	private Map<String, Integer> getLevelConfig(Integer levelNumber) throws IOException {
 		Map<String, Integer> configMap = new HashMap<>();
-		File file = new File("res/level"+ levelNumber + ".txt" );   
+		File file = new File("res/levelConfigs/level"+ levelNumber + ".txt" );   
 		BufferedReader br = new BufferedReader(new FileReader(file));   
 		String line; 
 		  while ((line = br.readLine()) != null) {

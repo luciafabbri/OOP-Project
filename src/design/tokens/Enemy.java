@@ -1,6 +1,6 @@
-package designTokens;
+package design.tokens;
 
-import designUtilities.Pair;
+import design.utilities.Pair;
 
 public class Enemy {
 

@@ -1,6 +1,6 @@
 package gameEntities;
 
-import designUtilities.Pair;
+import design.utilities.Pair;
 
 public class Obstacle {
 

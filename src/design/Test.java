@@ -2,7 +2,7 @@ package design;
 
 import java.io.IOException;
 
-import designUtilities.BidirectionalGraph;
+import design.utilities.BidirectionalGraph;
 
 public class Test {
 	
@@ -10,8 +10,6 @@ public class Test {
 		
 		
 		LevelDesignGeneratorImpl generator = new LevelDesignGeneratorImpl();
-		
-		System.out.println("step 1");
 		
 		LevelDesign testLevel = generator.generateLevel(1);
 		

@@ -2,16 +2,16 @@ package design;
 
 import java.util.HashSet;
 
-import designUtilities.Pair;
+import design.utilities.Pair;
 import gameEntities.Obstacle;
 
 public interface RoomDesign {
 	
 	int getRoomID();
 	
-	void addEnemy(designTokens.Enemy enemy);
+	void addEnemy(design.tokens.Enemy enemy);
 	
-	void addWorldObject(designTokens.WorldObject object);
+	void addWorldObject(design.tokens.WorldObject object);
 	
 	void addObstacle(gameEntities.Obstacle obstacle);
 	
@@ -19,9 +19,9 @@ public interface RoomDesign {
 	
 	void addOccupiedTile(Pair<Integer, Integer> tile);
 	
-	HashSet<designTokens.Enemy> getEnemySet();
+	HashSet<design.tokens.Enemy> getEnemySet();
 
-	HashSet<designTokens.WorldObject> getWorldObjectsSet();
+	HashSet<design.tokens.WorldObject> getWorldObjectsSet();
 		
 	HashSet<gameEntities.Obstacle> getObstacleSet();
 }

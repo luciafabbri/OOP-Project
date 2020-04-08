@@ -2,7 +2,7 @@ package design;
 
 import java.util.LinkedList;
 
-import designUtilities.BidirectionalGraph;
+import design.utilities.BidirectionalGraph;
 
 public class LevelDesignImpl implements LevelDesign {
 
