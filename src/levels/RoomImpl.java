@@ -1,14 +1,12 @@
 package levels;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import design.utilities.Pair;
-import gameEntities.Obstacle;
+import gameEntities.GameEntity;
+import gameEntities.Stairs;
 import gameEntities.items.ItemImpl;
 import gameEntities.items.Key;
 import tiles.*;
@@ -22,7 +20,7 @@ public class RoomImpl {
 	private Tile corners;
 	private List<Tile> doors = new ArrayList<>();
 	private List<ItemImpl> items = new ArrayList<>();
-	private List<Obstacle> obst = new ArrayList<>();
+	private List<GameEntity> obst = new ArrayList<>();
 	
 	public RoomImpl() {	
 		try {
@@ -46,6 +44,11 @@ public class RoomImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void setObstacles() {
+		
+		obst.add(new Stairs(new Pair<>(64 * 7, 64 * 9)));
 	}
 	
 	public void setDoors(final int numDoors) {

@@ -29,3 +29,4 @@
 -Implemented class Menu to act as a game menu once you start up the game, now mainly contains two buttons, one to start the game and one to close the application;
 -Implemented levelID inside TestPlay to dinamically load level based on ID and algorithm given;
 -Eliminated a copy of both GameSettings and Pair since they already exits, and updated dependecies;
+-Added function to List of obstacles to be treated same with items;
