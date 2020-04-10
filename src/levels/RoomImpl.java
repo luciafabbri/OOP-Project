@@ -2,8 +2,12 @@ package levels;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import org.newdawn.slick.SlickException;
 
+import design.RoomDesign;
+import design.utilities.GameSettings;
 import design.utilities.Pair;
 import gameEntities.GameEntity;
 import gameEntities.Stairs;
@@ -21,9 +25,13 @@ public class RoomImpl {
 	private List<Tile> doors = new ArrayList<>();
 	private List<ItemImpl> items = new ArrayList<>();
 	private List<GameEntity> obst = new ArrayList<>();
+	private RoomDesign room;
 	
-	public RoomImpl() {	
+	private Random rand = new Random();
+	
+	public RoomImpl(final RoomDesign room) {	
 		try {
+			this.room = room;
 			this.floor = new Floor1();
 			this.wallVert = new WallVert1();
 			this.wallHor = new WallHor1();
@@ -39,7 +47,9 @@ public class RoomImpl {
 	public void setItems() {
 		
 		try {
-			items.add(new Key(new Pair<>(64 * 5, 64 * 7)));
+			int x = 64 * (1 + rand.nextInt(18));
+			int y = 64 * (1 + rand.nextInt(11));
+			items.add(new Key(new Pair<>(x, y)));
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

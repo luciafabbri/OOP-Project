@@ -1,5 +1,7 @@
 package player.movement;
 
+import java.io.IOException;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -36,7 +38,12 @@ import design.utilities.Pair;
 		public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 			//Teoricamente qui si carica il livello in s� (il primo livello in questo caso)
 			//per poi aggiornare la logica in update e la grafica in render
-			level = new LevelImpl();
+			try { 
+				level = new LevelImpl(1);
+			} catch (IOException e) {     //LUCI SONO FEDE HO MODIFICATO LevelImpl, PER TE NON CAMBIA NULLA
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		    playerDEF=  new PlayerImpl(1, new Image("./res/chars/mainChar5_back.png"));
 			graphics = new RenderingImpl(level);
 			bullet = new BulletMovementImpl();

@@ -20,16 +20,16 @@ public class RenderingImpl implements Rendering {
 	public void drawItems() {
 		for(int i = 0; i < level.getLevel().get(0).getItems().size(); i++) {
 			
-			int x = level.getLevel().get(0).getItems().get(i).getCoord().getX();
-			int y = level.getLevel().get(0).getItems().get(i).getCoord().getY();
-			level.getLevel().get(0).getItems().get(0).getTexture().draw(x, y, 64, 96);
+			int x = level.getLevel().get(level.getRoomID()).getItems().get(i).getCoord().getX();
+			int y = level.getLevel().get(level.getRoomID()).getItems().get(i).getCoord().getY();
+			level.getLevel().get(level.getRoomID()).getItems().get(0).getTexture().draw(x, y, 64, 64);
 		}
 	}
 	
 	public void drawFloor() {
 		for(int x = 0; x < GameSettings.WIDTH; x += GameSettings.TILESIZE) {
 			for(int y = 0; y < GameSettings.HEIGHT; y += GameSettings.TILESIZE) {
-				level.getLevel().get(0).getFloor().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
+				level.getLevel().get(level.getRoomID()).getFloor().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 			}
 		}
 	}
@@ -40,24 +40,22 @@ public class RenderingImpl implements Rendering {
 		for(int x = 0; x < GameSettings.WIDTH; x += GameSettings.TILESIZE) {
 			for(int y = 0; y < GameSettings.HEIGHT; y += GameSettings.TILESIZE) {
 				if(x == 0 && y > 0 && y < GameSettings.HEIGHT - GameSettings.TILESIZE) {
-					level.getLevel().get(0).getWallVert().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
+					level.getLevel().get(level.getRoomID()).getWallVert().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				} else if(x == GameSettings.WIDTH - GameSettings.TILESIZE && y > 0 && y < GameSettings.HEIGHT - GameSettings.TILESIZE) {
-					level.getLevel().get(0).getWallVert().getTexture().getFlippedCopy(true, false).draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
+					level.getLevel().get(level.getRoomID()).getWallVert().getTexture().getFlippedCopy(true, false).draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				} else if(y == 0 && x > 0 && x < GameSettings.WIDTH - GameSettings.TILESIZE) {
-					level.getLevel().get(0).getWallHor().getTexture().getFlippedCopy(false, true).draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
+					level.getLevel().get(level.getRoomID()).getWallHor().getTexture().getFlippedCopy(false, true).draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				} else if(y == GameSettings.HEIGHT - GameSettings.TILESIZE && x > 0 && x < GameSettings.WIDTH - GameSettings.TILESIZE) {
-					level.getLevel().get(0).getWallHor().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
+					level.getLevel().get(level.getRoomID()).getWallHor().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				}
 			}
 		}
 		
 		//Here a draw the corners, since they're always in the same position (the corners), I don't need to draw the dinamically
-		level.getLevel().get(0).getCorners().getTexture().draw(0, 0, GameSettings.TILESIZE, GameSettings.TILESIZE);
-		level.getLevel().get(0).getCorners().getTexture().getFlippedCopy(false, true).draw(0, GameSettings.HEIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
-		level.getLevel().get(0).getCorners().getTexture().getFlippedCopy(true, false).draw(GameSettings.WIDTH - GameSettings.TILESIZE, 0, GameSettings.TILESIZE, GameSettings.TILESIZE);
-		level.getLevel().get(0).getCorners().getTexture().getFlippedCopy(true, true).draw(GameSettings.WIDTH - GameSettings.TILESIZE, GameSettings.HEIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
+		level.getLevel().get(level.getRoomID()).getCorners().getTexture().draw(0, 0, GameSettings.TILESIZE, GameSettings.TILESIZE);
+		level.getLevel().get(level.getRoomID()).getCorners().getTexture().getFlippedCopy(false, true).draw(0, GameSettings.HEIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
+		level.getLevel().get(level.getRoomID()).getCorners().getTexture().getFlippedCopy(true, false).draw(GameSettings.WIDTH - GameSettings.TILESIZE, 0, GameSettings.TILESIZE, GameSettings.TILESIZE);
+		level.getLevel().get(level.getRoomID()).getCorners().getTexture().getFlippedCopy(true, true).draw(GameSettings.WIDTH - GameSettings.TILESIZE, GameSettings.HEIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
 	}
-	
-	
 	
 }

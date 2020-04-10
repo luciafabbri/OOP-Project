@@ -1,4 +1,6 @@
 package genTest;
+import java.io.IOException;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -14,6 +16,7 @@ import levels.LevelImpl;
 public class TestPlay extends BasicGameState {
 	
 	private Rendering graphics;
+	private LogicImpl logic;
 	private Level level;
 	private Input input;
 	private int levelID;
@@ -27,7 +30,13 @@ public class TestPlay extends BasicGameState {
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		//Teoricamente qui si carica il livello in sè (il primo livello in questo caso)
 		//per poi aggiornare la logica in update e la grafica in render
-		level = new LevelImpl();
+		try {
+			level = new LevelImpl(this.levelID);
+			logic = new LogicImpl(level);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		graphics = new RenderingImpl(level);
 	}
@@ -46,6 +55,11 @@ public class TestPlay extends BasicGameState {
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		input = arg0.getInput();
+		
+		logic.switchRooms(input);
+		
+		
+		
 		
 		/*
 		ItemImpl tmp = level.getLevel().get(0).getItems().get(0);
