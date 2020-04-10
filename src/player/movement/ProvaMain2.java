@@ -1,6 +1,5 @@
 package player.movement;
 
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -11,13 +10,13 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import bullet.player.BulletMovementImpl;
 import gameEntities.Obstacle;
-import genTest.GameSettings;
 import genTest.Rendering;
 import genTest.RenderingImpl;
 import levels.Level;
 import levels.LevelImpl;
 import player.PlayerImpl;
-import utility.Pair;
+import design.utilities.GameSettings;
+import design.utilities.Pair;
 
 	public class ProvaMain2 extends BasicGameState implements GameSettings{
 		

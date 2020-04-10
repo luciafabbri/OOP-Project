@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public class FourSideAtt implements MonsterAttack {
 

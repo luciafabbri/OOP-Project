@@ -2,7 +2,7 @@ package bullet;
 
 import org.newdawn.slick.Image;
 
-import utility.Pair;
+import design.utilities.Pair;
 import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;

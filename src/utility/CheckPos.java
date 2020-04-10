@@ -1,6 +1,6 @@
 package utility;
 
-import utility.Pair;
+import design.utilities.Pair;
 
 public interface CheckPos {
 	

@@ -2,7 +2,7 @@ package enemy.move;
 
 import enemy.Enemy;
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public class ImmobilizedMove implements MovePosMonster{
 

@@ -1,7 +1,6 @@
 package bullet.move;
 
-
-import utility.Pair;
+import design.utilities.Pair;
 import utility.CheckPos;
 import utility.Direction;
 

@@ -3,7 +3,7 @@ package bullet;
 import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 import bullet.move.CheckMonsBull;
 import enemy.TypeMove;
 

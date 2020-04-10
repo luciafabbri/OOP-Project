@@ -5,7 +5,7 @@ import java.util.Random;
 import design.utilities.GameSettings;
 import utility.CheckPosDir;
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public class TeleportMove implements MovePosMonster {
 	

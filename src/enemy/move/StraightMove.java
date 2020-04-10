@@ -1,6 +1,6 @@
 package enemy.move;
 
-import utility.Pair;
+import design.utilities.Pair;
 import utility.CheckPosDir;
 import utility.Direction;
 

@@ -2,7 +2,7 @@ package bullet.move;
 
 import utility.CheckPos;
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public interface MovePosBull {
 	

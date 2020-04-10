@@ -1,6 +1,6 @@
 package player;
 
-import utility.Pair;
+import design.utilities.Pair;
 import utility.Direction;
 
 

@@ -1,8 +1,7 @@
 package player;
 
-import utility.Pair;
+import design.utilities.Pair;
 import utility.Direction;
-import utility.Health;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import player.movement.CheckPositionPlayerImpl;

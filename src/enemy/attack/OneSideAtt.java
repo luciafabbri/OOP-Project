@@ -3,7 +3,7 @@ package enemy.attack;
 import bullet.BulletImpl;
 import bullet.BulletMonster;
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public class OneSideAtt extends MonsterAttAbst implements MonsterAttack{
 

@@ -3,7 +3,7 @@ package enemy.move;
 import java.util.Random;
 
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public class RandomMove implements MovePosMonster {
 	

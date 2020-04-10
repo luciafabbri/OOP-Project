@@ -1,7 +1,7 @@
 package player.movement;
 
 import org.newdawn.slick.Input;
-import utility.Pair;
+import design.utilities.Pair;
 import utility.Direction;
 
 /**

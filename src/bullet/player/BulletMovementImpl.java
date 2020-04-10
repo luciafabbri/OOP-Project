@@ -1,9 +1,7 @@
 package bullet.player;
 
 import org.newdawn.slick.Input;
-import bullet.Bullet;
-import bullet.BulletImpl;
-import bullet.BulletPlayer;
+
 
 public class BulletMovementImpl implements BulletMovement {
 	

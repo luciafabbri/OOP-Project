@@ -4,7 +4,7 @@ import org.newdawn.slick.Image;
 
 import bullet.move.MovePosBull;
 import bullet.move.MoveBull;
-import utility.Pair;
+import design.utilities.Pair;
 import enemy.TypeMove;
 import utility.CheckPos;
 import utility.Debuff;
