@@ -9,7 +9,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import genTest.GameSettings;
+import design.utilities.GameSettings;
 
 
 public class ProvaMain extends StateBasedGame implements GameSettings {

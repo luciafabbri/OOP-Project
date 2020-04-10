@@ -11,13 +11,13 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import bullet.player.BulletMovementImpl;
 import gameEntities.Obstacle;
-import genTest.GameSettings;
+import design.utilities.GameSettings;
 import genTest.Rendering;
 import genTest.RenderingImpl;
 import levels.Level;
 import levels.LevelImpl;
 import player.PlayerImpl;
-import utility.Pair;
+import design.utilities.Pair;
 
 	public class ProvaMain2 extends BasicGameState implements GameSettings{
 		

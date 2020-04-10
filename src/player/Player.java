@@ -1,6 +1,6 @@
 package player;
 
-import utility.Pair;
+import design.utilities.Pair;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import utility.Health;

@@ -1,7 +1,7 @@
 package enemy.attack;
 
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public interface MonsterAttack {
 	

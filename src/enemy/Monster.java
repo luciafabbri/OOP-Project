@@ -8,7 +8,7 @@ import enemy.move.RandomMove;
 import enemy.move.StraightMove;
 import enemy.move.TeleportMove;
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public class Monster implements Enemy {
 	

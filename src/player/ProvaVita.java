@@ -1,7 +1,7 @@
 package player;
 
 import utility.Health;
-import utility.Pair;
+import design.utilities.Pair;
 
 public class ProvaVita {
 

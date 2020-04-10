@@ -5,7 +5,7 @@ import enemy.TypeMove;
 import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public class BulletMonster extends BulletImpl {
 	

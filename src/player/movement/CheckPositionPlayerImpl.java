@@ -1,13 +1,12 @@
 package player.movement;
 
-import utility.Pair;
+import design.utilities.Pair;
 import design.utilities.GameSettings;
 import levels.Level;
 import java.util.HashSet;
 import java.util.Iterator;
 import design.RoomDesign;
 import design.RoomDesignImpl;
-import genTest.GameSettings;
 
 /**
  * 
