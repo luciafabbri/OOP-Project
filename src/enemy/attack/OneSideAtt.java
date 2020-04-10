@@ -12,6 +12,8 @@ public class OneSideAtt implements MonsterAttack{
 	@Override
 	public void createBullets(Pair<Integer,Integer> pos, Direction dir, int dmg) {
 				
+		//CHECK IF CAN CREATE
+		
 		BulletImpl bull = new BulletMonster(calculateBullPos(pos, dir), dmg, dir);
 		
 		//listaFede.add(bull);
@@ -22,25 +24,24 @@ public class OneSideAtt implements MonsterAttack{
 	
 	private Pair<Integer,Integer> calculateBullPos(Pair<Integer,Integer> pos, Direction dir) {
 		
-		int x,y;
+		return new Pair<Integer,Integer>(pos.getX() + calcDistanceByCoord(dir.getAbscissa()), pos.getY() + calcDistanceByCoord(dir.getOrdinate()));
+	}
+	
+	private int calcDistanceByCoord(int value) {
+		switch (value) {
+		case 1:
+			return Enemy.DIMENSION + DISTANCESPAWN;
+			
+		case -1:
+			return -DISTANCESPAWN;
+			
+		case 0:
+			return (Enemy.DIMENSION - Bullet.DIMENSION)/2;
 		
-		if (dir.getAbscissa() == 1) {
-			x = pos.getX() + Enemy.DIMENSION + DISTANCESPAWN;
-		} else if (dir.getAbscissa() == 1) {
-			x = pos.getX() - DISTANCESPAWN;
-		} else {
-			x = pos.getX() + (Enemy.DIMENSION - Bullet.DIMENSION)/2;
+		default: 
+			throw new IllegalArgumentException();
+		
 		}
-		
-		if (dir.getOrdinate() == 1) {
-			y = pos.getY() + Enemy.DIMENSION + DISTANCESPAWN;
-		} else if (dir.getOrdinate() == 1) {
-			y = pos.getY() - DISTANCESPAWN;
-		} else {
-			y = pos.getY() + (Enemy.DIMENSION - Bullet.DIMENSION)/2;
-		}
-		
-		return new Pair<Integer,Integer>(x,y);
 	}
 
 }
