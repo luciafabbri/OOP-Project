@@ -11,7 +11,7 @@ public class TeleportMove implements MovePosMonster {
 	private CheckPosDir check = new CheckMonster();
 	private Random rand = new Random();
 	private Pair<Integer,Integer> newPos;
-	private Direction newDir;
+	private Direction nextDir = null;
 	private int sleepCounter = 0;
 
 	@Override
@@ -19,7 +19,7 @@ public class TeleportMove implements MovePosMonster {
 		
 		if(this.sleepCounter > 0) {
 			this.sleepCounter--;
-			this.newDir = dir;
+			this.nextDir = dir;
 			this.newPos = pos;
 		} else {
 			int x, y;
@@ -29,14 +29,17 @@ public class TeleportMove implements MovePosMonster {
 				y = rand.nextInt(720);
 				newPos = new Pair<>(x,y);
 			} while (check.possiblePos(newPos));
-			newDir = Direction.getRandomDir();
+			nextDir = Direction.getRandomDir();
 		}
 		return newPos;
 	}
 
 	@Override
 	public Direction getDirection() {
-		return this.newDir;
+		if (nextDir == null) {
+			throw new IllegalStateException(" Direction isn't Initialized ");
+		}
+		return nextDir;
 	}
 	
 	

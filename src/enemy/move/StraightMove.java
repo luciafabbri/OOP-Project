@@ -7,16 +7,16 @@ import utility.Direction;
 public class StraightMove implements MovePosMonster{
 	
 	private CheckPosDir check = new CheckMonster();
-	private Direction newDir;
+	private Direction nextDir = null;
 
 	@Override
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir) {
 
 		Pair<Integer,Integer> nextPos = new Pair<Integer,Integer>(pos.getX() + dir.getAbscissa(), pos.getY() + dir.getOrdinate());
-		newDir=dir;
+		nextDir=dir;
 		
 		if(check.possiblePos(nextPos)) {
-			this.newDir = check.changeDir(nextPos, dir);	
+			this.nextDir = check.changeDir(nextPos, dir);	
 			return pos;			
 		} else {	
 			return nextPos;
@@ -26,6 +26,9 @@ public class StraightMove implements MovePosMonster{
 
 	@Override
 	public Direction getDirection() {
-		return newDir;
+		if (nextDir == null) {
+			throw new IllegalStateException(" Direction isn't Initialized ");
+		}
+		return nextDir;
 	}
 }

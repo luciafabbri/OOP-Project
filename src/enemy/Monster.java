@@ -2,6 +2,7 @@ package enemy;
 
 import org.newdawn.slick.Image;
 
+import enemy.move.ImmobilizedMove;
 import enemy.move.MovePosMonster;
 import enemy.move.RandomMove;
 import enemy.move.StraightMove;
@@ -21,7 +22,7 @@ public class Monster implements Enemy {
 	private MovePosMonster move;
 	private Direction direct;
 
-	public Monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir) {
+	public Monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir, TypeAttack att) {
 		this.name=name;
 		this.position=pos;
 		this.typeLevel=typeLevel;
@@ -42,6 +43,9 @@ public class Monster implements Enemy {
 				
 			case RANDOM:
 				return new RandomMove();
+				
+			case IMMOBILIZED:
+				return new ImmobilizedMove();
 			
 			default: 
 				throw new IllegalArgumentException();
