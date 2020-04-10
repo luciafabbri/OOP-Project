@@ -31,6 +31,9 @@ public class RandomMove implements MovePosMonster {
 
 	@Override
 	public Direction getDirection() {
+		if (nextDir == null) {
+			throw new IllegalStateException(" Direction isn't Initialized ");
+		}
 		return nextDir;
 	}
 

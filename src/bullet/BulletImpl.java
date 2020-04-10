@@ -19,7 +19,7 @@ public class BulletImpl implements Bullet {
 	private Direction dir;
 	private MovePosBull move;
 	
-	BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove){
+	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove){
 		this.pos=position;
 		this.dmg=damage;
 		this.debuff=debuff;
@@ -48,8 +48,7 @@ public class BulletImpl implements Bullet {
 	
 	@Override
 	public void updatePos(CheckPos check) {
-		this.pos = move.nextPos(this.pos, dir, check);
-		
+		this.pos = move.nextPos(this.pos, dir, check);	
 	}
 
 	@Override
