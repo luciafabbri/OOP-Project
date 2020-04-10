@@ -36,6 +36,7 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 			level.addRoom(generateRoom(levelNumber, i));
 		}
 		level.addGraph(generateRoomsGraph(level.getRooms()));
+		System.out.println("Ho finito");
 		return level;
 	}
 
@@ -79,16 +80,21 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		});
 		
 		graph.getNodes().forEach( n -> {
+			
 			int numOfRemainingEdges = random.nextInt(GameSettings.MAXDOORS) + GameSettings.MINDOORS; // between 1 and 4 edge
-			while(numOfRemainingEdges > 0 && graph.getEdges(n).size() < GameSettings.MAXDOORS ) {
-				int randomNodeIndex = random.nextInt(rooms.size());
-				if(randomNodeIndex != n.getRoomID() && !graph.getEdges(n).contains(rooms.get(randomNodeIndex))) {
-					if(graph.getEdges(rooms.get(randomNodeIndex)).size() < GameSettings.MAXDOORS) {
-						graph.addEdge(n, rooms.get(randomNodeIndex));
+			while(graph.getEdges(n).size() < GameSettings.MINDOORS) {
+				while(numOfRemainingEdges > 0 && graph.getEdges(n).size() < GameSettings.MAXDOORS) {
+					int randomNodeIndex = random.nextInt(rooms.size());
+					if(randomNodeIndex != n.getRoomID() && !graph.getEdges(n).contains(rooms.get(randomNodeIndex))) {
+						if(graph.getEdges(rooms.get(randomNodeIndex)).size() < GameSettings.MAXDOORS) {
+							graph.addEdge(n, rooms.get(randomNodeIndex));
+						}
 						numOfRemainingEdges--;
 					}
 				}
 			}
+			
+			
 			
 		});
 		

@@ -6,12 +6,13 @@ import design.utilities.BidirectionalGraph;
 
 public class Test {
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		
 		
 		LevelDesignGeneratorImpl generator = new LevelDesignGeneratorImpl();
 		
 		LevelDesign testLevel = generator.generateLevel(1);
+		
 		
 		testLevel.getRooms().forEach(r -> {
 			System.out.println(r.toString() + "has ID : " + r.getRoomID());
