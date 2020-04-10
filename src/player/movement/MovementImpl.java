@@ -76,8 +76,7 @@ public class MovementImpl implements Movement {
 			return new Pair<Integer,Integer>(pos.getX() + 1,pos.getY() + 1);
 		}
 		
-		else throw new IllegalArgumentException();
-		
+		return pos;
 	}
 
 	

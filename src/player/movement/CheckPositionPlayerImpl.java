@@ -1,8 +1,11 @@
 package player.movement;
 
 import utility.Pair;
+import java.util.HashSet;
+import java.util.Iterator;
+import design.RoomDesign;
+import design.RoomDesignImpl;
 import genTest.GameSettings;
-import levels.Level;
 
 /**
  * 
@@ -11,7 +14,15 @@ import levels.Level;
  */
 
 public class CheckPositionPlayerImpl implements CheckPositionPlayer, GameSettings{
+
+	private RoomDesign room = new RoomDesignImpl(0);
 	
+	private HashSet<gameEntities.Obstacle> obstacleSet = room.getObstacleSet();
+	private Iterator<gameEntities.Obstacle> iterObstacles = obstacleSet.iterator();
+
+	private HashSet<design.tokens.WorldObject> itemSet = room.getWorldObjectsSet();
+	private Iterator<design.tokens.WorldObject> iterItems = itemSet.iterator();
+		
 	/** 
 	 * 
 	 * This method needs the coordinates of the player and checks if he's not going out of bounds.
@@ -19,16 +30,34 @@ public class CheckPositionPlayerImpl implements CheckPositionPlayer, GameSetting
 	 *  SE SOPRA LIMITI --> return FALSE
 	 *  SE VANNO BENE --> return TRUE  
 	 *  
+	 *  Se ITEM --> posso andare sopra 
+	 *	Se OBSTACLE --> non posso andare sopra
+	 *  
 	 */
 
-	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
-		return !( (pos.getX() <= TILESIZE || pos.getX() >= WIDTH-TILESIZE*2) 			|| 
-				(pos.getY() <= TILESIZE || pos.getY() >= HEIGHT-TILESIZE*2) );		
-	}
-	
 	@Override
 	public boolean possiblePos(Pair<Integer, Integer> pos) {
-		return isOutOfLimits(pos);
+		while(iterObstacles.hasNext()) {
+			/**se dentro al set di ostacoli ci sono coordinate che corrispondono a quelle del personaggio, 
+			 * allora quest'ultimo non si deve muovere perchè quella posizione è già occupata
+			 */
+			Pair<Integer, Integer> obstaclePosition = iterObstacles.next().getPosition();
+			if ( obstaclePosition.getX() == pos.getX()	&&	obstaclePosition.getY() == pos.getY()) {
+				return false;
+			}
+		}
+		/*while(iterItems.hasNext()) {
+			/**se dentro al set di items ci sono coordinate che corrispondo a quelle del personaggio, 
+			 * allora quest'ultimo può spostarsi e raccogliere l'item
+			 *
+			Pair<Integer,Integer> itemPosition = iterItems.next().getPosition();
+			if ( itemPosition.getX()==pos.getX()  &&  itemPosition.getY() == pos.getY()) {
+				return true;
+			}
+		}*/
+		return !( (pos.getX() < TILESIZE || pos.getX() >= WIDTH-TILESIZE*2) 			|| 
+				(pos.getY() < TILESIZE || pos.getY() >= HEIGHT-TILESIZE*2) );		
 	}
+
 	
 }

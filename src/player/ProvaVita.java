@@ -3,7 +3,7 @@ package player;
 import utility.Health;
 import utility.Pair;
 
-public class Prova {
+public class ProvaVita {
 
 	public static void main(String[] args) {
 		PlayerImpl player =  new PlayerImpl(new Pair<>(0,0), null, 1, null);
@@ -33,7 +33,10 @@ public class Prova {
 
 		}
 		
-
+		PlayerImpl playerDEF =  new PlayerImpl(0, null);
+		System.out.println("Posizione default: " +	playerDEF.getPosition());
+		System.out.println("Direzione default: " +  playerDEF.DIRECTION);
+		System.out.println("Salute default: " +	playerDEF.HEALTH);
 	}
 
 }
