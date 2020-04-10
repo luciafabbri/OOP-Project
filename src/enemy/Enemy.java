@@ -21,7 +21,7 @@ public interface Enemy {
 	
 	public int getMaxLife();
 	
-	public int getActualLife();
+	public int getCurrentLife();
 	
 	public int getDmg();
 	

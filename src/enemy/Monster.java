@@ -17,8 +17,8 @@ public class Monster implements Enemy {
 	private Pair<Integer,Integer> position;
 	private String typeLevel;
 	private int level;
-	private int maxLife;
-	private int actLife;
+	private int maxHealth;
+	private int currHealth;
 	private MovePosMonster move;
 	private Direction direct;
 
@@ -27,8 +27,8 @@ public class Monster implements Enemy {
 		this.position=pos;
 		this.typeLevel=typeLevel;
 		this.level=lvl;
-		this.maxLife=life;
-		this.actLife=life;
+		this.maxHealth=life;
+		this.currHealth=life;
 		this.move=selectMove(move);
 		this.direct=dir;
 	}
@@ -81,12 +81,12 @@ public class Monster implements Enemy {
 
 	@Override
 	public int getMaxLife() {
-		return maxLife;
+		return maxHealth;
 	}
 
 	@Override
-	public int getActualLife() {
-		return actLife;
+	public int getCurrentLife() {
+		return currHealth;
 	}
 
 	@Override
