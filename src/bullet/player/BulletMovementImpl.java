@@ -6,8 +6,6 @@ import bullet.BulletImpl;
 import bullet.BulletPlayer;
 
 public class BulletMovementImpl implements BulletMovement {
-
-	private boolean spacePressed = false;
 	
 	public BulletMovementImpl() {
 	}
@@ -16,16 +14,13 @@ public class BulletMovementImpl implements BulletMovement {
 		public void checkShooting(Input input) {
 			
 			if(input.isKeyDown(Input.KEY_SPACE)) {
-				spacePressed = true;
+				this.shoot();
 			}
 			
 		}
 		
 		public void shoot(){
-			if(spacePressed == true) {
-//			Bullet playerBullet = new BulletPlayer();  
-			}
-			spacePressed = false;
+				System.out.println("PREMUTO!");
+//			Bullet playerBullet = new BulletPlayer();  	
 		}
-	
 }
