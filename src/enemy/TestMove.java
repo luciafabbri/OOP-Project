@@ -2,9 +2,6 @@ package enemy;
 
 import org.junit.jupiter.api.Test;
 
-import utility.Direction;
-import utility.Pair;
-
 class TestMove {
 	
 	

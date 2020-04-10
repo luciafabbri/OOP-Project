@@ -2,6 +2,7 @@ package enemy.move;
 
 import java.util.Random;
 
+import design.utilities.GameSettings;
 import utility.CheckPosDir;
 import utility.Direction;
 import utility.Pair;
@@ -25,8 +26,8 @@ public class TeleportMove implements MovePosMonster {
 			int x, y;
 			this.sleepCounter=20;
 			do {
-				x = rand.nextInt(1296);
-				y = rand.nextInt(720);
+				x = rand.nextInt(GameSettings.WIDTH);
+				y = rand.nextInt(GameSettings.HEIGHT);
 				newPos = new Pair<>(x,y);
 			} while (check.possiblePos(newPos));
 			nextDir = Direction.getRandomDir();
