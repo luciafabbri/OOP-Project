@@ -3,13 +3,13 @@ package enemy;
 import org.newdawn.slick.Image;
 
 import enemy.move.MovePosMonster;
-import enemy.move.randomMove;
-import enemy.move.straightMove;
-import enemy.move.teleportMove;
+import enemy.move.RandomMove;
+import enemy.move.StraightMove;
+import enemy.move.TeleportMove;
 import utility.Direction;
 import utility.Pair;
 
-public class monster implements Enemy {
+public class Monster implements Enemy {
 	
 	private Image texture; 
 	private String name;
@@ -21,7 +21,7 @@ public class monster implements Enemy {
 	private MovePosMonster move;
 	private Direction direct;
 
-	public monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir) {
+	public Monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir) {
 		this.name=name;
 		this.position=pos;
 		this.typeLevel=typeLevel;
@@ -35,24 +35,19 @@ public class monster implements Enemy {
 	private MovePosMonster selectMove(TypeMove typeMove) {
 		switch (typeMove) {
 			case STRAIGHT:
-				return new straightMove();
+				return new StraightMove();
 				
 			case TELEPORT:
-				return new teleportMove();
+				return new TeleportMove();
 				
 			case RANDOM:
-				return new randomMove();
+				return new RandomMove();
 			
 			default: 
 				throw new IllegalArgumentException();
 			
 		}
 	}
-
-	public monster(String name, Pair<Integer,Integer> pos, String typeLevel, int life, TypeMove move, Direction dir) {
-		this(name, pos, typeLevel, 1, life, move, dir);
-	}
-
 
 	@Override
 	public String getName() {

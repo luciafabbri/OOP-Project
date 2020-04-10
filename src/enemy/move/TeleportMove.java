@@ -6,9 +6,9 @@ import utility.CheckPosDir;
 import utility.Direction;
 import utility.Pair;
 
-public class teleportMove implements MovePosMonster {
+public class TeleportMove implements MovePosMonster {
 	
-	private CheckPosDir check = new checkMonster();
+	private CheckPosDir check = new CheckMonster();
 	private Random rand = new Random();
 	private Pair<Integer,Integer> newPos;
 	private Direction newDir;
@@ -28,7 +28,7 @@ public class teleportMove implements MovePosMonster {
 				x = rand.nextInt(1296);
 				y = rand.nextInt(720);
 				newPos = new Pair<>(x,y);
-			} while (check.isOutOfLimits(newPos));
+			} while (check.possiblePos(newPos));
 			newDir = Direction.getRandomDir();
 		}
 		return newPos;

@@ -1,10 +1,11 @@
 package enemy.move;
 
 import utility.Pair;
+import enemy.Enemy;
 import utility.CheckPosDir;
 import utility.Direction;
 
-public class checkMonster implements CheckPosDir{
+public class CheckMonster implements CheckPosDir{
 	
 	private int limitRight=1296-48*2;
 	private int limitLeft=48-1;
@@ -43,9 +44,14 @@ public class checkMonster implements CheckPosDir{
 		return newDir;
 	}
 	
+	private boolean isOutOfLimits(Pair<Integer,Integer> pos) {
+		return (pos.getX() <= limitLeft || pos.getX() + Enemy.DIMENSION >= limitRight) || 
+				(pos.getY() <= limitUp || pos.getY() + Enemy.DIMENSION >= limitDown);
+	}
+	
 	@Override
-	public boolean isOutOfLimits(Pair<Integer,Integer> pos) {
-		return (pos.getX() <= limitLeft || pos.getX() >= limitRight) || (pos.getY() <= limitUp || pos.getY() >= limitDown);
+	public boolean possiblePos(Pair<Integer, Integer> pos) {
+		return isOutOfLimits(pos);
 	}
 
 }

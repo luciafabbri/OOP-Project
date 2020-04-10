@@ -7,6 +7,8 @@ import utility.Pair;
 
 public interface Enemy {
 	
+	public final static int DIMENSION = 64;
+	
 	public String getName();
 	
 	public Pair<Integer,Integer> getPos();
