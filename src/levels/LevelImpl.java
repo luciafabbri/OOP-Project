@@ -3,9 +3,7 @@ package levels;
 import java.util.ArrayList;
 import java.util.List;
 
-import genTest.GameSettings;
-
-public class LevelImpl implements Level, GameSettings {
+public class LevelImpl implements Level {
 	
 	private List<RoomImpl> level = new ArrayList<>();
 	

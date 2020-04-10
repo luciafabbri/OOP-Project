@@ -1,9 +1,9 @@
-package items;
+package gameEntities.items;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import genTest.Pair;
+import design.utilities.Pair;
 
 public class Key extends ItemImpl{
 	

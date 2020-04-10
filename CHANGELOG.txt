@@ -18,9 +18,14 @@
 -Implemented inside "TestState" some tests for sprite movement for later real implementation (very basic movement in four cardinal directions);
 
 31/03/2020 - 01/04/2020
--Change the static variables inside "GameSettings", so to have more flexibility when implementing sprites
+-Change the static variables inside "GameSettings", so to have more flexibility when implementing sprites;
 
 04/04/2020
--Renamed class "Level1" to "LevelImpl" and "Room1" to "RoomImpl" to accomodate new implementation regarding the random generating levels
--Added a List of obstacles for future implementation inside RoomImpl
--Added a List of Doors to implement dinamically based on number of rooms connected to the current one
+-Renamed class "Level1" to "LevelImpl" and "Room1" to "RoomImpl" to accomodate new implementation regarding the random generating levels;
+-Added a List of obstacles for future implementation inside RoomImpl;
+-Added a List of Doors to implement dinamically based on number of rooms connected to the current one;
+
+10/04/2020
+-Implemented class Menu to act as a game menu once you start up the game, now mainly contains two buttons, one to start the game and one to close the application;
+-Implemented levelID inside TestPlay to dinamically load level based on ID and algorithm given;
+-Eliminated a copy of both GameSettings and Pair since they already exits, and updated dependecies;

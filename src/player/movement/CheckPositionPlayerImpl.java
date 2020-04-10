@@ -1,7 +1,7 @@
 package player.movement;
 
 import utility.Pair;
-import genTest.GameSettings;
+import design.utilities.GameSettings;
 import levels.Level;
 
 /**

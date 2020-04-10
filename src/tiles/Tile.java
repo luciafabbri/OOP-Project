@@ -2,9 +2,7 @@ package tiles;
 
 import org.newdawn.slick.Image;
 
-import genTest.GameSettings;
-
-public class Tile implements GameSettings {
+public class Tile {
 	
 	private Image texture;
 	

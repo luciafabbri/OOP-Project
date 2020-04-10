@@ -7,8 +7,10 @@ import java.util.Map;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import genTest.Pair;
-import items.*;
+import design.utilities.Pair;
+import gameEntities.Obstacle;
+import gameEntities.items.ItemImpl;
+import gameEntities.items.Key;
 import tiles.*;
 
 
@@ -20,7 +22,7 @@ public class RoomImpl {
 	private Tile corners;
 	private List<Tile> doors = new ArrayList<>();
 	private List<ItemImpl> items = new ArrayList<>();
-//	private List<Obstacles> obst = new ArrayList<>();
+	private List<Obstacle> obst = new ArrayList<>();
 	
 	public RoomImpl() {	
 		try {

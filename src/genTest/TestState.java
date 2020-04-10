@@ -9,26 +9,28 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import design.utilities.GameSettings;
 
-public class TestState extends StateBasedGame implements GameSettings {
 
-	private static final String GAMENAME = "Test";
-//	private static final int MENU = 0;  // Not useful now
+public class TestState extends StateBasedGame {
+
+	private static final String GAMENAME = "JARG";
+	private static final int MENU = 0;  
 	private static final int LEVEL1 = 1;
 	
 	
 	public TestState(String name) {
 		super(name);
-		//this.addState(new Menu(MENU));  // Not useful now
+		this.addState(new Menu());
 		this.addState(new TestPlay(LEVEL1));
 		
 	}
 
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
-		//this.getState(MENU).init(arg0, this);  // Not useful now
+		this.getState(MENU).init(arg0, this); 
 		this.getState(LEVEL1).init(arg0, this);
-		this.enterState(LEVEL1); //FIRST SCREEN USER SEES
+		this.enterState(MENU); //FIRST SCREEN USER SEES
 	}
 	
 	//QUI VA MAIN PER INIZIALIZZARE PRIMA IL MENU
@@ -47,7 +49,7 @@ public class TestState extends StateBasedGame implements GameSettings {
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new TestState(GAMENAME));
-			appgc.setDisplayMode(WIDTH, HEIGHT, false);
+			appgc.setDisplayMode(GameSettings.WIDTH, GameSettings.HEIGHT, false);
 			appgc.setShowFPS(false);
 			appgc.start();
 		} catch (SlickException e) {

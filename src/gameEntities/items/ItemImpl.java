@@ -1,8 +1,8 @@
-package items;
+package gameEntities.items;
 
 import org.newdawn.slick.Image;
 
-import genTest.Pair;
+import design.utilities.Pair;
 
 public class ItemImpl {
 	

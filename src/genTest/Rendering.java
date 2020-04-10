@@ -1,6 +1,6 @@
 package genTest;
 
-public interface Rendering extends GameSettings {
+public interface Rendering {
 
 	void drawWalls();
 	
