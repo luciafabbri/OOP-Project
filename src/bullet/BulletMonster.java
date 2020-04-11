@@ -13,12 +13,12 @@ public class BulletMonster extends BulletImpl {
 	
 	private CheckPos check = new CheckMonsBull();
 
-	public BulletMonster(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove, Image image) {
-		super(position, damage, debuff, direction, typeMove,image);
+	public BulletMonster(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove) {
+		super(position, damage, debuff, direction, typeMove);
 	}
 	
-	public BulletMonster(Pair<Integer, Integer> position, int damage, Direction direction, Image image) {
-		this(position, damage, Debuff.NO_ONE, direction, TypeMove.STRAIGHT, image);
+	public BulletMonster(Pair<Integer, Integer> position, int damage, Direction direction) {
+		this(position, damage, Debuff.NO_ONE, direction, TypeMove.STRAIGHT);
 	}
 	
 	public void updatePos() {
