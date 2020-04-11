@@ -2,6 +2,9 @@ package bullet.player;
 
 import org.newdawn.slick.Input;
 
+import bullet.BulletImpl;
+import bullet.BulletPlayer;
+
 
 public class BulletMovementImpl implements BulletMovement {
 	
@@ -18,7 +21,7 @@ public class BulletMovementImpl implements BulletMovement {
 		}
 		
 		public void shoot(){
-				System.out.println("PREMUTO!");
-//			Bullet playerBullet = new BulletPlayer();  	
+			System.out.println("PREMUTO!");
+//			BulletImpl bullet = new BulletPlayer(null, 0, null, null, null);  	
 		}
 }

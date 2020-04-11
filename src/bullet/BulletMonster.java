@@ -21,7 +21,6 @@ public class BulletMonster extends BulletImpl {
 	
 	public void updatePos() {
 		super.updatePos(check);
-		
 	}
 
 }
