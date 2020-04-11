@@ -18,15 +18,15 @@ public class LevelImpl implements Level {
 	
 	public LevelImpl(final int levelID) throws IOException {
 		testLevel = generator.generateLevel(levelID);			
-		roomID = 0;
 		this.loadScreen();
 	}
 	
 	@Override
 	public void loadScreen() {	
+		int id;
 		
 		for(int i = 0; i < testLevel.getRooms().size(); i++) {
-			tmpRoom = new RoomImpl(testLevel.getRooms().get(i));
+			tmpRoom = new RoomImpl(testLevel.getRooms().get(i), testLevel.getDoorsLayout());
 			//Qui aggiungo solo un livello come test, ma dovrei metterli tutti
 			level.add(tmpRoom);
 		}

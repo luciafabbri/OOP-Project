@@ -7,4 +7,6 @@ public interface Rendering {
 	void drawFloor();
 
 	void drawItems();
+	
+	void drawDoors();
 }

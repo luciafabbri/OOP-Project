@@ -31,7 +31,10 @@
 -Eliminated a copy of both GameSettings and Pair since they already exits, and updated dependecies;
 -Added function to List of obstacles to be treated same with items;
 
-11/04/2020
--Fixed some minor issues regarding the drawing of items (Keys more specifically)
--Implemented system to store all rooms that are created using the function generateLevel inside LeveelDesignGeneratorImpl
--Implemented temporary system to switch between generated rooms to see if changes are applied
+11/04/2020 - 1
+-Fixed some minor issues regarding the drawing of items (Keys more specifically);
+-Implemented system to store all rooms that are created using the function generateLevel inside LeveelDesignGeneratorImpl;
+-Implemented temporary system to switch between generated rooms to see if changes are applied;
+
+11/04/2020 - 2
+-Reimplemented the way the user can change rooms, because algorithm that generates rooms has changed
