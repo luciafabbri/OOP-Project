@@ -1,4 +1,4 @@
-package genTest;
+package coordination;
 
 import java.io.File;
 import java.util.logging.Level;

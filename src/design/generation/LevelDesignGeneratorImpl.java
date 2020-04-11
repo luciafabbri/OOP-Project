@@ -1,19 +1,17 @@
-package design;
+package design.generation;
 import java.io.*;
 import java.util.*;
 
-import design.tokens.Enemy;
-import design.utilities.BidirectionalGraph;
-import design.utilities.CoherentRandomPosition;
-import design.utilities.GameSettings;
-import design.utilities.Pair;
-import design.utilities.RandomPosition;
+import design.*;
+import design.utilities.*;
+import design.tokens.*;
 
 public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 	
-	Random random = new Random();
-	RandomPosition randomPosition = new CoherentRandomPosition();
-	Map<String, Integer> currentConfig = new HashMap<>();
+	private Random random = new Random();
+	private RandomPosition randomPosition = new CoherentRandomPosition();
+	private Map<String, Integer> currentConfig = new HashMap<>();
+	private RoomsGraphGenerator graphGen = new RoomsGraphGeneratorImpl();
 	
 	private Map<String, Integer> getLevelConfig(Integer levelNumber) throws IOException {
 		Map<String, Integer> configMap = new HashMap<>();
@@ -29,14 +27,17 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 
 	@Override
 	public LevelDesign generateLevel(Integer levelNumber) throws IOException {
-		LevelDesign level = new LevelDesignImpl();
+		LevelDesignImpl level = new LevelDesignImpl();
 		currentConfig = getLevelConfig(levelNumber);
 		int numOfRooms = currentConfig.get("minRooms") + random.nextInt(1 + currentConfig.get("maxRooms") - currentConfig.get("minRooms"));
 		for(int i = 0; i < numOfRooms; i++) {
 			level.addRoom(generateRoom(levelNumber, i));
 		}
-		level.addGraph(generateRoomsGraph(level.getRooms()));
-		System.out.println("Ho finito");
+		BidirectionalGraph<RoomDesign> graph = graphGen.generateRoomsGraph(level.getRooms());
+		graphGen.generateDoorsLayout(graph);
+		level.addGraph(graph);
+		level.addDoorsLayout(graphGen.generateDoorsLayout(graph));
+
 		return level;
 	}
 
@@ -70,36 +71,6 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		}
 		return room;
 	}
-	
-	private BidirectionalGraph<RoomDesign> generateRoomsGraph(LinkedList<RoomDesign> rooms) {
 
-		BidirectionalGraph<RoomDesign> graph = new BidirectionalGraph<RoomDesign>();
-		
-		rooms.forEach( r -> {
-			graph.addNode(r);
-		});
-		
-		graph.getNodes().forEach( n -> {
-			
-			int numOfRemainingEdges = random.nextInt(GameSettings.MAXDOORS) + GameSettings.MINDOORS; // between 1 and 4 edge
-			while(graph.getEdges(n).size() < GameSettings.MINDOORS) {
-				while(numOfRemainingEdges > 0 && graph.getEdges(n).size() < GameSettings.MAXDOORS) {
-					int randomNodeIndex = random.nextInt(rooms.size());
-					if(randomNodeIndex != n.getRoomID() && !graph.getEdges(n).contains(rooms.get(randomNodeIndex))) {
-						if(graph.getEdges(rooms.get(randomNodeIndex)).size() < GameSettings.MAXDOORS) {
-							graph.addEdge(n, rooms.get(randomNodeIndex));
-						}
-						numOfRemainingEdges--;
-					}
-				}
-			}
-			
-			
-			
-		});
-		
-		return graph;
-		
-	}
 	
 }

@@ -11,9 +11,9 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import bullet.player.BulletMovementImpl;
+import coordination.Rendering;
+import coordination.RenderingImpl;
 import gameEntities.Obstacle;
-import genTest.Rendering;
-import genTest.RenderingImpl;
 import levels.Level;
 import levels.LevelImpl;
 import player.PlayerImpl;

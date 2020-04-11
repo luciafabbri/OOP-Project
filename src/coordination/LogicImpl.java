@@ -1,4 +1,4 @@
-package genTest;
+package coordination;
 
 import org.newdawn.slick.Input;
 

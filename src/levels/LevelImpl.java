@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import design.LevelDesign;
-import design.LevelDesignGeneratorImpl;
+import design.generation.LevelDesignGeneratorImpl;
 
 public class LevelImpl implements Level {
 	

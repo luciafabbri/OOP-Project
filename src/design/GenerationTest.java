@@ -1,10 +1,15 @@
 package design;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
 
+import design.generation.LevelDesignGeneratorImpl;
 import design.utilities.BidirectionalGraph;
+import design.utilities.Door;
 
-public class Test {
+public class GenerationTest {
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
 		
@@ -51,6 +56,22 @@ public class Test {
 			System.out.print("Room " + r.getRoomID()+ " has connections to rooms: ");
 			for(RoomDesign a : graph.getEdges(r)) {
 				System.out.print(a.getRoomID() + " ");
+			}
+			System.out.println("");
+		}
+		
+		Map<RoomDesign, Map<Door, Optional<RoomDesign>>> layout = testLevel.getDoorsLayout();
+		
+		for(RoomDesign d : layout.keySet()) {
+			System.out.println("Key: " + d.getRoomID());
+			System.out.print(" has doors: ");
+			for(Entry<Door, Optional<RoomDesign>> e : layout.get(d).entrySet()) {
+				if(e.getValue().isPresent()) {
+					System.out.print(e.getKey().toString() + " " + e.getValue().get().getRoomID() + " ");
+				} else {
+					System.out.print(e.getKey().toString() + " " +  e.getValue() + " ");
+				}
+				
 			}
 			System.out.println("");
 		}

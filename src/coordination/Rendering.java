@@ -1,4 +1,4 @@
-package genTest;
+package coordination;
 
 public interface Rendering {
 

@@ -1,4 +1,4 @@
-package genTest;
+package coordination;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;

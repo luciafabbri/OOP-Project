@@ -1,4 +1,4 @@
-package genTest;
+package coordination;
 import java.io.IOException;
 
 import org.newdawn.slick.GameContainer;
@@ -28,7 +28,7 @@ public class TestPlay extends BasicGameState {
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		//Teoricamente qui si carica il livello in sè (il primo livello in questo caso)
+		//Teoricamente qui si carica il livello in sï¿½ (il primo livello in questo caso)
 		//per poi aggiornare la logica in update e la grafica in render
 		try {
 			level = new LevelImpl(this.levelID);
