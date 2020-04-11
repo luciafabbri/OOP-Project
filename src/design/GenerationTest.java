@@ -67,9 +67,9 @@ public class GenerationTest {
 			System.out.print(" has doors: ");
 			for(Entry<Door, Optional<RoomDesign>> e : layout.get(d).entrySet()) {
 				if(e.getValue().isPresent()) {
-					System.out.print(e.getKey().toString() + " " + e.getValue().get().getRoomID() + " ");
+					System.out.print(e.getKey().toString() + " " + e.getValue().get().getRoomID() + ", ");
 				} else {
-					System.out.print(e.getKey().toString() + " " +  e.getValue() + " ");
+					System.out.print(e.getKey().toString() + " " +  e.getValue() + ", ");
 				}
 				
 			}

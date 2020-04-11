@@ -66,22 +66,18 @@ public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 				if(n.equals(k)) {
 					graph.getEdges(n).forEach(e -> {
 						for(Door d : Door.values()) {
-							if(roomLayout.get(k).get(d).isEmpty()) {
-								if(roomLayout.get(e).get(returnOppositeDoor(d)).isEmpty()){
+							if(roomLayout.get(k).get(d).isEmpty() && !roomLayout.get(k).values().contains(Optional.of(e))) {
+								if(roomLayout.get(e).get(returnOppositeDoor(d)).isEmpty() && !roomLayout.get(e).values().contains(Optional.of(k))){
 									roomLayout.get(k).put(d, Optional.of(e));
 									roomLayout.get(e).put(returnOppositeDoor(d), Optional.of(k));
 									
 								}
-								break;
 							}
 						}
 					});
 				}
 			});
 		});
-		
-		
-		
 		
 		return roomLayout;
 	}
