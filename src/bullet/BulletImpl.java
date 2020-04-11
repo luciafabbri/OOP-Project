@@ -18,13 +18,15 @@ public class BulletImpl implements Bullet {
 	private Debuff debuff;
 	private Direction dir;
 	private MovePosBull move;
+	private Image image;
 	
-	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove){
+	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove, Image image){
 		this.pos=position;
 		this.dmg=damage;
 		this.debuff=debuff;
 		this.dir=direction;	
 		this.move=selectMove(typeMove);		
+		this.image = image;
 	}
 	
 	private MovePosBull selectMove(TypeMove typeMove) {
@@ -68,7 +70,6 @@ public class BulletImpl implements Bullet {
 
 	@Override
 	public Image getImage() {
-		return null;
+		return this.image;
 	}
-
 }

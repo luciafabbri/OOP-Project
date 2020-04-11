@@ -1,7 +1,6 @@
 package bullet.player;
 
 import org.newdawn.slick.Input;
-
 import bullet.BulletImpl;
 import bullet.BulletPlayer;
 
