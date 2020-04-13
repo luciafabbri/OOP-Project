@@ -20,13 +20,12 @@ public class BulletImpl implements Bullet {
 	private MovePosBull move;
 	private Image image;
 	
-	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove, Image image){
+	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove){
 		this.pos=position;
 		this.dmg=damage;
 		this.debuff=debuff;
 		this.dir=direction;	
-		this.move=selectMove(typeMove);		
-		this.image = image;
+		this.move=selectMove(typeMove);	
 	}
 	
 	private MovePosBull selectMove(TypeMove typeMove) {

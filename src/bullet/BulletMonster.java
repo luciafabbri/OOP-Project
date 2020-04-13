@@ -1,7 +1,5 @@
 package bullet;
 
-import org.newdawn.slick.Image;
-
 import bullet.move.CheckMonsBull;
 import enemy.TypeMove;
 import utility.CheckPos;
