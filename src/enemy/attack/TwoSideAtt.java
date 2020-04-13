@@ -2,7 +2,7 @@ package enemy.attack;
 
 import java.util.List;
 
-import bullet.BulletImpl;
+import bullet.Bullet;
 import bullet.BulletMonster;
 import utility.Direction;
 import design.utilities.Pair;
@@ -15,8 +15,13 @@ public class TwoSideAtt extends MonsterAttAbst implements MonsterAttack {
 		List<Direction> bullDir = Direction.getNearDistance(dir, 1);
 		
 		for(int i = 0; i < 2; i++) {
-			BulletImpl bull = new BulletMonster(calculateBullPos(pos, dirSpawn.get(i)), dmg, bullDir.get(i));
+			Bullet bull = new BulletMonster(calculateBullPos(pos, dirSpawn.get(i)), dmg, bullDir.get(i));
+			if(bull.isAlive()) {
+				//AGGIUNGERE LISTA FEDE
+			}
 		}
+		
+		
 		
 	}
 	

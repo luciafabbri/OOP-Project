@@ -1,6 +1,6 @@
 package enemy.attack;
 
-import bullet.BulletImpl;
+import bullet.Bullet;
 import bullet.BulletMonster;
 import utility.Direction;
 import design.utilities.Pair;
@@ -12,9 +12,11 @@ public class OneSideAtt extends MonsterAttAbst implements MonsterAttack{
 				
 		//CHECK IF CAN CREATE
 		
-		BulletImpl bull = new BulletMonster(calculateBullPos(pos, dir), dmg, dir);
+		Bullet bull = new BulletMonster(calculateBullPos(pos, dir), dmg, dir);
 		
-		//listaFede.add(bull);
+		if(bull.isAlive()) {
+			//AGGIUNGERE LISTA FEDE
+		}
 		
 		
 				
