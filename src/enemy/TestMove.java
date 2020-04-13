@@ -78,7 +78,7 @@ class TestMove {
 		
 		while(x<35) {
 			x++;
-			mon.updatePos();
+			mon.updatePos();-
 			System.out.println(mon.getName() + " -> " + mon.getPos());
 			System.out.println(mon.getDirection());
 			

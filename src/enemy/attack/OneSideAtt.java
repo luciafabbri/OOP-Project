@@ -19,11 +19,5 @@ public class OneSideAtt extends MonsterAttAbst implements MonsterAttack{
 		
 				
 	}
-	
-	private Pair<Integer,Integer> calculateBullPos(Pair<Integer,Integer> pos, Direction dir) {
-		
-		return new Pair<Integer,Integer>(pos.getX() + calcDistanceByCoord(dir.getAbscissa()), pos.getY() + calcDistanceByCoord(dir.getOrdinate()));
-		
-	}
 
 }
