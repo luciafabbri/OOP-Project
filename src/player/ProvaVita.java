@@ -6,7 +6,7 @@ import design.utilities.Pair;
 public class ProvaVita {
 
 	public static void main(String[] args) {
-		PlayerImpl player =  new PlayerImpl(new Pair<>(0,0), null, 1, null);
+		PlayerImpl player =  new PlayerImpl(new Pair<>(0,0), null, 1, null, null);
 		Health health = player.getHealth();
 
 		System.out.println("VITA DEFAULT: " +health.getMaxHealth());
@@ -33,7 +33,7 @@ public class ProvaVita {
 
 		}
 		
-		PlayerImpl playerDEF =  new PlayerImpl(0, null);
+		PlayerImpl playerDEF =  new PlayerImpl(0, null, null);
 		System.out.println("Posizione default: " +	playerDEF.getPosition());
 		System.out.println("Direzione default: " +  playerDEF.DIRECTION);
 		System.out.println("Salute default: " +	playerDEF.HEALTH);

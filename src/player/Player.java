@@ -1,5 +1,6 @@
 package player;
 
+import design.RoomDesignImpl;
 import design.utilities.Pair;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
@@ -58,8 +59,22 @@ public interface Player extends DefaultPlayer {
 	 *  
 	 */
 	public HealthPlayerImpl getHealth();
-
 	
+
+	/**
+	 * 
+	 * Methods used to get Player's current room
+	 *  
+	 */
+	public RoomDesignImpl getRoom();
+
+	/**
+	 * 
+	 * Methods used to set Player's current room
+	 *  
+	 */
+	public void setCurrentRoom(RoomDesignImpl room);
+
 	//public Debuff setDebuff();
 	//public Buff setBuff();
 	//public Debuff getDebuff();

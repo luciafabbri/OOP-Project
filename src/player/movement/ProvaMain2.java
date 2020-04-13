@@ -17,6 +17,7 @@ import gameEntities.Obstacle;
 import levels.Level;
 import levels.LevelImpl;
 import player.PlayerImpl;
+import design.RoomDesignImpl;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 
@@ -28,7 +29,8 @@ import design.utilities.Pair;
 		private PlayerImpl playerDEF;
 		private BulletMovementImpl bullet;
 		private Obstacle obst;
-		private Pair<Integer, Integer> position = new Pair<>(TILESIZE*3,TILESIZE*3);
+		private Pair<Integer, Integer> position = new Pair<>(64,639);
+		private RoomDesignImpl room;
 		
 		public ProvaMain2(final int state) {
 			super();
@@ -44,10 +46,12 @@ import design.utilities.Pair;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		    playerDEF=  new PlayerImpl(1, new Image("./res/chars/mainChar5_back.png"));
+		    playerDEF=  new PlayerImpl(1, new Image("./res/chars/mainChar5_back.png"), room);
 			graphics = new RenderingImpl(level);
 			bullet = new BulletMovementImpl();
 			obst = new Obstacle(position);
+			room = new RoomDesignImpl(1);
+			room.addObstacle(obst);
 		}
 
 		@Override
@@ -57,15 +61,16 @@ import design.utilities.Pair;
 			graphics.drawItems();
 			playerDEF.getImage().draw(playerDEF.getPosition().getX(),playerDEF.getPosition().getY(),64,64);
 			arg2.clearClip();		
-			
 		}
 
 		@Override
 		public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 			input = arg0.getInput();
 			playerDEF.setPosition(input);
+			System.out.println(playerDEF.getPosition());
 			bullet.checkShooting(input);
-			System.out.println(obst);
+			System.out.println(obst.getPosition());
+			System.out.println(room.getObstacleSet().contains(obst));
 		}
 		
 		public int getID() {
