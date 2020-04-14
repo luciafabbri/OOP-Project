@@ -49,7 +49,7 @@ import design.utilities.Pair;
 			}
 		    playerDEF=  new PlayerImpl(1, new Image("./res/chars/mainChar5_back.png"), room);
 			graphics = new RenderingImpl(level);
-			bullet = new BulletMovementImpl();
+			bullet = new BulletMovementImpl(room);
 			obst = new Obstacle(position);
 			room = new RoomDesignImpl(1);
 			room.addObstacle(obst);
@@ -70,7 +70,7 @@ import design.utilities.Pair;
 			input = arg0.getInput();
 			playerDEF.setPosition(input);
 			System.out.println(playerDEF.getPosition());
-			bullet.checkShooting(input);
+			bullet.checkShooting(input, playerDEF.getPosition(), 0, null);
 			
 		}
 		

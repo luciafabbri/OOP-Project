@@ -5,7 +5,6 @@ import bullet.BulletImpl;
 import bullet.BulletPlayer;
 import design.RoomDesign;
 import design.utilities.Pair;
-import utility.Debuff;
 import utility.Direction;
 
 public class BulletMovementImpl implements BulletMovement {
@@ -20,13 +19,16 @@ public class BulletMovementImpl implements BulletMovement {
 		public void checkShooting(Input input, Pair<Integer,Integer> pos, int dmg, Direction dir) {
 			
 			if(input.isKeyDown(Input.KEY_SPACE)) {
-				this.shoot(pos, dir, dmg);
+				this.shoot(pos, dmg, dir);
 			}
 			
 		}
 		
 		public void shoot(Pair<Integer,Integer> pos, int dmg, Direction dir){
 			System.out.println("PREMUTO!");
-		BulletImpl bullet = new BulletPlayer(pos, dmg, dir, currentRoom);  	
+			BulletImpl bullet = new BulletPlayer(pos, dmg, dir, currentRoom);  	
+			if (bullet.isAlive()) {
+				//aggiugerlo ad una lista di proiettili?? 
+			}
 		}
 }

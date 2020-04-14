@@ -1,7 +1,6 @@
 package bullet.move;
 
 import design.RoomDesign;
-import design.RoomDesignImpl;
 import design.utilities.Pair;
 import utility.CheckPos;
 import utility.Direction;
@@ -12,7 +11,7 @@ public class MoveBull implements MovePosBull {
 	
 	private RoomDesign currentRoom;
 	
-	public MoveBull(RoomDesignImpl room) {
+	public MoveBull(RoomDesign room) {
 		currentRoom = room;
 	}
 

@@ -2,6 +2,9 @@ package player.shoot;
 
 import org.newdawn.slick.Input;
 
+import design.utilities.Pair;
+import utility.Direction;
+
 public interface BulletMovement {
 
 	/** 
@@ -10,7 +13,7 @@ public interface BulletMovement {
 	 * Set true value in a variable if that happens.
 	 *  
 	 */
-	public void checkShooting(Input input);
+	public void checkShooting(Input input, Pair<Integer,Integer> pos, int dmg, Direction dir);
 		
 	/**
 	 * 
@@ -18,7 +21,7 @@ public interface BulletMovement {
 	 * Create a new Bullet() object.
 	 * 
 	 */
-	public void shoot();
+	public void shoot(Pair<Integer,Integer> pos, int dmg, Direction dir);
 	
 	
 	

@@ -4,6 +4,7 @@ import org.newdawn.slick.Image;
 
 import bullet.move.MovePosBull;
 import bullet.move.MoveBull;
+import design.RoomDesign;
 import design.RoomDesignImpl;
 import design.utilities.Pair;
 import utility.CheckPos;
@@ -20,7 +21,7 @@ public class BulletImpl implements Bullet {
 	private MovePosBull move;
 	private Image image;
 	
-	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, RoomDesignImpl room){
+	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, RoomDesign room){
 		this.pos = position;
 		this.dmg = damage;
 		this.debuff = debuff;
