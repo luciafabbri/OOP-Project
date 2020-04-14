@@ -7,7 +7,7 @@ import enemy.Enemy;
 import utility.CheckPosDir;
 import utility.Direction;
 
-public class CheckMonster implements CheckPosDir {
+public class CheckMonster implements CheckPosDir, GameSettings {
 	
 	private int x, y;
 	private Direction newDir;
@@ -15,18 +15,18 @@ public class CheckMonster implements CheckPosDir {
 	@Override
 	public Direction changeDir(Pair<Integer, Integer> pos, Direction dir) {
 
-		if(pos.getX() >= GameSettings.LIMITRIGHT) {
+		if(pos.getX() >= LIMITRIGHT) {
 			this.x = -1;
-		} else if (pos.getX() <= GameSettings.LIMITLEFT) {
+		} else if (pos.getX() <= LIMITLEFT) {
 			this.x = 1;
 		} else {
 			this.x = dir.getAbscissa();
 		}
 		
-		if(pos.getY() >= GameSettings.LIMITDOWN) {
+		if(pos.getY() >= LIMITDOWN) {
 			
 			y = -1;
-		} else if (pos.getY() <= GameSettings.LIMITUP) {
+		} else if (pos.getY() <= LIMITUP) {
 			y = 1;
 		} else {
 			this.y = dir.getOrdinate();
@@ -47,8 +47,8 @@ public class CheckMonster implements CheckPosDir {
 	}
 	
 	private boolean isOutOfLimits(Pair<Integer,Integer> pos) {
-		return (pos.getX() <= GameSettings.LIMITLEFT || pos.getX() + Enemy.DIMENSION >= GameSettings.LIMITLEFT) || 
-				(pos.getY() <= GameSettings.LIMITUP || pos.getY() + Enemy.DIMENSION >= GameSettings.LIMITDOWN);
+		return (pos.getX() <= LIMITLEFT || pos.getX() + Enemy.DIMENSION >= LIMITLEFT) || 
+				(pos.getY() <= LIMITUP || pos.getY() + Enemy.DIMENSION >= LIMITDOWN);
 	}
 	
 	private boolean isOnObstacle(Pair<Integer,Integer> pos) {
