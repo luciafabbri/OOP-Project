@@ -67,6 +67,7 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 		while(iterItems.hasNext()) {
 			Pair<Integer, Integer> itemPosition = iterItems.next().getPosition();
 			if ( itemPosition.getX() == pos.getX()	&&	itemPosition.getY() == pos.getY()) {
+				// aggiungi item agli oggetti che possiede il player 
 				return true;
 			}
 		}
