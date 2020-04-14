@@ -8,6 +8,8 @@ import utility.CheckPos;
 import design.utilities.GameSettings;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
+
 import design.RoomDesign;
 
 /**
@@ -49,9 +51,9 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	 * allora quest'ultimo non si deve muovere perchè quella posizione è già occupata
 	 */
 	private boolean checkObstaclesRoom(RoomDesign room,Pair<Integer, Integer> pos) {
-		HashSet<gameEntities.Obstacle> obstacleSet = room.getObstacleSet();	
-		for (gameEntities.Obstacle obst : obstacleSet) {
-			if (obst.getPosition().getX() == pos.getX() && obst.getPosition().getY() == pos.getY()) {
+		Set<Pair<Integer, Integer>> obstacleSet = room.getObstaclePositions();	
+		for (Pair<Integer,Integer> obst : obstacleSet) {
+			if (obst.getX() == pos.getX() && obst.getY() == pos.getY()) {
 				return false;
 			}
 		}
