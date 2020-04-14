@@ -25,10 +25,10 @@ public class BulletMovementImpl implements BulletMovement {
 		}
 		
 		public void shoot(Pair<Integer,Integer> pos, int dmg, Direction dir){
-			System.out.println("PREMUTO!");
 			BulletImpl bullet = new BulletPlayer(pos, dmg, dir, currentRoom);  	
 			if (bullet.isAlive()) {
 				//aggiugerlo ad una lista di proiettili?? 
 			}
+			System.out.println("SPARATO!");
 		}
 }

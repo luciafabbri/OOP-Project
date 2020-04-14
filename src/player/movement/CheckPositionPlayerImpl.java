@@ -2,6 +2,7 @@ package player.movement;
 
 import design.utilities.Pair;
 import enemy.Enemy;
+import gameEntities.Obstacle;
 import player.Player;
 import utility.CheckPos;
 import design.utilities.GameSettings;
@@ -49,10 +50,8 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	 */
 	private boolean checkObstaclesRoom(RoomDesign room,Pair<Integer, Integer> pos) {
 		HashSet<gameEntities.Obstacle> obstacleSet = room.getObstacleSet();	
-		Iterator<gameEntities.Obstacle> iterObstacles = obstacleSet.iterator();
-		while(iterObstacles.hasNext()) {
-			Pair<Integer, Integer> obstaclePosition = iterObstacles.next().getPosition();
-			if ( obstaclePosition.getX() == pos.getX()	&&	obstaclePosition.getY() == pos.getY() ) {
+		for (gameEntities.Obstacle obst : obstacleSet) {
+			if (obst.getPosition().getX() == pos.getX() && obst.getPosition().getY() == pos.getY()) {
 				return false;
 			}
 		}
@@ -60,16 +59,16 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	}
 	
 	/*
+	
 	/**se dentro al set di item ci sono coordinate che corrispondono a quelle del personaggio, 
-	 * allora quest'ultimo si deve muovere anche in quella posizione per poter raccogliere l'item
+	 * allora quest'ultimo si deve muovere anche in quella posizione per poter raccogliere l'item e aggiungerlo alla 
+	 * lista delle cose che possiede
 	 *	
 	private boolean checkItemsRoom(RoomDesign room,Pair<Integer, Integer> pos) {
 		HashSet<design.tokens.WorldObject> itemSet = room.getWorldObjectsSet();
-		Iterator<design.tokens.WorldObject> iterItems = itemSet.iterator();
-		while(iterItems.hasNext()) {
-			Pair<Integer, Integer> itemPosition = iterItems.next().getPosition();
-			if ( itemPosition.getX() == pos.getX()	&&	itemPosition.getY() == pos.getY()) {
-				// aggiungi item agli oggetti che possiede il player 
+		for (design.tokens.WorldObject item : itemSet) {
+			if (item.getPosition().getX() == pos.getX() && item.getPosition().getY() == pos.getY()) {
+				//aggiungi item alla lista di qualcosa 
 				return true;
 			}
 		}

@@ -30,8 +30,6 @@ import design.utilities.Pair;
 		private Input input;
 		private PlayerImpl playerDEF;
 		private BulletMovement bullet;
-		private Obstacle obst;
-		private Pair<Integer, Integer> position = new Pair<>(64,639);
 		private RoomDesign room;
 		
 		public ProvaMain2(final int state) {
@@ -51,9 +49,7 @@ import design.utilities.Pair;
 		    playerDEF=  new PlayerImpl(1, new Image("./res/chars/mainChar5_back.png"), room);
 			graphics = new RenderingImpl(level);
 			bullet = new BulletMovementImpl(room);
-			obst = new Obstacle(position);
 			room = new RoomDesignImpl(1);
-			room.addObstacle(obst);
 		}
 
 		@Override
