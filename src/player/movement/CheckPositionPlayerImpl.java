@@ -53,7 +53,7 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	private boolean checkObstaclesRoom(RoomDesign room,Pair<Integer, Integer> pos) {
 		Set<Pair<Integer, Integer>> obstacleSet = room.getObstaclePositions();	
 		for (Pair<Integer,Integer> obst : obstacleSet) {
-			if (obst.getX() == pos.getX() && obst.getY() == pos.getY()) {
+			if (obst.equals(pos)) {
 				return false;
 			}
 		}

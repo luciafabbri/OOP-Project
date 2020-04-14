@@ -66,7 +66,6 @@ import design.utilities.Pair;
 		public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 			input = arg0.getInput();
 			playerDEF.setPosition(input);
-			System.out.println(playerDEF.getPosition());
 			bullet.checkShooting(input, playerDEF.getPosition(), 0, null);
 			
 		}

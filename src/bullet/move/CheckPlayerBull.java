@@ -1,18 +1,18 @@
 package bullet.move;
 
+import java.util.Set;
+
 import bullet.Bullet;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import utility.CheckPos;
 
-public class CheckPlayerBull implements CheckPos, GameSettings {
-	
-	//controllo degli ostacoli e dei nemici in caso vengano colpiti ancora da fare 
+public class CheckPlayerBull implements CheckPos, GameSettings { 
 
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		return !isOutOfLimits(pos);
+		return !isOutOfLimits(pos) || !checkObstacle(room,pos) || !checkEnemyHit(room,pos);
 	}
 	
 	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
@@ -21,12 +21,18 @@ public class CheckPlayerBull implements CheckPos, GameSettings {
 	}
 	
 	private boolean checkObstacle(RoomDesign room, Pair<Integer, Integer> pos) {
-		//CONTROLLARE PRIMA CODICE PLAYER
-		return false;
+		Set<Pair<Integer, Integer>> obstacleSet = room.getObstaclePositions();	
+		for (Pair<Integer,Integer> obst : obstacleSet) {
+			if (obst.equals(pos)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
+	//DA SISTEMARE 
 	private boolean checkEnemyHit(RoomDesign room, Pair<Integer, Integer> pos) {
-		//CONTROLLARE PRIMA CODICE PLAYER
+		Set<design.tokens.Enemy> enemySet = room.getEnemySet();
 		return false;
 	}
 }
