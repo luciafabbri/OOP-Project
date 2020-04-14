@@ -5,21 +5,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import utility.Direction;
+import design.RoomDesignImpl;
 import design.utilities.Pair;
 
 public class FourSideAtt implements MonsterAttack {
 
+	private RoomDesignImpl currentRoom;
+	
+	public FourSideAtt(RoomDesignImpl room) {
+		currentRoom = room;
+	}
+	
 	private static List<Direction> normalDir = getDirectionList(true);
 	
 	private static List<Direction> mixedDir = getDirectionList(false);
 	
 	@Override
 	public void createBullets(Pair<Integer, Integer> pos, Direction dir, int dmg) {
-		MonsterAttack bull = new OneSideAtt();
+		MonsterAttack attack = new OneSideAtt(currentRoom);
 		if(normalDir.contains(dir)) {
-			normalDir.forEach(d -> bull.createBullets(pos, dir, dmg));
+			normalDir.forEach(d -> attack.createBullets(pos, dir, dmg));
 		} else {
-			mixedDir.forEach(d -> bull.createBullets(pos, dir, dmg));
+			mixedDir.forEach(d -> attack.createBullets(pos, dir, dmg));
 		}
 	}
 	

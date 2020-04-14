@@ -1,17 +1,20 @@
 package utility;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public enum Direction {
 
-	NORTH(0, -1),
-	SOUTH(0, 1),
-	EAST(1, 0),
-	WEST(-1, 0),
-	NORTH_EAST(1, -1),	
 	NORTH_WEST(-1, -1),
+	NORTH(0, -1),
+	NORTH_EAST(1, -1),
+	EAST(1, 0),
 	SOUTH_EAST(1, 1),	
-	SOUTH_WEST(-1, 1);	
+	SOUTH(0, 1),
+	SOUTH_WEST(-1, 1),
+	WEST(-1, 0);	
 	
 	private int abscissa;
 	private int ordinate;
@@ -32,5 +35,18 @@ public enum Direction {
 	public static Direction getRandomDir() {
 		Random random = new Random();
 		return values()[random.nextInt(values().length)];
+	}
+	
+	public static List<Direction> getNearDistance(Direction dir, int distance) {
+		CircularList<Direction> directions = new CircularList<Direction>();
+		Collections.addAll(directions, Direction.values());
+		
+		List<Direction> dirAndNear = new ArrayList<>();
+		int index = directions.indexOf(dir);
+		
+		dirAndNear.add(directions.get((index+distance) % directions.size()));
+		dirAndNear.add(directions.get((index-distance) % directions.size()));
+		
+		return dirAndNear;
 	}
 }

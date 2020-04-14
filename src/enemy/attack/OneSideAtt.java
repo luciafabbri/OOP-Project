@@ -1,29 +1,30 @@
 package enemy.attack;
 
-import bullet.BulletImpl;
+import bullet.Bullet;
 import bullet.BulletMonster;
 import utility.Direction;
+import design.RoomDesignImpl;
 import design.utilities.Pair;
 
 public class OneSideAtt extends MonsterAttAbst implements MonsterAttack{
 
+	private RoomDesignImpl currentRoom;
+	
+	public OneSideAtt(RoomDesignImpl room) {
+		currentRoom = room;
+	}
+	
 	@Override
 	public void createBullets(Pair<Integer,Integer> pos, Direction dir, int dmg) {
 				
 		//CHECK IF CAN CREATE
 		
-		BulletImpl bull = new BulletMonster(calculateBullPos(pos, dir), dmg, dir);
+		Bullet bull = new BulletMonster(calculateBullPos(pos, dir), dmg, dir, currentRoom);
 		
-		//listaFede.add(bull);
-		
-		
+		if(bull.isAlive()) {
+			//AGGIUNGERE LISTA FEDE
+		}
 				
-	}
-	
-	private Pair<Integer,Integer> calculateBullPos(Pair<Integer,Integer> pos, Direction dir) {
-		
-		return new Pair<Integer,Integer>(pos.getX() + calcDistanceByCoord(dir.getAbscissa()), pos.getY() + calcDistanceByCoord(dir.getOrdinate()));
-		
 	}
 
 }

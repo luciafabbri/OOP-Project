@@ -1,5 +1,6 @@
 package bullet.move;
 
+import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import utility.CheckPos;
@@ -14,7 +15,7 @@ public class CheckPlayerBull implements CheckPos, GameSettings {
 	}
 
 	@Override
-	public boolean possiblePos(Pair<Integer, Integer> pos) {
+	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
 		return isOutOfLimits(pos);
 	}
 }

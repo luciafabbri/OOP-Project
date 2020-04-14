@@ -4,8 +4,8 @@ import org.newdawn.slick.Image;
 
 import bullet.move.MovePosBull;
 import bullet.move.MoveBull;
+import design.RoomDesignImpl;
 import design.utilities.Pair;
-import enemy.TypeMove;
 import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;
@@ -20,23 +20,15 @@ public class BulletImpl implements Bullet {
 	private MovePosBull move;
 	private Image image;
 	
-	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove){
-		this.pos=position;
-		this.dmg=damage;
-		this.debuff=debuff;
-		this.dir=direction;	
-		this.move=selectMove(typeMove);	
-	}
-	
-	private MovePosBull selectMove(TypeMove typeMove) {
-		
-		switch (typeMove) {
-			case STRAIGHT: return new MoveBull();
-			
-			default: throw new IllegalArgumentException();			
-		}
+	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, RoomDesignImpl room){
+		this.pos = position;
+		this.dmg = damage;
+		this.debuff = debuff;
+		this.dir = direction;	
+		this.move = new MoveBull(room);	
 	}	
 	
+
 	@Override
 	public boolean isAlive() {
 		return move.isAlive();
