@@ -1,6 +1,8 @@
 package player.movement;
 
 import design.utilities.Pair;
+import enemy.Enemy;
+import player.Player;
 import utility.CheckPos;
 import design.utilities.GameSettings;
 import java.util.HashSet;
@@ -37,8 +39,8 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 		if(item) {
 			return true;
 		} */
-		return !( (pos.getX() < TILESIZE || pos.getX() >= WIDTH-TILESIZE*2) 			|| 
-				(pos.getY() < TILESIZE || pos.getY() >= HEIGHT-TILESIZE*2) );		
+		return !( (pos.getX() < LIMITLEFT || pos.getX() + Player.DIMENSION >= LIMITRIGHT) 			|| 
+				(pos.getY() < LIMITUP || pos.getY() + Player.DIMENSION >= LIMITDOWN) );		
 	}
 
 

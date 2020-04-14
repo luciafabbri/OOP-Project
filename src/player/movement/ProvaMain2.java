@@ -18,6 +18,7 @@ import levels.LevelImpl;
 import player.PlayerImpl;
 import player.shoot.BulletMovement;
 import player.shoot.BulletMovementImpl;
+import design.RoomDesign;
 import design.RoomDesignImpl;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
@@ -31,7 +32,7 @@ import design.utilities.Pair;
 		private BulletMovement bullet;
 		private Obstacle obst;
 		private Pair<Integer, Integer> position = new Pair<>(64,639);
-		private RoomDesignImpl room;
+		private RoomDesign room;
 		
 		public ProvaMain2(final int state) {
 			super();
