@@ -1,13 +1,12 @@
 package gameEntities;
 
-import design.utils.Pair;
+import design.utilities.Pair;
 
-public class Obstacle {
-
-	private Pair<Integer, Integer> position;
+public class Obstacle extends GameEntity{
 	
 	
 	public Obstacle(Pair<Integer, Integer> position) {
-		this.position = position;
+		super(position);
 	}
+
 }

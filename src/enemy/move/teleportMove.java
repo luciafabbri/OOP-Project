@@ -2,16 +2,17 @@ package enemy.move;
 
 import java.util.Random;
 
+import design.utilities.GameSettings;
 import utility.CheckPosDir;
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
-public class teleportMove implements MovePosMonster {
+public class TeleportMove implements MovePosMonster {
 	
-	private CheckPosDir check = new checkMonster();
+	private CheckPosDir check = new CheckMonster();
 	private Random rand = new Random();
 	private Pair<Integer,Integer> newPos;
-	private Direction newDir;
+	private Direction nextDir = null;
 	private int sleepCounter = 0;
 
 	@Override
@@ -19,24 +20,27 @@ public class teleportMove implements MovePosMonster {
 		
 		if(this.sleepCounter > 0) {
 			this.sleepCounter--;
-			this.newDir = dir;
+			this.nextDir = dir;
 			this.newPos = pos;
 		} else {
 			int x, y;
 			this.sleepCounter=20;
 			do {
-				x = rand.nextInt(1296);
-				y = rand.nextInt(720);
+				x = rand.nextInt(GameSettings.WIDTH);
+				y = rand.nextInt(GameSettings.HEIGHT);
 				newPos = new Pair<>(x,y);
-			} while (check.isOutOfLimits(newPos));
-			newDir = Direction.getRandomDir();
+			} while (check.possiblePos(newPos));
+			nextDir = Direction.getRandomDir();
 		}
 		return newPos;
 	}
 
 	@Override
 	public Direction getDirection() {
-		return this.newDir;
+		if (nextDir == null) {
+			throw new IllegalStateException(" Direction isn't Initialized ");
+		}
+		return nextDir;
 	}
 	
 	

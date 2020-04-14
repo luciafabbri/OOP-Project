@@ -1,7 +1,7 @@
 package enemy.move;
 
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public interface MovePosMonster {
 	

@@ -8,4 +8,7 @@ public interface Level {
 	
 	List<RoomImpl> getLevel();
 
+	int getRoomID();
+	
+	void setRoomID(int roomID);
 }

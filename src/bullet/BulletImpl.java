@@ -3,8 +3,8 @@ package bullet;
 import org.newdawn.slick.Image;
 
 import bullet.move.MovePosBull;
-import bullet.move.moveBull;
-import utility.Pair;
+import bullet.move.MoveBull;
+import design.utilities.Pair;
 import enemy.TypeMove;
 import utility.CheckPos;
 import utility.Debuff;
@@ -18,19 +18,20 @@ public class BulletImpl implements Bullet {
 	private Debuff debuff;
 	private Direction dir;
 	private MovePosBull move;
+	private Image image;
 	
-	BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove){
+	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, TypeMove typeMove){
 		this.pos=position;
 		this.dmg=damage;
 		this.debuff=debuff;
 		this.dir=direction;	
-		this.move=selectMove(typeMove);		
+		this.move=selectMove(typeMove);	
 	}
 	
 	private MovePosBull selectMove(TypeMove typeMove) {
 		
 		switch (typeMove) {
-			case STRAIGHT: return new moveBull();
+			case STRAIGHT: return new MoveBull();
 			
 			default: throw new IllegalArgumentException();			
 		}
@@ -48,8 +49,7 @@ public class BulletImpl implements Bullet {
 	
 	@Override
 	public void updatePos(CheckPos check) {
-		this.pos = move.nextPos(this.pos, dir, check);
-		
+		this.pos = move.nextPos(this.pos, dir, check);	
 	}
 
 	@Override
@@ -69,7 +69,6 @@ public class BulletImpl implements Bullet {
 
 	@Override
 	public Image getImage() {
-		return null;
+		return this.image;
 	}
-
 }

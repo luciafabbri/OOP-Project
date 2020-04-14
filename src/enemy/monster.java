@@ -2,32 +2,33 @@ package enemy;
 
 import org.newdawn.slick.Image;
 
+import enemy.move.ImmobilizedMove;
 import enemy.move.MovePosMonster;
-import enemy.move.randomMove;
-import enemy.move.straightMove;
-import enemy.move.teleportMove;
+import enemy.move.RandomMove;
+import enemy.move.StraightMove;
+import enemy.move.TeleportMove;
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
-public class monster implements Enemy {
+public class Monster implements Enemy {
 	
 	private Image texture; 
 	private String name;
 	private Pair<Integer,Integer> position;
 	private String typeLevel;
 	private int level;
-	private int maxLife;
-	private int actLife;
+	private int maxHealth;
+	private int currHealth;
 	private MovePosMonster move;
 	private Direction direct;
 
-	public monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir) {
+	public Monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir, TypeAttack att) {
 		this.name=name;
 		this.position=pos;
 		this.typeLevel=typeLevel;
 		this.level=lvl;
-		this.maxLife=life;
-		this.actLife=life;
+		this.maxHealth=life;
+		this.currHealth=life;
 		this.move=selectMove(move);
 		this.direct=dir;
 	}
@@ -35,24 +36,22 @@ public class monster implements Enemy {
 	private MovePosMonster selectMove(TypeMove typeMove) {
 		switch (typeMove) {
 			case STRAIGHT:
-				return new straightMove();
+				return new StraightMove();
 				
 			case TELEPORT:
-				return new teleportMove();
+				return new TeleportMove();
 				
 			case RANDOM:
-				return new randomMove();
+				return new RandomMove();
+				
+			case IMMOBILIZED:
+				return new ImmobilizedMove();
 			
 			default: 
 				throw new IllegalArgumentException();
 			
 		}
 	}
-
-	public monster(String name, Pair<Integer,Integer> pos, String typeLevel, int life, TypeMove move, Direction dir) {
-		this(name, pos, typeLevel, 1, life, move, dir);
-	}
-
 
 	@Override
 	public String getName() {
@@ -82,12 +81,12 @@ public class monster implements Enemy {
 
 	@Override
 	public int getMaxLife() {
-		return maxLife;
+		return maxHealth;
 	}
 
 	@Override
-	public int getActualLife() {
-		return actLife;
+	public int getCurrentLife() {
+		return currHealth;
 	}
 
 	@Override

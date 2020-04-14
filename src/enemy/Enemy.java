@@ -3,9 +3,11 @@ package enemy;
 import org.newdawn.slick.Image;
 
 import utility.Direction;
-import utility.Pair;
+import design.utilities.Pair;
 
 public interface Enemy {
+	
+	public final static int DIMENSION = 64;
 	
 	public String getName();
 	
@@ -19,7 +21,7 @@ public interface Enemy {
 	
 	public int getMaxLife();
 	
-	public int getActualLife();
+	public int getCurrentLife();
 	
 	public int getDmg();
 	

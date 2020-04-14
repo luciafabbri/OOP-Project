@@ -1,6 +1,6 @@
 package player.movement;
 
-import utility.Pair;
+import design.utilities.Pair;
 import utility.Direction;
 import org.newdawn.slick.Input;
 
@@ -23,7 +23,7 @@ public class MovementImpl implements Movement {
 		
 		//control UP input   
 		if( input.isKeyDown(Input.KEY_W) ) {
-			this.direction = Direction.NORD;
+			this.direction = Direction.NORTH;
 			return new Pair<Integer,Integer>(pos.getX(),pos.getY() - 1);
 		}
 		
@@ -51,14 +51,14 @@ public class MovementImpl implements Movement {
 		
 		//control UP-RIGHT input
 		else if( input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_D) ) {
-			this.direction = Direction.NORD_EAST;
+			this.direction = Direction.NORTH_EAST;
 			return new Pair<Integer,Integer>(pos.getX() + 1,pos.getY() - 1);
 		}
 		
 		
 		//control UP-LEFT input
 		else if( input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_A) ) {
-			direction = Direction.NORD_WEST;
+			direction = Direction.NORTH_WEST;
 			return new Pair<Integer,Integer>(pos.getX() - 1,pos.getY() - 1);
 		}
 		
@@ -76,8 +76,7 @@ public class MovementImpl implements Movement {
 			return new Pair<Integer,Integer>(pos.getX() + 1,pos.getY() + 1);
 		}
 		
-		else throw new IllegalArgumentException();
-		
+		return pos;
 	}
 
 	

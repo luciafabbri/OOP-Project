@@ -2,15 +2,15 @@ package design;
 
 import java.util.*;
 
-import design.Tokens.*;
-import design.utils.Pair;
+import design.tokens.*;
+import design.utilities.Pair;
 
 public class RoomDesignImpl implements RoomDesign {
 
 	private int roomID;
 	private HashSet<Pair<Integer, Integer>> occupiedTiles = new HashSet<>();
-	private HashSet<design.Tokens.Enemy> enemySet = new HashSet<>();
-	private HashSet<design.Tokens.WorldObject> worldObjectsSet = new HashSet<>();
+	private HashSet<design.tokens.Enemy> enemySet = new HashSet<>();
+	private HashSet<design.tokens.WorldObject> worldObjectsSet = new HashSet<>();
 	private HashSet<gameEntities.Obstacle> obstacleSet = new HashSet<>();
 	
 	public RoomDesignImpl(int roomID) {
@@ -47,11 +47,11 @@ public class RoomDesignImpl implements RoomDesign {
 		
 	}
 
-	public HashSet<design.Tokens.Enemy> getEnemySet() {
+	public HashSet<design.tokens.Enemy> getEnemySet() {
 		return enemySet;
 	}
 
-	public HashSet<design.Tokens.WorldObject> getWorldObjectsSet() {
+	public HashSet<design.tokens.WorldObject> getWorldObjectsSet() {
 		return worldObjectsSet;
 	}
 

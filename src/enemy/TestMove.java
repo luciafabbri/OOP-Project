@@ -2,9 +2,6 @@ package enemy;
 
 import org.junit.jupiter.api.Test;
 
-import utility.Direction;
-import utility.Pair;
-
 class TestMove {
 	
 	
@@ -76,7 +73,7 @@ class TestMove {
 	
 	@Test
 	void testRandom() {
-		Enemy mon = new monster("Mon", new Pair<Integer,Integer>(100, 615), "ciao", 1, 1, TypeMove.RANDOM, Direction.SOUTH);
+		/*Enemy mon = new Monster("Mon", new Pair<Integer,Integer>(100, 615), "ciao", 1, 1, TypeMove.RANDOM, Direction.SOUTH);
 		int x = 0;
 		
 		while(x<35) {
@@ -85,7 +82,15 @@ class TestMove {
 			System.out.println(mon.getName() + " -> " + mon.getPos());
 			System.out.println(mon.getDirection());
 			
-		}
+		}*/
+	}
+	
+	@Test
+	void testImmobilized() {/*
+		Enemy mon = new Monster("Mon", new Pair<Integer,Integer>(100, 100), "ciao", 1, 1, TypeMove.IMMOBILIZED, Direction.SOUTH);
+		mon.updatePos();
+		System.out.println(mon.getDirection());
+			*/
 	}
 
 }

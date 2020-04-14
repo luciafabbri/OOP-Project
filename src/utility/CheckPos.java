@@ -1,9 +1,9 @@
 package utility;
 
-import utility.Pair;
+import design.utilities.Pair;
 
 public interface CheckPos {
 	
-	public boolean isOutOfLimits(Pair<Integer,Integer> pos);
+	public boolean possiblePos(Pair<Integer,Integer> pos);
 
 }
