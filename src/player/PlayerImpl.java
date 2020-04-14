@@ -2,6 +2,8 @@ package player;
 
 import design.utilities.Pair;
 import utility.Direction;
+import utility.health.HealthImpl;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import player.movement.CheckPositionPlayerImpl;
@@ -22,7 +24,7 @@ public class PlayerImpl implements Player {
 	private Direction direction;
 	private MovementImpl move = new MovementImpl();
 	private CheckPositionPlayerImpl check = new CheckPositionPlayerImpl();
-	private HealthPlayerImpl health = new HealthPlayerImpl(HEALTH);
+	private HealthImpl health = new HealthImpl(HEALTH);
 	private RoomDesignImpl currentRoom;
 	
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level, Image texture, RoomDesignImpl room) {	
@@ -67,7 +69,7 @@ public class PlayerImpl implements Player {
 		return this.texture;
 	}
 
-	public HealthPlayerImpl getHealth() {
+	public HealthImpl getHealth() {
 		return this.health;
 	}
 	

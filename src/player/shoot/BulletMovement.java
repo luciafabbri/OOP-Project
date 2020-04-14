@@ -1,4 +1,4 @@
-package bullet.player;
+package player.shoot;
 
 import org.newdawn.slick.Input;
 

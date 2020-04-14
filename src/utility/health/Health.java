@@ -1,4 +1,4 @@
-package utility;
+package utility.health;
 
 public interface Health {
 		
@@ -6,7 +6,7 @@ public interface Health {
 	
 	public void takeDmg(int dmg);
 	
-	public boolean isAlive(int currentHealth);
+	public boolean isAlive();
 
 	public int getMaxHealth();
 

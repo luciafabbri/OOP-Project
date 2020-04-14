@@ -1,6 +1,4 @@
-package player;
-
-import utility.Health;
+package utility.health;
 
 /**
  * 
@@ -9,12 +7,12 @@ import utility.Health;
  */
 
 
-public class HealthPlayerImpl implements Health {
+public class HealthImpl implements Health {
 	
 	private int totalHealth;
 	private int currentHealth;
 	
-	public HealthPlayerImpl(int health) {
+	public HealthImpl(int health) {
 		this.totalHealth = health;
 		this.currentHealth = health;
 	}
@@ -39,8 +37,8 @@ public class HealthPlayerImpl implements Health {
 	}
 	
 	@Override
-	public boolean isAlive(int currentHealth) {
-		return (this.currentHealth > 0);
+	public boolean isAlive() {
+		return this.currentHealth > 0;
 	}
 	
 }

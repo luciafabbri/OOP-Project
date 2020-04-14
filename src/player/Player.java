@@ -2,6 +2,8 @@ package player;
 
 import design.RoomDesignImpl;
 import design.utilities.Pair;
+import utility.health.HealthImpl;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 
@@ -58,7 +60,7 @@ public interface Player extends DefaultPlayer {
 	 * Methods used to get Player's health
 	 *  
 	 */
-	public HealthPlayerImpl getHealth();
+	public HealthImpl getHealth();
 	
 
 	/**

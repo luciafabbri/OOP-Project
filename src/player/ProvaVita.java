@@ -1,7 +1,7 @@
 package player;
 
-import utility.Health;
 import design.utilities.Pair;
+import utility.health.Health;
 
 public class ProvaVita {
 
@@ -24,8 +24,7 @@ public class ProvaVita {
 		System.out.println("VITA totale iniziale: " +health.getMaxHealth());
 		health.takeDmg(70);
 		System.out.println("VITA dopo danno -70: " +health.getCurrentHealth());
-		boolean yes =health.isAlive(health.getCurrentHealth());
-		if (yes) {
+		if (health.isAlive()) {
 			System.out.println("yes");
 		}
 		else {
