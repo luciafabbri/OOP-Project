@@ -8,6 +8,7 @@ import java.util.Optional;
 import design.generation.LevelDesignGeneratorImpl;
 import design.utilities.BidirectionalGraph;
 import design.utilities.Door;
+import design.utilities.Pair;
 
 public class GenerationTest {
 	
@@ -76,6 +77,23 @@ public class GenerationTest {
 			System.out.println("");
 		}
 		
+		/*
+		// tilegraph for a given room printer 
+		testLevel.getRooms().get(0).getObstacleSet().forEach( o -> {
+			System.out.println("Obstacle in pos: " + o.getPosition());
+		});
+		
+		BidirectionalGraph<Pair <Integer, Integer>> tileGraph = testLevel.getRooms().get(0).getTilesGraph();
+		
+		System.out.println("Room graph: ");
+		for(Pair <Integer, Integer> t : tileGraph.getNodes()) {
+			System.out.print("Tile " + t + " has connections to tiles: ");
+			for(Pair <Integer, Integer> next : tileGraph.getEdges(t)) {
+				System.out.print(next + " ");
+			}
+			System.out.println("");
+		}
+		*/
 		
 	}
 }

@@ -1,7 +1,9 @@
 package design;
 
 import java.util.HashSet;
+import java.util.Set;
 
+import design.utilities.BidirectionalGraph;
 import design.utilities.Pair;
 import gameEntities.Obstacle;
 
@@ -15,13 +17,17 @@ public interface RoomDesign {
 	
 	void addObstacle(gameEntities.Obstacle obstacle);
 	
-	HashSet<Pair<Integer, Integer>> getOccupiedTiles();
+	Set<Pair<Integer, Integer>> getOccupiedTiles();
 	
 	void addOccupiedTile(Pair<Integer, Integer> tile);
 	
-	HashSet<design.tokens.Enemy> getEnemySet();
+	Set<design.tokens.Enemy> getEnemySet();
 
-	HashSet<design.tokens.WorldObject> getWorldObjectsSet();
+	Set<design.tokens.WorldObject> getWorldObjectsSet();
 		
-	HashSet<gameEntities.Obstacle> getObstacleSet();
+	Set<gameEntities.Obstacle> getObstacleSet();
+	
+	Set<Pair<Integer, Integer>> getObstaclePositions();
+	
+	BidirectionalGraph<Pair<Integer, Integer>> getTilesGraph();
 }

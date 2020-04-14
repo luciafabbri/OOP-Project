@@ -9,7 +9,6 @@ import design.tokens.*;
 public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 	
 	private Random random = new Random();
-	private RandomPosition randomPosition = new CoherentRandomPosition();
 	private Map<String, Integer> currentConfig = new HashMap<>();
 	private RoomsGraphGenerator graphGen = new RoomsGraphGeneratorImpl();
 	
@@ -29,9 +28,10 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 	public LevelDesign generateLevel(Integer levelNumber) throws IOException {
 		LevelDesignImpl level = new LevelDesignImpl();
 		currentConfig = getLevelConfig(levelNumber);
+		RoomDesignGenerator roomGen = new RoomDesignGeneratorImpl(currentConfig);
 		int numOfRooms = currentConfig.get("minRooms") + random.nextInt(1 + currentConfig.get("maxRooms") - currentConfig.get("minRooms"));
 		for(int i = 0; i < numOfRooms; i++) {
-			level.addRoom(generateRoom(levelNumber, i));
+			level.addRoom(roomGen.generateRoom(i));
 		}
 		BidirectionalGraph<RoomDesign> graph = graphGen.generateRoomsGraph(level.getRooms());
 		graphGen.generateDoorsLayout(graph);
@@ -41,36 +41,6 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		return level;
 	}
 
-	private RoomDesign generateRoom(Integer levelNumber, int index) {
-		RoomDesignImpl room = new RoomDesignImpl(index);
-		Pair<Integer, Integer> pos;
-		int numOfEnemies = currentConfig.get("minEnemies") + random.nextInt(1 + currentConfig.get("maxEnemies") - currentConfig.get("minEnemies"));
-		for(int j = 0; j < numOfEnemies; j++) {
-			pos = randomPosition.generateRandomPosition();
-			while(room.getOccupiedTiles().contains(pos)) {
-				pos = randomPosition.generateRandomPosition();
-			}
-			room.addEnemy(new Enemy(pos));
-			room.addOccupiedTile(pos);
-		}
-		int obstaclePercentage = currentConfig.get("minObstacles%") + random.nextInt(1 + currentConfig.get("maxObstacles%") - currentConfig.get("minObstacles%"));
-		int numOfObstacles;
-		if(obstaclePercentage > 0) {
-			numOfObstacles = GameSettings.TOTALTILES % obstaclePercentage;
-		}
-		else {
-			numOfObstacles = 0;
-		}
-		for(int k = 0; k < numOfObstacles; k++) {
-			pos = randomPosition.generateRandomPosition();
-			while(room.getOccupiedTiles().contains(pos)) {
-				pos = randomPosition.generateRandomPosition();
-			}
-			room.addObstacle(new gameEntities.Obstacle(pos));
-			room.addOccupiedTile(pos);
-		}
-		return room;
-	}
-
+	
 	
 }
