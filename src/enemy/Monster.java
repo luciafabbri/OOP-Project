@@ -2,35 +2,38 @@ package enemy;
 
 import org.newdawn.slick.Image;
 
+import enemy.attack.FourSideAtt;
+import enemy.attack.MonsterAttack;
+import enemy.attack.OneSideAtt;
+import enemy.attack.TripleAtt;
+import enemy.attack.TwoSideAtt;
 import enemy.move.ImmobilizedMove;
 import enemy.move.MovePosMonster;
 import enemy.move.RandomMove;
 import enemy.move.StraightMove;
 import enemy.move.TeleportMove;
 import utility.Direction;
+import utility.health.Health;
+import utility.health.HealthImpl;
 import design.RoomDesignImpl;
 import design.utilities.Pair;
 
 public class Monster implements Enemy {
 	
-	private Image texture; 
-	private String name;
+	private Image texture;
 	private Pair<Integer,Integer> position;
 	private String typeLevel;
-	private int level;
-	private int maxHealth;
-	private int currHealth;
+	private Health health;
 	private MovePosMonster move;
+	private MonsterAttack attack;
 	private Direction direct;
 
-	public Monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir, TypeAttack att, RoomDesignImpl room) {
-		this.name=name;
-		this.position=pos;
-		this.typeLevel=typeLevel;
-		this.level=lvl;
-		this.maxHealth=life;
-		this.currHealth=life;
-		this.move=selectMove(move, room);
+	public Monster(Pair<Integer, Integer> pos, String typeLevel, int health, TypeMove move, Direction dir, TypeAttack att, RoomDesignImpl room) {
+		this.position = pos;
+		this.typeLevel = typeLevel;
+		this.health = new HealthImpl(health);
+		this.move = selectMove(move, room);
+		this.attack = selectAttack(att, room);
 		this.direct=dir;
 	}
 	
@@ -53,10 +56,25 @@ public class Monster implements Enemy {
 			
 		}
 	}
-
-	@Override
-	public String getName() {
-		return this.name;
+	
+	private MonsterAttack selectAttack(TypeAttack typeAttack, RoomDesignImpl room) {
+		switch (typeAttack) {
+			case ONE_SIDE:
+				return new OneSideAtt(room);
+				
+			case TWO_SIDE:
+				return new TwoSideAtt(room);
+				
+			case FOUR_SIDE:
+				return new FourSideAtt(room);
+				
+			case TRIPLE:
+				return new TripleAtt(room);
+			
+			default: 
+				throw new IllegalArgumentException();
+			
+		}
 	}
 
 	@Override
@@ -76,23 +94,18 @@ public class Monster implements Enemy {
 	}
 	
 	@Override
-	public int getLevel() {
-		return this.level;
-	}
-
-	@Override
 	public int getMaxLife() {
-		return maxHealth;
+		return health.getMaxHealth();
 	}
 
 	@Override
 	public int getCurrentLife() {
-		return currHealth;
+		return health.getCurrentHealth();
 	}
 
 	@Override
-	public int getDmg() {
-		return 0;
+	public void takeDmg(int damage) {
+		health.takeDmg(damage);
 	}
 
 	@Override
