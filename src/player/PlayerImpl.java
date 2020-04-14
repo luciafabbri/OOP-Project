@@ -8,7 +8,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import player.movement.CheckPositionPlayerImpl;
 import player.movement.MovementImpl;
-import design.RoomDesignImpl;
+import design.RoomDesign;
 
 /**
  * 
@@ -25,9 +25,9 @@ public class PlayerImpl implements Player {
 	private MovementImpl move = new MovementImpl();
 	private CheckPositionPlayerImpl check = new CheckPositionPlayerImpl();
 	private HealthImpl health = new HealthImpl(HEALTH);
-	private RoomDesignImpl currentRoom;
+	private RoomDesign currentRoom;
 	
-	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level, Image texture, RoomDesignImpl room) {	
+	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level, Image texture, RoomDesign room) {	
 		this.position = pos;
 		this.level = level;
 		this.texture = texture;
@@ -35,7 +35,7 @@ public class PlayerImpl implements Player {
 		this.currentRoom = room;
 	}
 	
-	public PlayerImpl(int level, Image texture, RoomDesignImpl room) {	
+	public PlayerImpl(int level, Image texture, RoomDesign room) {	
 		this(POSITION, DIRECTION, level, texture, room);
 	}
 	
@@ -73,11 +73,11 @@ public class PlayerImpl implements Player {
 		return this.health;
 	}
 	
-	public RoomDesignImpl getRoom() {
+	public RoomDesign getRoom() {
 		return this.currentRoom;
 	}
 	
-	public void setCurrentRoom(RoomDesignImpl room) {
+	public void setCurrentRoom(RoomDesign room) {
 		this.currentRoom = room;
 	}
 	

@@ -60,6 +60,7 @@ import design.utilities.Pair;
 			graphics.drawFloor();
 			graphics.drawWalls();
 			graphics.drawItems();
+			graphics.drawObstacles();
 			playerDEF.getImage().draw(playerDEF.getPosition().getX(),playerDEF.getPosition().getY(),64,64);
 			arg2.clearClip();		
 		}
@@ -70,8 +71,7 @@ import design.utilities.Pair;
 			playerDEF.setPosition(input);
 			System.out.println(playerDEF.getPosition());
 			bullet.checkShooting(input);
-			System.out.println(obst.getPosition());
-			System.out.println(room.getObstacleSet().contains(obst));
+			
 		}
 		
 		public int getID() {

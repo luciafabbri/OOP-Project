@@ -1,6 +1,6 @@
 package player;
 
-import design.RoomDesignImpl;
+import design.RoomDesign;
 import design.utilities.Pair;
 import utility.health.HealthImpl;
 
@@ -68,14 +68,14 @@ public interface Player extends DefaultPlayer {
 	 * Methods used to get Player's current room
 	 *  
 	 */
-	public RoomDesignImpl getRoom();
+	public RoomDesign getRoom();
 
 	/**
 	 * 
 	 * Methods used to set Player's current room
 	 *  
 	 */
-	public void setCurrentRoom(RoomDesignImpl room);
+	public void setCurrentRoom(RoomDesign room);
 
 	//public Debuff setDebuff();
 	//public Buff setBuff();
