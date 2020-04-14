@@ -1,20 +1,13 @@
 package enemy.move;
 
 import design.RoomDesign;
-import design.RoomDesignImpl;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import enemy.Enemy;
-import player.movement.CheckPositionPlayerImpl;
 import utility.CheckPosDir;
 import utility.Direction;
 
-public class CheckMonster implements CheckPosDir{
-	
-	private int limitRight = GameSettings.WIDTH - GameSettings.HEIGHT;
-	private int limitLeft = GameSettings.TILESIZE - 1;
-	private int limitUp = GameSettings.TILESIZE - 1;
-	private int limitDown = GameSettings.HEIGHT - GameSettings.TILESIZE;
+public class CheckMonster implements CheckPosDir {
 	
 	private int x, y;
 	private Direction newDir;
@@ -22,18 +15,18 @@ public class CheckMonster implements CheckPosDir{
 	@Override
 	public Direction changeDir(Pair<Integer, Integer> pos, Direction dir) {
 
-		if(pos.getX() >= limitRight) {
+		if(pos.getX() >= GameSettings.LIMITRIGHT) {
 			this.x = -1;
-		} else if (pos.getX() <= limitLeft) {
+		} else if (pos.getX() <= GameSettings.LIMITLEFT) {
 			this.x = 1;
 		} else {
 			this.x = dir.getAbscissa();
 		}
 		
-		if(pos.getY() >= limitDown) {
+		if(pos.getY() >= GameSettings.LIMITDOWN) {
 			
 			y = -1;
-		} else if (pos.getY() <= limitUp) {
+		} else if (pos.getY() <= GameSettings.LIMITUP) {
 			y = 1;
 		} else {
 			this.y = dir.getOrdinate();
@@ -54,8 +47,8 @@ public class CheckMonster implements CheckPosDir{
 	}
 	
 	private boolean isOutOfLimits(Pair<Integer,Integer> pos) {
-		return (pos.getX() <= limitLeft || pos.getX() + Enemy.DIMENSION >= limitRight) || 
-				(pos.getY() <= limitUp || pos.getY() + Enemy.DIMENSION >= limitDown);
+		return (pos.getX() <= GameSettings.LIMITLEFT || pos.getX() + Enemy.DIMENSION >= GameSettings.LIMITLEFT) || 
+				(pos.getY() <= GameSettings.LIMITUP || pos.getY() + Enemy.DIMENSION >= GameSettings.LIMITDOWN);
 	}
 	
 	private boolean isOnObstacle(Pair<Integer,Integer> pos) {

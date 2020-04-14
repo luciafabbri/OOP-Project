@@ -6,12 +6,7 @@ import design.utilities.Pair;
 import bullet.Bullet;
 import utility.CheckPos;
 
-public class CheckMonsBull implements CheckPos {
-	
-	private int limitRight = GameSettings.WIDTH - GameSettings.HEIGHT;
-	private int limitLeft = GameSettings.TILESIZE - 1;
-	private int limitUp = GameSettings.TILESIZE - 1;
-	private int limitDown = GameSettings.HEIGHT - GameSettings.TILESIZE;
+public class CheckMonsBull implements CheckPos, GameSettings {
 	
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
@@ -19,8 +14,8 @@ public class CheckMonsBull implements CheckPos {
 	}
 
 	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
-		return (pos.getX() <= limitLeft || pos.getX() + Bullet.DIMENSION >= limitRight) || 
-				(pos.getY() <= limitUp || pos.getY() + Bullet.DIMENSION >= limitDown);
+		return (pos.getX() <= LIMITLEFT || pos.getX() + Bullet.DIMENSION >= LIMITRIGHT) || 
+				(pos.getY() <= LIMITUP || pos.getY() + Bullet.DIMENSION >= LIMITDOWN);
 	}
 	
 	private boolean isOnObstacle(Pair<Integer,Integer> pos) {
