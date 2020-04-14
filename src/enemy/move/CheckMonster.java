@@ -43,7 +43,7 @@ public class CheckMonster implements CheckPosDir, GameSettings {
 	
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		return !isOutOfLimits(pos) || !isOnObstacle(pos);
+		return !isOutOfLimits(pos) || !isOnObstacle(pos, room);
 	}
 	
 	private boolean isOutOfLimits(Pair<Integer,Integer> pos) {
@@ -51,8 +51,13 @@ public class CheckMonster implements CheckPosDir, GameSettings {
 				(pos.getY() <= LIMITUP || pos.getY() + Enemy.DIMENSION >= LIMITDOWN);
 	}
 	
-	private boolean isOnObstacle(Pair<Integer,Integer> pos) {
-		return false;
+	private boolean isOnObstacle(Pair<Integer,Integer> pos, RoomDesign room) {
+		boolean collX, collY;
+		collX = room.getObstacleSet().stream()
+				.anyMatch(x-> x.getPosition().getX() == pos.getX() || x.getPosition().getX() == pos.getX() + Enemy.DIMENSION);
+		collY = room.getObstacleSet().stream()
+				.anyMatch(x-> x.getPosition().getY() == pos.getY() || x.getPosition().getY() == pos.getY() + Enemy.DIMENSION);
+		return collX || collY;
 	}
 	
 	
