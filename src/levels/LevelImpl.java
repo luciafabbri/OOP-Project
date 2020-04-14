@@ -23,8 +23,6 @@ public class LevelImpl implements Level {
 	
 	@Override
 	public void loadScreen() {	
-		int id;
-		
 		for(int i = 0; i < testLevel.getRooms().size(); i++) {
 			tmpRoom = new RoomImpl(testLevel.getRooms().get(i), testLevel.getDoorsLayout());
 			//Qui aggiungo solo un livello come test, ma dovrei metterli tutti

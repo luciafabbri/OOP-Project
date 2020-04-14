@@ -55,7 +55,7 @@ public class RoomImpl {
 		this.setItems();
 	}
 	
-	public void setItems() {
+	private void setItems() {
 		
 		try {
 			int x = 64 * (1 + rand.nextInt(18));
@@ -67,7 +67,7 @@ public class RoomImpl {
 		}
 	}
 	
-	public void setObstacles() {
+	private void setObstacles() {
 		
 		obst.add(new Stairs(new Pair<>(64 * 7, 64 * 9)));
 	}
@@ -102,5 +102,9 @@ public class RoomImpl {
 
 	public Tile getDoorHor() {
 		return doorHor;
+	}
+
+	public RoomDesign getRoom() {
+		return room;
 	}
 }

@@ -37,4 +37,8 @@
 -Implemented temporary system to switch between generated rooms to see if changes are applied;
 
 11/04/2020 - 2
--Reimplemented the way the user can change rooms, because algorithm that generates rooms has changed
+-Reimplemented the way the user can change rooms, because algorithm that generates rooms has changed;
+
+14/04/2020
+-Integrated and Implemented function inside RenderingImpl to draw obstacles temporarly for testing, more permanent solution will be implemented
+once testing for entities has been done extensively;

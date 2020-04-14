@@ -47,6 +47,7 @@ public class TestPlay extends BasicGameState {
 		graphics.drawWalls();
 		graphics.drawItems();
 		graphics.drawDoors();
+		graphics.drawObstacles();
 		
 		arg2.clearClip();
 		

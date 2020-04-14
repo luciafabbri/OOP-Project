@@ -4,10 +4,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Set;
+
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 import design.RoomDesign;
 import design.utilities.Door;
 import design.utilities.GameSettings;
+import gameEntities.Obstacle;
 import gameEntities.items.ItemImpl;
 import levels.Level;
 
@@ -17,6 +22,21 @@ public class RenderingImpl implements Rendering {
 	
 	public RenderingImpl(final Level level) {
 		this.level = level;
+	}
+	
+	public void drawObstacles() {
+		
+		Set<Obstacle> tmp = this.level.getLevel().get(level.getRoomID()).getRoom().getObstacleSet();
+		try {
+			Image texture = new Image("./res/obstacles/obstacle_stone1.png");
+			
+			for(int i = 0; i < tmp.size(); i++) {
+				tmp.forEach(s -> texture.draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE) );	
+			}
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -77,8 +97,10 @@ public class RenderingImpl implements Rendering {
 				}
 			}
 		}
-	
-	
 	}
+	
+	
+	
+	
 	
 }
