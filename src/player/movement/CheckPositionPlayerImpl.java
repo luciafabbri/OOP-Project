@@ -1,11 +1,11 @@
 package player.movement;
 
 import design.utilities.Pair;
+import utility.CheckPos;
 import design.utilities.GameSettings;
 import java.util.HashSet;
 import java.util.Iterator;
 import design.RoomDesign;
-import design.RoomDesignImpl;
 
 /**
  * 
@@ -13,7 +13,7 @@ import design.RoomDesignImpl;
  * 
  */
 
-public class CheckPositionPlayerImpl implements CheckPositionPlayer, GameSettings{
+public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 		
 	/** 
 	 * 
@@ -28,7 +28,7 @@ public class CheckPositionPlayerImpl implements CheckPositionPlayer, GameSetting
 	 */
 	
 	@Override
-	public boolean possiblePos(RoomDesignImpl room, Pair<Integer, Integer> pos) {
+	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
 		boolean obstacle = this.checkObstaclesRoom(room, pos);
 		if(obstacle == false) {
 			return false;
@@ -72,13 +72,5 @@ public class CheckPositionPlayerImpl implements CheckPositionPlayer, GameSetting
 		}
 		return true;
 	} */
-	
-	// SENTI CON MARCO  
-	@Override
-	public boolean possiblePos(Pair<Integer, Integer> pos) {
-		return !( (pos.getX() < TILESIZE || pos.getX() >= WIDTH-TILESIZE*2) 			|| 
-				(pos.getY() < TILESIZE || pos.getY() >= HEIGHT-TILESIZE*2) );	
-	}
-
 	
 }

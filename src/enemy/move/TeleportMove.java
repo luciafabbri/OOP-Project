@@ -2,6 +2,8 @@ package enemy.move;
 
 import java.util.Random;
 
+import design.RoomDesign;
+import design.RoomDesignImpl;
 import design.utilities.GameSettings;
 import utility.CheckPosDir;
 import utility.Direction;
@@ -14,6 +16,12 @@ public class TeleportMove implements MovePosMonster {
 	private Pair<Integer,Integer> newPos;
 	private Direction nextDir = null;
 	private int sleepCounter = 0;
+	
+	private RoomDesign currentRoom;
+	
+	public TeleportMove(RoomDesignImpl room) {
+		currentRoom = room;
+	}
 
 	@Override
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir) {
@@ -29,7 +37,7 @@ public class TeleportMove implements MovePosMonster {
 				x = rand.nextInt(GameSettings.WIDTH);
 				y = rand.nextInt(GameSettings.HEIGHT);
 				newPos = new Pair<>(x,y);
-			} while (check.possiblePos(newPos));
+			} while (check.possiblePos(currentRoom, newPos));
 			nextDir = Direction.getRandomDir();
 		}
 		return newPos;

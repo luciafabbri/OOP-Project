@@ -1,26 +1,33 @@
 package bullet.move;
 
+import design.RoomDesign;
+import design.utilities.GameSettings;
 import design.utilities.Pair;
 import bullet.Bullet;
 import utility.CheckPos;
 
 public class CheckMonsBull implements CheckPos {
 	
-	private int limitRight=1296-48*2;
-	private int limitLeft=48;
-	private int limitUp=48;
-	private int limitDown=720-48*2;
+	private int limitRight = GameSettings.WIDTH - GameSettings.HEIGHT;
+	private int limitLeft = GameSettings.TILESIZE - 1;
+	private int limitUp = GameSettings.TILESIZE - 1;
+	private int limitDown = GameSettings.HEIGHT - GameSettings.TILESIZE;
 	
+	@Override
+	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
+		return !isOutOfLimits(pos) || !isOnObstacle(pos) || !hittedPlayer(pos) ;
+	}
 
 	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
 		return (pos.getX() <= limitLeft || pos.getX() + Bullet.DIMENSION >= limitRight) || 
 				(pos.getY() <= limitUp || pos.getY() + Bullet.DIMENSION >= limitDown);
 	}
-
-
-	@Override
-	public boolean possiblePos(Pair<Integer, Integer> pos) {
-		return isOutOfLimits(pos);
+	
+	private boolean isOnObstacle(Pair<Integer,Integer> pos) {
+		return false;
 	}
-
+	
+	private boolean hittedPlayer(Pair<Integer, Integer> pos) {
+		return false;
+	}
 }

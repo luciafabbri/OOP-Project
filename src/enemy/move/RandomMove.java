@@ -3,6 +3,7 @@ package enemy.move;
 import java.util.Random;
 
 import utility.Direction;
+import design.RoomDesignImpl;
 import design.utilities.Pair;
 
 public class RandomMove implements MovePosMonster {
@@ -10,10 +11,14 @@ public class RandomMove implements MovePosMonster {
 	private static final int MINIMUM_STEPS = 20;
 	private static final int RANDOM_ADD = 10;
 
-	private MovePosMonster move = new StraightMove();
+	private MovePosMonster move; 
 	private int moveCounter = 0;
 	private Random random = new Random();	
 	private Direction nextDir;
+	
+	public RandomMove(RoomDesignImpl room) {
+		move = new StraightMove(room);
+	}
 	
 	@Override
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir) {

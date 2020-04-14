@@ -8,6 +8,7 @@ import enemy.move.RandomMove;
 import enemy.move.StraightMove;
 import enemy.move.TeleportMove;
 import utility.Direction;
+import design.RoomDesignImpl;
 import design.utilities.Pair;
 
 public class Monster implements Enemy {
@@ -22,27 +23,27 @@ public class Monster implements Enemy {
 	private MovePosMonster move;
 	private Direction direct;
 
-	public Monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir, TypeAttack att) {
+	public Monster(String name, Pair<Integer, Integer> pos, String typeLevel, int lvl, int life, TypeMove move, Direction dir, TypeAttack att, RoomDesignImpl room) {
 		this.name=name;
 		this.position=pos;
 		this.typeLevel=typeLevel;
 		this.level=lvl;
 		this.maxHealth=life;
 		this.currHealth=life;
-		this.move=selectMove(move);
+		this.move=selectMove(move, room);
 		this.direct=dir;
 	}
 	
-	private MovePosMonster selectMove(TypeMove typeMove) {
+	private MovePosMonster selectMove(TypeMove typeMove, RoomDesignImpl room) {
 		switch (typeMove) {
 			case STRAIGHT:
-				return new StraightMove();
+				return new StraightMove(room);
 				
 			case TELEPORT:
-				return new TeleportMove();
+				return new TeleportMove(room);
 				
 			case RANDOM:
-				return new RandomMove();
+				return new RandomMove(room);
 				
 			case IMMOBILIZED:
 				return new ImmobilizedMove();

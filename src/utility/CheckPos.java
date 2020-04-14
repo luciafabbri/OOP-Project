@@ -1,9 +1,10 @@
 package utility;
 
+import design.RoomDesign;
 import design.utilities.Pair;
 
 public interface CheckPos {
 	
-	public boolean possiblePos(Pair<Integer,Integer> pos);
+	boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos);
 
 }
