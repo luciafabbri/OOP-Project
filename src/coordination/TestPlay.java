@@ -9,12 +9,18 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import design.utilities.GameSettings;
+import design.utilities.Pair;
 import gameEntities.items.ItemImpl;
 import levels.Level;
 import levels.LevelImpl;
+import player.Player;
+import player.PlayerImpl;
+import utility.Direction;
 
 public class TestPlay extends BasicGameState {
 	
+	private Player player;
 	private Rendering graphics;
 	private LogicImpl logic;
 	private Level level;
@@ -32,13 +38,14 @@ public class TestPlay extends BasicGameState {
 		//per poi aggiornare la logica in update e la grafica in render
 		try {
 			level = new LevelImpl(this.levelID);
-			logic = new LogicImpl(level);
+			player = new PlayerImpl(new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE), Direction.SOUTH, 0, new Image("./res/chars/mainChar6_front.png"), level.getLevel().get(level.getRoomID()).getRoom());
+			logic = new LogicImpl(level, player);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		graphics = new RenderingImpl(level);
+		graphics = new RenderingImpl(level, player);
 	}
 
 	@Override
@@ -48,6 +55,7 @@ public class TestPlay extends BasicGameState {
 		graphics.drawItems();
 		graphics.drawDoors();
 		graphics.drawObstacles();
+		graphics.drawMain();
 		
 		arg2.clearClip();
 		
@@ -58,8 +66,8 @@ public class TestPlay extends BasicGameState {
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		input = arg0.getInput();
 		
+		logic.moveMain(input);
 		logic.switchRooms(input);
-		
 		
 		
 		

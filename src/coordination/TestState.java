@@ -51,6 +51,7 @@ public class TestState extends StateBasedGame {
 			appgc = new AppGameContainer(new TestState(GAMENAME));
 			appgc.setDisplayMode(GameSettings.WIDTH, GameSettings.HEIGHT, false);
 			appgc.setShowFPS(false);
+			appgc.setMaximumLogicUpdateInterval(80);
 			appgc.start();
 		} catch (SlickException e) {
 			Logger.getLogger(TestPlay.class.getName()).log(Level.SEVERE, null, e);

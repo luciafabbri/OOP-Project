@@ -19,6 +19,7 @@ public class LevelImpl implements Level {
 	public LevelImpl(final int levelID) throws IOException {
 		testLevel = generator.generateLevel(levelID);			
 		this.loadScreen();
+		this.roomID = 0;
 	}
 	
 	@Override

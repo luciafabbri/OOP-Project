@@ -42,3 +42,7 @@
 14/04/2020
 -Integrated and Implemented function inside RenderingImpl to draw obstacles temporarly for testing, more permanent solution will be implemented
 once testing for entities has been done extensively;
+
+15/04/2020
+-Implemented maximum FPS recheable so performance should be the same regardless of system hardware;
+-Implemented Player inside TestPlay, Logic and Rendering to perform test regarding the interaction of the mainChar with the world;

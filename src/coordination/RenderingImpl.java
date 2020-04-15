@@ -12,26 +12,34 @@ import org.newdawn.slick.SlickException;
 import design.RoomDesign;
 import design.utilities.Door;
 import design.utilities.GameSettings;
+import design.utilities.Pair;
 import gameEntities.Obstacle;
 import gameEntities.items.ItemImpl;
 import levels.Level;
+import player.Player;
 
 public class RenderingImpl implements Rendering {
 	
 	private Level level;
+	private Player player;
 	
-	public RenderingImpl(final Level level) {
+	public RenderingImpl(final Level level, final Player player) {
 		this.level = level;
+		this.player = player;
+	}
+	
+	public void drawMain() {
+		this.player.getImage().draw(player.getPosition().getX(), player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
 	}
 	
 	public void drawObstacles() {
 		
-		Set<Obstacle> tmp = this.level.getLevel().get(level.getRoomID()).getRoom().getObstacleSet();
+		Set<Pair<Integer, Integer>> tmp = this.level.getLevel().get(level.getRoomID()).getRoom().getObstaclePositions();
 		try {
 			Image texture = new Image("./res/obstacles/obstacle_stone1.png");
 			
 			for(int i = 0; i < tmp.size(); i++) {
-				tmp.forEach(s -> texture.draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE) );	
+				tmp.forEach(s -> texture.draw(s.getX(), s.getY(), GameSettings.TILESIZE, GameSettings.TILESIZE) );	
 			}
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
