@@ -57,9 +57,10 @@ public class CheckMonster implements CheckPosDir, GameSettings {
 				.anyMatch(x-> x.getPosition().getX() == pos.getX() || x.getPosition().getX() == pos.getX() + Enemy.DIMENSION);
 		collY = room.getObstacleSet().stream()
 				.anyMatch(x-> x.getPosition().getY() == pos.getY() || x.getPosition().getY() == pos.getY() + Enemy.DIMENSION);
+		
 		return collX || collY;
 	}
-	
+		
 	
 
 }
