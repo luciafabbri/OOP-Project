@@ -2,6 +2,7 @@ package player;
 
 import design.RoomDesign;
 import design.utilities.Pair;
+import levels.Level;
 import utility.health.HealthImpl;
 
 import org.newdawn.slick.Image;
@@ -20,7 +21,7 @@ public interface Player extends DefaultPlayer {
 	 * Methods used to set Player's position
 	 *  
 	 */
-	public void setPosition(Input input);
+	public void setPosition(Input input, Level level);
 
 	
 	/**
@@ -76,7 +77,13 @@ public interface Player extends DefaultPlayer {
 	 *  
 	 */
 	public void setCurrentRoom(RoomDesign room);
-
+	
+	/**
+	 * 
+	 * Methods used to set Player's updated position
+	 *  
+	 */
+	public void setPosition(Pair<Integer, Integer> position);
 	//public Debuff setDebuff();
 	//public Buff setBuff();
 	//public Debuff getDebuff();

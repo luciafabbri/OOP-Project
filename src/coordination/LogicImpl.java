@@ -1,15 +1,13 @@
 package coordination;
 
-import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.stream.Stream;
-
 import org.newdawn.slick.Input;
 
-import design.RoomDesign;
 import design.utilities.Door;
+import design.utilities.GameSettings;
+import design.utilities.Pair;
 import levels.Level;
 import player.Player;
+import utility.DoorCheck;
 
 public class LogicImpl {
 	
@@ -22,22 +20,35 @@ public class LogicImpl {
 	}
 	
 	public void switchRooms(final Input input) {
-		if(input.isKeyPressed(Input.KEY_RIGHT) && !level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(Door.EAST)).findFirst().get().getValue().equals(Optional.empty())) {
-			level.setRoomID(level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(Door.EAST)).findFirst().get().getValue().get().getRoomID());
-		} else if(input.isKeyPressed(Input.KEY_LEFT) && !level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(Door.WEST)).findFirst().get().getValue().equals(Optional.empty())) {
-			level.setRoomID(level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(Door.WEST)).findFirst().get().getValue().get().getRoomID());
-		} else if(input.isKeyPressed(Input.KEY_UP) && !level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(Door.NORTH)).findFirst().get().getValue().equals(Optional.empty())) {
-			level.setRoomID(level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(Door.NORTH)).findFirst().get().getValue().get().getRoomID());
-		} else if(input.isKeyPressed(Input.KEY_DOWN) && !level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(Door.SOUTH)).findFirst().get().getValue().equals(Optional.empty())) {
-			level.setRoomID(level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(Door.SOUTH)).findFirst().get().getValue().get().getRoomID());
+		DoorCheck check = new DoorCheck();
+		
+		if( (check.transEast(player.getPosition()) || input.isKeyPressed(Input.KEY_RIGHT)) && checkEmpty(Door.EAST)) {
+			level.setRoomID(getRoomID(Door.EAST));
+			player.setPosition(new Pair<>(64, GameSettings.TILESIZE * 5));
+		} else if((check.transWest(player.getPosition()) || input.isKeyPressed(Input.KEY_LEFT)) && checkEmpty(Door.WEST)) {
+			level.setRoomID(getRoomID(Door.WEST));
+			player.setPosition(new Pair<>(GameSettings.LIMITRIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE * 5));
+		} else if((check.transNorth(player.getPosition()) || input.isKeyPressed(Input.KEY_UP)) && checkEmpty(Door.NORTH)) {
+			level.setRoomID(getRoomID(Door.NORTH));
+			player.setPosition(new Pair<>(GameSettings.TILESIZE * 9, GameSettings.LIMITDOWN - GameSettings.TILESIZE));
+		} else if((check.transSouth(player.getPosition()) || input.isKeyPressed(Input.KEY_DOWN)) && checkEmpty(Door.SOUTH)) {
+			level.setRoomID(getRoomID(Door.SOUTH));
+			player.setPosition(new Pair<>(GameSettings.TILESIZE * 9, 64));
 		}
 		player.setCurrentRoom(level.getLevel().get(level.getRoomID()).getRoom());
 	}
 	
 	public void moveMain(final Input input) {
-		player.setPosition(input);
+		player.setPosition(input, level);
 	}
 	
+	private boolean checkEmpty(final Door door) {
+		return level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(door)).findFirst().get().getValue().isPresent();
+	}
+	
+	private int getRoomID(final Door door) {
+		return level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(door)).findFirst().get().getValue().get().getRoomID();
+	}
 	
 }
 

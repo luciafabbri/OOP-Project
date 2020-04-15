@@ -5,9 +5,13 @@ import enemy.Enemy;
 import gameEntities.Obstacle;
 import player.Player;
 import utility.CheckPos;
+import utility.DoorCheck;
+import design.utilities.Door;
 import design.utilities.GameSettings;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import design.RoomDesign;
@@ -42,18 +46,42 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 		if(item) {
 			return true;
 		} */
-		return !( (pos.getX() < LIMITLEFT || pos.getX() + Player.DIMENSION >= LIMITRIGHT) 			|| 
-				(pos.getY() < LIMITUP || pos.getY() + Player.DIMENSION >= LIMITDOWN) );		
+		return !checkMuro(pos);		
+	}	
+	
+	public boolean checkMuro(Pair<Integer, Integer> pos) {
+		//REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS DIFFERENT BASED ON DIRECTIONS
+		
+		return ( (pos.getX() + 15 < LIMITLEFT || pos.getX() + 49 >= LIMITRIGHT) 			|| 
+				  (pos.getY() + 48 < LIMITUP || pos.getY() + Player.DIMENSION >= LIMITDOWN));
 	}
-
+	
+	public boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomDesign>> map) {
+		//REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS DIFFERENT BASED ON DIRECTIONS
+		DoorCheck check = new DoorCheck();
+		
+		if(map.entrySet().stream().filter(s -> s.getKey().equals(Door.NORTH)).findFirst().get().getValue().isPresent() && check.doorNorth(pos)){
+			return true;
+		} else if(map.entrySet().stream().filter(s -> s.getKey().equals(Door.SOUTH)).findFirst().get().getValue().isPresent() && check.doorSouth(pos)) {
+			return true;
+		}  else if(map.entrySet().stream().filter(s -> s.getKey().equals(Door.EAST)).findFirst().get().getValue().isPresent() && check.doorEast(pos)) {
+			return true;
+		}  else if(map.entrySet().stream().filter(s -> s.getKey().equals(Door.WEST)).findFirst().get().getValue().isPresent() && check.doorWest(pos)) {
+			return true;
+		}
+		return false;
+	}
 
 	/**se dentro al set di ostacoli ci sono coordinate che corrispondono a quelle del personaggio, 
 	 * allora quest'ultimo non si deve muovere perchè quella posizione è già occupata
 	 */
 	private boolean checkObstaclesRoom(RoomDesign room,Pair<Integer, Integer> pos) {
-		Set<Pair<Integer, Integer>> obstacleSet = room.getObstaclePositions();	
+		Set<Pair<Integer, Integer>> obstacleSet = room.getObstaclePositions();
+		//REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS DIFFERENT BASED ON DIRECTIONS
 		for (Pair<Integer,Integer> obst : obstacleSet) {
-			if (obst.equals(pos)) {
+//			System.out.println(obstacleSet.size());
+			if(!((pos.getX() - 16 >= obst.getX() - GameSettings.TILESIZE && pos.getX() + 16 <= obst.getX() + GameSettings.TILESIZE) &&
+				 (pos.getY() >= obst.getY() - GameSettings.TILESIZE && pos.getY() + 48 <= obst.getY() + GameSettings.TILESIZE)) == false) {
 				return false;
 			}
 		}

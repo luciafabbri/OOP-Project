@@ -46,3 +46,5 @@ once testing for entities has been done extensively;
 15/04/2020
 -Implemented maximum FPS recheable so performance should be the same regardless of system hardware;
 -Implemented Player inside TestPlay, Logic and Rendering to perform test regarding the interaction of the mainChar with the world;
+-Implemented inside Player a way to stop main character when walking in obstacles;
+-Doors are now usable to traverse rooms;
