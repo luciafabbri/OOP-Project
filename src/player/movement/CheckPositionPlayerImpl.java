@@ -1,8 +1,6 @@
 package player.movement;
 
 import design.utilities.Pair;
-import enemy.Enemy;
-import gameEntities.Obstacle;
 import player.Player;
 import utility.CheckPos;
 import utility.DoorCheck;
@@ -39,12 +37,13 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
 		boolean obstacle = this.checkObstaclesRoom(room, pos);
-		if(obstacle == false) {
+		if(obstacle == true) {
 			return false;
 		}
    /*   boolean item = this.checkItemsRoom(room, pos);
 		if(item) {
 			return true;
+<<<<<<< HEAD
 		} */
 		return !checkMuro(pos);		
 	}	
@@ -71,7 +70,6 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 		}
 		return false;
 	}
-
 	/**se dentro al set di ostacoli ci sono coordinate che corrispondono a quelle del personaggio, 
 	 * allora quest'ultimo non si deve muovere perchè quella posizione è già occupata
 	 */
@@ -87,6 +85,8 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 		}
 		return true;
 	}
+	
+
 	
 	/*
 	

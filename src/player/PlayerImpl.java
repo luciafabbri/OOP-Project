@@ -48,7 +48,8 @@ public class PlayerImpl implements Player {
 	public void setPosition(Input input, Level level) {
 		Pair<Integer,Integer> newPos;
 		Map<Door, Optional<RoomDesign>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
-		newPos = move.movePlayer(input, this.position, this.direction);  
+		newPos = move.movePlayer(input, this.position, this.direction); 
+
 		if( check.possiblePos(this.currentRoom, newPos) || check.checkDoors(newPos, map)) {
 			this.position = newPos;  
 		}

@@ -5,6 +5,7 @@ import design.utilities.GameSettings;
 import design.utilities.Pair;
 import bullet.Bullet;
 import utility.CheckPos;
+import utility.Direction;
 
 public class CheckMonsBull implements CheckPos, GameSettings {
 	

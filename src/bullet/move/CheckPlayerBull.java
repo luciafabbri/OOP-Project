@@ -7,6 +7,7 @@ import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import utility.CheckPos;
+import utility.Direction;
 
 public class CheckPlayerBull implements CheckPos, GameSettings { 
 
