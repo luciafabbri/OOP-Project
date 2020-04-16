@@ -37,7 +37,7 @@ public class TeleportMove implements MovePosMonster {
 				x = rand.nextInt(GameSettings.WIDTH);
 				y = rand.nextInt(GameSettings.HEIGHT);
 				newPos = new Pair<>(x,y);
-			} while (check.possiblePos(currentRoom, newPos));
+			} while (check.possiblePos(currentRoom, newPos, dir));
 			nextDir = Direction.getRandomDir();
 		}
 		return newPos;

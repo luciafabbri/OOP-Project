@@ -1,13 +1,10 @@
 package player.movement;
 
 import design.utilities.Pair;
-import enemy.Enemy;
-import gameEntities.Obstacle;
 import player.Player;
 import utility.CheckPos;
+import utility.Direction;
 import design.utilities.GameSettings;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import design.RoomDesign;
@@ -33,18 +30,20 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	 */
 	
 	@Override
-	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
+	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos, Direction dir) {
 		boolean obstacle = this.checkObstaclesRoom(room, pos);
-		if(obstacle == false) {
+		if(obstacle == true) {
 			return false;
 		}
    /*   boolean item = this.checkItemsRoom(room, pos);
 		if(item) {
 			return true;
-		} */
+		}*/ 
 		return !( (pos.getX() < LIMITLEFT || pos.getX() + Player.DIMENSION >= LIMITRIGHT) 			|| 
 				(pos.getY() < LIMITUP || pos.getY() + Player.DIMENSION >= LIMITDOWN) );		
-	}
+	} 
+	
+
 
 
 	/**se dentro al set di ostacoli ci sono coordinate che corrispondono a quelle del personaggio, 
@@ -59,6 +58,8 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 		}
 		return true;
 	}
+	
+
 	
 	/*
 	

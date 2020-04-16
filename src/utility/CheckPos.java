@@ -5,6 +5,6 @@ import design.utilities.Pair;
 
 public interface CheckPos {
 	
-	boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos);
+	boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos, Direction Dir);
 
 }

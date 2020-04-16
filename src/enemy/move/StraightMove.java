@@ -23,7 +23,7 @@ public class StraightMove implements MovePosMonster{
 		Pair<Integer,Integer> nextPos = new Pair<Integer,Integer>(pos.getX() + dir.getAbscissa(), pos.getY() + dir.getOrdinate());
 		nextDir=dir;
 		
-		if(check.possiblePos(currentRoom, nextPos)) {
+		if(check.possiblePos(currentRoom, nextPos, dir)) {
 			this.nextDir = check.changeDir(nextPos, dir);	
 			return pos;			
 		} else {	

@@ -5,11 +5,12 @@ import design.utilities.GameSettings;
 import design.utilities.Pair;
 import bullet.Bullet;
 import utility.CheckPos;
+import utility.Direction;
 
 public class CheckMonsBull implements CheckPos, GameSettings {
 	
 	@Override
-	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
+	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos, Direction dir) {
 		return !isOutOfLimits(pos) || !isOnObstacle(pos) || !hittedPlayer(pos) ;
 	}
 

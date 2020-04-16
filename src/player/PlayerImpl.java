@@ -43,7 +43,7 @@ public class PlayerImpl implements Player {
 	public void setPosition(Input input) {
 		Pair<Integer,Integer> newPos;
 		newPos = move.movePlayer(input, this.position, this.direction);  
-		if(check.possiblePos(this.currentRoom,newPos) == true) {
+		if(check.possiblePos(this.currentRoom, newPos, direction)) {
 			this.position = newPos;  
 		}
 		this.direction = move.getDirection();   /** direction changes even if the player can't actually go in that position */

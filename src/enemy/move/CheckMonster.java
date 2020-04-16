@@ -42,8 +42,8 @@ public class CheckMonster implements CheckPosDir, GameSettings {
 	}
 	
 	@Override
-	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		return !isOutOfLimits(pos) || !isOnObstacle(pos, room);
+	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos, Direction dir) {
+		return !isOutOfLimits(pos) || !isOnObstacle(room, pos, dir);
 	}
 	
 	private boolean isOutOfLimits(Pair<Integer,Integer> pos) {
@@ -51,14 +51,35 @@ public class CheckMonster implements CheckPosDir, GameSettings {
 				(pos.getY() <= LIMITUP || pos.getY() + Enemy.DIMENSION >= LIMITDOWN);
 	}
 	
-	private boolean isOnObstacle(Pair<Integer,Integer> pos, RoomDesign room) {
-		boolean collX, collY;
-		collX = room.getObstacleSet().stream()
-				.anyMatch(x-> x.getPosition().getX() == pos.getX() || x.getPosition().getX() == pos.getX() + Enemy.DIMENSION);
-		collY = room.getObstacleSet().stream()
-				.anyMatch(x-> x.getPosition().getY() == pos.getY() || x.getPosition().getY() == pos.getY() + Enemy.DIMENSION);
+	private boolean isOnObstacle(RoomDesign room, Pair<Integer, Integer> pos, Direction dir) {
+		boolean checkX;
+		boolean checkY;
+		Pair<Integer, Integer> pixelSouthWest= pos;
+		Pair<Integer, Integer> pixelNorthEast= new Pair<>(pos.getX()+Enemy.DIMENSION,pos.getY());
+		Pair<Integer, Integer> pixelNorthWest= new Pair<>(pos.getX()+Enemy.DIMENSION,pos.getY()+Enemy.DIMENSION);
+		Pair<Integer, Integer> pixelSouthEast= new Pair<>(pos.getX(),pos.getY()+Enemy.DIMENSION);
 		
-		return collX || collY;
+		if(dir.getAbscissa() == 1) {
+			checkX = room.getObstacleSet().stream()
+					.anyMatch(x-> x.getPosition().equals(pixelNorthEast) || x.getPosition().equals(pixelSouthEast));
+		} else if (dir.getAbscissa() == -1) {
+			checkX = room.getObstacleSet().stream()
+					.anyMatch(x-> x.getPosition().equals(pixelNorthWest) || x.getPosition().equals(pixelSouthWest));
+		} else {
+			checkX = false;
+		}
+		
+		if(dir.getOrdinate() == 1) {
+			checkY = room.getObstacleSet().stream()
+					.anyMatch(x-> x.getPosition().equals(pixelSouthWest) || x.getPosition().equals(pixelSouthEast));
+		} else if (dir.getOrdinate() == -1) {
+			checkY = room.getObstacleSet().stream()
+					.anyMatch(x-> x.getPosition().equals(pixelNorthWest) || x.getPosition().equals(pixelNorthEast));
+		} else {
+			checkY = false;
+		}
+		
+		return checkX || checkY;
 	}
 		
 	
