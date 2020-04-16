@@ -56,6 +56,9 @@ public class TestPlay extends BasicGameState {
 		graphics.drawDoors();
 		graphics.drawObstacles();
 		graphics.drawMain();
+		graphics.drawDoorTop();
+		
+		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), 0, 0);
 		
 		arg2.clearClip();
 		

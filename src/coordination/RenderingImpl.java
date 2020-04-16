@@ -17,6 +17,7 @@ import gameEntities.Obstacle;
 import gameEntities.items.ItemImpl;
 import levels.Level;
 import player.Player;
+import tiles.Tile;
 
 public class RenderingImpl implements Rendering {
 	
@@ -91,7 +92,7 @@ public class RenderingImpl implements Rendering {
 	
 	public void drawDoors() {
 		Map<Door, Optional<RoomDesign>> doors = level.getLevel().get(level.getRoomID()).getDoorAccess();
-	
+		
 		for(Entry<Door, Optional<RoomDesign>> entry : doors.entrySet()) {
 			if(entry.getValue().isPresent()) {
 				if(entry.getKey().equals(Door.NORTH)) {
@@ -102,6 +103,30 @@ public class RenderingImpl implements Rendering {
 					level.getLevel().get(level.getRoomID()).getDoorVert().getTexture().getFlippedCopy(true, false).draw(GameSettings.WIDTH - GameSettings.TILESIZE, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				} else {
 					level.getLevel().get(level.getRoomID()).getDoorVert().getTexture().draw(0, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
+				}
+			}
+		}
+	}
+	
+	
+	public void drawDoorTop() throws SlickException {
+		Map<Door, Optional<RoomDesign>> doors = level.getLevel().get(level.getRoomID()).getDoorAccess();
+		Image image;
+		
+		for(Entry<Door, Optional<RoomDesign>> entry : doors.entrySet()) {
+			if(entry.getValue().isPresent()) {
+				if(entry.getKey().equals(Door.NORTH)) {
+					image = new Image("./res/walls/doors/Door_top2.png");
+					image.getFlippedCopy(true, false).draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, 0, 64, 14);
+				} else if(entry.getKey().equals(Door.SOUTH)) {
+					image = new Image("./res/walls/doors/Door_top2.png");
+					image.getFlippedCopy(true, true).draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.HEIGHT - 14, 64, 14);
+				} else if(entry.getKey().equals(Door.EAST)) {
+					image = new Image("./res/walls/doors/Door_top1.png");
+					image.getFlippedCopy(true, false).draw(GameSettings.WIDTH - 14, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE, 14, 64);
+				} else {
+					image = new Image("./res/walls/doors/Door_top1.png");
+					image.getFlippedCopy(false, false).draw(0, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE, 14, 64);
 				}
 			}
 		}

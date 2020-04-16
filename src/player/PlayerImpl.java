@@ -1,8 +1,13 @@
 package player;
 
+import design.utilities.Door;
 import design.utilities.Pair;
+import levels.Level;
 import utility.Direction;
 import utility.health.HealthImpl;
+
+import java.util.Map;
+import java.util.Optional;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
@@ -40,10 +45,11 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override 
-	public void setPosition(Input input) {
+	public void setPosition(Input input, Level level) {
 		Pair<Integer,Integer> newPos;
+		Map<Door, Optional<RoomDesign>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
 		newPos = move.movePlayer(input, this.position, this.direction);  
-		if(check.possiblePos(this.currentRoom,newPos) == true) {
+		if( check.possiblePos(this.currentRoom, newPos) || check.checkDoors(newPos, map)) {
 			this.position = newPos;  
 		}
 		this.direction = move.getDirection();   /** direction changes even if the player can't actually go in that position */
@@ -79,6 +85,10 @@ public class PlayerImpl implements Player {
 	
 	public void setCurrentRoom(RoomDesign room) {
 		this.currentRoom = room;
+	}
+
+	public void setPosition(Pair<Integer, Integer> position) {
+		this.position = position;
 	}
 	
 }
