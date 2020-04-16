@@ -36,8 +36,7 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		boolean obstacle = this.checkObstaclesRoom(room, pos);
-		if(obstacle == true) {
+		if(this.checkObstaclesRoom(room, pos) == false ) {
 			return false;
 		}
    /*   boolean item = this.checkItemsRoom(room, pos);
@@ -45,10 +44,10 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 			return true;
 <<<<<<< HEAD
 		} */
-		return !checkMuro(pos);		
+		return !checkWallLimits(pos);		
 	}	
 	
-	public boolean checkMuro(Pair<Integer, Integer> pos) {
+	public boolean checkWallLimits(Pair<Integer, Integer> pos) {
 		//REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS DIFFERENT BASED ON DIRECTIONS
 		
 		return ( (pos.getX() + 15 < LIMITLEFT || pos.getX() + 49 >= LIMITRIGHT) 			|| 
