@@ -37,7 +37,7 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
 		boolean obstacle = this.checkObstaclesRoom(room, pos);
-		if(obstacle == true) {
+		if(obstacle == false) {
 			return false;
 		}
    /*   boolean item = this.checkItemsRoom(room, pos);

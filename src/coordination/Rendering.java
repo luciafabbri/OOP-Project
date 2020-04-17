@@ -14,7 +14,7 @@ public interface Rendering {
 
 	void drawObstacles();
 
-	void drawMain();
+	void drawMain() throws SlickException;
 	
 	void drawDoorTop() throws SlickException;
 }

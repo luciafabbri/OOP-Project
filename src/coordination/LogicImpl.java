@@ -5,6 +5,7 @@ import org.newdawn.slick.Input;
 import design.utilities.Door;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
+import enemy.Monster;
 import levels.Level;
 import player.Player;
 import utility.DoorCheck;
@@ -13,12 +14,19 @@ public class LogicImpl {
 	
 	private Level level;
 	private Player player;
+	private Monster monster;
 	
-	public LogicImpl(final Level level, final Player player) {
+	public LogicImpl(final Level level, final Player player, final Monster monster) {
+		this.level = level;
+		this.player = player;
+		this.monster = monster;
+	}
+	
+	public LogicImpl(Level level, Player player) {
 		this.level = level;
 		this.player = player;
 	}
-	
+
 	public void switchRooms(final Input input) {
 		DoorCheck check = new DoorCheck();
 		
@@ -49,6 +57,12 @@ public class LogicImpl {
 	private int getRoomID(final Door door) {
 		return level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(door)).findFirst().get().getValue().get().getRoomID();
 	}
+
+	public Monster getMonster() {
+		return monster;
+	}
+	
+	
 	
 }
 

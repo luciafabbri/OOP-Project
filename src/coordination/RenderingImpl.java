@@ -13,6 +13,8 @@ import design.RoomDesign;
 import design.utilities.Door;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
+import enemy.Enemy;
+import enemy.Monster;
 import gameEntities.Obstacle;
 import gameEntities.items.ItemImpl;
 import levels.Level;
@@ -23,14 +25,22 @@ public class RenderingImpl implements Rendering {
 	
 	private Level level;
 	private Player player;
+	private Enemy tmp;
 	
-	public RenderingImpl(final Level level, final Player player) {
+	public RenderingImpl(final Level level, final Player player, final Monster tmp2) {
+		this.level = level;
+		this.player = player;
+		this.tmp = tmp2;
+	}
+	
+	public RenderingImpl(Level level, Player player) {
 		this.level = level;
 		this.player = player;
 	}
-	
-	public void drawMain() {
+
+	public void drawMain() throws SlickException {
 		this.player.getImage().draw(player.getPosition().getX(), player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+		this.tmp.getImage().draw(tmp.getPos().getX(), tmp.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
 	}
 	
 	public void drawObstacles() {

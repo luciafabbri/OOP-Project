@@ -3,14 +3,15 @@ package enemy.attack;
 import bullet.Bullet;
 import bullet.BulletMonster;
 import utility.Direction;
+import design.RoomDesign;
 import design.RoomDesignImpl;
 import design.utilities.Pair;
 
 public class OneSideAtt extends MonsterAttAbst implements MonsterAttack{
 
-	private RoomDesignImpl currentRoom;
+	private RoomDesign currentRoom;
 	
-	public OneSideAtt(RoomDesignImpl room) {
+	public OneSideAtt(RoomDesign room) {
 		currentRoom = room;
 	}
 	
