@@ -1,7 +1,6 @@
 package bullet;
 
 import bullet.move.CheckMonsBull;
-
 import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;

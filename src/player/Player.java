@@ -18,7 +18,7 @@ import org.newdawn.slick.SlickException;
  * 
  */
 
-public interface Player extends DefaultPlayer {
+public interface Player extends DefaultPlayer, utility.Character {
 	
 	/**
 	 * 
@@ -32,8 +32,8 @@ public interface Player extends DefaultPlayer {
 	 * 
 	 * Methods used to get Player's position
 	 *  
-	 */
-	public Pair<Integer, Integer> getPosition();
+	 
+	public Pair<Integer, Integer> getPosition();*/
 	
 	
 	/**
@@ -48,16 +48,16 @@ public interface Player extends DefaultPlayer {
 	 * 
 	 * Methods used to know in which level the player is 
 	 *  
-	 */
-	public int getLevel();
+	 
+	public int getLevel();*/
 	
 	
 	/**
 	 * 
 	 * Methods used to get Player's health
 	 *  
-	 */
-	public HealthImpl getHealth();
+	 
+	public HealthImpl getHealth();*/
 	
 
 	/**
@@ -118,8 +118,8 @@ public interface Player extends DefaultPlayer {
 	 * 
 	 * Methods used to set Player's direction
 	 *  
-	 */
-	public Direction getDirection();
+	 
+	public Direction getDirection();*/
 	
 	
 	/**

@@ -5,6 +5,9 @@ import player.Player;
 import player.PlayerImpl;
 import utility.CheckPos;
 import utility.Direction;
+
+import utility.CheckPosImpl;
+
 import utility.DoorCheck;
 import design.utilities.Door;
 import design.utilities.GameSettings;
@@ -22,7 +25,8 @@ import design.RoomDesign;
  * 
  */
 
-public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
+
+public class CheckPlayerImpl  implements CheckPlayer, GameSettings{
 	
 	private int leftPix;
 	private int rightPix;
@@ -30,10 +34,10 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	private int upPix;
 	private PlayerImpl player;
 	
-	public CheckPositionPlayerImpl(PlayerImpl player) {
+	public CheckPlayerImpl(PlayerImpl player) {
 		this.player = player;
+		// TODO Auto-generated constructor stub
 	}
-
 	/** 
 	 * 
 	 * This method needs the coordinates of the player and checks if he's not going out of bounds.
@@ -48,18 +52,10 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		if(this.checkObstaclesRoom(room, pos) == false ) {
-			return false;
-		}
-   /*   boolean item = this.checkItemsRoom(room, pos);
-		if(item) {
-			return true;
-<<<<<<< HEAD
-		} */
-		return !checkWallLimits(pos);		
-	}	
-	
-	public boolean checkWallLimits(Pair<Integer, Integer> pos) {
+		return !(isOutOfLimits(pos) || checkObstaclesRoom(room, pos));
+	}
+
+	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
 		if(this.player.getDirection().equals(Direction.NORTH) || this.player.getDirection().equals(Direction.SOUTH)) {
 			leftPix = 17;
 			rightPix = 46;
@@ -74,6 +70,7 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 				  (pos.getY() + upPix < LIMITUP || pos.getY() + Player.DIMENSION >= LIMITDOWN));
 	}
 	
+	@Override
 	public boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomDesign>> map) {
 		//REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS DIFFERENT BASED ON DIRECTIONS
 		DoorCheck check = new DoorCheck();
@@ -92,6 +89,14 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	/**se dentro al set di ostacoli ci sono coordinate che corrispondono a quelle del personaggio, 
 	 * allora quest'ultimo non si deve muovere perchè quella posizione è già occupata
 	 */
+
+	@Override
+	public boolean checkItemsRoom(RoomDesign room, Pair<Integer, Integer> pos) {
+		// TODO Auto-generated method stub
+		return false;
+
+	}
+	
 	private boolean checkObstaclesRoom(RoomDesign room,Pair<Integer, Integer> pos) {
 		Set<Pair<Integer, Integer>> obstacleSet = room.getObstaclePositions();
 		if(this.player.getDirection().equals(Direction.NORTH) || this.player.getDirection().equals(Direction.SOUTH)) {
@@ -107,11 +112,12 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 		for (Pair<Integer,Integer> obst : obstacleSet) {
 			if(!((pos.getX() + leftPix >= obst.getX() - GameSettings.TILESIZE && pos.getX() + rightPix <= obst.getX() + GameSettings.TILESIZE) &&
 				 (pos.getY() >= obst.getY() - GameSettings.TILESIZE && pos.getY() + upPix <= obst.getY() + GameSettings.TILESIZE)) == false) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
+	
 	
 
 	

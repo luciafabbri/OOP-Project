@@ -1,5 +1,8 @@
 package enemy;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -20,19 +23,19 @@ import design.RoomDesign;
 import design.utilities.Pair;
 
 public class Monster implements Enemy {
-
+	
 	private Image texture;
 	private Pair<Integer, Integer> position;
-	private String typeLevel;
+	private int level;
 	private Health health;
 	private MovePosMonster move;
 	private MonsterAttack attack;
 	private Direction direct;
 
-	public Monster(Pair<Integer, Integer> pos, String typeLevel, int health, TypeMove move, Direction dir,
+	public Monster(Pair<Integer, Integer> pos, int level, int health, TypeMove move, Direction dir,
 			TypeAttack att, RoomDesign room) {
 		this.position = pos;
-		this.typeLevel = typeLevel;
+		this.level = level;
 		this.health = new HealthImpl(health);
 		this.move = selectMove(move, room);
 		this.attack = selectAttack(att, room);
@@ -80,29 +83,24 @@ public class Monster implements Enemy {
 	}
 
 	@Override
-	public Pair<Integer, Integer> getPos() {
+	public Pair<Integer, Integer> getPosition() {
 		return this.position;
+	}
+	
+	@Override
+	public int getLevel() {
+		return level;
+	}
+
+	@Override
+	public Health getHealth() {
+		return this.health;
 	}
 
 	@Override
 	public void updatePos() {
 		this.position = move.nextPos(this.position, this.direct);
 		this.direct = move.getDirection();
-	}
-
-	@Override
-	public String getTypeLevel() {
-		return typeLevel;
-	}
-
-	@Override
-	public int getMaxLife() {
-		return health.getMaxHealth();
-	}
-
-	@Override
-	public int getCurrentLife() {
-		return health.getCurrentHealth();
 	}
 
 	@Override
@@ -124,5 +122,9 @@ public class Monster implements Enemy {
 	public Direction getDirection() {
 		return this.direct;
 	}
+
+	
+
+	
 
 }

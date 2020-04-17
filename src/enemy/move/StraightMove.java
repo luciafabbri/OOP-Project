@@ -2,12 +2,11 @@ package enemy.move;
 
 import design.RoomDesign;
 import design.utilities.Pair;
-import utility.CheckPosDir;
 import utility.Direction;
 
 public class StraightMove implements MovePosMonster {
 
-	private CheckPosDir check = new CheckMonster();
+	private CheckMonster check = new CheckMonsterImpl();
 	private Direction nextDir = null;
 
 	private RoomDesign currentRoom;

@@ -15,7 +15,9 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-import player.movement.CheckPositionPlayerImpl;
+import player.movement.CheckPlayer;
+import player.movement.CheckPlayerImpl;
+
 import player.movement.MovementImpl;
 import design.RoomDesign;
 
@@ -36,9 +38,10 @@ public class PlayerImpl implements Player {
 	
 	private Direction direction;
 	private MovementImpl move = new MovementImpl();
+	private CheckPlayer check = new CheckPlayerImpl(this);
+
 	private HealthImpl health = new HealthImpl(HEALTH);
 	private RoomDesign currentRoom;
-	private CheckPositionPlayerImpl check = new CheckPositionPlayerImpl(this);
 	
 	
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
