@@ -1,6 +1,7 @@
 package enemy;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 import utility.Direction;
 import design.utilities.Pair;
@@ -25,7 +26,7 @@ public interface Enemy {
 	
 	public Direction getDirection();
 	
-	public Image getImage();
+	public Image getImage() throws SlickException;
 	
 	//public setBuff();
 	

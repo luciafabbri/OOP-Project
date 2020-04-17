@@ -1,6 +1,7 @@
 package enemy;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 import enemy.attack.FourSideAtt;
 import enemy.attack.MonsterAttack;
@@ -15,84 +16,85 @@ import enemy.move.TeleportMove;
 import utility.Direction;
 import utility.health.Health;
 import utility.health.HealthImpl;
-import design.RoomDesignImpl;
+import design.RoomDesign;
 import design.utilities.Pair;
 
 public class Monster implements Enemy {
-	
+
 	private Image texture;
-	private Pair<Integer,Integer> position;
+	private Pair<Integer, Integer> position;
 	private String typeLevel;
 	private Health health;
 	private MovePosMonster move;
 	private MonsterAttack attack;
 	private Direction direct;
 
-	public Monster(Pair<Integer, Integer> pos, String typeLevel, int health, TypeMove move, Direction dir, TypeAttack att, RoomDesignImpl room) {
+	public Monster(Pair<Integer, Integer> pos, String typeLevel, int health, TypeMove move, Direction dir,
+			TypeAttack att, RoomDesign room) {
 		this.position = pos;
 		this.typeLevel = typeLevel;
 		this.health = new HealthImpl(health);
 		this.move = selectMove(move, room);
 		this.attack = selectAttack(att, room);
-		this.direct=dir;
+		this.direct = dir;
 	}
-	
-	private MovePosMonster selectMove(TypeMove typeMove, RoomDesignImpl room) {
+
+	private MovePosMonster selectMove(TypeMove typeMove, RoomDesign room) {
 		switch (typeMove) {
-			case STRAIGHT:
-				return new StraightMove(room);
-				
-			case TELEPORT:
-				return new TeleportMove(room);
-				
-			case RANDOM:
-				return new RandomMove(room);
-				
-			case IMMOBILIZED:
-				return new ImmobilizedMove();
-			
-			default: 
-				throw new IllegalArgumentException();
-			
+		case STRAIGHT:
+			return new StraightMove(room);
+
+		case TELEPORT:
+			return new TeleportMove(room);
+
+		case RANDOM:
+			return new RandomMove(room);
+
+		case IMMOBILIZED:
+			return new ImmobilizedMove(room);
+
+		default:
+			throw new IllegalArgumentException();
+
 		}
 	}
-	
-	private MonsterAttack selectAttack(TypeAttack typeAttack, RoomDesignImpl room) {
+
+	private MonsterAttack selectAttack(TypeAttack typeAttack, RoomDesign room) {
 		switch (typeAttack) {
-			case ONE_SIDE:
-				return new OneSideAtt(room);
-				
-			case TWO_SIDE:
-				return new TwoSideAtt(room);
-				
-			case FOUR_SIDE:
-				return new FourSideAtt(room);
-				
-			case TRIPLE:
-				return new TripleAtt(room);
-			
-			default: 
-				throw new IllegalArgumentException();
-			
+		case ONE_SIDE:
+			return new OneSideAtt(room);
+
+		case TWO_SIDE:
+			return new TwoSideAtt(room);
+
+		case FOUR_SIDE:
+			return new FourSideAtt(room);
+
+		case TRIPLE:
+			return new TripleAtt(room);
+
+		default:
+			throw new IllegalArgumentException();
+
 		}
 	}
 
 	@Override
-	public Pair<Integer,Integer> getPos() {
+	public Pair<Integer, Integer> getPos() {
 		return this.position;
 	}
-	
+
 	@Override
-	public void updatePos() {		
-		this.position=move.nextPos(this.position, this.direct);
-		this.direct=move.getDirection();
+	public void updatePos() {
+		this.position = move.nextPos(this.position, this.direct);
+		this.direct = move.getDirection();
 	}
 
 	@Override
 	public String getTypeLevel() {
 		return typeLevel;
 	}
-	
+
 	@Override
 	public int getMaxLife() {
 		return health.getMaxHealth();
@@ -114,16 +116,13 @@ public class Monster implements Enemy {
 	}
 
 	@Override
-	public Image getImage() {
-		return texture;
+	public Image getImage() throws SlickException {
+		return new Image("./res/chars/mainChar6_front.png");
 	}
 
 	@Override
 	public Direction getDirection() {
 		return this.direct;
 	}
-
-
-
 
 }

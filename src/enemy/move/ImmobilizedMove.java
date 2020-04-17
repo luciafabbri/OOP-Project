@@ -2,17 +2,24 @@ package enemy.move;
 
 import enemy.Enemy;
 import utility.Direction;
+import design.RoomDesign;
 import design.utilities.Pair;
 
-public class ImmobilizedMove implements MovePosMonster{
+public class ImmobilizedMove implements MovePosMonster {
 
-	private Pair<Integer,Integer> posPlayer = new Pair<Integer,Integer>(100,100);
-	private Pair<Integer,Integer> posMonster;
+	private Pair<Integer, Integer> posPlayer = new Pair<Integer, Integer>(100, 100);
+	private Pair<Integer, Integer> posMonster;
 	private Direction nextDir;
 	
+	private RoomDesign currentRoom;
+
+	public ImmobilizedMove(RoomDesign room) {
+		currentRoom = room;
+	}
+
 	@Override
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir) {
-		posMonster=pos;
+		posMonster = pos;
 		return pos;
 	}
 
@@ -20,28 +27,31 @@ public class ImmobilizedMove implements MovePosMonster{
 	public Direction getDirection() {
 		return findDir();
 	}
-	
+
 	private Direction findDir() {
-		int x,y;
-		if( posPlayer.getX() >= posMonster.getX() - Enemy.DIMENSION/2 && posPlayer.getX() <= posMonster.getX() + Enemy.DIMENSION/2) {
+		int x, y;
+		if (posPlayer.getX() >= posMonster.getX() - Enemy.DIMENSION / 2
+				&& posPlayer.getX() <= posMonster.getX() + Enemy.DIMENSION / 2) {
 			x = 0;
-		} else if ( posPlayer.getX() > posMonster.getX()) {
+		} else if (posPlayer.getX() > posMonster.getX()) {
 			x = -1;
 		} else {
 			x = 1;
 		}
-		if( posPlayer.getY() >= posMonster.getY() - Enemy.DIMENSION/2 && posPlayer.getY() <= posMonster.getY() + Enemy.DIMENSION/2) {
+		if (posPlayer.getY() >= posMonster.getY() - Enemy.DIMENSION / 2
+				&& posPlayer.getY() <= posMonster.getY() + Enemy.DIMENSION / 2) {
 			y = 0;
-		} else if ( posPlayer.getY() > posMonster.getY()) {
+		} else if (posPlayer.getY() > posMonster.getY()) {
 			y = -1;
 		} else {
 			y = 1;
 		}
-		for(Direction d : Direction.values()) {
-			if(d.getAbscissa() == x && d.getOrdinate() == y) {
-				this.nextDir=d;
+		for (Direction d : Direction.values()) {
+			if (d.getAbscissa() == x && d.getOrdinate() == y) {
+				this.nextDir = d;
 			}
 		}
+		System.out.println(nextDir);
 		return nextDir;
 	}
 

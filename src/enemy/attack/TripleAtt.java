@@ -1,14 +1,15 @@
 package enemy.attack;
 
+import design.RoomDesign;
 import design.RoomDesignImpl;
 import design.utilities.Pair;
 import utility.Direction;
 
 public class TripleAtt implements MonsterAttack {
 
-	private RoomDesignImpl currentRoom;
+	private RoomDesign currentRoom;
 	
-	public TripleAtt(RoomDesignImpl room) {
+	public TripleAtt(RoomDesign room) {
 		currentRoom = room;
 	}
 	
