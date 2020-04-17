@@ -2,8 +2,10 @@ package player;
 
 import design.utilities.Door;
 import design.utilities.Pair;
+import gameEntities.modifiers.ModifiersImpl;
 import levels.Level;
 import utility.Direction;
+import utility.Stats;
 import utility.health.HealthImpl;
 
 import java.util.Map;
@@ -20,6 +22,7 @@ import player.movement.CheckPlayerImpl;
 
 import player.movement.MovementImpl;
 import design.RoomDesign;
+
 
 /**
  * 
@@ -43,6 +46,8 @@ public class PlayerImpl implements Player {
 	private HealthImpl health = new HealthImpl(HEALTH);
 	private RoomDesign currentRoom;
 	
+	private Inventory inventory = new Inventory();  				  //AGGIUNGERE AL COSTRUTTORE
+	private ModifiersImpl modifiers;
 	
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
 		this.position = pos;
@@ -74,6 +79,10 @@ public class PlayerImpl implements Player {
 		}
 		this.direction = move.getDirection();   /** direction changes even if the player can't actually go in that position */
 	}
+	
+	public void setPosition(Pair<Integer, Integer> position) {
+		this.position = position;
+	}
 
 	@Override
 	public Pair<Integer, Integer> getPosition() {
@@ -94,16 +103,12 @@ public class PlayerImpl implements Player {
 		return this.health;
 	}
 	
-	public RoomDesign getRoom() {
-		return this.currentRoom;
-	}
-	
 	public void setCurrentRoom(RoomDesign room) {
 		this.currentRoom = room;
 	}
-
-	public void setPosition(Pair<Integer, Integer> position) {
-		this.position = position;
+	
+	public RoomDesign getRoom() {
+		return this.currentRoom;
 	}
 
 	public Direction getDirection() {
@@ -122,12 +127,22 @@ public class PlayerImpl implements Player {
 		return left;
 	}
 
+	public Animation getRight() {
+		return right;
+	}
+	
 	public MovementImpl getMove() {
 		return move;
 	}
-
-	public Animation getRight() {
-		return right;
+	
+	
+	//SENTIRE CON FEDE PER SISTEMARE
+	public void setStats(Stats statsValue) {
+		for (Stats s : Stats.values()) {
+			if(s.equals(statsValue)) {
+				s.toString();
+			}
+		}
 	}
 	
 }

@@ -18,6 +18,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import design.RoomDesign;
+import design.tokens.WorldObject;
 
 /**
  * 
@@ -26,7 +27,7 @@ import design.RoomDesign;
  */
 
 
-public class CheckPlayerImpl  implements CheckPlayer, GameSettings{
+public class CheckPlayerImpl  extends CheckPosImpl implements CheckPlayer, GameSettings{
 	
 	private int leftPix;
 	private int rightPix;
@@ -36,38 +37,6 @@ public class CheckPlayerImpl  implements CheckPlayer, GameSettings{
 	
 	public CheckPlayerImpl(PlayerImpl player) {
 		this.player = player;
-		// TODO Auto-generated constructor stub
-	}
-	/** 
-	 * 
-	 * This method needs the coordinates of the player and checks if he's not going out of bounds.
-	 * If the coordinates are above these limits, the method will return FALSE value otherwise it will return TRUE.
-	 *  SE SOPRA LIMITI --> return FALSE
-	 *  SE VANNO BENE --> return TRUE 
-	 *   
-	 *	Se OBSTACLE --> non posso andare sopra
-	 *  Se ITEM --> posso andare sopra 
-	 *  
-	 */
-	
-	@Override
-	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		return !(isOutOfLimits(pos) || checkObstaclesRoom(room, pos));
-	}
-
-	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
-		if(this.player.getDirection().equals(Direction.NORTH) || this.player.getDirection().equals(Direction.SOUTH)) {
-			leftPix = 17;
-			rightPix = 46;
-			upPix = 48;
-		} else if(this.player.getDirection().equals(Direction.WEST) || this.player.getDirection().equals(Direction.EAST)) {
-			leftPix = 15;
-			rightPix = 48;
-			upPix = 48;
-		}
-		
-		return ( (pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix >= LIMITRIGHT) 			|| 
-				  (pos.getY() + upPix < LIMITUP || pos.getY() + Player.DIMENSION >= LIMITDOWN));
 	}
 	
 	@Override
@@ -86,15 +55,43 @@ public class CheckPlayerImpl  implements CheckPlayer, GameSettings{
 		}
 		return false;
 	}
+	
+	
 	/**se dentro al set di ostacoli ci sono coordinate che corrispondono a quelle del personaggio, 
 	 * allora quest'ultimo non si deve muovere perchè quella posizione è già occupata
 	 */
-
 	@Override
 	public boolean checkItemsRoom(RoomDesign room, Pair<Integer, Integer> pos) {
-		// TODO Auto-generated method stub
+		Set<WorldObject> itemSet = room.getWorldObjectsSet();
+		for (design.tokens.WorldObject item : itemSet) {
+//			if ( controllo degli item quando implementati ) {
+				//aggiungi item alla lista di qualcosa 
+				return true;
+			}
+//		}
 		return false;
-
+	}
+	
+/**	
+	
+	@Override
+	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
+		return !(isOutOfLimits(pos) || checkObstaclesRoom(room, pos));
+	}
+	
+	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
+		if(this.player.getDirection().equals(Direction.NORTH) || this.player.getDirection().equals(Direction.SOUTH)) {
+			leftPix = 17;
+			rightPix = 46;
+			upPix = 48;
+		} else if(this.player.getDirection().equals(Direction.WEST) || this.player.getDirection().equals(Direction.EAST)) {
+			leftPix = 15;
+			rightPix = 48;
+			upPix = 48;
+		}
+		
+		return ( (pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix >= LIMITRIGHT) 			|| 
+				  (pos.getY() + upPix < LIMITUP || pos.getY() + Player.DIMENSION >= LIMITDOWN));
 	}
 	
 	private boolean checkObstaclesRoom(RoomDesign room,Pair<Integer, Integer> pos) {
@@ -118,24 +115,6 @@ public class CheckPlayerImpl  implements CheckPlayer, GameSettings{
 		return false;
 	}
 	
-	
-
-	
-	/*
-	
-	/**se dentro al set di item ci sono coordinate che corrispondono a quelle del personaggio, 
-	 * allora quest'ultimo si deve muovere anche in quella posizione per poter raccogliere l'item e aggiungerlo alla 
-	 * lista delle cose che possiede
-	 *	
-	private boolean checkItemsRoom(RoomDesign room,Pair<Integer, Integer> pos) {
-		HashSet<design.tokens.WorldObject> itemSet = room.getWorldObjectsSet();
-		for (design.tokens.WorldObject item : itemSet) {
-			if (item.getPosition().getX() == pos.getX() && item.getPosition().getY() == pos.getY()) {
-				//aggiungi item alla lista di qualcosa 
-				return true;
-			}
-		}
-		return true;
-	} */
+*/
 	
 }

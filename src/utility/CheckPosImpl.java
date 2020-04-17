@@ -19,7 +19,7 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 				|| (pos.getY() + 48 < LIMITUP || pos.getY() + Enemy.DIMENSION >= LIMITDOWN));
 	}
 
-	protected boolean checkObstaclesRoom(RoomDesign room, Pair<Integer, Integer> pos) {
+	public boolean checkObstaclesRoom(RoomDesign room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
 		// REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS
 		// DIFFERENT BASED ON DIRECTIONS
