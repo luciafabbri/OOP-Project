@@ -4,13 +4,12 @@ import java.util.Random;
 
 import design.RoomDesign;
 import design.utilities.GameSettings;
-import utility.CheckPosDir;
 import utility.Direction;
 import design.utilities.Pair;
 
 public class TeleportMove implements MovePosMonster {
 
-	private CheckPosDir check = new CheckMonster();
+	private CheckMonster check = new CheckMonsterImpl();
 	private Random rand = new Random();
 	private Pair<Integer, Integer> newPos;
 	private Direction nextDir = null;

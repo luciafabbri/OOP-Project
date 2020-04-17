@@ -3,6 +3,8 @@ package player;
 import design.utilities.Door;
 import design.utilities.Pair;
 import levels.Level;
+import utility.CheckPos;
+import utility.CheckPosImpl;
 import utility.Direction;
 import utility.health.HealthImpl;
 
@@ -11,7 +13,9 @@ import java.util.Optional;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-import player.movement.CheckPositionPlayerImpl;
+
+import player.movement.CheckPlayer;
+import player.movement.CheckPlayerImpl;
 import player.movement.MovementImpl;
 import design.RoomDesign;
 
@@ -28,7 +32,7 @@ public class PlayerImpl implements Player {
 	private Image texture;
 	private Direction direction;
 	private MovementImpl move = new MovementImpl();
-	private CheckPositionPlayerImpl check = new CheckPositionPlayerImpl();
+	private CheckPlayer check = new CheckPlayerImpl();
 	private HealthImpl health = new HealthImpl(HEALTH);
 	private RoomDesign currentRoom;
 	

@@ -48,7 +48,7 @@ public class TestState extends StateBasedGame {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new TestState(GAMENAME));
 			appgc.setDisplayMode(GameSettings.WIDTH, GameSettings.HEIGHT, false);
-			//appgc.setVSync(true);
+			appgc.setVSync(true);
 			appgc.setShowFPS(true);
 			appgc.setMaximumLogicUpdateInterval(80);
 			appgc.start();

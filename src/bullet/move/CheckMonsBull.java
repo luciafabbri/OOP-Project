@@ -3,27 +3,17 @@ package bullet.move;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
-import bullet.Bullet;
-import utility.CheckPos;
-import utility.Direction;
+import utility.CheckPosImpl;
 
-public class CheckMonsBull implements CheckPos, GameSettings {
+public class CheckMonsBull extends CheckPosImpl implements GameSettings {
 	
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		return !isOutOfLimits(pos) || !isOnObstacle(pos) || !hittedPlayer(pos) ;
-	}
-
-	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
-		return (pos.getX() <= LIMITLEFT || pos.getX() + Bullet.DIMENSION >= LIMITRIGHT) || 
-				(pos.getY() <= LIMITUP || pos.getY() + Bullet.DIMENSION >= LIMITDOWN);
+		return !(super.possiblePos(room, pos) || checkCharacters(room, pos));
 	}
 	
-	private boolean isOnObstacle(Pair<Integer,Integer> pos) {
-		return false;
-	}
 	
-	private boolean hittedPlayer(Pair<Integer, Integer> pos) {
+	private boolean checkCharacters(RoomDesign room, Pair<Integer, Integer> pos) {
 		return false;
 	}
 }

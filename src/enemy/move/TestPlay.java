@@ -47,7 +47,7 @@ public class TestPlay extends BasicGameState {
 		try {
 			level = new LevelImpl(this.levelID);
 			tmp = new Monster(new Pair<Integer, Integer>(GameSettings.TILESIZE * 2, GameSettings.TILESIZE * 2),
-					"ciaoTest", 100, TypeMove.RANDOM, Direction.NORTH_EAST, TypeAttack.ONE_SIDE,
+					"ciaoTest", 100, TypeMove.TELEPORT, Direction.NORTH_EAST, TypeAttack.ONE_SIDE,
 					level.getLevel().get(0).getRoom());
 			player = new PlayerImpl(new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE), Direction.SOUTH, 0,
 					new Image("./res/chars/mainChar6_front.png"), level.getLevel().get(level.getRoomID()).getRoom());

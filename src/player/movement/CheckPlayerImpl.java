@@ -3,6 +3,7 @@ package player.movement;
 import design.utilities.Pair;
 import player.Player;
 import utility.CheckPos;
+import utility.CheckPosImpl;
 import utility.DoorCheck;
 import design.utilities.Door;
 import design.utilities.GameSettings;
@@ -20,7 +21,7 @@ import design.RoomDesign;
  * 
  */
 
-public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
+public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSettings{
 		
 	/** 
 	 * 
@@ -34,26 +35,8 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	 *  
 	 */
 	
+	
 	@Override
-	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		if(this.checkObstaclesRoom(room, pos) == false ) {
-			return false;
-		}
-   /*   boolean item = this.checkItemsRoom(room, pos);
-		if(item) {
-			return true;
-<<<<<<< HEAD
-		} */
-		return !checkWallLimits(pos);		
-	}	
-	
-	public boolean checkWallLimits(Pair<Integer, Integer> pos) {
-		//REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS DIFFERENT BASED ON DIRECTIONS
-		
-		return ( (pos.getX() + 15 < LIMITLEFT || pos.getX() + 49 >= LIMITRIGHT) 			|| 
-				  (pos.getY() + 48 < LIMITUP || pos.getY() + Player.DIMENSION >= LIMITDOWN));
-	}
-	
 	public boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomDesign>> map) {
 		//REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS DIFFERENT BASED ON DIRECTIONS
 		DoorCheck check = new DoorCheck();
@@ -69,21 +52,13 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 		}
 		return false;
 	}
-	/**se dentro al set di ostacoli ci sono coordinate che corrispondono a quelle del personaggio, 
-	 * allora quest'ultimo non si deve muovere perchè quella posizione è già occupata
-	 */
-	private boolean checkObstaclesRoom(RoomDesign room,Pair<Integer, Integer> pos) {
-		Set<Pair<Integer, Integer>> obstacleSet = room.getObstaclePositions();
-		//REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS DIFFERENT BASED ON DIRECTIONS
-		for (Pair<Integer,Integer> obst : obstacleSet) {
-//			System.out.println(obstacleSet.size());
-			if(!((pos.getX() - 16 >= obst.getX() - GameSettings.TILESIZE && pos.getX() + 16 <= obst.getX() + GameSettings.TILESIZE) &&
-				 (pos.getY() >= obst.getY() - GameSettings.TILESIZE && pos.getY() + 48 <= obst.getY() + GameSettings.TILESIZE)) == false) {
-				return false;
-			}
-		}
-		return true;
+
+	@Override
+	public boolean checkItemsRoom(RoomDesign room, Pair<Integer, Integer> pos) {
+		// TODO Auto-generated method stub
+		return false;
 	}
+	
 	
 
 	
