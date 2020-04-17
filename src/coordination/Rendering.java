@@ -1,5 +1,6 @@
 package coordination;
 
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public interface Rendering {
@@ -14,7 +15,9 @@ public interface Rendering {
 
 	void drawObstacles();
 
-	void drawMain() throws SlickException;
+	void drawMain(Input input);
+	
+	void drawMod();
 	
 	void drawDoorTop() throws SlickException;
 }

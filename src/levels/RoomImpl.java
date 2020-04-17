@@ -3,7 +3,6 @@ package levels;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Random;
 
@@ -11,12 +10,15 @@ import org.newdawn.slick.SlickException;
 
 import design.RoomDesign;
 import design.utilities.Door;
-import design.utilities.GameSettings;
 import design.utilities.Pair;
 import gameEntities.GameEntity;
 import gameEntities.Stairs;
+import gameEntities.items.Coin;
 import gameEntities.items.ItemImpl;
 import gameEntities.items.Key;
+import gameEntities.modifiers.AttackUpgrade1;
+import gameEntities.modifiers.HealthUpgrade1;
+import gameEntities.modifiers.ModifiersImpl;
 import tiles.*;
 
 
@@ -33,7 +35,10 @@ public class RoomImpl {
 	private Tile doorVert;
 	private Tile doorHor;
 	private Tile corners;
-	private List<ItemImpl> items = new ArrayList<>();
+	
+	//THESE LISTS ARE TEMPORARY, REAL POS ARE PROVIDED BY GIAN'S METHOD
+	private List<ModifiersImpl> mod = new ArrayList<>();
+	private List<ItemImpl> items = new ArrayList<>();	
 	private List<GameEntity> obst = new ArrayList<>();
 	
 	
@@ -53,6 +58,7 @@ public class RoomImpl {
 			e.printStackTrace();
 		}
 		this.setItems();
+		this.setMod();
 	}
 	
 	private void setItems() {
@@ -61,6 +67,28 @@ public class RoomImpl {
 			int x = 64 * (1 + rand.nextInt(18));
 			int y = 64 * (1 + rand.nextInt(10));
 			items.add(new Key(new Pair<>(x, y)));
+			
+			x = 64 * (1 + rand.nextInt(18));
+			y = 64 * (1 + rand.nextInt(10));
+			items.add(new Coin(new Pair<>(x, y)));
+			
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void setMod() {
+		
+		try {
+			int x = 64 * (1 + rand.nextInt(18));
+			int y = 64 * (1 + rand.nextInt(10));
+			mod.add(new AttackUpgrade1(new Pair<>(x, y)));
+		
+			x = 64 * (1 + rand.nextInt(18));
+			y = 64 * (1 + rand.nextInt(10));
+			mod.add(new HealthUpgrade1(new Pair<>(x, y)));
+		
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,5 +134,9 @@ public class RoomImpl {
 
 	public RoomDesign getRoom() {
 		return room;
+	}
+
+	public List<ModifiersImpl> getMod() {
+		return mod;
 	}
 }

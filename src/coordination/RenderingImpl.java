@@ -4,43 +4,64 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import design.RoomDesign;
 import design.utilities.Door;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
-import enemy.Enemy;
-import enemy.Monster;
 import gameEntities.Obstacle;
 import gameEntities.items.ItemImpl;
 import levels.Level;
 import player.Player;
 import tiles.Tile;
+import utility.Direction;
 
 public class RenderingImpl implements Rendering {
 	
 	private Level level;
 	private Player player;
-	private Enemy tmp;
 	
-	public RenderingImpl(final Level level, final Player player, final Monster tmp2) {
-		this.level = level;
-		this.player = player;
-		this.tmp = tmp2;
-	}
-	
-	public RenderingImpl(Level level, Player player) {
+	public RenderingImpl(final Level level, final Player player) {
 		this.level = level;
 		this.player = player;
 	}
-
-	public void drawMain() throws SlickException {
-		this.player.getImage().draw(player.getPosition().getX(), player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
-		this.tmp.getImage().draw(tmp.getPos().getX(), tmp.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+	
+	public void drawMain(final Input input) {
+		if(this.player.getDirection().equals(Direction.SOUTH)) {
+			if(input.isKeyDown(Input.KEY_S) ) {
+				this.player.getFront().draw(this.player.getPosition().getX(), this.player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			} else {
+				this.player.getFront().setCurrentFrame(0);
+				this.player.getFront().getCurrentFrame().draw(this.player.getPosition().getX(), this.player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			}
+		} else if(this.player.getDirection().equals(Direction.NORTH)) {
+			if(input.isKeyDown(Input.KEY_W) ) {
+				this.player.getBack().draw(this.player.getPosition().getX(), this.player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			} else {
+				this.player.getBack().setCurrentFrame(0);
+				this.player.getBack().getCurrentFrame().draw(this.player.getPosition().getX(), this.player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			}
+		} else if(this.player.getDirection().equals(Direction.EAST)) {
+			if(input.isKeyDown(Input.KEY_D) ) {
+				this.player.getRight().draw(this.player.getPosition().getX(), this.player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			} else {
+				this.player.getRight().setCurrentFrame(0);
+				this.player.getRight().getCurrentFrame().draw(this.player.getPosition().getX(), this.player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			}
+		} else if(this.player.getDirection().equals(Direction.WEST)) {
+			if(input.isKeyDown(Input.KEY_A) ) {
+				this.player.getLeft().draw(this.player.getPosition().getX(), this.player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			} else {
+				this.player.getLeft().setCurrentFrame(0);
+				this.player.getLeft().getCurrentFrame().draw(this.player.getPosition().getX(), this.player.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			}
+		}
 	}
 	
 	public void drawObstacles() {
@@ -60,11 +81,20 @@ public class RenderingImpl implements Rendering {
 	
 	@Override
 	public void drawItems() {
-		for(int i = 0; i < level.getLevel().get(0).getItems().size(); i++) {
+		for(int i = 0; i < level.getLevel().get(level.getRoomID()).getItems().size(); i++) {
 			
 			int x = level.getLevel().get(level.getRoomID()).getItems().get(i).getCoord().getX();
 			int y = level.getLevel().get(level.getRoomID()).getItems().get(i).getCoord().getY();
-			level.getLevel().get(level.getRoomID()).getItems().get(0).getTexture().draw(x, y, 64, 64);
+			level.getLevel().get(level.getRoomID()).getItems().get(i).getTexture().draw(x, y, 64, 64);
+		}
+	}
+	
+	public void drawMod() {
+		for(int i = 0; i < level.getLevel().get(level.getRoomID()).getMod().size(); i++) {
+			
+			int x = level.getLevel().get(level.getRoomID()).getMod().get(i).getPos().getX();
+			int y = level.getLevel().get(level.getRoomID()).getMod().get(i).getPos().getY();
+			level.getLevel().get(level.getRoomID()).getMod().get(i).getTexture().draw(x, y, 64, 64);
 		}
 	}
 	

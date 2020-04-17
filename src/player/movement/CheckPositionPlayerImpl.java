@@ -2,7 +2,9 @@ package player.movement;
 
 import design.utilities.Pair;
 import player.Player;
+import player.PlayerImpl;
 import utility.CheckPos;
+import utility.Direction;
 import utility.DoorCheck;
 import design.utilities.Door;
 import design.utilities.GameSettings;
@@ -21,7 +23,17 @@ import design.RoomDesign;
  */
 
 public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
-		
+	
+	private int leftPix;
+	private int rightPix;
+	private int downPix;
+	private int upPix;
+	private PlayerImpl player;
+	
+	public CheckPositionPlayerImpl(PlayerImpl player) {
+		this.player = player;
+	}
+
 	/** 
 	 * 
 	 * This method needs the coordinates of the player and checks if he's not going out of bounds.
@@ -48,10 +60,18 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	}	
 	
 	public boolean checkWallLimits(Pair<Integer, Integer> pos) {
-		//REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS DIFFERENT BASED ON DIRECTIONS
+		if(this.player.getDirection().equals(Direction.NORTH) || this.player.getDirection().equals(Direction.SOUTH)) {
+			leftPix = 17;
+			rightPix = 46;
+			upPix = 48;
+		} else if(this.player.getDirection().equals(Direction.WEST) || this.player.getDirection().equals(Direction.EAST)) {
+			leftPix = 15;
+			rightPix = 48;
+			upPix = 48;
+		}
 		
-		return ( (pos.getX() + 15 < LIMITLEFT || pos.getX() + 49 >= LIMITRIGHT) 			|| 
-				  (pos.getY() + 48 < LIMITUP || pos.getY() + Player.DIMENSION >= LIMITDOWN));
+		return ( (pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix >= LIMITRIGHT) 			|| 
+				  (pos.getY() + upPix < LIMITUP || pos.getY() + Player.DIMENSION >= LIMITDOWN));
 	}
 	
 	public boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomDesign>> map) {
@@ -74,11 +94,19 @@ public class CheckPositionPlayerImpl implements CheckPos, GameSettings{
 	 */
 	private boolean checkObstaclesRoom(RoomDesign room,Pair<Integer, Integer> pos) {
 		Set<Pair<Integer, Integer>> obstacleSet = room.getObstaclePositions();
-		//REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS DIFFERENT BASED ON DIRECTIONS
+		if(this.player.getDirection().equals(Direction.NORTH) || this.player.getDirection().equals(Direction.SOUTH)) {
+			leftPix = - 22;
+			rightPix = 18;
+			upPix = 48;
+		} else if(this.player.getDirection().equals(Direction.WEST) || this.player.getDirection().equals(Direction.EAST)) {
+			leftPix = - 20;
+			rightPix = 16;
+			upPix = 48;
+		}
+		
 		for (Pair<Integer,Integer> obst : obstacleSet) {
-//			System.out.println(obstacleSet.size());
-			if(!((pos.getX() - 16 >= obst.getX() - GameSettings.TILESIZE && pos.getX() + 16 <= obst.getX() + GameSettings.TILESIZE) &&
-				 (pos.getY() >= obst.getY() - GameSettings.TILESIZE && pos.getY() + 48 <= obst.getY() + GameSettings.TILESIZE)) == false) {
+			if(!((pos.getX() + leftPix >= obst.getX() - GameSettings.TILESIZE && pos.getX() + rightPix <= obst.getX() + GameSettings.TILESIZE) &&
+				 (pos.getY() >= obst.getY() - GameSettings.TILESIZE && pos.getY() + upPix <= obst.getY() + GameSettings.TILESIZE)) == false) {
 				return false;
 			}
 		}

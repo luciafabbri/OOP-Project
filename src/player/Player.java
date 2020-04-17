@@ -3,10 +3,14 @@ package player;
 import design.RoomDesign;
 import design.utilities.Pair;
 import levels.Level;
+import player.movement.MovementImpl;
+import utility.Direction;
 import utility.health.HealthImpl;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 /**
  * 
@@ -50,14 +54,6 @@ public interface Player extends DefaultPlayer {
 	
 	/**
 	 * 
-	 * Methods used to get Player's image
-	 *  
-	 */
-	public Image getImage();
-	
-	
-	/**
-	 * 
 	 * Methods used to get Player's health
 	 *  
 	 */
@@ -84,6 +80,56 @@ public interface Player extends DefaultPlayer {
 	 *  
 	 */
 	public void setPosition(Pair<Integer, Integer> position);
+	
+	
+	/**
+	 * 
+	 * Methods used to set Player's front animation
+	 *  
+	 */
+	public Animation getFront();
+
+	
+	/**
+	 * 
+	 * Methods used to set Player's back animation
+	 *  
+	 */
+	public Animation getBack();
+	
+	
+	/**
+	 * 
+	 * Methods used to set Player's left animation
+	 *  
+	 */
+	public Animation getLeft();
+	
+	
+	/**
+	 * 
+	 * Methods used to set Player's right animation
+	 *  
+	 */
+	public Animation getRight();
+	
+	
+	/**
+	 * 
+	 * Methods used to set Player's direction
+	 *  
+	 */
+	public Direction getDirection();
+	
+	
+	/**
+	 * 
+	 * Methods used to load Player's animations
+	 * @throws SlickException 
+	 *  
+	 */
+	public void loadAnimations() throws SlickException;
+	
 	//public Debuff setDebuff();
 	//public Buff setBuff();
 	//public Debuff getDebuff();

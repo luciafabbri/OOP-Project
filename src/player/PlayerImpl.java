@@ -9,8 +9,12 @@ import utility.health.HealthImpl;
 import java.util.Map;
 import java.util.Optional;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
+
 import player.movement.CheckPositionPlayerImpl;
 import player.movement.MovementImpl;
 import design.RoomDesign;
@@ -25,23 +29,35 @@ public class PlayerImpl implements Player {
 
 	private Pair<Integer,Integer> position;
 	private int level;
-	private Image texture;
+	private Animation front;
+	private Animation back;
+	private Animation left;
+	private Animation right;
+	
 	private Direction direction;
 	private MovementImpl move = new MovementImpl();
-	private CheckPositionPlayerImpl check = new CheckPositionPlayerImpl();
 	private HealthImpl health = new HealthImpl(HEALTH);
 	private RoomDesign currentRoom;
+	private CheckPositionPlayerImpl check = new CheckPositionPlayerImpl(this);
 	
-	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level, Image texture, RoomDesign room) {	
+	
+	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
 		this.position = pos;
 		this.level = level;
-		this.texture = texture;
 		this.direction = dir;
-		this.currentRoom = room;
 	}
 	
-	public PlayerImpl(int level, Image texture, RoomDesign room) {	
-		this(POSITION, DIRECTION, level, texture, room);
+	public PlayerImpl(int level, Image texture) throws SlickException {	
+		this(POSITION, DIRECTION, level);
+	}
+	
+	public void loadAnimations() throws SlickException {
+		
+		front = new Animation(new SpriteSheet(new Image("./res/chars/mainChar6_front.png"), 64, 64), 100);
+		back = new Animation(new SpriteSheet(new Image("./res/chars/mainChar6_back.png"), 64, 64), 100);
+		left = new Animation(new SpriteSheet(new Image("./res/chars/mainChar6_left.png"), 64, 64), 100);
+		right = new Animation(new SpriteSheet(new Image("./res/chars/mainChar6_right.png"), 64, 64), 100);
+		
 	}
 	
 	@Override 
@@ -71,11 +87,6 @@ public class PlayerImpl implements Player {
 		return this.level;
 	}
 	
-	@Override
-	public Image getImage() {
-		return this.texture;
-	}
-
 	public HealthImpl getHealth() {
 		return this.health;
 	}
@@ -90,6 +101,30 @@ public class PlayerImpl implements Player {
 
 	public void setPosition(Pair<Integer, Integer> position) {
 		this.position = position;
+	}
+
+	public Direction getDirection() {
+		return direction;
+	}
+
+	public Animation getFront() {
+		return front;
+	}
+
+	public Animation getBack() {
+		return back;
+	}
+
+	public Animation getLeft() {
+		return left;
+	}
+
+	public MovementImpl getMove() {
+		return move;
+	}
+
+	public Animation getRight() {
+		return right;
 	}
 	
 }

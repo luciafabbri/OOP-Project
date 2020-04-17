@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Level {
 	
-	void loadScreen();
+	void loadRooms();
 	
 	List<RoomImpl> getLevel();
 

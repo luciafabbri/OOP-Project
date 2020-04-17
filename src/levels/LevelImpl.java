@@ -6,13 +6,6 @@ import java.util.List;
 
 import design.LevelDesign;
 import design.generation.LevelDesignGeneratorImpl;
-import design.utilities.GameSettings;
-import design.utilities.Pair;
-import enemy.Enemy;
-import enemy.Monster;
-import enemy.TypeAttack;
-import enemy.TypeMove;
-import utility.Direction;
 
 public class LevelImpl implements Level {
 	
@@ -20,18 +13,17 @@ public class LevelImpl implements Level {
 	private LevelDesignGeneratorImpl generator = new LevelDesignGeneratorImpl();
 	private LevelDesign testLevel;
 	private RoomImpl tmpRoom;
-	private Enemy tmp;
 	
 	private int roomID;
 	
 	public LevelImpl(final int levelID) throws IOException {
 		testLevel = generator.generateLevel(levelID);			
-		this.loadScreen();
+		this.loadRooms();
 		this.roomID = 0;
 	}
 	
 	@Override
-	public void loadScreen() {	
+	public void loadRooms() {	
 		for(int i = 0; i < testLevel.getRooms().size(); i++) {
 			tmpRoom = new RoomImpl(testLevel.getRooms().get(i), testLevel.getDoorsLayout());
 			//Qui aggiungo solo un livello come test, ma dovrei metterli tutti

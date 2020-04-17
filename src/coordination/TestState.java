@@ -10,20 +10,25 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import design.utilities.GameSettings;
+import design.utilities.Pair;
+import player.Player;
+import player.PlayerImpl;
+import utility.Direction;
 
 
 public class TestState extends StateBasedGame {
 
+	private static Player player;
 	private static final String GAMENAME = "JARG";
 	private static final int MENU = 0;  
 	private static final int LEVEL1 = 1;
 	
-	
-	public TestState(String name) {
+	public TestState(String name) throws SlickException {
 		super(name);
-		this.addState(new Menu());
-		this.addState(new TestPlay(LEVEL1));
+		player = new PlayerImpl(new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE), Direction.SOUTH, 0);
 		
+		this.addState(new Menu());
+		this.addState(new TestPlay(LEVEL1, player));		
 	}
 
 	@Override
@@ -35,7 +40,7 @@ public class TestState extends StateBasedGame {
 	
 	//QUI VA MAIN PER INIZIALIZZARE PRIMA IL MENU
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SlickException {
 		//Set the path for Slick2D libraries
 		System.setProperty("java.library.path", new File("./lib/libraries").getAbsolutePath());
 		
@@ -45,12 +50,12 @@ public class TestState extends StateBasedGame {
 		//Set the path for JInput
 		System.setProperty("net.java.games.input.librarypath", new File("./lib/natives").getAbsolutePath());
 		
-		
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new TestState(GAMENAME));
 			appgc.setDisplayMode(GameSettings.WIDTH, GameSettings.HEIGHT, false);
 			appgc.setShowFPS(false);
+//			appgc.setVSync(true);
 			appgc.setMaximumLogicUpdateInterval(80);
 			appgc.start();
 		} catch (SlickException e) {

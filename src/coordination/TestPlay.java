@@ -3,20 +3,14 @@ import java.io.IOException;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import design.utilities.GameSettings;
-import design.utilities.Pair;
-import gameEntities.items.ItemImpl;
 import levels.Level;
 import levels.LevelImpl;
 import player.Player;
-import player.PlayerImpl;
-import utility.Direction;
 
 public class TestPlay extends BasicGameState {
 	
@@ -26,43 +20,47 @@ public class TestPlay extends BasicGameState {
 	private Level level;
 	private Input input;
 	private int levelID;
-	
-	public TestPlay(final int state) {
+
+	public TestPlay(final int state, final Player player) {
 		super();
 		this.levelID = state;
+		this.player = player;
 	}
-
+	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		//Teoricamente qui si carica il livello in s� (il primo livello in questo caso)
-		//per poi aggiornare la logica in update e la grafica in render
+		
+		player.loadAnimations();
+		
 		try {
 			level = new LevelImpl(this.levelID);
-			player = new PlayerImpl(new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE), Direction.SOUTH, 0, new Image("./res/chars/mainChar6_front.png"), level.getLevel().get(level.getRoomID()).getRoom());
 			logic = new LogicImpl(level, player);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(level.getLevel().get(0).getRoom());
+		player.setCurrentRoom(level.getLevel().get(0).getRoom());
 		
 		graphics = new RenderingImpl(level, player);
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
+		input = arg0.getInput();
+		
 		graphics.drawFloor();
 		graphics.drawWalls();
 		graphics.drawItems();
 		graphics.drawDoors();
 		graphics.drawObstacles();
-		graphics.drawMain();
+		graphics.drawMain(input);
 		graphics.drawDoorTop();
+		graphics.drawMod();
 		
 		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), 0, 0);
 		
 		arg2.clearClip();
-		
-		
 	}
 
 	@Override
@@ -71,8 +69,6 @@ public class TestPlay extends BasicGameState {
 		
 		logic.moveMain(input);
 		logic.switchRooms(input);
-		
-		
 		
 		/*
 		ItemImpl tmp = level.getLevel().get(0).getItems().get(0);
@@ -91,7 +87,6 @@ public class TestPlay extends BasicGameState {
 		}
 	
 		*/
-	
 	}
 	
 	public int getID() {
