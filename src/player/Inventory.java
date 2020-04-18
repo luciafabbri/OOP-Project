@@ -1,29 +1,15 @@
 package player;
 
-public class Inventory {
+public interface Inventory {
 	
-	private int coin;
-	private int key;
+	public int getCoin();
+
+	public int getKey();
 	
-	public Inventory() {
-		this.coin = 0;
-		this.key = 0;
-	}
+	public void addCoin(int coin);
 
-	public int getCoin() {
-		return coin;
-	}
+	public void addKey(int key);
 
-	public void setCoin(int coin) {
-		this.coin = coin;
-	}
-
-	public int getKey() {
-		return key;
-	}
-
-	public void setKey(int key) {
-		this.key = key;
-	}
+	public void printInventoryState();
 
 }

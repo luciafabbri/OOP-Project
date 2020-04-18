@@ -21,7 +21,7 @@ public class MovementImpl implements Movement {
 		
 		direction = dir;
 		
-		//control UP-RIGHT input
+/**		//control UP-RIGHT input
 		if( input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_D) ) {
 			this.direction = Direction.NORTH_EAST;
 			return new Pair<Integer,Integer>(pos.getX() + 1,pos.getY() - 1);
@@ -48,7 +48,7 @@ public class MovementImpl implements Movement {
 			return new Pair<Integer,Integer>(pos.getX() + 1,pos.getY() + 1);
 		}
 		
-		
+*/		
 		//control UP input   
 		if( input.isKeyDown(Input.KEY_W) ) {
 			this.direction = Direction.NORTH;

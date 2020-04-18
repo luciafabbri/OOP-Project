@@ -47,8 +47,8 @@ public class PlayerImpl implements Player {
 
 	private HealthImpl health = new HealthImpl(HEALTH);
 	private RoomDesign currentRoom;
-	
-	private Inventory inventory = new Inventory();  				  //AGGIUNGERE AL COSTRUTTORE
+	private InventoryImpl inventory = new InventoryImpl(this);
+
 	private ModifiersImpl modifiers;
 	
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
@@ -76,7 +76,8 @@ public class PlayerImpl implements Player {
 		Map<Door, Optional<RoomDesign>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
 		newPos = move.movePlayer(input, this.position, this.direction); 
 
-		if( check.possiblePos(this.currentRoom, newPos) || check.checkDoors(newPos, map)) {
+		if( check.possiblePos(this.currentRoom, newPos) || check.checkDoors(newPos, map) || 
+					check.checkItemsRoom(this.currentRoom,newPos) || check.checkModifiersRoom(this.currentRoom, newPos)) {
 			this.position = newPos;  
 		}
 		this.direction = move.getDirection();   /** direction changes even if the player can't actually go in that position */
@@ -137,8 +138,12 @@ public class PlayerImpl implements Player {
 		return move;
 	}
 	
+	// SISTEMARE
+	public InventoryImpl getInventory() {
+		return this.inventory;
+	}
 	
-	//SENTIRE CON FEDE PER SISTEMARE
+	// SISTEMARE
 	public void setStats(Stats statsValue) {
 		for (Stats s : Stats.values()) {
 			if(s.equals(statsValue)) {
