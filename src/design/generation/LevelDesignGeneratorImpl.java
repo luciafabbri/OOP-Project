@@ -2,6 +2,8 @@ package design.generation;
 import java.io.*;
 import java.util.*;
 
+import org.newdawn.slick.SlickException;
+
 import design.*;
 import design.utilities.*;
 import design.tokens.*;
@@ -32,7 +34,11 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		int stairsRoomID = setStairsRoom(numOfRooms);
 		RoomDesignGenerator roomGen = new RoomDesignGeneratorImpl(currentConfig, stairsRoomID);
 		for(int i = 0; i < numOfRooms; i++) {
-			level.addRoom(roomGen.generateRoom(i));
+			try {
+				level.addRoom(roomGen.generateRoom(i));
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
 		}
 		BidirectionalGraph<RoomDesign> graph = graphGen.generateRoomsGraph(level.getRooms());
 		graphGen.generateDoorsLayout(graph);

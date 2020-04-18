@@ -4,15 +4,15 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Random;
 
+import org.newdawn.slick.SlickException;
+
 import design.RoomDesign;
 import design.RoomDesignImpl;
 import design.tokens.Enemy;
-import design.utilities.BidirectionalGraph;
-import design.utilities.CoherentRandomPosition;
-import design.utilities.GameSettings;
-import design.utilities.Pair;
-import design.utilities.RandomPosition;
+import design.utilities.*;
 import gameEntities.*;
+import gameEntities.items.*;
+import gameEntities.modifiers.*;
 
 public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 
@@ -27,7 +27,7 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 	}
 
 	@Override
-	public RoomDesignImpl generateRoom(int index) {
+	public RoomDesignImpl generateRoom(int index)  {
 
 		RoomDesignImpl room = new RoomDesignImpl(index);
 		Pair<Integer, Integer> pos;
@@ -57,12 +57,40 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 			while (room.getOccupiedTiles().contains(pos)) {
 				pos = randomPosition.generateRandomPosition();
 			}
-			room.addObstacle(new gameEntities.Obstacle(pos));
+			room.addObstacle(new Obstacle(pos));
 			room.addOccupiedTile(pos);
 		}
+		int numOfEntities = currentConfig.get("minObjects") + random.nextInt(1 + currentConfig.get("maxObjects") - currentConfig.get("minObjects"));
+		try {
+			this.generateEntities(room, numOfEntities);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		} 
 		// tiles graph generation
 		room.setTilesGraph(generateTilesGraph(room));
 		return room;
+	}
+
+	private void generateEntities(RoomDesignImpl room, int numOfEntities) throws SlickException {
+
+		for (int i = 0; i < numOfEntities; i++) {
+			switch (Entities.valueOf(random.nextInt(Entities.values().length))) {
+			case COIN:
+				room.addEntity(new Coin(randomPosition.generateRandomPosition()));
+				break;
+			case KEY:
+				room.addEntity(new Key(randomPosition.generateRandomPosition()));
+				break;
+			case ATTACKUPGRADE1:
+				room.addEntity(new AttackUpgrade1(randomPosition.generateRandomPosition()));
+				break;
+			case HEALTHUPGRADE1:
+				room.addEntity(new HealthUpgrade1(randomPosition.generateRandomPosition()));
+				break;
+
+			}
+		}
+
 	}
 
 	private void generateStairs(RoomDesignImpl room) {

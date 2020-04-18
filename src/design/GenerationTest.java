@@ -8,7 +8,6 @@ import java.util.Optional;
 import design.generation.LevelDesignGeneratorImpl;
 import design.utilities.BidirectionalGraph;
 import design.utilities.Door;
-import design.utilities.Pair;
 
 public class GenerationTest {
 	
@@ -35,7 +34,12 @@ public class GenerationTest {
 				System.out.print(e.toString()+ " ");
 			});
 			System.out.println("");
-			System.out.print("World objects are the following: ");
+			System.out.print("Entities are the following: ");
+			
+			r.getEntitiesSet().forEach(i -> {
+				System.out.print(i.toString()+ " ");
+			});
+			System.out.println("");
 			
 			System.out.print("Obstacles are the following: ");
 			

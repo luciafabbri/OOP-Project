@@ -5,6 +5,7 @@ import java.util.Set;
 
 import design.utilities.BidirectionalGraph;
 import design.utilities.Pair;
+import gameEntities.GameEntity;
 import gameEntities.Obstacle;
 import gameEntities.Stairs;
 
@@ -31,7 +32,12 @@ public interface RoomDesign {
 	Stairs getStairs();
 
 	void setStairs(Stairs stairs);
+	
 	boolean areStairsPresent();
 
 	void setStairsPresence(boolean stairsPresent);
+	
+	void addEntity(GameEntity entity);
+
+	Set<GameEntity> getEntitiesSet();
 }
