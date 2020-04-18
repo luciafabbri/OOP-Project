@@ -4,19 +4,33 @@ import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import enemy.Enemy;
+import player.Player;
+import player.PlayerImpl;
 
 public class CheckPosImpl implements CheckPos, GameSettings{
+	
+	private int leftPix;
+	private int rightPix;
+	private int downPix;
+	private int upPix;
+	private Entity entity;
+	
+	public CheckPosImpl(Entity entity) {
+		this.entity = entity;
+	}
+	
 
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
+		updateDimension();
 		return !(isOutOfLimits(pos) || checkObstaclesRoom(room, pos));
 	}
 
 	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
 		// REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS
 		// DIFFERENT BASED ON DIRECTIONS
-		return ((pos.getX() + 15 < LIMITLEFT || pos.getX() + 49 >= LIMITRIGHT)
-				|| (pos.getY() + 48 < LIMITUP || pos.getY() + Enemy.DIMENSION >= LIMITDOWN));
+		return ((pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix >= LIMITRIGHT)
+				|| (pos.getY() + upPix < LIMITUP || pos.getY() + downPix >= LIMITDOWN));
 	}
 
 	protected boolean checkObstaclesRoom(RoomDesign room, Pair<Integer, Integer> pos) {
@@ -24,8 +38,8 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 		// REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS
 		// DIFFERENT BASED ON DIRECTIONS
 		for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
-			checkX = (pos.getX() - 16 >= obst.getX() - TILESIZE && pos.getX() + 16 <= obst.getX() + TILESIZE);
-			checkY = (pos.getY() >= obst.getY() - TILESIZE && pos.getY() + 48 <= obst.getY() + TILESIZE);
+			checkX = pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE && pos.getX() + rightPix > obst.getX() ;
+			checkY = pos.getY() < obst.getY() + (TILESIZE - rightPix) && pos.getY() + downPix > obst.getY();
 //			System.out.println(obstacleSet.size());
 			if (checkX && checkY) {
 				return true;
@@ -33,6 +47,13 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 
 		}
 		return false;
+	}
+	
+	private void updateDimension() {
+		this.upPix = entity.getDimension().getUp();
+		this.downPix = entity.getDimension().getDown();
+		this.leftPix = entity.getDimension().getLeft();
+		this.rightPix = entity.getDimension().getRight();
 	}
 	
 

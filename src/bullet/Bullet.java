@@ -6,10 +6,13 @@ import design.utilities.Pair;
 import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;
+import utility.Entity;
 
-public interface Bullet {
+public interface Bullet extends Entity {
 	
 	public final static int DIMENSION = 48;
+	
+	
 	
 	public boolean isAlive();
 	

@@ -1,15 +1,12 @@
 package bullet;
 
-import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;
 import design.RoomDesign;
 import design.utilities.Pair;
-import bullet.move.CheckMonsBull;
+import bullet.move.CheckPlayerBull;
 
 public class BulletPlayer extends BulletImpl {
-
-	private CheckPos check = new CheckMonsBull();
 
 	public BulletPlayer(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, RoomDesign room) {
 		super(position, damage, debuff, direction, room);
@@ -20,7 +17,7 @@ public class BulletPlayer extends BulletImpl {
 	}
 	
 	public void updatePos() {
-		super.updatePos(check);
+		super.updatePos(new CheckPlayerBull(this));
 	}
 
 }

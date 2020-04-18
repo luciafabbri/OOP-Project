@@ -1,11 +1,9 @@
 package utility;
 
-import java.util.List;
-
 import design.utilities.Pair;
 import utility.health.Health;
 
-public interface Character {
+public interface Character extends Entity {
 	
 	/**
 	 * 
@@ -34,11 +32,4 @@ public interface Character {
 	 *  
 	 */
 	public Direction getDirection();
-	
-	/**
-	 * 
-	 * Methods used to get Character's Dimensions
-	 *  
-	 
-	public List<Integer> getDimension();*/
 }

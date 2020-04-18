@@ -4,8 +4,8 @@ import java.util.Random;
 
 import utility.Direction;
 import design.RoomDesign;
-import design.RoomDesignImpl;
 import design.utilities.Pair;
+import utility.Character;
 
 public class RandomMove implements MovePosMonster {
 
@@ -17,8 +17,8 @@ public class RandomMove implements MovePosMonster {
 	private Random random = new Random();
 	private Direction nextDir;
 
-	public RandomMove(RoomDesign room) {
-		move = new StraightMove(room);
+	public RandomMove(RoomDesign room, Character character) {
+		move = new StraightMove(room, character);
 	}
 
 	@Override

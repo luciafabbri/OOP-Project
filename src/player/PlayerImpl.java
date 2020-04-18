@@ -4,6 +4,7 @@ import design.utilities.Door;
 import design.utilities.Pair;
 import levels.Level;
 import utility.Direction;
+import utility.UpDownLeftRight;
 import utility.health.HealthImpl;
 
 import java.util.Map;
@@ -128,6 +129,16 @@ public class PlayerImpl implements Player {
 
 	public Animation getRight() {
 		return right;
+	}
+
+	@Override
+	public UpDownLeftRight getDimension() {
+		if(direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
+			return VERTICAL;
+		}  else if(direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
+			return ORIZONTAL;
+		}
+		return new UpDownLeftRight(0, 0, 0, 0);
 	}
 	
 }

@@ -6,10 +6,11 @@ import design.RoomDesign;
 import design.utilities.GameSettings;
 import utility.Direction;
 import design.utilities.Pair;
+import utility.Character;
 
 public class TeleportMove implements MovePosMonster {
 
-	private CheckMonster check = new CheckMonsterImpl();
+	private CheckMonster check;
 	private Random rand = new Random();
 	private Pair<Integer, Integer> newPos;
 	private Direction nextDir = null;
@@ -17,8 +18,9 @@ public class TeleportMove implements MovePosMonster {
 
 	private RoomDesign currentRoom;
 
-	public TeleportMove(RoomDesign room) {
+	public TeleportMove(RoomDesign room, Character character) {
 		currentRoom = room;
+		check = new CheckMonsterImpl(character);
 	}
 
 	@Override
