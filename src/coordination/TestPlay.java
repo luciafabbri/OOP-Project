@@ -59,7 +59,8 @@ public class TestPlay extends BasicGameState {
 		graphics.drawMod();
 		
 		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), 0, 0);
-		
+		arg2.drawString("Level: " + this.getID() + " | Room: " +level.getRoomID(), 0, 16);
+
 		arg2.clearClip();
 	}
 

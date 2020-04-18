@@ -6,9 +6,9 @@ public interface Inventory {
 
 	public int getKey();
 	
-	public void addCoin(int coin);
+	public void addCoin();
 
-	public void addKey(int key);
+	public void addKey();
 
 	public void printInventoryState();
 

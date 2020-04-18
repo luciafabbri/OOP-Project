@@ -3,12 +3,8 @@ package player;
 import design.RoomDesign;
 import design.utilities.Pair;
 import levels.Level;
-import player.movement.MovementImpl;
-import utility.Direction;
-import utility.health.HealthImpl;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
@@ -129,10 +125,5 @@ public interface Player extends DefaultPlayer, utility.Character {
 	 *  
 	 */
 	public void loadAnimations() throws SlickException;
-	
-	//public Debuff setDebuff();
-	//public Buff setBuff();
-	//public Debuff getDebuff();
-	//public Buff getBuff();
 
 }

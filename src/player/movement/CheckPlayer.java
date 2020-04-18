@@ -12,8 +12,6 @@ public interface CheckPlayer extends CheckPos{
 
 	public boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomDesign>> map);
 	
-	public boolean checkItemsRoom(RoomDesign room,Pair<Integer, Integer> pos);	
-	
-	public boolean checkModifiersRoom(RoomDesign room, Pair<Integer, Integer> pos);
+	public boolean checkEntityRoom(RoomDesign room,Pair<Integer, Integer> pos);	
 
 }

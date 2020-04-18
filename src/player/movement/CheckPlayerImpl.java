@@ -1,25 +1,20 @@
 package player.movement;
 
 import design.utilities.Pair;
-import player.Player;
+import gameEntities.GameEntity;
 import player.PlayerImpl;
-import utility.CheckPos;
-import utility.Direction;
-
 import utility.CheckPosImpl;
 
 import utility.DoorCheck;
 import utility.Entity;
 import design.utilities.Door;
+import design.utilities.Entities;
 import design.utilities.GameSettings;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
 import design.RoomDesign;
-import design.tokens.WorldObject;
 
 /**
  * 
@@ -28,10 +23,13 @@ import design.tokens.WorldObject;
  */
 
 
-public class CheckPlayerImpl  extends CheckPosImpl implements CheckPlayer, GameSettings{
+public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSettings{
 				
-	public CheckPlayerImpl(Entity entity) {
+	PlayerImpl player;
+	
+	public CheckPlayerImpl(Entity entity, PlayerImpl player) {
 		super(entity);
+		this.player = player;
 	}
 	
 	@Override
@@ -56,19 +54,23 @@ public class CheckPlayerImpl  extends CheckPosImpl implements CheckPlayer, GameS
 	 * allora quest'ultimo non si deve muovere perchè quella posizione è già occupata
 	 */
 	@Override
-	public boolean checkItemsRoom(RoomDesign room, Pair<Integer, Integer> pos) {
-		/**Set<WorldObject> itemSet; room.getWorldObjectsSet();
-		for (design.tokens.WorldObject item : itemSet) {
-			if ( controllo degli item quando implementati ) {
-				prendi tipologia di item e modifica  
-				aggiungi alla lista di qualcosa 
+	public boolean checkEntityRoom(RoomDesign room, Pair<Integer, Integer> pos) {
+		boolean checkX, checkY;
+		Set<GameEntity> itemSet = room.getEntitiesSet();
+		for (GameEntity item : itemSet) {
+			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
+			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
+			if (checkX && checkY) {
+				if (item.getTypeEnt().equals(Entities.COIN)) {
+					player.getInventory().addCoin();
+				}
+				else if (item.getTypeEnt().equals(Entities.KEY)) {
+					player.getInventory().addKey();
+				}
+				System.out.println("Item preso\n");
 				return true;
 			}
-		} */
-		return false;
-	} 
-	
-	public boolean checkModifiersRoom(RoomDesign room, Pair<Integer, Integer> pos) {
+		}
 		return false;
 	}
 }

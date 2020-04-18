@@ -2,11 +2,9 @@ package bullet.move;
 
 import java.util.Set;
 
-import bullet.Bullet;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
-import utility.CheckPos;
 import utility.CheckPosImpl;
 import utility.Entity;
 

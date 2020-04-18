@@ -9,5 +9,7 @@ public interface Health {
 	public boolean isAlive();
 
 	public int getMaxHealth();
+	
+	public int setMaxHealth(int health);
 
 }

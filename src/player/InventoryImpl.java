@@ -21,13 +21,13 @@ public class InventoryImpl implements Inventory {
 	}
 	
 	@Override
-	public void addCoin(int coin) {
-		this.coin += coin;
+	public void addCoin() {
+		this.coin += 1;
 	}
 
 	@Override
-	public void addKey(int key) {
-		this.key += key;
+	public void addKey() {
+		this.key += 1;
 	}
 
 	@Override

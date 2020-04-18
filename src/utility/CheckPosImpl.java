@@ -9,10 +9,10 @@ import player.PlayerImpl;
 
 public class CheckPosImpl implements CheckPos, GameSettings{
 	
-	private int leftPix;
-	private int rightPix;
-	private int downPix;
-	private int upPix;
+	protected int leftPix;
+	protected int rightPix;
+	protected int downPix;
+	protected int upPix;
 	private Entity entity;
 	
 	public CheckPosImpl(Entity entity) {

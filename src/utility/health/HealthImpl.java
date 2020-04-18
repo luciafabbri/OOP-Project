@@ -40,5 +40,10 @@ public class HealthImpl implements Health {
 	public boolean isAlive() {
 		return this.currentHealth > 0;
 	}
+
+	@Override
+	public int setMaxHealth(int health) {
+		return this.totalHealth += health;
+	}
 	
 }
