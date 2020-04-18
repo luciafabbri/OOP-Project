@@ -2,8 +2,8 @@ minRooms 15
 maxRooms 20
 minEnemies 5
 maxEnemies 7
-minObjects 5
-maxObjects 7
+minObjects 3
+maxObjects 4
 minObstacles% 20
 maxObstacles% 30
 enemyHealth 999
