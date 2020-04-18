@@ -7,7 +7,9 @@ public enum Entities {
 	COIN(0), 
 	KEY(1), 
 	ATTACKUPGRADE1(2), 
-	HEALTHUPGRADE1(3);
+	HEALTHUPGRADE1(3),
+	BOULDER(4),
+	STAIR(5);
 
 	private Integer entityCode;
 	private static Map<Integer, Entities> map = new HashMap<>();

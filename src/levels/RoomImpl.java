@@ -35,13 +35,7 @@ public class RoomImpl {
 	private Tile doorVert;
 	private Tile doorHor;
 	private Tile corners;
-	
-	//THESE LISTS ARE TEMPORARY, REAL POS ARE PROVIDED BY GIAN'S METHOD
-	private List<ModifiersImpl> mod = new ArrayList<>();
-	private List<ItemImpl> items = new ArrayList<>();	
-	private List<GameEntity> obst = new ArrayList<>();
-	
-	
+		
 	public RoomImpl(final RoomDesign room, Map<RoomDesign, Map<Door, Optional<RoomDesign>>> doorAccess) {	
 		this.room = room;
 		this.doorAccess = doorAccess.entrySet().stream().filter(s -> s.getKey().getRoomID() == room.getRoomID()).findFirst().get().getValue();
@@ -57,47 +51,6 @@ public class RoomImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.setItems();
-		this.setMod();
-	}
-	
-	private void setItems() {
-		
-		try {
-			int x = 64 * (1 + rand.nextInt(18));
-			int y = 64 * (1 + rand.nextInt(10));
-			items.add(new Key(new Pair<>(x, y)));
-			
-			x = 64 * (1 + rand.nextInt(18));
-			y = 64 * (1 + rand.nextInt(10));
-			items.add(new Coin(new Pair<>(x, y)));
-			
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	private void setMod() {
-		
-		try {
-			int x = 64 * (1 + rand.nextInt(18));
-			int y = 64 * (1 + rand.nextInt(10));
-			mod.add(new AttackUpgrade1(new Pair<>(x, y)));
-		
-			x = 64 * (1 + rand.nextInt(18));
-			y = 64 * (1 + rand.nextInt(10));
-			mod.add(new HealthUpgrade1(new Pair<>(x, y)));
-		
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	private void setObstacles() {
-		
-		obst.add(new Stairs(new Pair<>(64 * 7, 64 * 9)));
 	}
 	
 	public Tile getFloor() {
@@ -116,10 +69,6 @@ public class RoomImpl {
 		return corners;
 	}
 
-	public List<ItemImpl> getItems() {
-		return items;
-	}
-
 	public Map<Door, Optional<RoomDesign>> getDoorAccess() {
 		return doorAccess;
 	}
@@ -136,7 +85,4 @@ public class RoomImpl {
 		return room;
 	}
 
-	public List<ModifiersImpl> getMod() {
-		return mod;
-	}
 }

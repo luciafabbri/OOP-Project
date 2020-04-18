@@ -27,7 +27,7 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 	}
 
 	@Override
-	public RoomDesignImpl generateRoom(int index)  {
+	public RoomDesignImpl generateRoom(int index) throws SlickException  {
 
 		RoomDesignImpl room = new RoomDesignImpl(index);
 		Pair<Integer, Integer> pos;
@@ -57,7 +57,7 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 			while (room.getOccupiedTiles().contains(pos)) {
 				pos = randomPosition.generateRandomPosition();
 			}
-			room.addObstacle(new Obstacle(pos));
+			room.addObstacle(new Obstacle(pos, Entities.BOULDER));
 			room.addOccupiedTile(pos);
 		}
 		int numOfEntities = currentConfig.get("minObjects") + random.nextInt(1 + currentConfig.get("maxObjects") - currentConfig.get("minObjects"));
@@ -93,7 +93,7 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 
 	}
 
-	private void generateStairs(RoomDesignImpl room) {
+	private void generateStairs(RoomDesignImpl room) throws SlickException {
 		room.setStairsPresence(true);
 		room.setStairs(new Stairs(randomPosition.generateRandomPosition()));
 		room.addOccupiedTile(room.getStairs().getPosition());

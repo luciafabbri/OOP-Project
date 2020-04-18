@@ -13,6 +13,7 @@ import org.newdawn.slick.SlickException;
 
 import design.RoomDesign;
 import design.utilities.Door;
+import design.utilities.Entities;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import gameEntities.Obstacle;
@@ -81,22 +82,16 @@ public class RenderingImpl implements Rendering {
 	
 	@Override
 	public void drawItems() {
-		for(int i = 0; i < level.getLevel().get(level.getRoomID()).getItems().size(); i++) {
-			
-			int x = level.getLevel().get(level.getRoomID()).getItems().get(i).getPosition().getX();
-			int y = level.getLevel().get(level.getRoomID()).getItems().get(i).getPosition().getY();
-			level.getLevel().get(level.getRoomID()).getItems().get(i).getTexture().draw(x, y, 64, 64);
-		}
-		
+		level.getLevel().get(level.getRoomID()).getRoom().getEntitiesSet().stream().
+		filter(s -> s.getTypeEnt().equals(Entities.COIN) || s.getTypeEnt().equals(Entities.KEY)).
+		forEach(s -> s.getTexture().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE));
 	}
 	
 	public void drawMod() {
-		for(int i = 0; i < level.getLevel().get(level.getRoomID()).getMod().size(); i++) {
-			
-			int x = level.getLevel().get(level.getRoomID()).getMod().get(i).getPosition().getX();
-			int y = level.getLevel().get(level.getRoomID()).getMod().get(i).getPosition().getY();
-			level.getLevel().get(level.getRoomID()).getMod().get(i).getTexture().draw(x, y, 64, 64);
-		}
+		level.getLevel().get(level.getRoomID()).getRoom().getEntitiesSet().
+		stream().filter(s -> s.getTypeEnt().equals(Entities.ATTACKUPGRADE1) || s.getTypeEnt().equals(Entities.HEALTHUPGRADE1)).
+		forEach(s -> s.getTexture().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE));
+	
 	}
 	
 	public void drawFloor() {
