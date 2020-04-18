@@ -17,6 +17,7 @@ import enemy.move.RandomMove;
 import enemy.move.StraightMove;
 import enemy.move.TeleportMove;
 import utility.Direction;
+import utility.UpDownLeftRight;
 import utility.health.Health;
 import utility.health.HealthImpl;
 import design.RoomDesign;
@@ -30,28 +31,30 @@ public class Monster implements Enemy {
 	private Health health;
 	private MovePosMonster move;
 	private MonsterAttack attack;
-	private Direction direct;
+	private Direction direction;
+	private Pair<DimensionMonster, DimensionMonster> dim;
 
 	public Monster(Pair<Integer, Integer> pos, int level, int health, TypeMove move, Direction dir,
-			TypeAttack att, RoomDesign room) {
+			TypeAttack att, RoomDesign room, TypeMonster mon) {
 		this.position = pos;
 		this.level = level;
 		this.health = new HealthImpl(health);
 		this.move = selectMove(move, room);
 		this.attack = selectAttack(att, room);
-		this.direct = dir;
+		this.direction = dir;
+		this.dim = DimensionMonster.getDimensionMoster(mon);
 	}
 
 	private MovePosMonster selectMove(TypeMove typeMove, RoomDesign room) {
 		switch (typeMove) {
 		case STRAIGHT:
-			return new StraightMove(room);
+			return new StraightMove(room, this);
 
 		case TELEPORT:
-			return new TeleportMove(room);
+			return new TeleportMove(room, this);
 
 		case RANDOM:
-			return new RandomMove(room);
+			return new RandomMove(room, this);
 
 		case IMMOBILIZED:
 			return new ImmobilizedMove(room);
@@ -99,8 +102,8 @@ public class Monster implements Enemy {
 
 	@Override
 	public void updatePos() {
-		this.position = move.nextPos(this.position, this.direct);
-		this.direct = move.getDirection();
+		this.position = move.nextPos(this.position, this.direction);
+		this.direction = move.getDirection();
 	}
 
 	@Override
@@ -120,7 +123,17 @@ public class Monster implements Enemy {
 
 	@Override
 	public Direction getDirection() {
-		return this.direct;
+		return this.direction;
+	}
+
+	@Override
+	public UpDownLeftRight getDimension() {
+		if(direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
+			return dim.getX().getDimension();
+		}  else if(direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
+			return dim.getY().getDimension();
+		}
+		return new UpDownLeftRight(0, 0, 0, 0);
 	}
 
 	

@@ -9,6 +9,7 @@ import utility.Direction;
 import utility.CheckPosImpl;
 
 import utility.DoorCheck;
+import utility.Entity;
 import design.utilities.Door;
 import design.utilities.GameSettings;
 import java.util.HashSet;
@@ -29,14 +30,8 @@ import design.tokens.WorldObject;
 
 public class CheckPlayerImpl  extends CheckPosImpl implements CheckPlayer, GameSettings{
 	
-	private int leftPix;
-	private int rightPix;
-	private int downPix;
-	private int upPix;
-	private PlayerImpl player;
-	
-	public CheckPlayerImpl(PlayerImpl player) {
-		this.player = player;
+	public CheckPlayerImpl(Entity entity) {
+		super(entity);
 	}
 	
 	@Override

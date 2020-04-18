@@ -3,16 +3,18 @@ package enemy.move;
 import design.RoomDesign;
 import design.utilities.Pair;
 import utility.Direction;
+import utility.Character;
 
 public class StraightMove implements MovePosMonster {
 
-	private CheckMonster check = new CheckMonsterImpl();
+	private CheckMonster check;
 	private Direction nextDir = null;
 
 	private RoomDesign currentRoom;
 
-	public StraightMove(RoomDesign room) {
+	public StraightMove(RoomDesign room, Character character) {
 		currentRoom = room;
+		check = new CheckMonsterImpl(character);
 	}
 
 	@Override

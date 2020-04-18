@@ -10,6 +10,7 @@ import design.utilities.Pair;
 import utility.CheckPos;
 import utility.Debuff;
 import utility.Direction;
+import utility.UpDownLeftRight;
 
 
 public class BulletImpl implements Bullet {
@@ -63,5 +64,11 @@ public class BulletImpl implements Bullet {
 	@Override
 	public Image getImage() {
 		return this.image;
+	}
+
+
+	@Override
+	public UpDownLeftRight getDimension() {
+		return new UpDownLeftRight(26, DIMENSION, 0, DIMENSION);
 	}
 }

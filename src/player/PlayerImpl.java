@@ -6,6 +6,7 @@ import gameEntities.modifiers.ModifiersImpl;
 import levels.Level;
 import utility.Direction;
 import utility.Stats;
+import utility.UpDownLeftRight;
 import utility.health.HealthImpl;
 
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.tests.xml.Inventory;
 
 import player.movement.CheckPlayer;
 import player.movement.CheckPlayerImpl;
@@ -143,6 +145,16 @@ public class PlayerImpl implements Player {
 				s.toString();
 			}
 		}
+	}
+
+	@Override
+	public UpDownLeftRight getDimension() {
+		if(direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
+			return VERTICAL;
+		}  else if(direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
+			return ORIZONTAL;
+		}
+		return new UpDownLeftRight(0, 0, 0, 0);
 	}
 	
 }

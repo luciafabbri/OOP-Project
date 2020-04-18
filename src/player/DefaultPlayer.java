@@ -2,6 +2,7 @@ package player;
 
 import design.utilities.Pair;
 import utility.Direction;
+import utility.UpDownLeftRight;
 
 
 /**
@@ -16,5 +17,7 @@ public interface DefaultPlayer {
 	final static Direction DIRECTION = Direction.EAST;
     final static int HEALTH = 100;
 	public final static int DIMENSION = 64;
+	public final static UpDownLeftRight VERTICAL = new UpDownLeftRight(48, DIMENSION, 17, 46);
+	public final static UpDownLeftRight ORIZONTAL = new UpDownLeftRight(48, DIMENSION, 15, 48);
 
 }

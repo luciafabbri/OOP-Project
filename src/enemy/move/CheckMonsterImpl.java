@@ -4,10 +4,15 @@ import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import enemy.Enemy;
+import utility.Character;
 import utility.CheckPosImpl;
 import utility.Direction;
 
 public class CheckMonsterImpl extends CheckPosImpl implements CheckMonster, GameSettings {
+
+	public CheckMonsterImpl(Character character) {
+		super(character);
+	}
 
 	private int x, y;
 	private Direction newDir;
