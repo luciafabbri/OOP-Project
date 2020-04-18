@@ -15,4 +15,9 @@ private Pair<Integer, Integer> position;
 	public Pair<Integer, Integer> getPosition() {
 		return position;
 	}
+
+
+	public void setPosition(Pair<Integer, Integer> position) {
+		this.position = position;
+	}
 }

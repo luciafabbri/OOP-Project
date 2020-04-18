@@ -9,8 +9,8 @@ public class CoherentRandomPosition implements RandomPosition{
 
 	public Pair<Integer, Integer> generateRandomPosition() {
 		
-		Integer xPos = GameSettings.TILESIZE + random.nextInt(GameSettings.WIDTH/GameSettings.TILESIZE) * GameSettings.TILESIZE;
-		Integer yPos = GameSettings.TILESIZE + random.nextInt(GameSettings.HEIGHT/GameSettings.TILESIZE) * GameSettings.TILESIZE;
+		Integer xPos = GameSettings.TILESIZE + random.nextInt(GameSettings.WIDTH/GameSettings.TILESIZE - 1) * GameSettings.TILESIZE;
+		Integer yPos = GameSettings.TILESIZE + random.nextInt(GameSettings.HEIGHT/GameSettings.TILESIZE - 1) * GameSettings.TILESIZE;
 		
 		return new Pair<Integer, Integer>(xPos, yPos);
 	}

@@ -8,7 +8,7 @@ import design.utilities.Pair;
 public class Key extends ItemImpl{
 	
 	public Key(final Pair<Integer, Integer> coord) throws SlickException {
-		super(new Image("./res/items/key.png"), coord);
+		super(coord, new Image("./res/items/key.png"));
 }
 
 }

@@ -37,10 +37,6 @@ public class GenerationTest {
 			System.out.println("");
 			System.out.print("World objects are the following: ");
 			
-			r.getWorldObjectsSet().forEach(t -> {
-				System.out.print(t.toString()+ " ");
-			});
-			System.out.println("");
 			System.out.print("Obstacles are the following: ");
 			
 			r.getObstacleSet().forEach(t -> {
@@ -77,12 +73,12 @@ public class GenerationTest {
 			System.out.println("");
 		}
 		
-		/*
+		
 		// tilegraph for a given room printer 
 		testLevel.getRooms().get(0).getObstacleSet().forEach( o -> {
 			System.out.println("Obstacle in pos: " + o.getPosition());
 		});
-		
+		/*
 		BidirectionalGraph<Pair <Integer, Integer>> tileGraph = testLevel.getRooms().get(0).getTilesGraph();
 		
 		System.out.println("Room graph: ");
@@ -95,5 +91,10 @@ public class GenerationTest {
 		}
 		*/
 		
+		/*
+		// stairs generation test
+		Long num = testLevel.getRooms().stream().filter(r -> r.areStairsPresent()).map(r -> r.getRoomID()).count();
+		System.out.println("Rooms with stairs are: " + num);
+		*/
 	}
 }

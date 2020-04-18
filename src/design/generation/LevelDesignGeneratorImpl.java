@@ -28,8 +28,9 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 	public LevelDesign generateLevel(Integer levelNumber) throws IOException {
 		LevelDesignImpl level = new LevelDesignImpl();
 		currentConfig = getLevelConfig(levelNumber);
-		RoomDesignGenerator roomGen = new RoomDesignGeneratorImpl(currentConfig);
 		int numOfRooms = currentConfig.get("minRooms") + random.nextInt(1 + currentConfig.get("maxRooms") - currentConfig.get("minRooms"));
+		int stairsRoomID = setStairsRoom(numOfRooms);
+		RoomDesignGenerator roomGen = new RoomDesignGeneratorImpl(currentConfig, stairsRoomID);
 		for(int i = 0; i < numOfRooms; i++) {
 			level.addRoom(roomGen.generateRoom(i));
 		}
@@ -39,6 +40,12 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		level.addDoorsLayout(graphGen.generateDoorsLayout(graph));
 
 		return level;
+	}
+
+	private int setStairsRoom(int numOfRooms) {
+		/* the room that contains the stairs to the next level cannot be room 0,
+		 *  it can be any other randomly chosen room */
+		return random.nextInt(numOfRooms -1) + 1;
 	}
 
 	

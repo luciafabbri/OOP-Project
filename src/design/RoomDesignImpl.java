@@ -6,15 +6,17 @@ import java.util.stream.Collectors;
 import design.tokens.*;
 import design.utilities.BidirectionalGraph;
 import design.utilities.Pair;
+import gameEntities.Stairs;
 
 public class RoomDesignImpl implements RoomDesign {
 
 	private int roomID;
 	private HashSet<Pair<Integer, Integer>> occupiedTiles = new HashSet<>();
 	private HashSet<design.tokens.Enemy> enemySet = new HashSet<>();
-	private HashSet<design.tokens.WorldObject> worldObjectsSet = new HashSet<>();
 	private HashSet<gameEntities.Obstacle> obstacleSet = new HashSet<>();
 	private BidirectionalGraph<Pair<Integer, Integer>> tilesGraph;
+	private boolean stairsPresent = false;
+	private Stairs stairs;
 	
 	public RoomDesignImpl(int roomID) {
 		this.roomID = roomID;
@@ -32,10 +34,6 @@ public class RoomDesignImpl implements RoomDesign {
 		enemySet.add(enemy);
 	}
 
-	public void addWorldObject(WorldObject object) {
-		worldObjectsSet.add(object);
-		
-	}
 
 	@Override
 	public int getRoomID() {
@@ -62,9 +60,6 @@ public class RoomDesignImpl implements RoomDesign {
 		return enemySet;
 	}
 
-	public Set<design.tokens.WorldObject> getWorldObjectsSet() {
-		return worldObjectsSet;
-	}
 
 	public Set<gameEntities.Obstacle> getObstacleSet() {
 		return obstacleSet;
@@ -74,6 +69,30 @@ public class RoomDesignImpl implements RoomDesign {
 		
 		return obstacleSet.stream().map(o -> o.getPosition()).collect(Collectors.toSet());
 		
+	}
+
+	public Stairs getStairs() {
+		if(this.stairsPresent) {
+			return stairs;
+		} else {
+			throw new IllegalStateException();
+		}
+
+	}
+
+	public void setStairs(Stairs stairs) {
+		if(this.stairsPresent) {
+			this.stairs = stairs;
+		}
+		
+	}
+
+	public boolean areStairsPresent() {
+		return stairsPresent;
+	}
+
+	public void setStairsPresence(boolean stairsPresent) {
+		this.stairsPresent = stairsPresent;
 	}
 
 }

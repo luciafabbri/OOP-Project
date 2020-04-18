@@ -11,5 +11,6 @@ import design.utilities.Door;
 public interface RoomsGraphGenerator {
 
 	BidirectionalGraph<RoomDesign> generateRoomsGraph(LinkedList<RoomDesign> rooms);
+
 	Map<RoomDesign, Map<Door, Optional<RoomDesign>>> generateDoorsLayout(BidirectionalGraph<RoomDesign> graph);
 }
