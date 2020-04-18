@@ -1,22 +1,78 @@
 package design;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.Game;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+
+import coordination.TestPlay;
+import coordination.TestState;
+
 import java.util.Optional;
 
 import design.generation.LevelDesignGeneratorImpl;
 import design.utilities.BidirectionalGraph;
 import design.utilities.Door;
+import design.utilities.GameSettings;
 
-public class GenerationTest {
+public class GenerationTest implements Game {
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
+		//Set the path for Slick2D libraries
+		System.setProperty("java.library.path", new File("./lib/libraries").getAbsolutePath());
 		
+		//Set the path for Slick2D natives
+		System.setProperty("org.lwjgl.librarypath", new File("./lib/natives").getAbsolutePath());
 		
+		//Set the path for JInput
+		System.setProperty("net.java.games.input.librarypath", new File("./lib/natives").getAbsolutePath());
+		
+		try {
+			AppGameContainer appgc;
+			appgc = new AppGameContainer(new GenerationTest());
+			appgc.setDisplayMode(GameSettings.WIDTH, GameSettings.HEIGHT, false);
+			appgc.setShowFPS(false);
+//			appgc.setVSync(true);
+			appgc.setMaximumLogicUpdateInterval(80);
+			appgc.start();
+		} catch (SlickException e) {
+			Logger.getLogger(TestPlay.class.getName()).log(Level.SEVERE, null, e);
+		}
+		
+
+	}
+
+	@Override
+	public boolean closeRequested() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public String getTitle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void init(GameContainer arg0) throws SlickException {
 		LevelDesignGeneratorImpl generator = new LevelDesignGeneratorImpl();
 		
-		LevelDesign testLevel = generator.generateLevel(1);
+		LevelDesign testLevel = null;
+		try {
+			testLevel = generator.generateLevel(1);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		
 		testLevel.getRooms().forEach(r -> {
@@ -100,5 +156,18 @@ public class GenerationTest {
 		Long num = testLevel.getRooms().stream().filter(r -> r.areStairsPresent()).map(r -> r.getRoomID()).count();
 		System.out.println("Rooms with stairs are: " + num);
 		*/
+		
+	}
+
+	@Override
+	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(GameContainer arg0, int arg1) throws SlickException {
+		// TODO Auto-generated method stub
+		arg0.exit();
 	}
 }

@@ -87,6 +87,7 @@ public class RenderingImpl implements Rendering {
 			int y = level.getLevel().get(level.getRoomID()).getItems().get(i).getPosition().getY();
 			level.getLevel().get(level.getRoomID()).getItems().get(i).getTexture().draw(x, y, 64, 64);
 		}
+		
 	}
 	
 	public void drawMod() {
