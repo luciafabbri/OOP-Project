@@ -1,14 +1,13 @@
 package enemy.move;
 
-import enemy.Enemy;
 import utility.Direction;
 import design.RoomDesign;
 import design.utilities.Pair;
 
 public class ImmobilizedMove implements MovePosMonster {
 
-	private Pair<Integer, Integer> posPlayer = new Pair<Integer, Integer>(100, 100);
-	private Pair<Integer, Integer> posMonster;
+	/*private Pair<Integer, Integer> posPlayer = new Pair<Integer, Integer>(100, 100);
+	private Pair<Integer, Integer> posMonster;*/
 	private Direction nextDir;
 	
 	private RoomDesign currentRoom;
@@ -19,16 +18,17 @@ public class ImmobilizedMove implements MovePosMonster {
 
 	@Override
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir) {
-		posMonster = pos;
+		//posMonster = pos;
+		nextDir = dir;
 		return pos;
 	}
 
 	@Override
 	public Direction getDirection() {
-		return findDir();
+		return nextDir;
 	}
 
-	private Direction findDir() {
+	/*private Direction findDir() {
 		int x, y;
 		if (posPlayer.getX() >= posMonster.getX() - Enemy.DIMENSION / 2
 				&& posPlayer.getX() <= posMonster.getX() + Enemy.DIMENSION / 2) {
@@ -53,6 +53,6 @@ public class ImmobilizedMove implements MovePosMonster {
 		}
 		System.out.println(nextDir);
 		return nextDir;
-	}
+	}*/
 
 }
