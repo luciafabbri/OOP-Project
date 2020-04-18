@@ -83,8 +83,8 @@ public class RenderingImpl implements Rendering {
 	public void drawItems() {
 		for(int i = 0; i < level.getLevel().get(level.getRoomID()).getItems().size(); i++) {
 			
-			int x = level.getLevel().get(level.getRoomID()).getItems().get(i).getCoord().getX();
-			int y = level.getLevel().get(level.getRoomID()).getItems().get(i).getCoord().getY();
+			int x = level.getLevel().get(level.getRoomID()).getItems().get(i).getPosition().getX();
+			int y = level.getLevel().get(level.getRoomID()).getItems().get(i).getPosition().getY();
 			level.getLevel().get(level.getRoomID()).getItems().get(i).getTexture().draw(x, y, 64, 64);
 		}
 	}
@@ -92,8 +92,8 @@ public class RenderingImpl implements Rendering {
 	public void drawMod() {
 		for(int i = 0; i < level.getLevel().get(level.getRoomID()).getMod().size(); i++) {
 			
-			int x = level.getLevel().get(level.getRoomID()).getMod().get(i).getPos().getX();
-			int y = level.getLevel().get(level.getRoomID()).getMod().get(i).getPos().getY();
+			int x = level.getLevel().get(level.getRoomID()).getMod().get(i).getPosition().getX();
+			int y = level.getLevel().get(level.getRoomID()).getMod().get(i).getPosition().getY();
 			level.getLevel().get(level.getRoomID()).getMod().get(i).getTexture().draw(x, y, 64, 64);
 		}
 	}
