@@ -58,21 +58,21 @@ public class MovementImpl implements Movement {
 		
 		
 		//control DOWN input   
-		else if( input.isKeyDown(Input.KEY_S) ) {
+		if( input.isKeyDown(Input.KEY_S) ) {
 			this.direction = Direction.SOUTH;
 			return new Pair<Integer,Integer>(pos.getX(),pos.getY() + speed);
 		}
 
 		
 		//control LEFT input   
-		else if( input.isKeyDown(Input.KEY_A) ) {
+		if( input.isKeyDown(Input.KEY_A) ) {
 			this.direction = Direction.WEST;
 			return new Pair<Integer,Integer>(pos.getX() - speed,pos.getY());
 		}
 
 		
 		//control RIGHT input   
-		else if( input.isKeyDown(Input.KEY_D) ) {
+		if( input.isKeyDown(Input.KEY_D) ) {
 			this.direction = Direction.EAST;
 			return new Pair<Integer,Integer>(pos.getX() + speed,pos.getY());
 		}

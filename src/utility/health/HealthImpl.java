@@ -42,8 +42,8 @@ public class HealthImpl implements Health {
 	}
 
 	@Override
-	public int setMaxHealth(int health) {
-		return this.totalHealth += health;
+	public int upgradeHealth(int upgrade) {
+		return this.currentHealth = this.currentHealth + upgrade;
 	}
-	
+
 }

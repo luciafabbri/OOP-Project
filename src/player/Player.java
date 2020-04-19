@@ -3,6 +3,7 @@ package player;
 import design.RoomDesign;
 import design.utilities.Pair;
 import levels.Level;
+import player.shoot.BulletMovementImpl;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
@@ -117,6 +118,11 @@ public interface Player extends DefaultPlayer, utility.Character {
 	 
 	public Direction getDirection();*/
 	
+	/**
+	 *  Methods used to get Player's bullet
+	 * 
+	 */
+	public BulletMovementImpl getBullet();
 	
 	/**
 	 * 

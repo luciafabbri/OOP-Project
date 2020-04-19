@@ -5,6 +5,7 @@ import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
 import design.utilities.enums.Pickupables;
 import gameEntities.GameEntity;
+import gameEntities.modifiers.ModifiersImpl;
 import player.PlayerImpl;
 import utility.CheckPosImpl;
 
@@ -64,11 +65,22 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 			if (checkX && checkY) {
 				if (item.getPickUps().get().equals(Pickupables.COIN)) {
 					player.getInventory().addCoin();
+					System.out.println("Item coin preso\n");
 				}
-				else if (item.getPickUps().get().equals(Pickupables.COIN)) {
+				if (item.getPickUps().get().equals(Pickupables.KEY)) {
 					player.getInventory().addKey();
+					System.out.println("Item key preso\n");
 				}
-				System.out.println("Item preso\n");
+				if (item.getPickUps().get().equals(Pickupables.HEALTHUPGRADE1)) {
+					//SISTEMA PER PRENDERE VALORE MODIFIERS
+					player.getHealth().upgradeHealth(1);
+					System.out.println("Item health preso\n");
+				}
+				if (item.getPickUps().get().equals(Pickupables.ATTACKUPGRADE1)) {
+					//SISTEMA CON AGGIUNTA ATTACCO
+					System.out.println("Item attack preso\n");
+				}
+				
 				return true;
 			}
 		}

@@ -10,6 +10,6 @@ public interface Health {
 
 	public int getMaxHealth();
 	
-	public int setMaxHealth(int health);
+	public int upgradeHealth(int upgrade);
 
 }

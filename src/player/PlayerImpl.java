@@ -20,6 +20,7 @@ import player.movement.CheckPlayer;
 import player.movement.CheckPlayerImpl;
 
 import player.movement.MovementImpl;
+import player.shoot.BulletMovementImpl;
 import design.RoomDesign;
 
 
@@ -45,7 +46,7 @@ public class PlayerImpl implements Player {
 	private HealthImpl health = new HealthImpl(HEALTH);
 	private RoomDesign currentRoom;
 	private InventoryImpl inventory = new InventoryImpl(this);
-	
+	private BulletMovementImpl bullet = new BulletMovementImpl(this.currentRoom);
 	
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
 		this.position = pos;
@@ -148,4 +149,7 @@ public class PlayerImpl implements Player {
 		return new UpDownLeftRight(0, 0, 0, 0);
 	}
 	
+	public BulletMovementImpl getBullet() {
+		return this.bullet;
+	}
 }
