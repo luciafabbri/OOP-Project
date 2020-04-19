@@ -74,7 +74,7 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 	private void generateEntities(RoomDesignImpl room, int numOfEntities) throws SlickException {
 
 		for (int i = 0; i < numOfEntities; i++) {
-			switch (Entities.valueOf(random.nextInt(Entities.values().length))) {
+			switch (Pickupables.valueOf(random.nextInt(Entities.values().length))) {
 			case COIN:
 				room.addEntity(new Coin(randomPosition.generateRandomPosition()));
 				break;
