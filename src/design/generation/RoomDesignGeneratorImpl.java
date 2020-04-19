@@ -10,6 +10,9 @@ import design.RoomDesign;
 import design.RoomDesignImpl;
 import design.tokens.Enemy;
 import design.utilities.*;
+import design.utilities.enums.Entities;
+import design.utilities.enums.Pickupables;
+import design.utilities.graphs.BidirectionalGraph;
 import gameEntities.*;
 import gameEntities.items.*;
 import gameEntities.modifiers.*;
@@ -46,12 +49,12 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 		}
 		int obstaclePercentage = currentConfig.get("minObstacles%")
 				+ random.nextInt(1 + currentConfig.get("maxObstacles%") - currentConfig.get("minObstacles%"));
-		int numOfObstacles;
-		if (obstaclePercentage > 0) {
+		int numOfObstacles = 3;
+		/*if (obstaclePercentage > 0) {
 			numOfObstacles = GameSettings.TOTALTILES % obstaclePercentage;
 		} else {
 			numOfObstacles = 0;
-		}
+		} */
 		for (int k = 0; k < numOfObstacles; k++) {
 			pos = randomPosition.generateRandomPosition();
 			while (room.getOccupiedTiles().contains(pos)) {
@@ -74,7 +77,7 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 	private void generateEntities(RoomDesignImpl room, int numOfEntities) throws SlickException {
 
 		for (int i = 0; i < numOfEntities; i++) {
-			switch (Pickupables.valueOf(random.nextInt(Entities.values().length))) {
+			switch (Pickupables.valueOf(random.nextInt(Pickupables.values().length))) {
 			case COIN:
 				room.addEntity(new Coin(randomPosition.generateRandomPosition()));
 				break;

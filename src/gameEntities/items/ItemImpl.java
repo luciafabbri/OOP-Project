@@ -2,8 +2,8 @@ package gameEntities.items;
 
 import org.newdawn.slick.Image;
 
-import design.utilities.Entities;
 import design.utilities.Pair;
+import design.utilities.enums.Entities;
 import gameEntities.GameEntity;
 
 public class ItemImpl extends GameEntity{

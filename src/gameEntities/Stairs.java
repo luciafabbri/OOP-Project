@@ -3,8 +3,8 @@ package gameEntities;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import design.utilities.Entities;
 import design.utilities.Pair;
+import design.utilities.enums.Entities;
 
 public class Stairs extends GameEntity {
 

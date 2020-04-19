@@ -1,7 +1,7 @@
 package player;
 
-import design.utilities.Door;
 import design.utilities.Pair;
+import design.utilities.enums.Door;
 import levels.Level;
 import utility.Direction;
 import utility.UpDownLeftRight;

@@ -19,9 +19,11 @@ import coordination.TestState;
 import java.util.Optional;
 
 import design.generation.LevelDesignGeneratorImpl;
-import design.utilities.BidirectionalGraph;
-import design.utilities.Door;
 import design.utilities.GameSettings;
+import design.utilities.Pair;
+import design.utilities.enums.Door;
+import design.utilities.graphs.BidirectionalGraph;
+import design.utilities.graphs.BreadthFirstSearch;
 
 public class GenerationTest implements Game {
 	
@@ -138,7 +140,9 @@ public class GenerationTest implements Game {
 		testLevel.getRooms().get(0).getObstacleSet().forEach( o -> {
 			System.out.println("Obstacle in pos: " + o.getPosition());
 		});
-		/*
+		
+		//tileGraph and path finding
+		
 		BidirectionalGraph<Pair <Integer, Integer>> tileGraph = testLevel.getRooms().get(0).getTilesGraph();
 		
 		System.out.println("Room graph: ");
@@ -149,7 +153,11 @@ public class GenerationTest implements Game {
 			}
 			System.out.println("");
 		}
-		*/
+		
+		BreadthFirstSearch<Pair<Integer, Integer>> bfs = new BreadthFirstSearch<>();
+		
+		boolean isReachable = bfs.isReachable(tileGraph, new Pair<Integer, Integer>(64, 64), new Pair<Integer, Integer>(320, 192));
+		System.out.println("Entered path is reachable? " + isReachable);
 		
 		/*
 		// stairs generation test

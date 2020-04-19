@@ -4,8 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import design.tokens.*;
-import design.utilities.BidirectionalGraph;
 import design.utilities.Pair;
+import design.utilities.graphs.BidirectionalGraph;
 import gameEntities.*;
 
 public class RoomDesignImpl implements RoomDesign {

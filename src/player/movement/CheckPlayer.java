@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import design.RoomDesign;
-import design.utilities.Door;
 import design.utilities.Pair;
+import design.utilities.enums.Door;
 import utility.CheckPos;
 
 public interface CheckPlayer extends CheckPos{

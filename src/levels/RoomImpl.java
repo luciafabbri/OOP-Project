@@ -9,8 +9,8 @@ import java.util.Random;
 import org.newdawn.slick.SlickException;
 
 import design.RoomDesign;
-import design.utilities.Door;
 import design.utilities.Pair;
+import design.utilities.enums.Door;
 import gameEntities.GameEntity;
 import gameEntities.Stairs;
 import gameEntities.items.Coin;

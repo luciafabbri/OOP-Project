@@ -1,4 +1,4 @@
-package design.utilities;
+package design.utilities.graphs;
 
 import java.util.*;
 

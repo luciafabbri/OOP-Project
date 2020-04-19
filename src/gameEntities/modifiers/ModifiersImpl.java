@@ -2,8 +2,8 @@ package gameEntities.modifiers;
 
 import org.newdawn.slick.Image;
 
-import design.utilities.Entities;
 import design.utilities.Pair;
+import design.utilities.enums.Entities;
 import gameEntities.GameEntity;
 import utility.Stats;
 

@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 
 import design.*;
 import design.utilities.*;
+import design.utilities.graphs.BidirectionalGraph;
 import design.tokens.*;
 
 public class LevelDesignGeneratorImpl implements LevelDesignGenerator {

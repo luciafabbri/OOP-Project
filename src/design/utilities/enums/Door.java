@@ -1,4 +1,4 @@
-package design.utilities;
+package design.utilities.enums;
 
 public enum Door {
 	

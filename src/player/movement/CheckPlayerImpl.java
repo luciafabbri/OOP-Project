@@ -1,14 +1,14 @@
 package player.movement;
 
 import design.utilities.Pair;
+import design.utilities.enums.Door;
+import design.utilities.enums.Entities;
 import gameEntities.GameEntity;
 import player.PlayerImpl;
 import utility.CheckPosImpl;
 
 import utility.DoorCheck;
 import utility.Entity;
-import design.utilities.Door;
-import design.utilities.Entities;
 import design.utilities.GameSettings;
 import java.util.Map;
 import java.util.Optional;

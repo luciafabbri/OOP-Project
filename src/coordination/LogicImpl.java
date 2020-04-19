@@ -2,9 +2,9 @@ package coordination;
 
 import org.newdawn.slick.Input;
 
-import design.utilities.Door;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
+import design.utilities.enums.Door;
 import levels.Level;
 import player.Player;
 import utility.DoorCheck;

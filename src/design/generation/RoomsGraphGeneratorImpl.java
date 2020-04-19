@@ -8,6 +8,8 @@ import java.util.Random;
 
 import design.RoomDesign;
 import design.utilities.*;
+import design.utilities.enums.Door;
+import design.utilities.graphs.BidirectionalGraph;
 
 public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 

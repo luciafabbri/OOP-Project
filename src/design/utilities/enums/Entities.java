@@ -1,4 +1,4 @@
-package design.utilities;
+package design.utilities.enums;
 
 import java.util.HashMap;
 import java.util.Map;

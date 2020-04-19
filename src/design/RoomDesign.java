@@ -3,8 +3,8 @@ package design;
 import java.util.HashSet;
 import java.util.Set;
 
-import design.utilities.BidirectionalGraph;
 import design.utilities.Pair;
+import design.utilities.graphs.BidirectionalGraph;
 import gameEntities.GameEntity;
 import gameEntities.Obstacle;
 import gameEntities.Stairs;

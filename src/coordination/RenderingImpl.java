@@ -12,10 +12,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import design.RoomDesign;
-import design.utilities.Door;
-import design.utilities.Entities;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
+import design.utilities.enums.Door;
+import design.utilities.enums.Entities;
 import gameEntities.Obstacle;
 import gameEntities.items.ItemImpl;
 import levels.Level;

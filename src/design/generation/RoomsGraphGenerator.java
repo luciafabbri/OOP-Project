@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import design.RoomDesign;
-import design.utilities.BidirectionalGraph;
-import design.utilities.Door;
+import design.utilities.enums.Door;
+import design.utilities.graphs.BidirectionalGraph;
 
 public interface RoomsGraphGenerator {
 
