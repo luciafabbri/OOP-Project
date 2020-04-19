@@ -48,3 +48,6 @@ once testing for entities has been done extensively;
 -Implemented Player inside TestPlay, Logic and Rendering to perform test regarding the interaction of the mainChar with the world;
 -Implemented inside Player a way to stop main character when walking in obstacles;
 -Doors are now usable to traverse rooms;
+
+19/04/2020
+-Changed implementation of Items and Modifiers to use pickupables instead of entities;

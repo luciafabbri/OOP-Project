@@ -1,5 +1,7 @@
 package gameEntities;
 
+import java.util.Optional;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -10,7 +12,7 @@ public class Stairs extends GameEntity {
 
 	public Stairs(Pair<Integer, Integer> position) throws SlickException {
 		//IMMAGINE TEMPORANEA
-		super(position, Entities.STAIR);
+		super(position, Optional.empty(), Optional.of(Entities.STAIR));
 		this.setTexture(new Image("./res/walls/old/Old_Hor_Wall.png"));
 	}
 

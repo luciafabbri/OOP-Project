@@ -3,6 +3,7 @@ package player.movement;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
+import design.utilities.enums.Pickupables;
 import gameEntities.GameEntity;
 import player.PlayerImpl;
 import utility.CheckPosImpl;
@@ -61,10 +62,10 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
 			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
 			if (checkX && checkY) {
-				if (item.getTypeEnt().equals(Entities.COIN)) {
+				if (item.getPickUps().get().equals(Pickupables.COIN)) {
 					player.getInventory().addCoin();
 				}
-				else if (item.getTypeEnt().equals(Entities.KEY)) {
+				else if (item.getPickUps().get().equals(Pickupables.COIN)) {
 					player.getInventory().addKey();
 				}
 				System.out.println("Item preso\n");

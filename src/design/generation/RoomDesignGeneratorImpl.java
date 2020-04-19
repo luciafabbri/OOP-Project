@@ -2,6 +2,7 @@ package design.generation;
 
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 import org.newdawn.slick.SlickException;
@@ -60,7 +61,7 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 			while (room.getOccupiedTiles().contains(pos)) {
 				pos = randomPosition.generateRandomPosition();
 			}
-			room.addObstacle(new Obstacle(pos, Entities.BOULDER));
+			room.addObstacle(new Obstacle(pos, Optional.of(Entities.BOULDER)));
 			room.addOccupiedTile(pos);
 		}
 		int numOfEntities = currentConfig.get("minObjects") + random.nextInt(1 + currentConfig.get("maxObjects") - currentConfig.get("minObjects"));

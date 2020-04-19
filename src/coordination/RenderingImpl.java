@@ -16,6 +16,7 @@ import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
+import design.utilities.enums.Pickupables;
 import gameEntities.Obstacle;
 import gameEntities.items.ItemImpl;
 import levels.Level;
@@ -83,13 +84,13 @@ public class RenderingImpl implements Rendering {
 	@Override
 	public void drawItems() {
 		level.getLevel().get(level.getRoomID()).getRoom().getEntitiesSet().stream().
-		filter(s -> s.getTypeEnt().equals(Entities.COIN) || s.getTypeEnt().equals(Entities.KEY)).
+		filter(s -> s.getPickUps().get().equals(Pickupables.COIN) || s.getPickUps().get().equals(Pickupables.KEY)).
 		forEach(s -> s.getTexture().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE));
 	}
 	
 	public void drawMod() {
 		level.getLevel().get(level.getRoomID()).getRoom().getEntitiesSet().
-		stream().filter(s -> s.getTypeEnt().equals(Entities.ATTACKUPGRADE1) || s.getTypeEnt().equals(Entities.HEALTHUPGRADE1)).
+		stream().filter(s -> s.getPickUps().get().equals(Pickupables.ATTACKUPGRADE1) || s.getPickUps().get().equals(Pickupables.HEALTHUPGRADE1)).
 		forEach(s -> s.getTexture().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE));
 	
 	}
