@@ -3,9 +3,6 @@ package utility;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
-import enemy.Enemy;
-import player.Player;
-import player.PlayerImpl;
 
 public class CheckPosImpl implements CheckPos, GameSettings{
 	

@@ -10,12 +10,12 @@ public class BulletMonster extends BulletImpl {
 	
 	
 
-	public BulletMonster(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, RoomDesign room) {
-		super(position, damage, debuff, direction, room);
+	public BulletMonster(Pair<Integer, Integer> position, int damage, int speed, Debuff debuff, Direction direction, RoomDesign room) {
+		super(position, damage, speed, debuff, direction, room);
 	}
 	
 	public BulletMonster(Pair<Integer, Integer> position, int damage, Direction direction, RoomDesign room) {
-		this(position, damage, Debuff.NO_ONE, direction, room);
+		this(position, damage, 1, Debuff.NO_ONE, direction, room);
 	}
 	
 	public void updatePos() {

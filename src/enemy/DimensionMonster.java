@@ -9,13 +9,13 @@ public enum DimensionMonster {
 	ORIZONTAL_MON1(48, 64, 15, 48);
 	
 	
-	private UpDownLeftRight dim;
+	private UpDownLeftRight<Integer> dim;
 	
 	DimensionMonster(int up, int down, int left, int right) {
-		this.dim = new UpDownLeftRight(up, down, left, right);
+		this.dim = new UpDownLeftRight<>(up, down, left, right);
 	}
 	
-	public UpDownLeftRight getDimension() {
+	public UpDownLeftRight<Integer> getDimension() {
 		return dim;
 	}
 	

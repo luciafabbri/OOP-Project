@@ -35,7 +35,13 @@ public interface Player extends DefaultPlayer, utility.Character {
 	 */
 	public void setLevel(int level);
 	
-
+	/**
+	 * 
+	 * Methods used to know in which level the character is 
+	 *  
+	*/ 
+	public int getLevel();
+	
 	/**
 	 *  Methods used to get Player's bullet
 	 * 
