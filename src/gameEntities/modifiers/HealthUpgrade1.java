@@ -13,7 +13,7 @@ import utility.Stats;
 public class HealthUpgrade1 extends ModifiersImpl{
 
 	public HealthUpgrade1(Pair<Integer, Integer> coord) throws SlickException {
-		super(coord, Stats.HEALTH, 10, "Health Upgrade", Optional.of(Pickupables.HEALTHUPGRADE1));
+		super(coord, Stats.HEALTH, 10, "Health Upgrade");
 		this.setTexture(new Image("./res/items/mod/healthMod1.png"));
 	}
 }

@@ -7,6 +7,7 @@ import design.utilities.Pair;
 import design.utilities.graphs.BidirectionalGraph;
 import gameEntities.GameEntity;
 import gameEntities.Obstacle;
+import gameEntities.Pickupable;
 import gameEntities.Stairs;
 
 public interface RoomDesign {
@@ -23,7 +24,7 @@ public interface RoomDesign {
 	
 	Set<design.tokens.Enemy> getEnemySet();
 		
-	Set<gameEntities.Obstacle> getObstacleSet();
+	Set<Obstacle> getObstacleSet();
 	
 	Set<Pair<Integer, Integer>> getObstaclePositions();
 	
@@ -37,7 +38,7 @@ public interface RoomDesign {
 
 	void setStairsPresence(boolean stairsPresent);
 	
-	void addEntity(GameEntity entity);
+	void addEntity(Pickupable entity);
 
-	Set<GameEntity> getEntitiesSet();
+	Set<Pickupable> getEntitiesSet();
 }
