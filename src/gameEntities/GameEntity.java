@@ -1,23 +1,23 @@
 package gameEntities;
 
-import java.util.Optional;
-
 import org.newdawn.slick.Image;
 
 import design.utilities.Pair;
 import design.utilities.enums.Entities;
-import design.utilities.enums.Pickupables;
 
 public abstract class GameEntity {
 	
 	private Pair<Integer, Integer> position;
 	private Image texture;
+	private Entities typeEnt;
 	
-	
-	public GameEntity(Pair<Integer, Integer> position) {
+	public GameEntity(final Pair<Integer, Integer> position, final Image texture, final Entities typeEnt) {
 		this.position = position;
+		this.texture = texture;
+		this.typeEnt = typeEnt;
 	}
 
+	
 	public Pair<Integer, Integer> getPosition() {
 		return position;
 	}
@@ -35,6 +35,16 @@ public abstract class GameEntity {
 
 	public void setTexture(Image texture) {
 		this.texture = texture;
+	}
+
+
+	public Entities getTypeEnt() {
+		return typeEnt;
+	}
+
+
+	public void setTypeEnt(Entities typeEnt) {
+		this.typeEnt = typeEnt;
 	}
 
 }

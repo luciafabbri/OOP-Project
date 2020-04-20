@@ -1,6 +1,7 @@
 package coordination;
 import java.io.IOException;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -14,6 +15,8 @@ import levels.LevelImpl;
 import player.Player;
 
 public class TestPlay extends BasicGameState {
+	
+	private Color color;
 	
 	private Player player;
 	private Rendering graphics;
@@ -44,6 +47,8 @@ public class TestPlay extends BasicGameState {
 		player.setCurrentRoom(level.getLevel().get(0).getRoom());
 		
 		graphics = new RenderingImpl(level, player);
+	
+		color = new Color(192, 192, 192, 200);
 	}
 
 	@Override
@@ -59,6 +64,9 @@ public class TestPlay extends BasicGameState {
 		graphics.drawDoorTop();
 		graphics.drawMod();
 		
+		
+//		arg2.setColor(Color.white);
+		
 		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), 0, 0);
 		arg2.drawString("Level: " + this.getID() + " | Room: " +level.getRoomID(), 0, 16);
 		arg2.drawString("Stairs: " + level.getLevel().get(level.getRoomID()).getRoom().areStairsPresent(), 0, 32);
@@ -72,6 +80,9 @@ public class TestPlay extends BasicGameState {
 		arg2.drawString("Keys: " + player.getInventory().getKey(), GameSettings.WIDTH - GameSettings.TILESIZE * 3, 16);
 		arg2.drawString("Coins: " + player.getInventory().getCoin(), GameSettings.WIDTH - GameSettings.TILESIZE * 3, 32);
 		
+		
+//		arg2.setColor(color);
+//		arg2.fillRect(0, 0, 128, 64);;
 		
 		arg2.clearClip();
 	}
