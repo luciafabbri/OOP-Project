@@ -3,15 +3,16 @@ package enemy;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import utility.Direction;
-import design.utilities.Pair;
+import design.utilities.GameSettings;
 
 public interface Enemy extends utility.Character {
 	
 	
-	public final static int DIMENSION = 64;
+	public final static int DIMENSION = GameSettings.TILESIZE;
 	
 	public void updatePos();
+	
+	public int getDamage();
 
 	public void takeDmg(int damage);
 	

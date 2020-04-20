@@ -46,10 +46,10 @@ public interface Player extends DefaultPlayer, utility.Character {
 	
 	/**
 	 * 
-	 * Methods used to know in which level the player is 
+	 * Methods used to know in which level the character is 
 	 *  
-	 
-	public int getLevel();*/
+	*/ 
+	public int getLevel();
 	
 	
 	/**

@@ -148,13 +148,13 @@ public class PlayerImpl implements Player {
 	}
 
 	@Override
-	public UpDownLeftRight getDimension() {
+	public UpDownLeftRight<Integer> getDimension() {
 		if(direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
 			return VERTICAL;
 		}  else if(direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
 			return ORIZONTAL;
 		}
-		return new UpDownLeftRight(0, 0, 0, 0);
+		return new UpDownLeftRight<Integer>(0, 0, 0, 0);
 	}
 	
 }

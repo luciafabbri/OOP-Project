@@ -1,8 +1,5 @@
 package enemy;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -24,25 +21,30 @@ import design.RoomDesign;
 import design.utilities.Pair;
 
 public class Monster implements Enemy {
-	
-	private Image texture;
+
 	private Pair<Integer, Integer> position;
-	private int level;
+	private int damage;
 	private Health health;
 	private MovePosMonster move;
 	private MonsterAttack attack;
 	private Direction direction;
-	private Pair<DimensionMonster, DimensionMonster> dim;
+	private Pair<DimensionMonster, DimensionMonster> dimensions;
+	private UpDownLeftRight<Image> textures;
 
-	public Monster(Pair<Integer, Integer> pos, int level, int health, TypeMove move, Direction dir,
-			TypeAttack att, RoomDesign room, TypeMonster mon) {
+	public Monster(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, Direction dir, TypeAttack att, RoomDesign room,
+			TypeMonster mon) {
 		this.position = pos;
-		this.level = level;
+		this.damage = damage;
 		this.health = new HealthImpl(health);
 		this.move = selectMove(move, room);
 		this.attack = selectAttack(att, room);
 		this.direction = dir;
-		this.dim = DimensionMonster.getDimensionMoster(mon);
+		this.dimensions = DimensionMonster.getDimensionMoster(mon);
+	}
+
+	public Monster(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomDesign room,
+			TypeMonster mon) {
+		this(pos, damage, health, move, Direction.getRandomDir(), att, room, mon);
 	}
 
 	private MovePosMonster selectMove(TypeMove typeMove, RoomDesign room) {
@@ -89,10 +91,10 @@ public class Monster implements Enemy {
 	public Pair<Integer, Integer> getPosition() {
 		return this.position;
 	}
-	
+
 	@Override
-	public int getLevel() {
-		return level;
+	public int getDamage() {
+		return this.damage;
 	}
 
 	@Override
@@ -127,17 +129,13 @@ public class Monster implements Enemy {
 	}
 
 	@Override
-	public UpDownLeftRight getDimension() {
-		if(direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
-			return dim.getX().getDimension();
-		}  else if(direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
-			return dim.getY().getDimension();
+	public UpDownLeftRight<Integer> getDimension() {
+		if (direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
+			return dimensions.getX().getDimension();
+		} else if (direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
+			return dimensions.getY().getDimension();
 		}
-		return new UpDownLeftRight(0, 0, 0, 0);
+		return new UpDownLeftRight<Integer>(0, 0, 0, 0);
 	}
-
-	
-
-	
 
 }

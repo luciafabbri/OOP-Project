@@ -14,13 +14,6 @@ public interface Character extends Entity {
 	
 	/**
 	 * 
-	 * Methods used to know in which level the character is 
-	 *  
-	*/ 
-	public int getLevel();
-	
-	/**
-	 * 
 	 * Methods used to get Character's health
 	 *  
 	 */

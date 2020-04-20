@@ -1,32 +1,32 @@
 package utility;
 
-public class UpDownLeftRight {
+public class UpDownLeftRight <X> {
 	
-	private final int up;
-	private final int down;
-	private final int left;
-	private final int right;
+	private final X up;
+	private final X down;
+	private final X left;
+	private final X right;
 	
-	public UpDownLeftRight(int up, int down, int left, int right) {
+	public UpDownLeftRight(X up, X down, X left, X right) {
 		this.up = up;
 		this.down = down;
 		this.left = left;
 		this.right = right;
 	}
 
-	public int getUp() {
+	public X getUp() {
 		return up;
 	}
 
-	public int getDown() {
+	public X getDown() {
 		return down;
 	}
 
-	public int getLeft() {
+	public X getLeft() {
 		return left;
 	}
 
-	public int getRight() {
+	public X getRight() {
 		return right;
 	}
 	
