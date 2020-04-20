@@ -50,18 +50,18 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 		}
 		int obstaclePercentage = currentConfig.get("minObstacles%")
 				+ random.nextInt(1 + currentConfig.get("maxObstacles%") - currentConfig.get("minObstacles%"));
-		int numOfObstacles = 3;
-		/*if (obstaclePercentage > 0) {
+		int numOfObstacles;
+		if (obstaclePercentage > 0) {
 			numOfObstacles = GameSettings.TOTALTILES % obstaclePercentage;
 		} else {
 			numOfObstacles = 0;
-		} */
+		} 
 		for (int k = 0; k < numOfObstacles; k++) {
 			pos = randomPosition.generateRandomPosition();
 			while (room.getOccupiedTiles().contains(pos)) {
 				pos = randomPosition.generateRandomPosition();
 			}
-			room.addObstacle(new Obstacle(pos, Optional.of(Entities.BOULDER)));
+			room.addObstacle(new Obstacle(pos));
 			room.addOccupiedTile(pos);
 		}
 		int numOfEntities = currentConfig.get("minObjects") + random.nextInt(1 + currentConfig.get("maxObjects") - currentConfig.get("minObjects"));

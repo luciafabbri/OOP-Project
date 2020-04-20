@@ -1,16 +1,14 @@
 package gameEntities;
 
-
 import java.util.Optional;
-
-import org.newdawn.slick.Image;
 
 import design.utilities.Pair;
 import design.utilities.enums.Entities;
+import design.utilities.enums.Pickupables;
 
-public class Obstacle extends Insurmountable{
-	
-	public Obstacle(Pair<Integer, Integer> position) {
+public class Pickupable extends GameEntity{
+
+	public Pickupable(Pair<Integer, Integer> position) {
 		super(position);
 	}
 

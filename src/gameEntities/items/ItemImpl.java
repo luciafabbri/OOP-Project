@@ -8,11 +8,12 @@ import design.utilities.Pair;
 import design.utilities.enums.Entities;
 import design.utilities.enums.Pickupables;
 import gameEntities.GameEntity;
+import gameEntities.Pickupable;
 
-public class ItemImpl extends GameEntity{
+public class ItemImpl extends Pickupable{
 		
-	public ItemImpl(final Pair<Integer, Integer> position, final Optional<Pickupables> typeEnt) {
-		super(position, typeEnt, Optional.empty());
+	public ItemImpl(final Pair<Integer, Integer> position) {
+		super(position);
 	}
  
 }

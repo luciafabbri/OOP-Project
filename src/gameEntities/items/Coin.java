@@ -12,7 +12,7 @@ import design.utilities.enums.Pickupables;
 public class Coin extends ItemImpl {
 
 	public Coin(final Pair<Integer, Integer> coord) throws SlickException {
-		super(coord, Optional.of(Pickupables.COIN));
+		super(coord);
 		this.setTexture(new Image("./res/items/coin.png"));
 	}
 

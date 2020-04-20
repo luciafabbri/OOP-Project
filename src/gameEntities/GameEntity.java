@@ -12,13 +12,9 @@ public abstract class GameEntity {
 	
 	private Pair<Integer, Integer> position;
 	private Image texture;
-	private Optional<Pickupables> pickUps;
-	private Optional<Entities> typeEnt;
 	
 	
-	public GameEntity(Pair<Integer, Integer> position, Optional<Pickupables> pickUps, Optional<Entities> typeEnt) {
-		this.pickUps = pickUps;
-		this.typeEnt = typeEnt;
+	public GameEntity(Pair<Integer, Integer> position) {
 		this.position = position;
 	}
 
@@ -40,17 +36,5 @@ public abstract class GameEntity {
 	public void setTexture(Image texture) {
 		this.texture = texture;
 	}
-
-
-	public Optional<Pickupables> getPickUps() {
-		return pickUps;
-	}
-
-
-	public Optional<Entities> getTypeEnt() {
-		return typeEnt;
-	}
-
-
 
 }
