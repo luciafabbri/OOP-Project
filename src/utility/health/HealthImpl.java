@@ -42,8 +42,8 @@ public class HealthImpl implements Health {
 	}
 
 	@Override
-	public int upgradeHealth(int upgrade) {
-		return this.currentHealth = this.currentHealth + upgrade;
+	public void upgradeHealth(int upgrade) {
+		this.currentHealth = this.currentHealth + upgrade;
 	}
 
 }

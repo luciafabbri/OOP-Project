@@ -18,6 +18,7 @@ import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
 import design.utilities.enums.Pickupables;
 import gameEntities.Obstacle;
+import gameEntities.Stairs;
 import gameEntities.items.ItemImpl;
 import levels.Level;
 import player.Player;
@@ -101,8 +102,15 @@ public class RenderingImpl implements Rendering {
 				level.getLevel().get(level.getRoomID()).getFloor().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 			}
 		}
+		if(level.getLevel().get(level.getRoomID()).getRoom().areStairsPresent()) {
+			this.drawStairs();
+		}
 	}
 	
+	private void drawStairs() {
+		Stairs tmp = level.getLevel().get(level.getRoomID()).getRoom().getStairs();
+		tmp.getTexture().draw(tmp.getPosition().getX(), tmp.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+	}
 	
 	public void drawWalls() {
 		//Based on the position, it draws the appropriate walls

@@ -16,4 +16,5 @@ public interface CheckPlayer extends CheckPos{
 	
 	public boolean checkEntityRoom(RoomDesign room,Pair<Integer, Integer> pos) throws SlickException;	
 
+	public boolean checkStairs(RoomDesign room, Pair<Integer, Integer> pos);
 }

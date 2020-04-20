@@ -51,3 +51,8 @@ once testing for entities has been done extensively;
 
 19/04/2020
 -Changed implementation of Items and Modifiers to use pickupables instead of entities;
+
+20/04/2020
+-Implemented temporary inventory and stats GUI to check if player and the world are behaving properly;
+-Implemented transitioning to the next level via use of stairs;
+-Made minor fixed inside other classes (like implementing a get for Inventory inside PlayerImpl);

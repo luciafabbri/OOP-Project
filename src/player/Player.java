@@ -113,4 +113,6 @@ public interface Player extends DefaultPlayer, utility.Character {
 	public CheckPlayer getCheck();
 
 	public int getDmg();
+	
+	public InventoryImpl getInventory();
 }

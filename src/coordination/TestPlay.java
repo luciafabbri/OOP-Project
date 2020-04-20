@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import design.utilities.GameSettings;
 import levels.Level;
 import levels.LevelImpl;
 import player.Player;
@@ -60,7 +61,18 @@ public class TestPlay extends BasicGameState {
 		
 		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), 0, 0);
 		arg2.drawString("Level: " + this.getID() + " | Room: " +level.getRoomID(), 0, 16);
-
+		arg2.drawString("Stairs: " + level.getLevel().get(level.getRoomID()).getRoom().areStairsPresent(), 0, 32);
+		
+		arg2.drawString("Temp Stats: ", GameSettings.WIDTH - GameSettings.TILESIZE * 5, 0);
+		arg2.drawString("Health: " + player.getHealth().getCurrentHealth(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 16);
+		arg2.drawString("Attack: " + player.getDmg(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 32);
+		arg2.drawString("Mov. Speed: " + player.getSpeed(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 48);
+		
+		arg2.drawString("Temp Inventory: ", GameSettings.WIDTH - GameSettings.TILESIZE * 3, 0);
+		arg2.drawString("Keys: " + player.getInventory().getKey(), GameSettings.WIDTH - GameSettings.TILESIZE * 3, 16);
+		arg2.drawString("Coins: " + player.getInventory().getCoin(), GameSettings.WIDTH - GameSettings.TILESIZE * 3, 32);
+		
+		
 		arg2.clearClip();
 	}
 
@@ -70,6 +82,14 @@ public class TestPlay extends BasicGameState {
 		
 		logic.moveMain(input);
 		logic.switchRooms(input);
+		
+		
+		if(player.getCheck().checkStairs(level.getLevel().get(level.getRoomID()).getRoom(), player.getPosition())) {
+			this.levelID++;
+			init(arg0, arg1);
+		}
+			
+		
 		
 		/*
 		ItemImpl tmp = level.getLevel().get(0).getItems().get(0);
