@@ -1,6 +1,7 @@
 package coordination;
 
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 import design.utilities.GameSettings;
 import design.utilities.Pair;
@@ -38,7 +39,7 @@ public class LogicImpl {
 		player.setCurrentRoom(level.getLevel().get(level.getRoomID()).getRoom());
 	}
 	
-	public void moveMain(final Input input) {
+	public void moveMain(final Input input) throws SlickException {
 		player.setPosition(input, level);
 	}
 	

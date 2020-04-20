@@ -46,12 +46,16 @@ public class PlayerImpl implements Player {
 	private HealthImpl health = new HealthImpl(HEALTH);
 	private RoomDesign currentRoom;
 	private InventoryImpl inventory = new InventoryImpl(this);
-	private BulletMovementImpl bullet = new BulletMovementImpl(this.currentRoom);
+	private BulletMovementImpl bullet = new BulletMovementImpl(this);
+	
+	private int speed;
+	private int dmg;
 	
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
 		this.position = pos;
 		this.level = level;
 		this.direction = dir;
+		this.speed = 1;
 	}
 	
 	public PlayerImpl(int level, Image texture) throws SlickException {	
@@ -68,10 +72,10 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override 
-	public void setPosition(Input input, Level level) {
+	public void setPosition(Input input, Level level) throws SlickException {
 		Pair<Integer,Integer> newPos;
 		Map<Door, Optional<RoomDesign>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
-		newPos = move.movePlayer(input, this.position, this.direction); 
+		newPos = move.movePlayer(input, this.position, this.direction, this.speed); 
 
 		if( check.checkEntityRoom(this.currentRoom,newPos) || check.possiblePos(this.currentRoom, newPos) || 
 				check.checkDoors(newPos, map) ) {
@@ -149,7 +153,23 @@ public class PlayerImpl implements Player {
 		return new UpDownLeftRight(0, 0, 0, 0);
 	}
 	
+	@Override
+	public int getSpeed() {
+		return this.speed;
+	}
+	
+	@Override
+	public int getDmg() {
+		return dmg;
+	}
+	
+	@Override
 	public BulletMovementImpl getBullet() {
 		return this.bullet;
+	}
+	
+	@Override
+	public CheckPlayer getCheck() {
+		return this.check;
 	}
 }

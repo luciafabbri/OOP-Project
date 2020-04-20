@@ -19,7 +19,6 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 		this.entity = entity;
 	}
 	
-
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
 		updateDimension();
@@ -27,24 +26,18 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 	}
 
 	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
-		// REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS
-		// DIFFERENT BASED ON DIRECTIONS
 		return ((pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix >= LIMITRIGHT)
 				|| (pos.getY() + upPix < LIMITUP || pos.getY() + downPix >= LIMITDOWN));
 	}
 
 	public boolean checkObstaclesRoom(RoomDesign room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
-		// REMINDER: NEED TO CHANGE NUMBERS WHILE CHECKING COORDS BECAUSE MAINCHAR IS
-		// DIFFERENT BASED ON DIRECTIONS
 		for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
 			checkX = pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE && pos.getX() + rightPix > obst.getX() ;
 			checkY = pos.getY() < obst.getY() + (TILESIZE - rightPix) && pos.getY() + downPix > obst.getY();
-//			System.out.println(obstacleSet.size());
 			if (checkX && checkY) {
 				return true;
 			}
-
 		}
 		return false;
 	}
@@ -56,5 +49,4 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 		this.rightPix = entity.getDimension().getRight();
 	}
 	
-
 }

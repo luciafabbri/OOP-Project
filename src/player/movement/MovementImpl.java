@@ -12,69 +12,70 @@ import org.newdawn.slick.Input;
 public class MovementImpl implements Movement {
 	
 	private Direction direction;
-	private int speed = 1;
+	private int newSpeed;
 	
 	public MovementImpl() {
 	}
 		
 	@Override
-	public Pair<Integer, Integer> movePlayer(Input input, Pair<Integer,Integer> pos, Direction dir) {
+	public Pair<Integer, Integer> movePlayer(Input input, Pair<Integer,Integer> pos, Direction dir, int speed) {
 		
 		direction = dir;
+		newSpeed = speed;
 		
 /**		//control UP-RIGHT input
 		if( input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_D) ) {
 			this.direction = Direction.NORTH_EAST;
-			return new Pair<Integer,Integer>(pos.getX() + speed,pos.getY() - speed);
+			return new Pair<Integer,Integer>(pos.getX() + newSpeed,pos.getY() - newSpeed);
 		}
 		
 		
 		//control UP-LEFT input
 		if( input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_A) ) {
 			direction = Direction.NORTH_WEST;
-			return new Pair<Integer,Integer>(pos.getX() - speed,pos.getY() - speed);
+			return new Pair<Integer,Integer>(pos.getX() - newSpeed,pos.getY() - newSpeed);
 		}
 		
 		
 		//control DOWN-LEFT input
 		if( input.isKeyDown(Input.KEY_S) && input.isKeyDown(Input.KEY_A) ) {
 			this.direction = Direction.SOUTH_WEST;
-			return new Pair<Integer,Integer>(pos.getX() - speed,pos.getY() + speed);
+			return new Pair<Integer,Integer>(pos.getX() - newSpeed,pos.getY() + newSpeed);
 		}
 		
 		
 		//control DOWN-RIGHT input 
 		if( input.isKeyDown(Input.KEY_S) && input.isKeyDown(Input.KEY_D) ) {
 			this.direction = Direction.SOUTH_EAST;
-			return new Pair<Integer,Integer>(pos.getX() + speed,pos.getY() + speed);
+			return new Pair<Integer,Integer>(pos.getX() + newSpeed,pos.getY() + newSpeed);
 		}
 		
 */		
 		//control UP input   
 		if( input.isKeyDown(Input.KEY_W) ) {
 			this.direction = Direction.NORTH;
-			return new Pair<Integer,Integer>(pos.getX(),pos.getY() - speed);
+			return new Pair<Integer,Integer>(pos.getX(),pos.getY() - newSpeed);
 		}
 		
 		
 		//control DOWN input   
 		if( input.isKeyDown(Input.KEY_S) ) {
 			this.direction = Direction.SOUTH;
-			return new Pair<Integer,Integer>(pos.getX(),pos.getY() + speed);
+			return new Pair<Integer,Integer>(pos.getX(),pos.getY() + newSpeed);
 		}
 
 		
 		//control LEFT input   
 		if( input.isKeyDown(Input.KEY_A) ) {
 			this.direction = Direction.WEST;
-			return new Pair<Integer,Integer>(pos.getX() - speed,pos.getY());
+			return new Pair<Integer,Integer>(pos.getX() - newSpeed,pos.getY());
 		}
 
 		
 		//control RIGHT input   
 		if( input.isKeyDown(Input.KEY_D) ) {
 			this.direction = Direction.EAST;
-			return new Pair<Integer,Integer>(pos.getX() + speed,pos.getY());
+			return new Pair<Integer,Integer>(pos.getX() + newSpeed,pos.getY());
 		}
 		
 		return pos;

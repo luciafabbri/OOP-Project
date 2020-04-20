@@ -3,6 +3,8 @@ package player;
 import design.RoomDesign;
 import design.utilities.Pair;
 import levels.Level;
+import player.movement.CheckPlayer;
+import player.movement.CheckPlayerImpl;
 import player.shoot.BulletMovementImpl;
 
 import org.newdawn.slick.Animation;
@@ -20,18 +22,11 @@ public interface Player extends DefaultPlayer, utility.Character {
 	/**
 	 * 
 	 * Methods used to set Player's position
+	 * @throws SlickException 
 	 *  
 	 */
-	public void setPosition(Input input, Level level);
+	public void setPosition(Input input, Level level) throws SlickException;
 
-	
-	/**
-	 * 
-	 * Methods used to get Player's position
-	 *  
-	 
-	public Pair<Integer, Integer> getPosition();*/
-	
 	
 	/**
 	 * 
@@ -40,22 +35,12 @@ public interface Player extends DefaultPlayer, utility.Character {
 	 */
 	public void setLevel(int level);
 	
-	
+
 	/**
+	 *  Methods used to get Player's bullet
 	 * 
-	 * Methods used to know in which level the player is 
-	 *  
-	 
-	public int getLevel();*/
-	
-	
-	/**
-	 * 
-	 * Methods used to get Player's health
-	 *  
-	 
-	public HealthImpl getHealth();*/
-	
+	 */
+	public BulletMovementImpl getBullet();
 
 	/**
 	 * 
@@ -77,6 +62,14 @@ public interface Player extends DefaultPlayer, utility.Character {
 	 *  
 	 */
 	public void setPosition(Pair<Integer, Integer> position);
+	
+	/**
+	 * 
+	 * Methods used to load Player's animations
+	 * @throws SlickException 
+	 *  
+	 */
+	public void loadAnimations() throws SlickException;
 	
 	
 	/**
@@ -109,27 +102,15 @@ public interface Player extends DefaultPlayer, utility.Character {
 	 *  
 	 */
 	public Animation getRight();
-	
-	
-	/**
-	 * 
-	 * Methods used to set Player's direction
-	 *  
-	 
-	public Direction getDirection();*/
-	
-	/**
-	 *  Methods used to get Player's bullet
-	 * 
-	 */
-	public BulletMovementImpl getBullet();
-	
-	/**
-	 * 
-	 * Methods used to load Player's animations
-	 * @throws SlickException 
-	 *  
-	 */
-	public void loadAnimations() throws SlickException;
 
+	/**
+	 * 
+	 * Methods used to get Player's speed 
+	 *  
+	 */
+	public int getSpeed();
+	
+	public CheckPlayer getCheck();
+
+	public int getDmg();
 }

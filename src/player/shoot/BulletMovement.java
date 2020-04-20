@@ -13,7 +13,7 @@ public interface BulletMovement {
 	 * Set true value in a variable if that happens.
 	 *  
 	 */
-	public void checkShooting(Input input, Pair<Integer,Integer> pos, int dmg, Direction dir);
+	public void checkShooting(Input input);
 		
 	/**
 	 * 
