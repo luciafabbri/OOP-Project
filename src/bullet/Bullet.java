@@ -27,4 +27,5 @@ public interface Bullet extends Entity {
 	public Direction getDirection();
 
 	public Image getImage();
+
 }

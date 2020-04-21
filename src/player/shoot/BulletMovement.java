@@ -2,6 +2,7 @@ package player.shoot;
 
 import org.newdawn.slick.Input;
 
+import bullet.BulletImpl;
 import design.utilities.Pair;
 import utility.Direction;
 
@@ -21,9 +22,6 @@ public interface BulletMovement {
 	 * Create a new Bullet() object.
 	 * 
 	 */
-	public void shoot(Pair<Integer,Integer> pos, int dmg, Direction dir);
-	
-	
-	
+	public void shoot();	
 	
 }

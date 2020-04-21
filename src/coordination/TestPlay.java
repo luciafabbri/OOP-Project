@@ -74,7 +74,7 @@ public class TestPlay extends BasicGameState {
 		arg2.drawString("Temp Stats: ", GameSettings.WIDTH - GameSettings.TILESIZE * 5, 0);
 		arg2.drawString("Health: " + player.getHealth().getCurrentHealth(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 16);
 		arg2.drawString("Attack: " + player.getDmg(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 32);
-		arg2.drawString("Mov. Speed: " + player.getSpeed(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 48);
+		arg2.drawString("Mov. Speed: " + player.getPlayerSpeed(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 48);
 		
 		arg2.drawString("Temp Inventory: ", GameSettings.WIDTH - GameSettings.TILESIZE * 3, 0);
 		arg2.drawString("Keys: " + player.getInventory().getKey(), GameSettings.WIDTH - GameSettings.TILESIZE * 3, 16);

@@ -4,8 +4,7 @@ import design.RoomDesign;
 import design.utilities.Pair;
 import levels.Level;
 import player.movement.CheckPlayer;
-import player.movement.CheckPlayerImpl;
-import player.shoot.BulletMovementImpl;
+import player.shoot.BulletMovement;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
@@ -46,7 +45,7 @@ public interface Player extends DefaultPlayer, utility.Character {
 	 *  Methods used to get Player's bullet
 	 * 
 	 */
-	public BulletMovementImpl getBullet();
+	public BulletMovement getBullet();
 
 	/**
 	 * 
@@ -114,11 +113,14 @@ public interface Player extends DefaultPlayer, utility.Character {
 	 * Methods used to get Player's speed 
 	 *  
 	 */
-	public int getSpeed();
-	
+	public int getPlayerSpeed();
+	public int getBulletSpeed();
+
 	public CheckPlayer getCheck();
 
 	public int getDmg();
+	public void upgradeDmg(int damage);
+	public void takeDmg(int damage);
 	
-	public InventoryImpl getInventory();
+	public Inventory getInventory();
 }

@@ -12,8 +12,8 @@ public class BulletPlayer extends BulletImpl {
 		super(position, damage, speed, debuff, direction, room);
 	}
 	
-	public BulletPlayer(Pair<Integer, Integer> position, int damage, Direction direction, RoomDesign room) {
-		super(position, damage, 1, Debuff.NO_ONE, direction, room);
+	public BulletPlayer(Pair<Integer, Integer> position, int damage, int speed, Direction direction, RoomDesign room) {
+		super(position, damage, speed, Debuff.NO_ONE, direction, room);
 	}
 	
 	public void updatePos() {

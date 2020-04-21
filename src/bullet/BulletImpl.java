@@ -5,7 +5,6 @@ import org.newdawn.slick.Image;
 import bullet.move.MoveBull;
 import bullet.move.MoveBullImpl;
 import design.RoomDesign;
-import design.RoomDesignImpl;
 import design.utilities.Pair;
 import utility.CheckPos;
 import utility.Debuff;
@@ -67,10 +66,9 @@ public class BulletImpl implements Bullet {
 	public Image getImage() {
 		return this.image;
 	}
-
-
+	
 	@Override
-	public UpDownLeftRight getDimension() {
-		return new UpDownLeftRight(26, DIMENSION, 0, DIMENSION);
+	public UpDownLeftRight<Integer> getDimension() {
+		return new UpDownLeftRight<>(26, DIMENSION, 0, DIMENSION);
 	}
 }

@@ -5,6 +5,7 @@ import design.utilities.enums.Door;
 import levels.Level;
 import utility.Direction;
 import utility.UpDownLeftRight;
+import utility.health.Health;
 import utility.health.HealthImpl;
 
 import java.util.Map;
@@ -18,8 +19,9 @@ import org.newdawn.slick.SpriteSheet;
 
 import player.movement.CheckPlayer;
 import player.movement.CheckPlayerImpl;
-
+import player.movement.Movement;
 import player.movement.MovementImpl;
+import player.shoot.BulletMovement;
 import player.shoot.BulletMovementImpl;
 import design.RoomDesign;
 
@@ -40,22 +42,24 @@ public class PlayerImpl implements Player {
 	private Animation right;
 	
 	private Direction direction;
-	private MovementImpl move = new MovementImpl();
+	private Movement move = new MovementImpl();
 	private CheckPlayer check = new CheckPlayerImpl(this,this);
 
-	private HealthImpl health = new HealthImpl(HEALTH);
+	private Health health = new HealthImpl(HEALTH);
 	private RoomDesign currentRoom;
-	private InventoryImpl inventory = new InventoryImpl(this);
-	private BulletMovementImpl bullet = new BulletMovementImpl(this);
+	private Inventory inventory = new InventoryImpl(this);
+	private BulletMovement bullet = new BulletMovementImpl(this);
 	
-	private int speed;
+	private int playerSpeed;
+	private int bulletSpeed;
 	private int dmg;
 	
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
 		this.position = pos;
 		this.level = level;
 		this.direction = dir;
-		this.speed = 1;
+		this.playerSpeed = 1;
+		this.bulletSpeed = 1;
 	}
 	
 	public PlayerImpl(int level, Image texture) throws SlickException {	
@@ -75,7 +79,7 @@ public class PlayerImpl implements Player {
 	public void setPosition(Input input, Level level) throws SlickException {
 		Pair<Integer,Integer> newPos;
 		Map<Door, Optional<RoomDesign>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
-		newPos = move.movePlayer(input, this.position, this.direction, this.speed); 
+		newPos = move.movePlayer(input, this.position, this.direction, this.playerSpeed); 
 
 		if( check.checkEntityRoom(this.currentRoom,newPos) || check.possiblePos(this.currentRoom, newPos) || 
 				check.checkDoors(newPos, map) ) {
@@ -103,7 +107,7 @@ public class PlayerImpl implements Player {
 		return this.level;
 	}
 	
-	public HealthImpl getHealth() {
+	public Health getHealth() {
 		return this.health;
 	}
 	
@@ -135,11 +139,11 @@ public class PlayerImpl implements Player {
 		return right;
 	}
 	
-	public MovementImpl getMove() {
+	public Movement getMove() {
 		return move;
 	}
 	
-	public InventoryImpl getInventory() {
+	public Inventory getInventory() {
 		return this.inventory;
 	}
 
@@ -154,8 +158,21 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override
-	public int getSpeed() {
-		return this.speed;
+	public int getPlayerSpeed() {
+		return this.playerSpeed;
+	}
+	
+	public void upgradePlayerSpeed(int speedPlayer) {
+		this.playerSpeed = this.playerSpeed + speedPlayer;
+	}
+	
+	@Override
+	public int getBulletSpeed() {
+		return this.bulletSpeed;
+	}
+	
+	public void upgradeBulletSpeed(int speedBullet) {
+		this.bulletSpeed = this.bulletSpeed + speedBullet;
 	}
 	
 	@Override
@@ -163,8 +180,16 @@ public class PlayerImpl implements Player {
 		return dmg;
 	}
 	
+	public void upgradeDmg(int damage) {
+		this.dmg = this.dmg + damage;
+	}
+	
+	public void takeDmg(int damage) {
+		this.health.takeDmg(damage);
+	}
+	
 	@Override
-	public BulletMovementImpl getBullet() {
+	public BulletMovement getBullet() {
 		return this.bullet;
 	}
 	

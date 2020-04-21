@@ -3,7 +3,6 @@ package player.movement;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
-import design.utilities.enums.Pickupables;
 import gameEntities.GameEntity;
 import gameEntities.Pickupable;
 import gameEntities.modifiers.AttackUpgrade1;
@@ -82,10 +81,9 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 					room.getEntitiesSet().remove(item);
 				}
 				if (item.getTypeEnt().equals(Entities.ATTACKUPGRADE1)) {
-					//SISTEMA CON AGGIUNTA ATTACCO
 					ModifiersImpl mod = new AttackUpgrade1(item.getPosition());
+					player.upgradeDmg(mod.getModQty());
 					room.getEntitiesSet().remove(item);
-					System.out.println("Item attack preso\n");
 				}
 				return true;
 			}
