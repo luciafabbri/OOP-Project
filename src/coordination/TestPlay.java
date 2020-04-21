@@ -21,10 +21,12 @@ public class TestPlay extends BasicGameState {
 	private Player player;
 	private Rendering graphics;
 	private LogicImpl logic;
+	private UI ui;
 	private Level level;
 	private Input input;
 	private int levelID;
 
+	
 	public TestPlay(final int state, final Player player) {
 		super();
 		this.levelID = state;
@@ -43,12 +45,11 @@ public class TestPlay extends BasicGameState {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(level.getLevel().get(0).getRoom());
 		player.setCurrentRoom(level.getLevel().get(0).getRoom());
 		
 		graphics = new RenderingImpl(level, player);
 	
-		color = new Color(192, 192, 192, 200);
+		ui = new UI(player, arg0.getGraphics());
 	}
 
 	@Override
@@ -63,27 +64,15 @@ public class TestPlay extends BasicGameState {
 		graphics.drawMain(input);
 		graphics.drawDoorTop();
 		graphics.drawMod();
+		ui.drawUI();
 		
 		
-//		arg2.setColor(Color.white);
-		
-		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), 0, 0);
-		arg2.drawString("Level: " + this.getID() + " | Room: " +level.getRoomID(), 0, 16);
-		arg2.drawString("Stairs: " + level.getLevel().get(level.getRoomID()).getRoom().areStairsPresent(), 0, 32);
-		
-		arg2.drawString("Temp Stats: ", GameSettings.WIDTH - GameSettings.TILESIZE * 5, 0);
-		arg2.drawString("Health: " + player.getHealth().getCurrentHealth(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 16);
-		arg2.drawString("Attack: " + player.getDmg(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 32);
-		arg2.drawString("Mov. Speed: " + player.getPlayerSpeed(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 48);
-		
-		arg2.drawString("Temp Inventory: ", GameSettings.WIDTH - GameSettings.TILESIZE * 3, 0);
-		arg2.drawString("Keys: " + player.getInventory().getKey(), GameSettings.WIDTH - GameSettings.TILESIZE * 3, 16);
-		arg2.drawString("Coins: " + player.getInventory().getCoin(), GameSettings.WIDTH - GameSettings.TILESIZE * 3, 32);
 		
 		
-//		arg2.setColor(color);
-//		arg2.fillRect(0, 0, 128, 64);;
-		
+		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 0);
+		arg2.drawString("Level: " + this.getID() + " | Room: " +level.getRoomID(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 16);
+		arg2.drawString("Stairs: " + level.getLevel().get(level.getRoomID()).getRoom().areStairsPresent(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 32);
+
 		arg2.clearClip();
 	}
 

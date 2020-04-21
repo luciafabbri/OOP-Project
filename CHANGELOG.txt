@@ -56,3 +56,6 @@ once testing for entities has been done extensively;
 -Implemented temporary inventory and stats GUI to check if player and the world are behaving properly;
 -Implemented transitioning to the next level via use of stairs;
 -Made minor fixed inside other classes (like implementing a get for Inventory inside PlayerImpl);
+
+21/04/2020
+-Implemented a simple UI to show the health and inventory of the player;
