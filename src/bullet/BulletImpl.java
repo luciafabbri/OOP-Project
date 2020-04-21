@@ -70,7 +70,7 @@ public class BulletImpl implements Bullet {
 
 
 	@Override
-	public UpDownLeftRight getDimension() {
-		return new UpDownLeftRight(26, DIMENSION, 0, DIMENSION);
+	public UpDownLeftRight<Integer> getDimension() {
+		return new UpDownLeftRight<>(26, DIMENSION, 0, DIMENSION);
 	}
 }
