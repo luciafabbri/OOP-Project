@@ -1,4 +1,4 @@
-package enemy;
+package enemy.attack;
 
 public enum TypeAttack {
 	

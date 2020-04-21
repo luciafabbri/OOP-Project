@@ -1,4 +1,4 @@
-package enemy;
+package enemy.move;
 
 import org.junit.jupiter.api.Test;
 

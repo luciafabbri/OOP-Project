@@ -2,6 +2,8 @@ package enemy.move;
 
 import design.RoomDesign;
 import design.utilities.Pair;
+import enemy.move.check.CheckMonster;
+import enemy.move.check.CheckMonsterImpl;
 import utility.Direction;
 import utility.Character;
 

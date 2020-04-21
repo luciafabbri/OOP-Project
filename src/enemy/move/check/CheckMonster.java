@@ -1,4 +1,4 @@
-package enemy.move;
+package enemy.move.check;
 
 import design.RoomDesign;
 import design.utilities.Pair;

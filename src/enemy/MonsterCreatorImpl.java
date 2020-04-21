@@ -2,6 +2,8 @@ package enemy;
 
 import design.RoomDesign;
 import design.utilities.Pair;
+import enemy.attack.TypeAttack;
+import enemy.move.TypeMove;
 
 public class MonsterCreatorImpl implements MonsterCreator {
 	

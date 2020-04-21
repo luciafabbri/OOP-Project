@@ -6,6 +6,8 @@ import design.RoomDesign;
 import design.utilities.GameSettings;
 import utility.Direction;
 import design.utilities.Pair;
+import enemy.move.check.CheckMonster;
+import enemy.move.check.CheckMonsterImpl;
 import utility.Character;
 
 public class TeleportMove implements MovePosMonster {
