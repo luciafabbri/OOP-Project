@@ -19,7 +19,7 @@ public enum DimensionMonster {
 		return dim;
 	}
 	
-	public static Pair<DimensionMonster, DimensionMonster> getDimensionMoster(TypeMonster mon) {
+	public static Pair<DimensionMonster, DimensionMonster> getDimensionMoster(TypeEnemy mon) {
 		switch(mon) {
 			case MONSTER1:
 				return new Pair<>(ORIZONTAL_MON1, VERTICAL_MON1);

@@ -19,7 +19,11 @@ public interface Enemy extends utility.Character {
 	
 	public TypeAttack getAttack();
 	
+	public TypeEnemy getTypeEnemy();
+	
 	public Image getImage() throws SlickException;
+	
+	public boolean isAlive();
 	
 	//public setBuff();
 	

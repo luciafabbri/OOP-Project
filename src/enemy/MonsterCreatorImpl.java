@@ -29,23 +29,23 @@ public class MonsterCreatorImpl implements MonsterCreator {
 	} */
 	
 	@Override
-	public Monster getMonsterA(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
-		return new Monster(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, TypeMonster.MONSTER1);
+	public Enemy getMonsterA(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
+		return new EnemyImpl(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, TypeEnemy.MONSTER1);
 	}
 	
 	@Override
-	public Monster getMonsterB(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
-		return new Monster(pos, damage, health, TypeMove.RANDOM, TypeAttack.TWO_SIDE, room, TypeMonster.MONSTER2);
+	public Enemy getMonsterB(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
+		return new EnemyImpl(pos, damage, health, TypeMove.RANDOM, TypeAttack.TWO_SIDE, room, TypeEnemy.MONSTER2);
 	}
 	
 	@Override
-	public Monster getMonsterC(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
-		return new Monster(pos, damage, health, TypeMove.TELEPORT, TypeAttack.TRIPLE, room, TypeMonster.MONSTER3);
+	public Enemy getMonsterC(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
+		return new EnemyImpl(pos, damage, health, TypeMove.TELEPORT, TypeAttack.TRIPLE, room, TypeEnemy.MONSTER3);
 	}
 	
 	@Override
-	public Monster getMonsterD(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
-		return new Monster(pos, damage, health, TypeMove.IMMOBILIZED, TypeAttack.FOUR_SIDE, room, TypeMonster.PLANT);
+	public Enemy getMonsterD(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
+		return new EnemyImpl(pos, damage, health, TypeMove.IMMOBILIZED, TypeAttack.FOUR_SIDE, room, TypeEnemy.PLANT);
 	}
 
 }

@@ -26,7 +26,7 @@ public class TeleportMove implements MovePosMonster {
 	}
 
 	@Override
-	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir) {
+	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, int speed, Direction dir) {
 
 		if (this.sleepCounter > 0) {
 			this.sleepCounter--;
