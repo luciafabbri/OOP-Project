@@ -1,7 +1,9 @@
 package enemy;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import enemy.attack.FourSideAtt;
 import enemy.attack.MonsterAttack;
@@ -33,10 +35,10 @@ public class EnemyImpl implements Enemy {
 	private Direction direction;
 	private Pair<DimensionMonster, DimensionMonster> dimensions;
 	private TypeEnemy typeEnemy;
-	private UpDownLeftRight<Image> textures;
+	private UpDownLeftRight<Animation> textures;
 
-	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir, TypeAttack att, RoomDesign room,
-			TypeEnemy mon) {
+	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
+			TypeAttack att, RoomDesign room, TypeEnemy mon) {
 		this.position = pos;
 		this.damage = damage;
 		this.speed = speed;
@@ -46,10 +48,17 @@ public class EnemyImpl implements Enemy {
 		this.direction = dir;
 		this.dimensions = DimensionMonster.getDimensionMoster(mon);
 		this.typeEnemy = mon;
+		try {
+			this.textures = EnemyImage.getTexture(mon);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomDesign room,
-			TypeEnemy mon) {
+			TypeEnemy mon){
 		this(pos, damage, 1, health, move, Direction.getRandomDir(), att, room, mon);
 	}
 
@@ -123,15 +132,27 @@ public class EnemyImpl implements Enemy {
 	public TypeAttack getAttack() {
 		return null;
 	}
-	
+
 	@Override
 	public TypeEnemy getTypeEnemy() {
 		return this.typeEnemy;
 	}
 
 	@Override
-	public Image getImage() throws SlickException {
-		return new Image("./res/chars/mainChar6_front.png");
+	public Animation getAnimation() {
+		switch(this.direction) {
+		case NORTH:
+			return textures.getUp();
+		case SOUTH:
+			return textures.getDown();
+		case WEST:
+			return textures.getLeft();
+		case EAST:
+			return textures.getRight();
+		default:
+			throw new IllegalArgumentException();
+			
+		}
 	}
 
 	@Override
@@ -148,7 +169,7 @@ public class EnemyImpl implements Enemy {
 		}
 		return new UpDownLeftRight<Integer>(0, 0, 0, 0);
 	}
-	
+
 	@Override
 	public boolean isAlive() {
 		return health.isAlive();

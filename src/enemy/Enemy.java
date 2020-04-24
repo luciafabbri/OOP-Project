@@ -1,7 +1,6 @@
 package enemy;
 
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Animation;
 
 import design.utilities.GameSettings;
 import enemy.attack.TypeAttack;
@@ -21,7 +20,7 @@ public interface Enemy extends utility.Character {
 	
 	public TypeEnemy getTypeEnemy();
 	
-	public Image getImage() throws SlickException;
+	public Animation getAnimation();
 	
 	public boolean isAlive();
 	
