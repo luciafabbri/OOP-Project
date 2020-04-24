@@ -1,7 +1,6 @@
 package enemy.attack;
 
 import design.RoomDesign;
-import design.RoomDesignImpl;
 import design.utilities.Pair;
 import utility.Direction;
 

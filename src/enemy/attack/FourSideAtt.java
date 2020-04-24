@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import utility.Direction;
 import design.RoomDesign;
-import design.RoomDesignImpl;
 import design.utilities.Pair;
 
 public class FourSideAtt implements MonsterAttack {

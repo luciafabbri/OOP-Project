@@ -3,9 +3,11 @@ package enemy;
 import design.RoomDesign;
 import design.utilities.Pair;
 import enemy.attack.TypeAttack;
+import enemy.boss.Boss;
+import enemy.boss.BossImpl;
 import enemy.move.TypeMove;
 
-public class MonsterCreatorImpl implements MonsterCreator {
+public class EnemyCreatorImpl implements EnemyCreator {
 	
 	/*private Monster getMonster(TypeMonster monster, Pair<Integer, Integer> pos, int lvl, RoomDesign room) {
 		
@@ -46,6 +48,11 @@ public class MonsterCreatorImpl implements MonsterCreator {
 	@Override
 	public Enemy getMonsterD(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
 		return new EnemyImpl(pos, damage, health, TypeMove.IMMOBILIZED, TypeAttack.FOUR_SIDE, room, TypeEnemy.PLANT);
+	}
+
+	@Override
+	public Boss getBossA(Pair<Integer, Integer> pos, RoomDesign room) {
+		return new BossImpl(pos, room);
 	}
 
 }

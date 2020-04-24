@@ -2,8 +2,10 @@ package enemy;
 
 import design.RoomDesign;
 import design.utilities.Pair;
+import enemy.boss.Boss;
 
-public interface MonsterCreator {
+
+public interface EnemyCreator {
 	
 	public Enemy getMonsterA(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room);
 	
@@ -12,5 +14,7 @@ public interface MonsterCreator {
 	public Enemy getMonsterC(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room);
 	
 	public Enemy getMonsterD(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room);
+	
+	public Boss getBossA(Pair<Integer, Integer> pos, RoomDesign room);
 
 }

@@ -6,7 +6,6 @@ import bullet.Bullet;
 import bullet.BulletMonster;
 import utility.Direction;
 import design.RoomDesign;
-import design.RoomDesignImpl;
 import design.utilities.Pair;
 
 public class TwoSideAtt extends MonsterAttAbst implements MonsterAttack {

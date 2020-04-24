@@ -7,28 +7,26 @@ import enemy.TypeEnemy;
 import enemy.attack.TypeAttack;
 import enemy.move.TypeMove;
 import utility.Direction;
+import enemy.boss.BossDefault;
 
-public class BossImpl extends EnemyImpl implements Boss{
+public class BossImpl extends EnemyImpl implements Boss {
+
+	private RoomDesign room;
 
 	public BossImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
 			TypeAttack att, RoomDesign room, TypeEnemy mon) {
 		super(pos, damage, speed, health, move, dir, att, room, mon);
+		this.room = room;
 	}
-	
-	public BossImpl(Pair<Integer, Integer> pos, int damage, int health,	TypeAttack att, RoomDesign room, TypeEnemy mon) {
-		this(pos, damage, getSpeed(mon), health, TypeMove.RANDOM, Direction.getRandomDir(), att, room, mon);
-	}
-	
-	private static int getSpeed(TypeEnemy enemy) {
-		return enemy.equals(TypeEnemy.BOSS1) ? 15 : 1;
+
+	public BossImpl(Pair<Integer, Integer> pos, RoomDesign room) {
+		this(pos, BossDefault.DAMAGE.getValue(), BossDefault.SPEED.getValue(), BossDefault.HEALTH.getValue(),
+				TypeMove.RANDOM, Direction.getRandomDir(), TypeAttack.getBossAtt(), room, TypeEnemy.BOSS);
 	}
 
 	public boolean isAlive() {
-		if(this.getTypeEnemy().equals(TypeEnemy.BOSS2)) {
-			//Aggiungi Mostro
-		}
+		// room.addEnemy(enemy);
 		return super.isAlive();
 	}
 
-	
 }
