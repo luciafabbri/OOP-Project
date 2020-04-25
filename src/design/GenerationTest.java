@@ -92,9 +92,9 @@ public class GenerationTest implements Game {
 				System.out.print(e.toString()+ " ");
 			});
 			System.out.println("");
-			System.out.print("Entities are the following: ");
+			System.out.print("Pickupables are the following: ");
 			
-			r.getEntitiesSet().forEach(i -> {
+			r.getPickupablesSet().forEach(i -> {
 				System.out.print(i.toString()+ " ");
 			});
 			System.out.println("");

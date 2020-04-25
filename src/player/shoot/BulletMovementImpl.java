@@ -17,7 +17,7 @@ public class BulletMovementImpl implements BulletMovement {
 		@Override
 		public void checkShooting(Input input) {
 			
-			if(input.isKeyDown(Input.KEY_SPACE)) {
+			if(input.isKeyPressed(Input.KEY_SPACE)) {
 				this.shoot();
 			}
 			
@@ -26,7 +26,7 @@ public class BulletMovementImpl implements BulletMovement {
 		public void shoot(){
 			Bullet bullet = new BulletPlayer(player.getPosition(), player.getDmg(), player.getBulletSpeed(),player.getDirection(), player.getRoom());  	
 			if (bullet.isAlive()) {
-				//aggiugerlo ad una lista di proiettili?? 
+				player.getRoomBullets().add(bullet); 
 			}
 			System.out.println("SPARATO!");
 		}

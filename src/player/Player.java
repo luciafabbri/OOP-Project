@@ -6,9 +6,13 @@ import levels.Level;
 import player.movement.CheckPlayer;
 import player.shoot.BulletMovement;
 
+import java.util.Set;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+
+import bullet.Bullet;
 
 /**
  * 
@@ -123,4 +127,6 @@ public interface Player extends DefaultPlayer, utility.Character {
 	public void takeDmg(int damage);
 	
 	public Inventory getInventory();
+	
+	public Set<Bullet> getRoomBullets();
 }

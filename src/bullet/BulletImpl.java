@@ -20,7 +20,8 @@ public class BulletImpl implements Bullet {
 	private Debuff debuff;
 	private Direction dir;
 	private MoveBull move;
-	private Image image;
+	private Image texture;
+	private RoomDesign room;
 	
 	public BulletImpl(Pair<Integer, Integer> position, int damage, int speed, Debuff debuff, Direction direction, RoomDesign room){
 		this.pos = position;
@@ -28,6 +29,7 @@ public class BulletImpl implements Bullet {
 		this.speed = speed;
 		this.debuff = debuff;
 		this.dir = direction;	
+		this.room = room;
 		this.move = new MoveBullImpl(room);	
 	}	
 	
@@ -63,12 +65,21 @@ public class BulletImpl implements Bullet {
 	}
 
 	@Override
-	public Image getImage() {
-		return this.image;
+	public Image getTexture() {
+		return this.texture;
 	}
 	
 	@Override
 	public UpDownLeftRight<Integer> getDimension() {
 		return new UpDownLeftRight<>(26, DIMENSION, 0, DIMENSION);
+	}
+
+	public void setTexture(Image texture) {
+		this.texture = texture;
+	}
+
+
+	public RoomDesign getRoom() {
+		return room;
 	}
 }

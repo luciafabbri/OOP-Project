@@ -8,8 +8,10 @@ import utility.UpDownLeftRight;
 import utility.health.Health;
 import utility.health.HealthImpl;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
@@ -17,6 +19,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import bullet.Bullet;
 import player.movement.CheckPlayer;
 import player.movement.CheckPlayerImpl;
 import player.movement.Movement;
@@ -49,6 +52,7 @@ public class PlayerImpl implements Player {
 	private RoomDesign currentRoom;
 	private Inventory inventory = new InventoryImpl(this);
 	private BulletMovement bullet = new BulletMovementImpl(this);
+	private Set<Bullet> roomBullets = new HashSet<>();
 	
 	private int playerSpeed;
 	private int bulletSpeed;
@@ -196,5 +200,9 @@ public class PlayerImpl implements Player {
 	@Override
 	public CheckPlayer getCheck() {
 		return this.check;
+	}
+
+	public Set<Bullet> getRoomBullets() {
+		return roomBullets;
 	}
 }

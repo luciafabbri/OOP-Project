@@ -11,6 +11,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+import bullet.Bullet;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
@@ -67,6 +68,37 @@ public class RenderingImpl implements Rendering {
 		}
 	}
 	
+	public void drawMainProj() {
+		Set<Bullet> bullets = player.getRoomBullets();
+		
+		if(!bullets.isEmpty()) {
+			bullets.forEach(s -> {
+				if(s.getRoom().getRoomID() == player.getRoom().getRoomID()) {
+					rotateMainProj(s);	
+				}
+			});
+		}
+	}
+	
+	private void rotateMainProj(final Bullet bullet) {
+		if(bullet.getDirection().equals(Direction.NORTH)) {
+			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);	
+		} else if(bullet.getDirection().equals(Direction.EAST)) {
+			bullet.getTexture().rotate(90);
+			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);	
+			bullet.getTexture().rotate(270);
+		} else if(bullet.getDirection().equals(Direction.SOUTH)) {
+			bullet.getTexture().rotate(180);
+			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);	
+			bullet.getTexture().rotate(180);
+		} else if(bullet.getDirection().equals(Direction.WEST)) {
+			bullet.getTexture().rotate(270);
+			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);	
+			bullet.getTexture().rotate(90);
+		}
+	}
+	
+	
 	public void drawObstacles() {
 		
 		Set<Pair<Integer, Integer>> tmp = this.level.getLevel().get(level.getRoomID()).getRoom().getObstaclePositions();
@@ -84,13 +116,13 @@ public class RenderingImpl implements Rendering {
 	
 	@Override
 	public void drawItems() {
-		level.getLevel().get(level.getRoomID()).getRoom().getEntitiesSet().stream().
+		level.getLevel().get(level.getRoomID()).getRoom().getPickupablesSet().stream().
 		filter(s -> s.getTypeEnt().equals(Entities.COIN) || s.getTypeEnt().equals(Entities.KEY)).
 		forEach(s -> s.getTexture().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE));
 	}
 	
 	public void drawMod() {
-		level.getLevel().get(level.getRoomID()).getRoom().getEntitiesSet().
+		level.getLevel().get(level.getRoomID()).getRoom().getPickupablesSet().
 		stream().filter(s -> s.getTypeEnt().equals(Entities.ATTACKUPGRADE1) || s.getTypeEnt().equals(Entities.HEALTHUPGRADE1)).
 		forEach(s -> s.getTexture().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE));
 	
