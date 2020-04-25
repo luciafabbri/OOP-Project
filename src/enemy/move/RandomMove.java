@@ -22,8 +22,8 @@ public class RandomMove implements MovePosMonster {
 	}
 
 	@Override
-	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir) {
-		Pair<Integer, Integer> nextPos = move.nextPos(pos, dir);
+	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, int speed, Direction dir) {
+		Pair<Integer, Integer> nextPos = move.nextPos(pos, speed, dir);
 		if (moveCounter <= 0 || enableMov(dir)) {
 			moveCounter = random.nextInt(RANDOM_ADD) + MINIMUM_STEPS;
 			nextDir = Direction.getRandomDir();

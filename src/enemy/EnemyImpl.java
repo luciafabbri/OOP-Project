@@ -1,18 +1,22 @@
 package enemy;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import enemy.attack.FourSideAtt;
 import enemy.attack.MonsterAttack;
 import enemy.attack.OneSideAtt;
 import enemy.attack.TripleAtt;
 import enemy.attack.TwoSideAtt;
+import enemy.attack.TypeAttack;
 import enemy.move.ImmobilizedMove;
 import enemy.move.MovePosMonster;
 import enemy.move.RandomMove;
 import enemy.move.StraightMove;
 import enemy.move.TeleportMove;
+import enemy.move.TypeMove;
 import utility.Direction;
 import utility.UpDownLeftRight;
 import utility.health.Health;
@@ -20,31 +24,41 @@ import utility.health.HealthImpl;
 import design.RoomDesign;
 import design.utilities.Pair;
 
-public class Monster implements Enemy {
+public class EnemyImpl implements Enemy {
 
 	private Pair<Integer, Integer> position;
 	private int damage;
+	private int speed;
 	private Health health;
 	private MovePosMonster move;
 	private MonsterAttack attack;
 	private Direction direction;
 	private Pair<DimensionMonster, DimensionMonster> dimensions;
-	private UpDownLeftRight<Image> textures;
+	private TypeEnemy typeEnemy;
+	private UpDownLeftRight<Animation> textures;
 
-	public Monster(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, Direction dir, TypeAttack att, RoomDesign room,
-			TypeMonster mon) {
+	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
+			TypeAttack att, RoomDesign room, TypeEnemy mon) {
 		this.position = pos;
 		this.damage = damage;
+		this.speed = speed;
 		this.health = new HealthImpl(health);
 		this.move = selectMove(move, room);
 		this.attack = selectAttack(att, room);
 		this.direction = dir;
 		this.dimensions = DimensionMonster.getDimensionMoster(mon);
+		this.typeEnemy = mon;
+		try {
+			this.textures = EnemyImage.getTexture(mon);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
-	public Monster(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomDesign room,
-			TypeMonster mon) {
-		this(pos, damage, health, move, Direction.getRandomDir(), att, room, mon);
+	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomDesign room,
+			TypeEnemy mon){
+		this(pos, damage, 1, health, move, Direction.getRandomDir(), att, room, mon);
 	}
 
 	private MovePosMonster selectMove(TypeMove typeMove, RoomDesign room) {
@@ -104,7 +118,7 @@ public class Monster implements Enemy {
 
 	@Override
 	public void updatePos() {
-		this.position = move.nextPos(this.position, this.direction);
+		this.position = move.nextPos(this.position, this.speed, this.direction);
 		this.direction = move.getDirection();
 	}
 
@@ -119,8 +133,25 @@ public class Monster implements Enemy {
 	}
 
 	@Override
-	public Image getImage() throws SlickException {
-		return new Image("./res/chars/mainChar6_front.png");
+	public TypeEnemy getTypeEnemy() {
+		return this.typeEnemy;
+	}
+
+	@Override
+	public Animation getAnimation() {
+		switch(this.direction) {
+		case NORTH:
+			return textures.getUp();
+		case SOUTH:
+			return textures.getDown();
+		case WEST:
+			return textures.getLeft();
+		case EAST:
+			return textures.getRight();
+		default:
+			throw new IllegalArgumentException();
+			
+		}
 	}
 
 	@Override
@@ -134,8 +165,14 @@ public class Monster implements Enemy {
 			return dimensions.getX().getDimension();
 		} else if (direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
 			return dimensions.getY().getDimension();
+		} else {
+			throw new IllegalArgumentException();
 		}
-		return new UpDownLeftRight<Integer>(0, 0, 0, 0);
+	}
+
+	@Override
+	public boolean isAlive() {
+		return health.isAlive();
 	}
 
 }
