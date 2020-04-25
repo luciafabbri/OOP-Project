@@ -43,6 +43,16 @@ public class LogicImpl {
 		player.setPosition(input, level);
 	}
 	
+	public void shootMain(final Input input) {
+		player.getBullet().checkShooting(input);
+	}
+	
+	public void moveMainProj(final Input input) {
+		player.getRoomBullets().forEach(s ->
+			s.updatePos(player.getCheck())
+		);
+	}
+	
 	private boolean checkEmpty(final Door door) {
 		return level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream().filter(s -> s.getKey().equals(door)).findFirst().get().getValue().isPresent();
 	}

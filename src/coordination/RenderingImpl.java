@@ -11,6 +11,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+import bullet.Bullet;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
@@ -66,6 +67,37 @@ public class RenderingImpl implements Rendering {
 			}
 		}
 	}
+	
+	public void drawMainProj() {
+		Set<Bullet> bullets = player.getRoomBullets();
+		
+		if(!bullets.isEmpty()) {
+			bullets.forEach(s -> {
+				if(s.getRoom().getRoomID() == player.getRoom().getRoomID()) {
+					rotateMainProj(s);	
+				}
+			});
+		}
+	}
+	
+	private void rotateMainProj(final Bullet bullet) {
+		if(bullet.getDirection().equals(Direction.NORTH)) {
+			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);	
+		} else if(bullet.getDirection().equals(Direction.EAST)) {
+			bullet.getTexture().rotate(90);
+			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);	
+			bullet.getTexture().rotate(270);
+		} else if(bullet.getDirection().equals(Direction.SOUTH)) {
+			bullet.getTexture().rotate(180);
+			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);	
+			bullet.getTexture().rotate(180);
+		} else if(bullet.getDirection().equals(Direction.WEST)) {
+			bullet.getTexture().rotate(270);
+			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);	
+			bullet.getTexture().rotate(90);
+		}
+	}
+	
 	
 	public void drawObstacles() {
 		

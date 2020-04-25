@@ -59,3 +59,10 @@ once testing for entities has been done extensively;
 
 21/04/2020
 -Implemented a simple UI to show the health and inventory of the player;
+
+25/04/2020
+-Implemented images the projectiles of both the MainChar and Enemies;
+-Implemented a set of Bullets inside PlayerImpl so we can keep track of the bullets;
+-Also implemented inside Rendering drawMainProj to draw the MainChar projectiles, and rotateMainProj to rotate bullets according to direction;
+-And implemented inside Logic shootMain and moveMainProj to, respectively, check if the spacebar has been pressed, and to move each individual bullet;
+-Implemented getRoom inside Bulletimpl;

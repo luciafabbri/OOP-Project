@@ -2,6 +2,7 @@ package bullet;
 
 import org.newdawn.slick.Image;
 
+import design.RoomDesign;
 import design.utilities.Pair;
 import utility.CheckPos;
 import utility.Debuff;
@@ -26,6 +27,9 @@ public interface Bullet extends Entity {
 	
 	public Direction getDirection();
 
-	public Image getImage();
+	public Image getTexture();
 
+	public void setTexture(Image texture);
+	
+	public RoomDesign getRoom();
 }
