@@ -4,6 +4,7 @@ import design.RoomDesign;
 import design.utilities.Pair;
 import levels.Level;
 import player.movement.CheckPlayer;
+import player.movement.Movement;
 import player.shoot.BulletMovement;
 
 import java.util.Set;
@@ -130,4 +131,13 @@ public interface Player extends DefaultPlayer, utility.Character {
 	public Inventory getInventory();
 	
 	public Set<BulletPlayer> getRoomBullets();
+
+
+	public void upgradePlayerSpeed(int speedPlayer);
+
+
+	void upgradeBulletSpeed(int speedBullet);
+
+
+	public Movement getMove();
 }

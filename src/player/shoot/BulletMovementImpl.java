@@ -29,7 +29,6 @@ public class BulletMovementImpl implements BulletMovement {
 			if (bullet.isAlive()) {
 				player.getRoomBullets().add(bullet); 
 			}
-			System.out.println("SPARATO!");
 		}
 
 }

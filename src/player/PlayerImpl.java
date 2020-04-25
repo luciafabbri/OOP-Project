@@ -71,6 +71,7 @@ public class PlayerImpl implements Player {
 		this(POSITION, DIRECTION, level);
 	}
 	
+	@Override
 	public void loadAnimations() throws SlickException {
 		
 		front = new Animation(new SpriteSheet(new Image("./res/chars/mainChar6_front.png"), 64, 64), 100);
@@ -86,13 +87,14 @@ public class PlayerImpl implements Player {
 		Map<Door, Optional<RoomDesign>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
 		newPos = move.movePlayer(input, this.position, this.direction, this.playerSpeed); 
 
-		if( check.checkEntityRoom(this.currentRoom,newPos) || check.possiblePos(this.currentRoom, newPos) || 
-				check.checkDoors(newPos, map) ) {
+		if( check.checkEntityRoom(this.currentRoom,newPos) || check.checkEnemyRoom(this.currentRoom, newPos) || 
+				check.possiblePos(this.currentRoom, newPos) || check.checkDoors(newPos, map) ) {
 			this.position = newPos;  
 		}
 		this.direction = move.getDirection();   /** direction changes even if the player can't actually go in that position */
 	}
 	
+	@Override
 	public void setPosition(Pair<Integer, Integer> position) {
 		this.position = position;
 	}
@@ -112,42 +114,52 @@ public class PlayerImpl implements Player {
 		return this.level;
 	}
 	
+	@Override
 	public Health getHealth() {
 		return this.health;
 	}
 	
+	@Override
 	public void setCurrentRoom(RoomDesign room) {
 		this.currentRoom = room;
 	}
 	
+	@Override
 	public RoomDesign getRoom() {
 		return this.currentRoom;
 	}
 
+	@Override
 	public Direction getDirection() {
 		return direction;
 	}
 
+	@Override
 	public Animation getFront() {
 		return front;
 	}
 
+	@Override
 	public Animation getBack() {
 		return back;
 	}
 
+	@Override
 	public Animation getLeft() {
 		return left;
 	}
 
+	@Override
 	public Animation getRight() {
 		return right;
 	}
 	
+	@Override
 	public Movement getMove() {
 		return move;
 	}
 	
+	@Override
 	public Inventory getInventory() {
 		return this.inventory;
 	}
@@ -167,6 +179,7 @@ public class PlayerImpl implements Player {
 		return this.playerSpeed;
 	}
 	
+	@Override
 	public void upgradePlayerSpeed(int speedPlayer) {
 		this.playerSpeed = this.playerSpeed + speedPlayer;
 	}
@@ -176,6 +189,7 @@ public class PlayerImpl implements Player {
 		return this.bulletSpeed;
 	}
 	
+	@Override
 	public void upgradeBulletSpeed(int speedBullet) {
 		this.bulletSpeed = this.bulletSpeed + speedBullet;
 	}
@@ -185,10 +199,12 @@ public class PlayerImpl implements Player {
 		return dmg;
 	}
 	
+	@Override
 	public void upgradeDmg(int damage) {
 		this.dmg = this.dmg + damage;
 	}
 	
+	@Override
 	public void takeDmg(int damage) {
 		this.health.takeDmg(damage);
 	}
@@ -203,6 +219,7 @@ public class PlayerImpl implements Player {
 		return this.check;
 	}
 
+	@Override
 	public Set<BulletPlayer> getRoomBullets() {
 		return roomBullets;
 	}

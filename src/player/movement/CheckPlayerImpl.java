@@ -3,6 +3,7 @@ package player.movement;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
+import enemy.Enemy;
 import gameEntities.GameEntity;
 import gameEntities.Pickupable;
 import gameEntities.modifiers.AttackUpgrade1;
@@ -102,4 +103,21 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		}
 		return false;
 	}
+
+	//DA CONTROLLARE 
+	@Override
+	public boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos) {
+	/**	boolean checkX, checkY;
+		Set<Enemy> enemySet = room.getEnemySet();
+		for (Enemy enemy : enemySet) {
+			checkX = pos.getX() + leftPix < enemy.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > enemy.getPosition().getX();
+			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > enemy.getPosition().getY();
+			while (checkX && checkY) {
+				player.getHealth().upgradeHealth(enemy.getAttack());
+				Thread.sleep(2000);
+				return true;
+			}
+	    } */
+    	return false;
+    }
 }
