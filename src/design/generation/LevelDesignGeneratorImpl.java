@@ -31,9 +31,10 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 	public LevelDesign generateLevel(Integer levelNumber) throws IOException {
 		LevelDesignImpl level = new LevelDesignImpl();
 		currentConfig = getLevelConfig(levelNumber);
-		int numOfRooms = currentConfig.get("minRooms") + random.nextInt(1 + currentConfig.get("maxRooms") - currentConfig.get("minRooms"));
-		int stairsRoomID = setStairsRoom(numOfRooms);
-		RoomDesignGenerator roomGen = new RoomDesignGeneratorImpl(currentConfig, stairsRoomID);
+		final int numOfRooms = currentConfig.get("minRooms") + random.nextInt(1 + currentConfig.get("maxRooms") - currentConfig.get("minRooms"));
+		final Integer specialRoomID = setSpecialRoom(numOfRooms);
+		final boolean isFinalLevel = (levelNumber == 4);
+		RoomDesignGenerator roomGen = new RoomDesignGeneratorImpl(currentConfig, specialRoomID, isFinalLevel);
 		for(int i = 0; i < numOfRooms; i++) {
 			try {
 				level.addRoom(roomGen.generateRoom(i));
@@ -49,10 +50,11 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		return level;
 	}
 
-	private int setStairsRoom(int numOfRooms) {
-		/* the room that contains the stairs to the next level cannot be room 0,
+	private int setSpecialRoom(int numOfRooms) {
+		/* the room that contains the stairs to the next level OR the final boss, is called
+		 *  special room, it cannot be room 0,
 		 *  it can be any other randomly chosen room */
-		return random.nextInt(numOfRooms -1) + 1;
+		return random.nextInt(numOfRooms - 1) + 1;
 	}
 
 	

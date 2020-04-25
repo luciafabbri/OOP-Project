@@ -10,6 +10,7 @@ import org.newdawn.slick.SlickException;
 import design.RoomDesign;
 import design.RoomDesignImpl;
 import design.tokens.Enemy;
+import design.tokens.EnemyBoss;
 import design.utilities.*;
 import design.utilities.enums.Entities;
 import design.utilities.enums.Pickupables;
@@ -23,11 +24,13 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 	Map<String, Integer> currentConfig;
 	private Random random = new Random();
 	private RandomPosition randomPosition = new CoherentRandomPosition();
-	private int stairsRoomID;
+	private int specialRoomID;
+	private boolean isFinalLevel;
 
-	public RoomDesignGeneratorImpl(Map<String, Integer> currentConfig, int stairsRoomID) {
-		this.stairsRoomID = stairsRoomID;
+	public RoomDesignGeneratorImpl(Map<String, Integer> currentConfig, Integer specialRoomID, boolean isFinalLevel) {
+		this.specialRoomID = specialRoomID;
 		this.currentConfig = currentConfig;
+		this.isFinalLevel = isFinalLevel;
 	}
 
 	@Override
@@ -35,8 +38,13 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 
 		RoomDesignImpl room = new RoomDesignImpl(index);
 		Pair<Integer, Integer> pos;
-		if (index == stairsRoomID) {
-			this.generateStairs(room);
+		if (index == specialRoomID) {
+			if(isFinalLevel) {
+				this.generateBoss(room);
+			} else {
+				this.generateStairs(room);
+			}
+			
 		}
 		int numOfEnemies = currentConfig.get("minEnemies")
 				+ random.nextInt(1 + currentConfig.get("maxEnemies") - currentConfig.get("minEnemies"));
@@ -101,6 +109,10 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 		room.setStairsPresence(true);
 		room.setStairs(new Stairs(randomPosition.generateRandomPosition()));
 		room.addOccupiedTile(room.getStairs().getPosition());
+	}
+	
+	private void generateBoss(RoomDesignImpl room) {
+		room.addEnemy(new EnemyBoss(randomPosition.generateRandomPosition()));
 	}
 
 	private BidirectionalGraph<Pair<Integer, Integer>> generateTilesGraph(RoomDesign room) {
