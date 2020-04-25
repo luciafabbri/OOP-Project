@@ -20,6 +20,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
 import bullet.Bullet;
+import bullet.BulletPlayer;
 import player.movement.CheckPlayer;
 import player.movement.CheckPlayerImpl;
 import player.movement.Movement;
@@ -52,7 +53,7 @@ public class PlayerImpl implements Player {
 	private RoomDesign currentRoom;
 	private Inventory inventory = new InventoryImpl(this);
 	private BulletMovement bullet = new BulletMovementImpl(this);
-	private Set<Bullet> roomBullets = new HashSet<>();
+	private Set<BulletPlayer> roomBullets = new HashSet<>();
 	
 	private int playerSpeed;
 	private int bulletSpeed;
@@ -202,7 +203,7 @@ public class PlayerImpl implements Player {
 		return this.check;
 	}
 
-	public Set<Bullet> getRoomBullets() {
+	public Set<BulletPlayer> getRoomBullets() {
 		return roomBullets;
 	}
 }

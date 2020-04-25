@@ -18,19 +18,21 @@ public class BulletImpl implements Bullet {
 	private int dmg;
 	private int speed;
 	private Debuff debuff;
-	private Direction dir;
+	private Direction direction;
 	private MoveBull move;
 	private Image texture;
 	private RoomDesign room;
+	private Pair<DimensionBullet, DimensionBullet> dimensions;
 	
-	public BulletImpl(Pair<Integer, Integer> position, int damage, int speed, Debuff debuff, Direction direction, RoomDesign room){
+	public BulletImpl(Pair<Integer, Integer> position, int damage, int speed, Debuff debuff, Direction direction, RoomDesign room, TypeBullet type){
 		this.pos = position;
 		this.dmg = damage;
 		this.speed = speed;
 		this.debuff = debuff;
-		this.dir = direction;	
+		this.direction = direction;	
 		this.room = room;
 		this.move = new MoveBullImpl(room);	
+		this.dimensions = DimensionBullet.getDimensionBullet(type);
 	}	
 	
 
@@ -46,7 +48,7 @@ public class BulletImpl implements Bullet {
 	
 	@Override
 	public void updatePos(CheckPos check) {
-		this.pos = move.nextPos(this.pos, dir, check, speed);	
+		this.pos = move.nextPos(this.pos, direction, check, speed);	
 	}
 
 	@Override
@@ -61,7 +63,7 @@ public class BulletImpl implements Bullet {
 
 	@Override
 	public Direction getDirection() {
-		return this.dir;
+		return this.direction;
 	}
 
 	@Override
@@ -71,7 +73,13 @@ public class BulletImpl implements Bullet {
 	
 	@Override
 	public UpDownLeftRight<Integer> getDimension() {
-		return new UpDownLeftRight<>(26, DIMENSION, 0, DIMENSION);
+		if (direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
+			return dimensions.getX().getDimension();
+		} else if (direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
+			return dimensions.getY().getDimension();
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public void setTexture(Image texture) {

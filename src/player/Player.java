@@ -13,6 +13,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import bullet.Bullet;
+import bullet.BulletPlayer;
 
 /**
  * 
@@ -128,5 +129,5 @@ public interface Player extends DefaultPlayer, utility.Character {
 	
 	public Inventory getInventory();
 	
-	public Set<Bullet> getRoomBullets();
+	public Set<BulletPlayer> getRoomBullets();
 }

@@ -1,39 +1,7 @@
 package bullet;
 
-import utility.Debuff;
-import utility.Direction;
-import design.RoomDesign;
-import design.utilities.Pair;
-
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-
-import bullet.move.CheckPlayerBull;
-
-public class BulletPlayer extends BulletImpl {
-
-	public BulletPlayer(Pair<Integer, Integer> position, int damage, int speed, Debuff debuff, Direction direction, RoomDesign room) {
-		super(position, damage, speed, debuff, direction, room);
-		try {
-			this.setTexture(new Image("./res/proj/MainProj.png"));
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+public interface BulletPlayer extends Bullet {
 	
-	public BulletPlayer(Pair<Integer, Integer> position, int damage, int speed, Direction direction, RoomDesign room) {
-		super(position, damage, speed, Debuff.NO_ONE, direction, room);
-		try {
-			this.setTexture(new Image("./res/proj/MainProj.png"));
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public void updatePos() {
-		super.updatePos(new CheckPlayerBull(this));
-	}
+	public void updatePos();
 
 }

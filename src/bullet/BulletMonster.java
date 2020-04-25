@@ -9,12 +9,12 @@ import utility.Direction;
 import design.RoomDesign;
 import design.utilities.Pair;
 
-public class BulletMonster extends BulletImpl {
+public class BulletMonster extends BulletImpl implements Bullet{
 	
 	
 
 	public BulletMonster(Pair<Integer, Integer> position, int damage, int speed, Debuff debuff, Direction direction, RoomDesign room) {
-		super(position, damage, speed, debuff, direction, room);
+		super(position, damage, speed, debuff, direction, room, TypeBullet.MONSTER);
 		try {
 			this.setTexture(new Image("./res/proj/EnemyProj.png"));
 		} catch (SlickException e) {

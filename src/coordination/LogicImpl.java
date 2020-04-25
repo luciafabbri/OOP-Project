@@ -49,7 +49,7 @@ public class LogicImpl {
 	
 	public void moveMainProj(final Input input) {
 		player.getRoomBullets().forEach(s ->
-			s.updatePos(player.getCheck())
+			s.updatePos()
 		);
 	}
 	

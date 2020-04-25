@@ -17,7 +17,8 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings {
 
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		return !(super.possiblePos(room, pos) || checkCharacters(room, pos));
+		//return (super.possiblePos(room, pos) || checkCharacters(room, pos)
+		return (super.possiblePos(room, pos));
 	}
 	
 	// true se ha preso mostro, false altrimenti

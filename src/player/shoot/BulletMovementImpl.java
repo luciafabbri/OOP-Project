@@ -4,6 +4,7 @@ import org.newdawn.slick.Input;
 
 import bullet.Bullet;
 import bullet.BulletPlayer;
+import bullet.BulletPlayerImpl;
 import player.PlayerImpl;
 
 public class BulletMovementImpl implements BulletMovement {
@@ -24,7 +25,7 @@ public class BulletMovementImpl implements BulletMovement {
 		}
 		
 		public void shoot(){
-			Bullet bullet = new BulletPlayer(player.getPosition(), player.getDmg(), player.getBulletSpeed(),player.getDirection(), player.getRoom());  	
+			BulletPlayer bullet = new BulletPlayerImpl(player.getPosition(), player.getDmg(), player.getBulletSpeed(),player.getDirection(), player.getRoom());  	
 			if (bullet.isAlive()) {
 				player.getRoomBullets().add(bullet); 
 			}

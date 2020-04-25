@@ -18,7 +18,11 @@ public class MoveBullImpl implements MoveBull {
 	@Override
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir, CheckPos check, int speed) {
 		Pair<Integer,Integer> nextPos = new Pair<Integer,Integer>(pos.getX() + (dir.getAbscissa() * speed), pos.getY() + (dir.getOrdinate() * speed));
-		alive = !check.possiblePos(currentRoom, nextPos);
+	
+		alive = check.possiblePos(currentRoom, nextPos);
+		if(!alive) {
+			return pos;
+		}
 		return nextPos;
 	}
 

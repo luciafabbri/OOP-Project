@@ -12,9 +12,7 @@ import utility.Entity;
 public interface Bullet extends Entity {
 	
 	public final static int DIMENSION = 48;
-	
-	
-	
+		
 	public boolean isAlive();
 	
 	public Pair<Integer,Integer> getPos();

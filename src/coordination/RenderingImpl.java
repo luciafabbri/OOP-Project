@@ -12,6 +12,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import bullet.Bullet;
+import bullet.BulletPlayer;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
@@ -69,7 +70,7 @@ public class RenderingImpl implements Rendering {
 	}
 	
 	public void drawMainProj() {
-		Set<Bullet> bullets = player.getRoomBullets();
+		Set<BulletPlayer> bullets = player.getRoomBullets();
 		
 		if(!bullets.isEmpty()) {
 			bullets.forEach(s -> {
