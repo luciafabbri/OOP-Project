@@ -14,7 +14,7 @@ public class RoomDesignImpl implements RoomDesign {
 	private HashSet<Pair<Integer, Integer>> occupiedTiles = new HashSet<>();
 	private HashSet<design.tokens.Enemy> enemySet = new HashSet<>();
 	private HashSet<Obstacle> obstacleSet = new HashSet<>();
-	private HashSet<Pickupable> entitiesSet = new HashSet<>();
+	private HashSet<Pickupable> pickupablesSet = new HashSet<>();
 	private BidirectionalGraph<Pair<Integer, Integer>> tilesGraph;
 	private boolean stairsPresent = false;
 	private Stairs stairs;
@@ -94,13 +94,13 @@ public class RoomDesignImpl implements RoomDesign {
 		this.stairsPresent = stairsPresent;
 	}
 
-	public void addEntity(Pickupable entity) {
-		entitiesSet.add(entity);
+	public void addPickupable(Pickupable pickupable) {
+		pickupablesSet.add(pickupable);
 
 	}
 
-	public Set<Pickupable> getEntitiesSet() {
-		return entitiesSet;
+	public Set<Pickupable> getPickupablesSet() {
+		return pickupablesSet;
 	}
 
 }

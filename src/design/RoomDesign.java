@@ -38,7 +38,7 @@ public interface RoomDesign {
 
 	void setStairsPresence(boolean stairsPresent);
 	
-	void addEntity(Pickupable entity);
+	void addPickupable(Pickupable pickupable);
 
-	Set<Pickupable> getEntitiesSet();
+	Set<Pickupable> getPickupablesSet();
 }

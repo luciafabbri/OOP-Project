@@ -62,28 +62,28 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 	@Override
 	public boolean checkEntityRoom(RoomDesign room, Pair<Integer, Integer> pos) throws SlickException {
 		boolean checkX, checkY;
-		Set<Pickupable> itemSet = room.getEntitiesSet();
+		Set<Pickupable> itemSet = room.getPickupablesSet();
 		for (GameEntity item : itemSet) {
 			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
 			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
 			if (checkX && checkY) {
 				if (item.getTypeEnt().equals(Entities.COIN)) {
 					player.getInventory().addCoin();
-					room.getEntitiesSet().remove(item);
+					room.getPickupablesSet().remove(item);
 				}
 				if (item.getTypeEnt().equals(Entities.KEY)) {
 					player.getInventory().addKey();
-					room.getEntitiesSet().remove(item);
+					room.getPickupablesSet().remove(item);
 				}
 				if (item.getTypeEnt().equals(Entities.HEALTHUPGRADE1)) {
 					ModifiersImpl mod = new HealthUpgrade1(item.getPosition());
 					player.getHealth().upgradeHealth(mod.getModQty());
-					room.getEntitiesSet().remove(item);
+					room.getPickupablesSet().remove(item);
 				}
 				if (item.getTypeEnt().equals(Entities.ATTACKUPGRADE1)) {
 					ModifiersImpl mod = new AttackUpgrade1(item.getPosition());
 					player.upgradeDmg(mod.getModQty());
-					room.getEntitiesSet().remove(item);
+					room.getPickupablesSet().remove(item);
 				}
 				return true;
 			}
