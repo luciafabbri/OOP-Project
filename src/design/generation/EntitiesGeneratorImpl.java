@@ -12,33 +12,46 @@ import gameEntities.items.*;
 import gameEntities.modifiers.*;
 
 public class EntitiesGeneratorImpl implements EntitiesGenerator {
-	
+
 	private final RoomDesignImpl room;
 	private final RandomPosition randomPosition = new CoherentRandomPosition();
 	private final Random random = new Random();
 	private Pair<Integer, Integer> pos;
-	
+
 	public EntitiesGeneratorImpl(RoomDesignImpl room) {
 		this.room = room;
+	}
+
+	/**
+	 * @return a random tile not yet occupied inside the room
+	 */
+	private Pair<Integer, Integer> generateCoherentPos() {
+		pos = randomPosition.generateRandomPosition();
+		while (room.getOccupiedTiles().contains(pos)) {
+			pos = randomPosition.generateRandomPosition();
+		}
+		room.addOccupiedTile(pos);
+		return pos;
+
 	}
 
 	@Override
 	public void generatePickupables(int numOfPickupables) throws SlickException {
 		for (int i = 0; i < numOfPickupables; i++) {
+			pos = generateCoherentPos();
 			switch (Pickupables.valueOf(random.nextInt(Pickupables.values().length))) {
 			case COIN:
-				room.addPickupable(new Coin(randomPosition.generateRandomPosition()));
+				room.addPickupable(new Coin(pos));
 				break;
 			case KEY:
-				room.addPickupable(new Key(randomPosition.generateRandomPosition()));
+				room.addPickupable(new Key(pos));
 				break;
 			case ATTACKUPGRADE1:
-				room.addPickupable(new AttackUpgrade1(randomPosition.generateRandomPosition()));
+				room.addPickupable(new AttackUpgrade1(pos));
 				break;
 			case HEALTHUPGRADE1:
-				room.addPickupable(new HealthUpgrade1(randomPosition.generateRandomPosition()));
+				room.addPickupable(new HealthUpgrade1(pos));
 				break;
-
 			}
 		}
 
@@ -47,26 +60,23 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateStairs() throws SlickException {
 		room.setStairsPresence(true);
-		room.setStairs(new Stairs(randomPosition.generateRandomPosition()));
-		room.addOccupiedTile(room.getStairs().getPosition());
+		pos = generateCoherentPos();
+		room.setStairs(new Stairs(pos));
 
 	}
 
 	@Override
-	public void generateBoss() throws SlickException{
-		room.addEnemy(new EnemyBoss(randomPosition.generateRandomPosition()));
+	public void generateBoss() throws SlickException {
+		pos = generateCoherentPos();
+		room.addEnemy(new EnemyBoss(pos));
 
 	}
 
 	@Override
-	public void generateEnemies(int numOfEnemies) throws SlickException{
+	public void generateEnemies(int numOfEnemies) throws SlickException {
 		for (int j = 0; j < numOfEnemies; j++) {
-			pos = randomPosition.generateRandomPosition();
-			while (room.getOccupiedTiles().contains(pos)) {
-				pos = randomPosition.generateRandomPosition();
-			}
+			pos = generateCoherentPos();
 			room.addEnemy(new Enemy(pos));
-			room.addOccupiedTile(pos);
 		}
 
 	}
@@ -74,12 +84,8 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateObstacles(int numOfObstacles) throws SlickException {
 		for (int k = 0; k < numOfObstacles; k++) {
-			pos = randomPosition.generateRandomPosition();
-			while (room.getOccupiedTiles().contains(pos)) {
-				pos = randomPosition.generateRandomPosition();
-			}
+			pos = generateCoherentPos();
 			room.addObstacle(new Obstacle(pos));
-			room.addOccupiedTile(pos);
 		}
 	}
 
