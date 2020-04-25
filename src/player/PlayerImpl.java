@@ -17,6 +17,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
 
 import bullet.Bullet;
@@ -44,6 +45,8 @@ public class PlayerImpl implements Player {
 	private Animation back;
 	private Animation left;
 	private Animation right;
+
+	private Sound bowShoot;
 	
 	private Direction direction;
 	private Movement move = new MovementImpl();
@@ -65,6 +68,13 @@ public class PlayerImpl implements Player {
 		this.direction = dir;
 		this.playerSpeed = 1;
 		this.bulletSpeed = 1;
+		
+		try {
+			bowShoot = new Sound("./res/audio/bow/bow_fired.wav");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public PlayerImpl(int level, Image texture) throws SlickException {	
@@ -222,5 +232,9 @@ public class PlayerImpl implements Player {
 	@Override
 	public Set<BulletPlayer> getRoomBullets() {
 		return roomBullets;
+	}
+
+	public Sound getBowShoot() {
+		return bowShoot;
 	}
 }

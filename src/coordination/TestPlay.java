@@ -25,7 +25,6 @@ public class TestPlay extends BasicGameState {
 	private Level level;
 	private Input input;
 	private int levelID;
-
 	
 	public TestPlay(final int state, final Player player) {
 		super();
@@ -85,6 +84,7 @@ public class TestPlay extends BasicGameState {
 		logic.switchRooms(input);
 		logic.shootMain(input);
 		logic.moveMainProj(input);
+		logic.eliminateMainProj();
 		
 		if(player.getCheck().checkStairs(level.getLevel().get(level.getRoomID()).getRoom(), player.getPosition())) {
 			this.levelID++;

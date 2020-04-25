@@ -3,6 +3,8 @@ package player.movement;
 import design.utilities.Pair;
 import utility.Direction;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 /**
  * 
@@ -13,8 +15,16 @@ public class MovementImpl implements Movement {
 	
 	private Direction direction;
 	private int newSpeed;
+	private Sound footsteps;
+	
 	
 	public MovementImpl() {
+		try {
+			footsteps = new Sound("./res/audio/footsteps/footsteps.wav");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 		
 	@Override

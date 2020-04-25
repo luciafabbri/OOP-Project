@@ -1,8 +1,11 @@
 package coordination;
 
+import java.util.Iterator;
+
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+import bullet.BulletPlayer;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
@@ -14,10 +17,12 @@ public class LogicImpl {
 	
 	private Level level;
 	private Player player;
+	private boolean playerBull;
 	
 	public LogicImpl(final Level level, final Player player) {
 		this.level = level;
 		this.player = player;
+		this.playerBull = true;
 	}
 	
 	public void switchRooms(final Input input) {
@@ -48,9 +53,22 @@ public class LogicImpl {
 	}
 	
 	public void moveMainProj(final Input input) {
-		player.getRoomBullets().forEach(s ->
-			s.updatePos()
-		);
+		Iterator<BulletPlayer> it = player.getRoomBullets().iterator();
+		
+		while(it.hasNext()) {
+			it.next().updatePos(); 
+		}
+		
+	}
+	
+	public void eliminateMainProj() {
+		Iterator<BulletPlayer> it = player.getRoomBullets().iterator();
+		
+		while(it.hasNext()) {
+			if(!it.next().isAlive())
+				it.remove();
+		}
+		
 	}
 	
 	private boolean checkEmpty(final Door door) {

@@ -18,6 +18,6 @@ public interface CheckPlayer extends CheckPos{
 
 	public boolean checkStairs(RoomDesign room, Pair<Integer, Integer> pos);
 	
-	public boolean checkEnemyRoom(RoomDesign room,Pair<Integer, Integer> pos);	
+	public boolean checkEnemyRoom(RoomDesign currentRoom, Pair<Integer, Integer> newPos);	
 
 }
