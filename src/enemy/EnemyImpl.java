@@ -51,7 +51,6 @@ public class EnemyImpl implements Enemy {
 		try {
 			this.textures = EnemyImage.getTexture(mon);
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -166,8 +165,9 @@ public class EnemyImpl implements Enemy {
 			return dimensions.getX().getDimension();
 		} else if (direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
 			return dimensions.getY().getDimension();
+		} else {
+			throw new IllegalArgumentException();
 		}
-		return new UpDownLeftRight<Integer>(0, 0, 0, 0);
 	}
 
 	@Override
