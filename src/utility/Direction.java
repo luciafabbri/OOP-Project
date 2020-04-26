@@ -39,7 +39,7 @@ public enum Direction {
 	
 	public static Direction getRandomDir() {
 		Random random = new Random();
-		return values()[(random.nextInt(4)+1)*2];
+		return values()[(random.nextInt(4))*2+1];
 	}
 	
 	public static List<Direction> getNearDistance(Direction dir, int distance) {

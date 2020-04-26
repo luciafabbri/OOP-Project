@@ -3,16 +3,17 @@ package design;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import design.tokens.*;
+
 import design.utilities.Pair;
 import design.utilities.graphs.BidirectionalGraph;
+import enemy.Enemy;
 import gameEntities.*;
 
 public class RoomDesignImpl implements RoomDesign {
 
 	private int roomID;
 	private HashSet<Pair<Integer, Integer>> occupiedTiles = new HashSet<>();
-	private HashSet<design.tokens.Enemy> enemySet = new HashSet<>();
+	private HashSet<Enemy> enemySet = new HashSet<>();
 	private HashSet<Obstacle> obstacleSet = new HashSet<>();
 	private HashSet<Pickupable> pickupablesSet = new HashSet<>();
 	private BidirectionalGraph<Pair<Integer, Integer>> tilesGraph;
@@ -56,7 +57,7 @@ public class RoomDesignImpl implements RoomDesign {
 
 	}
 
-	public Set<design.tokens.Enemy> getEnemySet() {
+	public Set<Enemy> getEnemySet() {
 		return enemySet;
 	}
 

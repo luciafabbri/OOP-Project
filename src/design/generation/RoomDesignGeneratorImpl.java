@@ -24,7 +24,7 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 	public RoomDesignImpl generateRoom(int index) throws SlickException  {
 
 		RoomDesignImpl room = new RoomDesignImpl(index);
-		EntitiesGenerator entitiesGen = new EntitiesGeneratorImpl(room);
+		EntitiesGenerator entitiesGen = new EntitiesGeneratorImpl(room, currentConfig);
 		if (index == specialRoomID) {
 			if(isFinalLevel) {
 				entitiesGen.generateBoss();

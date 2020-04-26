@@ -1,11 +1,9 @@
 package design;
 
-import java.util.HashSet;
 import java.util.Set;
-
 import design.utilities.Pair;
 import design.utilities.graphs.BidirectionalGraph;
-import gameEntities.GameEntity;
+import enemy.Enemy;
 import gameEntities.Obstacle;
 import gameEntities.Pickupable;
 import gameEntities.Stairs;
@@ -14,7 +12,7 @@ public interface RoomDesign {
 	
 	int getRoomID();
 	
-	void addEnemy(design.tokens.Enemy enemy);
+	void addEnemy(Enemy enemy);
 	
 	void addObstacle(gameEntities.Obstacle obstacle);
 	
@@ -22,7 +20,7 @@ public interface RoomDesign {
 	
 	void addOccupiedTile(Pair<Integer, Integer> tile);
 	
-	Set<design.tokens.Enemy> getEnemySet();
+	Set<Enemy> getEnemySet();
 		
 	Set<Obstacle> getObstacleSet();
 	

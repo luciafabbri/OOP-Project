@@ -1,12 +1,13 @@
 package design.generation;
 
+import java.util.Map;
 import java.util.Random;
 
 import org.newdawn.slick.SlickException;
 import design.RoomDesignImpl;
-import design.tokens.*;
 import design.utilities.*;
 import design.utilities.enums.Pickupables;
+import enemy.*;
 import gameEntities.*;
 import gameEntities.items.*;
 import gameEntities.modifiers.*;
@@ -14,12 +15,15 @@ import gameEntities.modifiers.*;
 public class EntitiesGeneratorImpl implements EntitiesGenerator {
 
 	private final RoomDesignImpl room;
+	private final Map<String, Integer> currentConfig;
 	private final RandomPosition randomPosition = new CoherentRandomPosition();
 	private final Random random = new Random();
 	private Pair<Integer, Integer> pos;
+	private final EnemyCreatorImpl enemyGen = new EnemyCreatorImpl();
 
-	public EntitiesGeneratorImpl(RoomDesignImpl room) {
+	public EntitiesGeneratorImpl(RoomDesignImpl room, Map<String, Integer> currentConfig) {
 		this.room = room;
+		this.currentConfig = currentConfig;
 	}
 
 	/**
@@ -68,7 +72,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateBoss() throws SlickException {
 		pos = generateCoherentPos();
-		room.addEnemy(new EnemyBoss(pos));
+		room.addEnemy(enemyGen.getBossA(pos, room));
 
 	}
 
@@ -76,7 +80,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	public void generateEnemies(int numOfEnemies) throws SlickException {
 		for (int j = 0; j < numOfEnemies; j++) {
 			pos = generateCoherentPos();
-			room.addEnemy(new Enemy(pos));
+			room.addEnemy(enemyGen.getMonsterA(pos, currentConfig.get("enemyHealth") , currentConfig.get("enemyDamage") , room));
 		}
 
 	}

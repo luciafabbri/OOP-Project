@@ -6,5 +6,5 @@ minObjects 0
 maxObjects 1
 minObstacles% 0
 maxObstacles% 5
-enemyHealth 999
-enemyDamage 999
+enemyHealth 100
+enemyDamage 10
