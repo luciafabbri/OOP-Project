@@ -12,7 +12,9 @@ public enum EnemyImage {
 	FRONT_1("./res/chars/mainChar6_back.png"),
 	BACK_1("./res/chars/mainChar6_back.png"),
 	LEFT_1("./res/chars/mainChar6_left.png"),
-	RIGHT_1("./res/chars/mainChar6_right.png");
+	RIGHT_1("./res/chars/mainChar6_right.png"),
+
+	FRONT_2("./res/chars/enemies/plan.png");
 
 
 	String image;
@@ -32,6 +34,10 @@ public enum EnemyImage {
 			case MONSTER2:
 			case MONSTER3:
 			case PLANT:
+				front = FRONT_2.getAnimation();
+				back = FRONT_2.getAnimation();
+				left = FRONT_2.getAnimation();
+				right = FRONT_2.getAnimation();
 			case BOSS:
 				front = FRONT_1.getAnimation();	
 				back = BACK_1.getAnimation();	

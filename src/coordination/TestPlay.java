@@ -64,6 +64,7 @@ public class TestPlay extends BasicGameState {
 		graphics.drawDoorTop();
 		graphics.drawMod();
 		graphics.drawMainProj();
+		graphics.drawEnemies();
 		ui.drawUI();
 		
 		
@@ -85,6 +86,7 @@ public class TestPlay extends BasicGameState {
 		logic.shootMain(input);
 		logic.moveMainProj(input);
 		logic.eliminateMainProj();
+		logic.moveEnemies();
 		
 		if(player.getCheck().checkStairs(level.getLevel().get(level.getRoomID()).getRoom(), player.getPosition())) {
 			this.levelID++;
