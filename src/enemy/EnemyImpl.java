@@ -1,10 +1,12 @@
 package enemy;
 
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.SlickException;
+
+import bullet.BulletMonster;
 import enemy.attack.FourSideAtt;
 import enemy.attack.MonsterAttack;
 import enemy.attack.OneSideAtt;
@@ -36,6 +38,8 @@ public class EnemyImpl implements Enemy {
 	private Pair<DimensionMonster, DimensionMonster> dimensions;
 	private TypeEnemy typeEnemy;
 	private UpDownLeftRight<Animation> textures;
+	private RoomDesign room;
+	private Set<BulletMonster> bullets = new HashSet<>();
 
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
 			TypeAttack att, RoomDesign room, TypeEnemy mon) {
@@ -48,16 +52,18 @@ public class EnemyImpl implements Enemy {
 		this.direction = dir;
 		this.dimensions = DimensionMonster.getDimensionMoster(mon);
 		this.typeEnemy = mon;
+		this.room = room;
 		try {
 			this.textures = EnemyImage.getTexture(mon);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		
+		// attack();
+
 	}
 
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomDesign room,
-			TypeEnemy mon){
+			TypeEnemy mon) {
 		this(pos, damage, 1, health, move, Direction.getRandomDir(), att, room, mon);
 	}
 
@@ -84,16 +90,16 @@ public class EnemyImpl implements Enemy {
 	private MonsterAttack selectAttack(TypeAttack typeAttack, RoomDesign room) {
 		switch (typeAttack) {
 		case ONE_SIDE:
-			return new OneSideAtt(room);
+			return new OneSideAtt(room, this);
 
 		case TWO_SIDE:
-			return new TwoSideAtt(room);
+			return new TwoSideAtt(room, this);
 
 		case FOUR_SIDE:
-			return new FourSideAtt(room);
+			return new FourSideAtt(room, this);
 
 		case TRIPLE:
-			return new TripleAtt(room);
+			return new TripleAtt(room, this);
 
 		default:
 			throw new IllegalArgumentException();
@@ -139,7 +145,7 @@ public class EnemyImpl implements Enemy {
 
 	@Override
 	public Animation getAnimation() {
-		switch(this.direction) {
+		switch (this.direction) {
 		case NORTH:
 			return textures.getUp();
 		case SOUTH:
@@ -150,7 +156,7 @@ public class EnemyImpl implements Enemy {
 			return textures.getRight();
 		default:
 			throw new IllegalArgumentException();
-			
+
 		}
 	}
 
@@ -173,6 +179,34 @@ public class EnemyImpl implements Enemy {
 	@Override
 	public boolean isAlive() {
 		return health.isAlive();
+	}
+
+	private void attack() {
+		int sleepTime = 0;
+		while (this.isAlive()) {
+			// while (this.room.equals(player.room)
+			while (true) {
+				if (sleepTime == 0) {
+					sleepTime = 240;
+					System.out.println("ATTACCO");
+					this.attack.createBullets(position, direction, damage);
+				} else {
+					sleepTime--;
+				}
+			}
+		}
+		this.room.getEnemySet().remove(this);
+	}
+
+	@Override
+	public void addBullet(BulletMonster bullet) {
+		this.bullets.add(bullet);
+		
+	}
+
+	@Override
+	public Set<BulletMonster> getBullets() {
+		return this.bullets;
 	}
 
 }
