@@ -1,4 +1,4 @@
-package player;
+package player.inventory;
 
 public interface Inventory {
 	

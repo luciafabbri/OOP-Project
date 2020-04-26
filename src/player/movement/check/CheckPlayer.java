@@ -1,4 +1,4 @@
-package player.movement;
+package player.movement.check;
 
 import java.util.Map;
 import java.util.Optional;

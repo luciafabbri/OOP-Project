@@ -22,10 +22,12 @@ import org.newdawn.slick.SpriteSheet;
 
 import bullet.Bullet;
 import bullet.BulletPlayer;
-import player.movement.CheckPlayer;
-import player.movement.CheckPlayerImpl;
+import player.inventory.Inventory;
+import player.inventory.InventoryImpl;
 import player.movement.Movement;
 import player.movement.MovementImpl;
+import player.movement.check.CheckPlayer;
+import player.movement.check.CheckPlayerImpl;
 import player.shoot.BulletMovement;
 import player.shoot.BulletMovementImpl;
 import design.RoomDesign;

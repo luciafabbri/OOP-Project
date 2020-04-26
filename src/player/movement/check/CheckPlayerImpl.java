@@ -1,4 +1,4 @@
-package player.movement;
+package player.movement.check;
 
 import design.utilities.Pair;
 import design.utilities.enums.Door;

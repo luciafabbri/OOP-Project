@@ -1,4 +1,6 @@
-package player;
+package player.inventory;
+
+import player.Player;
 
 public class InventoryImpl implements Inventory {
 	

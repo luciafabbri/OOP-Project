@@ -3,8 +3,9 @@ package player;
 import design.RoomDesign;
 import design.utilities.Pair;
 import levels.Level;
-import player.movement.CheckPlayer;
+import player.inventory.Inventory;
 import player.movement.Movement;
+import player.movement.check.CheckPlayer;
 import player.shoot.BulletMovement;
 
 import java.util.Set;
