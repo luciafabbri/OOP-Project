@@ -2,6 +2,7 @@ package bullet.move;
 
 import java.util.Set;
 
+import bullet.BulletPlayerImpl;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
@@ -11,8 +12,11 @@ import utility.Entity;
 
 public class CheckPlayerBull extends CheckPosImpl implements GameSettings {
 	
-	public CheckPlayerBull(Entity entity) {
+	private BulletPlayerImpl bullet;
+	
+	public CheckPlayerBull(Entity entity, BulletPlayerImpl bulletPlayer) {
 		super(entity);
+		this.bullet = bulletPlayer;
 	}
 
 
@@ -29,8 +33,9 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings {
 			checkX = pos.getX() + leftPix < enemy.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > enemy.getPosition().getX();
 			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > enemy.getPosition().getY();
 			if (checkX && checkY) {
-				//fintanto che il nemico resta all'interno della traiettoria gli do danno ?
+				//fintanto che il nemico resta all'interno della traiettoria gli do danno ? thread.sleep()
 				System.out.println("nemico preso");
+				enemy.takeDmg(this.bullet.getDmg());
 				return true;
 			}
 		}

@@ -33,7 +33,7 @@ public class BulletPlayerImpl extends BulletImpl implements BulletPlayer {
 	}
 	
 	public void updatePos() {
-		super.updatePos(new CheckPlayerBull(this));
+		super.updatePos(new CheckPlayerBull(this, this));
 	}
 
 }
