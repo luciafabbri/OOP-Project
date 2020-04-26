@@ -6,11 +6,6 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
-/**
- * 
- * Class that implements all the methods of Interface Movement
- * 
- */
 public class MovementImpl implements Movement {
 	
 	private Direction direction;

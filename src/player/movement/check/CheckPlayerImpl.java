@@ -11,24 +11,14 @@ import gameEntities.modifiers.HealthUpgrade1;
 import gameEntities.modifiers.ModifiersImpl;
 import player.PlayerImpl;
 import utility.CheckPosImpl;
-
 import utility.DoorCheck;
 import utility.Entity;
 import design.utilities.GameSettings;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-
 import org.newdawn.slick.SlickException;
-
 import design.RoomDesign;
-
-/**
- * 
- * Class that implements the method of the extended interface CheckPos
- * 
- */
-
 
 public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSettings{
 				
@@ -55,11 +45,6 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		return false;
 	}
 	
-	
-	/**se dentro al set di ostacoli ci sono coordinate che corrispondono a quelle del personaggio, 
-	 * allora quest'ultimo non si deve muovere perchè quella posizione è già occupata
-	 * @throws SlickException 
-	 */
 	@Override
 	public boolean checkEntityRoom(RoomDesign room, Pair<Integer, Integer> pos) throws SlickException {
 		boolean checkX, checkY;
@@ -104,19 +89,19 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		return false;
 	}
 
-	//DA CONTROLLARE 
+	//DA CONTROLLARE SE POSIZIONE NEMICO VA BENE
 	@Override
 	public boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
 		Set<Enemy> enemySet = room.getEnemySet();
 		for (Enemy enemy : enemySet) {
-			checkX = pos.getX() + leftPix < enemy.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > enemy.getPosition().getX();
-			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > enemy.getPosition().getY();
+			checkX = pos.getX() + enemy.getDimension().getLeft() < enemy.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + enemy.getDimension().getRight() > enemy.getPosition().getX();
+			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - enemy.getDimension().getRight()) && pos.getY() + enemy.getDimension().getDown() > enemy.getPosition().getY();
 			while (checkX && checkY) {
 				//se il player è ancora sopra l'enemy allora prende altro danno
 				player.getHealth().takeDmg(enemy.getDamage());
 				System.out.println("danno dal nemico preso\n");
-				System.out.println("vita: " +player.getHealth().getCurrentHealth());
+				System.out.println("vita: " + player.getHealth().getCurrentHealth());
 			//	Thread.sleep(2000);
 				return true;
 			}
