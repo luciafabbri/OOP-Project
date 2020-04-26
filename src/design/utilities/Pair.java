@@ -1,7 +1,7 @@
 package design.utilities;
 
 /*
- * A standard generic Pair<X,Y>, with getters, hashCode, equals, and toString well implemented. 
+ * Mirko Viroli's generic Pair<X,Y>, with getters, hashCode, equals, and toString well implemented. 
  */
 
 public class Pair<X,Y> {

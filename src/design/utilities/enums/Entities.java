@@ -3,6 +3,10 @@ package design.utilities.enums;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Enum listing the game's inanimate entities and the code that identifies them
+ *
+ */
 public enum Entities {
 
 	COIN(0), 
