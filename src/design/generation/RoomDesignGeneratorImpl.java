@@ -8,11 +8,11 @@ import design.utilities.*;
 
 public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 
-	Map<String, Integer> currentConfig;
-	private Random random = new Random();
-	private TilesGraphGenerator graphGen = new TilesGraphGeneratorImpl();
-	private int specialRoomID;
-	private boolean isFinalLevel;
+	private final Map<String, Integer> currentConfig;
+	private final Random random = new Random();
+	private final TilesGraphGenerator graphGen = new TilesGraphGeneratorImpl();
+	private final int specialRoomID;
+	private final boolean isFinalLevel;
 
 	public RoomDesignGeneratorImpl(Map<String, Integer> currentConfig, Integer specialRoomID, boolean isFinalLevel) {
 		this.specialRoomID = specialRoomID;

@@ -2,6 +2,12 @@ package design.utilities.graphs;
 
 import java.util.*;
 
+/**
+ * A class containing methods to explore a graph of type
+ * design.utilities.graphs.Graph<T> via Breadth First Search
+ *
+ * @param <T> is the nodes' type
+ */
 public class BreadthFirstSearch<T> {
 
 	public boolean isReachable(Graph<T> graph, T source, T destination) {

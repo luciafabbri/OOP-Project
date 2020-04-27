@@ -12,6 +12,10 @@ import gameEntities.*;
 import gameEntities.items.*;
 import gameEntities.modifiers.*;
 
+/**
+ * Implementation of interface EntitiesGenerator
+ *
+ */
 public class EntitiesGeneratorImpl implements EntitiesGenerator {
 
 	private final RoomDesignImpl room;
@@ -80,7 +84,8 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	public void generateEnemies(int numOfEnemies) throws SlickException {
 		for (int j = 0; j < numOfEnemies; j++) {
 			pos = generateCoherentPos();
-			room.addEnemy(enemyGen.getMonsterA(pos, currentConfig.get("enemyHealth") , currentConfig.get("enemyDamage") , room));
+			room.addEnemy(enemyGen.getMonsterA(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
+					room));
 		}
 
 	}
