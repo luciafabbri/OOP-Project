@@ -26,7 +26,7 @@ public class TwoSideAtt extends MonsterAttAbst implements MonsterAttack {
 		List<Direction> bullDir = Direction.getNearDistance(dir, 1);
 		
 		for(int i = 0; i < 2; i++) {
-			BulletMonster bull = new BulletMonsterImpl(calculateBullPos(pos, dirSpawn.get(i)), dmg, bullDir.get(i), currentRoom);
+			BulletMonster bull = new BulletMonsterImpl(calculateBullPos(pos, dirSpawn.get(i), enemy), dmg, bullDir.get(i), currentRoom);
 			
 			enemy.addBullet(bull);
 		}

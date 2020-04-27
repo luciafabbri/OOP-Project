@@ -42,7 +42,7 @@ public class CheckMonsterImpl extends CheckPosImpl implements CheckMonster, Game
 				if ( pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE || pos.getX() + rightPix > obst.getX()) {
 					this.x = -dir.getAbscissa();
 				}
-				if (pos.getY() < obst.getY() + (TILESIZE - rightPix) || pos.getY() + downPix > obst.getY()) {
+				if (pos.getY() < obst.getY() + (TILESIZE - upPix) || pos.getY() + downPix > obst.getY()) {
 					this.y = -dir.getOrdinate();
 				}
 			}

@@ -4,6 +4,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import bullet.move.CheckMonsBull;
+import bullet.move.CheckPlayerBull;
 import utility.Debuff;
 import utility.Direction;
 import design.RoomDesign;

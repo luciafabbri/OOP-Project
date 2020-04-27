@@ -6,7 +6,9 @@ import utility.UpDownLeftRight;
 public enum DimensionBullet {
 	
 	VERTICAL_PLAYER(30, 33, 20, 51),
-	ORIZONTAL_PLAYER(13, 47, 28, 37);
+	ORIZONTAL_PLAYER(13, 47, 28, 37),
+	
+	MONSTER(22, 40, 23, 42);
 	
 	
 	private UpDownLeftRight<Integer> dim;
@@ -22,8 +24,9 @@ public enum DimensionBullet {
 	public static Pair<DimensionBullet, DimensionBullet> getDimensionBullet(TypeBullet mon) {
 		switch(mon) {
 			case PLAYER:
-			case MONSTER:
 				return new Pair<>(ORIZONTAL_PLAYER, VERTICAL_PLAYER);
+			case MONSTER:
+				return new Pair<>(MONSTER, MONSTER);
 				
 			default:
 				throw new IllegalArgumentException();

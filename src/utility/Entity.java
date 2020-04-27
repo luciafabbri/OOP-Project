@@ -8,5 +8,7 @@ public interface Entity {
 	 *  
 	 */
 	public UpDownLeftRight<Integer> getDimension();
+	
+	public int getDmg();
 
 }

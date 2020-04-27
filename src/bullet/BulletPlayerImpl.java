@@ -24,16 +24,10 @@ public class BulletPlayerImpl extends BulletImpl implements BulletPlayer {
 	
 	public BulletPlayerImpl(Pair<Integer, Integer> position, int damage, int speed, Direction direction, RoomDesign room) {
 		this(position, damage, speed, Debuff.NO_ONE, direction, room);
-		try {
-			this.setTexture(new Image("./res/proj/MainProj.png"));
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public void updatePos() {
-		super.updatePos(new CheckPlayerBull(this, this));
+		super.updatePos(new CheckPlayerBull(this));
 	}
 
 }

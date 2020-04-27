@@ -19,8 +19,6 @@ public interface Bullet extends Entity {
 	
 	public void updatePos(CheckPos check);
 	
-	public int getDmg();
-	
 	public Debuff getDebuff();	
 	
 	public Direction getDirection();

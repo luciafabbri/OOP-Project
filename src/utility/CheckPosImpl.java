@@ -31,7 +31,7 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 		boolean checkX, checkY;
 		for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
 			checkX = pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE && pos.getX() + rightPix > obst.getX() ;
-			checkY = pos.getY() < obst.getY() + (TILESIZE - rightPix) && pos.getY() + downPix > obst.getY();
+			checkY = pos.getY() + upPix < obst.getY() + TILESIZE  && pos.getY() + downPix > obst.getY();
 			if (checkX && checkY) {
 				return true;
 			}

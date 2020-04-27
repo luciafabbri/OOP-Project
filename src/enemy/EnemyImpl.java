@@ -7,6 +7,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 
 import bullet.BulletMonster;
+import coordination.TestState;
 import enemy.attack.FourSideAtt;
 import enemy.attack.MonsterAttack;
 import enemy.attack.OneSideAtt;
@@ -19,6 +20,7 @@ import enemy.move.RandomMove;
 import enemy.move.StraightMove;
 import enemy.move.TeleportMove;
 import enemy.move.TypeMove;
+import player.Player;
 import utility.Direction;
 import utility.UpDownLeftRight;
 import utility.health.Health;
@@ -40,6 +42,8 @@ public class EnemyImpl implements Enemy {
 	private UpDownLeftRight<Animation> textures;
 	private RoomDesign room;
 	private Set<BulletMonster> bullets = new HashSet<>();
+	
+	private int sleepTime = 100;
 
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
 			TypeAttack att, RoomDesign room, TypeEnemy mon) {
@@ -58,7 +62,6 @@ public class EnemyImpl implements Enemy {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		// attack();
 
 	}
 
@@ -110,11 +113,6 @@ public class EnemyImpl implements Enemy {
 	@Override
 	public Pair<Integer, Integer> getPosition() {
 		return this.position;
-	}
-
-	@Override
-	public int getDamage() {
-		return this.damage;
 	}
 
 	@Override
@@ -181,11 +179,10 @@ public class EnemyImpl implements Enemy {
 		return health.isAlive();
 	}
 
-	private void attack() {
-		int sleepTime = 0;
-		while (this.isAlive()) {
-			// while (this.room.equals(player.room)
-			while (true) {
+	@Override
+	public void attack() {
+		/*while (this.isAlive()) {
+			while (this.room.equals(player.getRoom())) {
 				if (sleepTime == 0) {
 					sleepTime = 240;
 					System.out.println("ATTACCO");
@@ -194,19 +191,29 @@ public class EnemyImpl implements Enemy {
 					sleepTime--;
 				}
 			}
+		}*/
+		
+		if(this.sleepTime == 0) {
+			this.attack.createBullets(position, direction, damage);
+			sleepTime = 1000;
+		} else {
+			sleepTime --;
 		}
-		this.room.getEnemySet().remove(this);
 	}
 
 	@Override
 	public void addBullet(BulletMonster bullet) {
-		this.bullets.add(bullet);
-		
+		this.bullets.add(bullet);		
 	}
 
 	@Override
 	public Set<BulletMonster> getBullets() {
 		return this.bullets;
+	}
+
+	@Override
+	public int getDmg() {
+		return this.damage;
 	}
 
 }

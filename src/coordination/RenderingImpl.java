@@ -13,12 +13,16 @@ import org.newdawn.slick.SlickException;
 
 import bullet.Bullet;
 import bullet.BulletPlayer;
+
+import bullet.BulletMonster;
+
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
 import design.utilities.enums.Pickupables;
+import enemy.Enemy;
 import gameEntities.Obstacle;
 import gameEntities.Stairs;
 import gameEntities.items.ItemImpl;
@@ -75,6 +79,7 @@ public class RenderingImpl implements Rendering {
 	
 	public void drawMainProj() {
 		Set<BulletPlayer> bullets = player.getRoomBullets();
+		Set<Enemy> enemys = level.getLevel().get(level.getRoomID()).getRoom().getEnemySet();
 		
 		if(!bullets.isEmpty()) {
 			bullets.forEach(s -> {
@@ -83,6 +88,16 @@ public class RenderingImpl implements Rendering {
 				}
 			});
 		}
+		
+		enemys.forEach(e-> {
+			Set<BulletMonster> bulletMon = e.getBullets();
+			
+			if(!bulletMon.isEmpty()) {
+				bulletMon.forEach(s -> {
+					s.getTexture().draw(s.getPos().getX(), s.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+				});
+			}
+		});
 	}
 	
 	private void rotateMainProj(final Bullet bullet) {

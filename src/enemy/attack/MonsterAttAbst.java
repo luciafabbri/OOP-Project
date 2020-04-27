@@ -7,14 +7,15 @@ import utility.Direction;
 
 public class MonsterAttAbst {
 	
-	protected Pair<Integer,Integer> calculateBullPos(Pair<Integer,Integer> pos, Direction dir) {
+	protected Pair<Integer,Integer> calculateBullPos(Pair<Integer,Integer> pos, Direction dir, Enemy enemy) {
 		
-		return new Pair<Integer,Integer>(pos.getX() + calcDistanceByCoord(dir.getAbscissa()), pos.getY() + calcDistanceByCoord(dir.getOrdinate()));
+		Pair<Integer, Integer> distance = calcDistance(dir, enemy);
+		return new Pair<Integer,Integer>(pos.getX() + distance.getX(), pos.getY() + distance.getY());
 		
 	}
 	
-	private int calcDistanceByCoord(int value) {
-		switch (value) {
+	private Pair<Integer, Integer> calcDistance(Direction value, Enemy enemy) {
+		/*switch (value) {
 		case 1:
 			return Enemy.DIMENSION + MonsterAttack.DISTANCESPAWN;
 			
@@ -27,6 +28,18 @@ public class MonsterAttAbst {
 		default: 
 			throw new IllegalArgumentException();
 		
+		}*/
+		switch (value) {
+			case NORTH:
+				return new Pair<Integer, Integer>(0 , - (MonsterAttack.DISTANCESPAWN + Bullet.DIMENSION));
+			case SOUTH:
+				return new Pair<Integer, Integer>(0 , MonsterAttack.DISTANCESPAWN + enemy.getDimension().getDown());
+			case EAST:
+				return new Pair<Integer, Integer>(MonsterAttack.DISTANCESPAWN + enemy.getDimension().getRight(), 0);
+			case WEST:
+				return new Pair<Integer, Integer>( - (MonsterAttack.DISTANCESPAWN + Bullet.DIMENSION), 0);
+			default:
+				throw new IllegalArgumentException();
 		}
 	}
 

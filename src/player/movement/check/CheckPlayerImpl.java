@@ -99,7 +99,7 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - enemy.getDimension().getRight()) && pos.getY() + enemy.getDimension().getDown() > enemy.getPosition().getY();
 			while (checkX && checkY) {
 				//se il player è ancora sopra l'enemy allora prende altro danno
-				player.getHealth().takeDmg(enemy.getDamage());
+				player.getHealth().takeDmg(enemy.getDmg());
 				System.out.println("danno dal nemico preso\n");
 				System.out.println("vita: " + player.getHealth().getCurrentHealth());
 			//	Thread.sleep(2000);

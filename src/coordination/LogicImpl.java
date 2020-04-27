@@ -1,14 +1,17 @@
 package coordination;
 
 import java.util.Iterator;
+import java.util.Set;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import bullet.BulletPlayer;
+import bullet.BulletMonster;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
+import enemy.Enemy;
 import levels.Level;
 import player.Player;
 import utility.DoorCheck;
@@ -50,6 +53,7 @@ public class LogicImpl {
 	
 	public void moveEnemies() {
 		level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().forEach(s -> s.updatePos());
+		level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().forEach(s -> s.attack());
 	}
 	
 	public void shootMain(final Input input) {
@@ -58,20 +62,39 @@ public class LogicImpl {
 	
 	public void moveMainProj(final Input input) {
 		Iterator<BulletPlayer> it = player.getRoomBullets().iterator();
+		Set<Enemy> enemy = level.getLevel().get(level.getRoomID()).getRoom().getEnemySet();
 		
 		while(it.hasNext()) {
 			it.next().updatePos(); 
 		}
 		
+		enemy.forEach(e-> {
+			Iterator<BulletMonster> enemyIt = e.getBullets().iterator();
+			while(enemyIt.hasNext() ) {
+				enemyIt.next().updatePos();
+				
+			}
+		});
+		
 	}
 	
 	public void eliminateMainProj() {
 		Iterator<BulletPlayer> it = player.getRoomBullets().iterator();
+		Set<Enemy> enemy = level.getLevel().get(level.getRoomID()).getRoom().getEnemySet();
 		
 		while(it.hasNext()) {
 			if(!it.next().isAlive())
 				it.remove();
 		}
+		
+		enemy.forEach(e-> {
+			Iterator<BulletMonster> enemyIt = e.getBullets().iterator();
+			while(enemyIt.hasNext()) {
+				if(!enemyIt.next().isAlive())
+					enemyIt.remove();
+			}
+		});
+		
 		
 	}
 	

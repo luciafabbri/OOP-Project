@@ -27,9 +27,9 @@ public class FourSideAtt implements MonsterAttack {
 	public void createBullets(Pair<Integer, Integer> pos, Direction dir, int dmg) {
 		MonsterAttack attack = new OneSideAtt(currentRoom, enemy);
 		if(normalDir.contains(dir)) {
-			normalDir.forEach(d -> attack.createBullets(pos, dir, dmg));
+			normalDir.forEach(d -> attack.createBullets(pos, d, dmg));
 		} else {
-			mixedDir.forEach(d -> attack.createBullets(pos, dir, dmg));
+			mixedDir.forEach(d -> attack.createBullets(pos, d, dmg));
 		}
 	}
 	

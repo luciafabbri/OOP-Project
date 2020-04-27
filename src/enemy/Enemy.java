@@ -14,8 +14,6 @@ public interface Enemy extends utility.Character {
 	public final static int DIMENSION = GameSettings.TILESIZE;
 	
 	public void updatePos();
-	
-	public int getDamage();
 
 	public void takeDmg(int damage);
 	
@@ -30,6 +28,8 @@ public interface Enemy extends utility.Character {
 	public Animation getAnimation();
 	
 	public boolean isAlive();
+	
+	public void attack();
 	
 	//public setBuff();
 	

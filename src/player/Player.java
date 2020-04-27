@@ -108,11 +108,6 @@ public interface Player extends DefaultPlayer, utility.Character {
 	 * Methods used to get player's check 
 	 */
 	public CheckPlayer getCheck();
-
-	/**
-	 * Methods used to get player's damage 
-	 */
-	public int getDmg();
 	
 	/**
 	 * Methods used to upgrade player's damage 

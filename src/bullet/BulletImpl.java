@@ -75,11 +75,9 @@ public class BulletImpl implements Bullet {
 	public UpDownLeftRight<Integer> getDimension() {
 		if (direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
 			return dimensions.getX().getDimension();
-		} else if (direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
-			return dimensions.getY().getDimension();
 		} else {
-			throw new IllegalArgumentException();
-		}
+			return dimensions.getY().getDimension();
+		}		
 	}
 
 	public void setTexture(Image texture) {

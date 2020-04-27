@@ -12,17 +12,17 @@ import utility.Entity;
 
 public class CheckPlayerBull extends CheckPosImpl implements GameSettings {
 	
-	private BulletPlayerImpl bullet;
+	private Entity entity;
 	
-	public CheckPlayerBull(Entity entity, BulletPlayerImpl bulletPlayer) {
+	public CheckPlayerBull(Entity entity) {
 		super(entity);
-		this.bullet = bulletPlayer;
+		this.entity = entity;
 	}
 
 
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		return ( checkCharacters(room, pos) || super.possiblePos(room, pos) );
+		return ( checkCharacters(room, pos) && super.possiblePos(room, pos) );
 	}
 	
 	// DA CONTROLLARE SE POSIZIONE NEMICO VA BENE
@@ -35,12 +35,12 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings {
 			if (checkX && checkY) {
 				//fintanto che il nemico resta all'interno della traiettoria gli do danno ? thread.sleep()
 				System.out.println("nemico preso");
-				enemy.takeDmg(this.bullet.getDmg());
+				enemy.takeDmg(this.entity.getDmg());
 				System.out.println("vita nemico: " + enemy.getHealth().getCurrentHealth());
-				return true;
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 }

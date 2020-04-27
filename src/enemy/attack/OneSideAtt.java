@@ -1,6 +1,5 @@
 package enemy.attack;
 
-import bullet.Bullet;
 import bullet.BulletMonster;
 import bullet.BulletMonsterImpl;
 import utility.Direction;
@@ -23,7 +22,7 @@ public class OneSideAtt extends MonsterAttAbst implements MonsterAttack{
 				
 		//CHECK IF CAN CREATE
 		
-		BulletMonster bull = new BulletMonsterImpl(calculateBullPos(pos, dir), dmg, dir, currentRoom);
+		BulletMonster bull = new BulletMonsterImpl(calculateBullPos(pos, dir, enemy), dmg, dir, currentRoom);
 		
 		enemy.addBullet(bull);
 				
