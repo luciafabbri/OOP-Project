@@ -9,6 +9,10 @@ import utility.Debuff;
 import utility.Direction;
 import utility.Entity;
 
+/**
+ * Interface
+ */
+
 public interface Bullet extends Entity {
 	
 	public final static int DIMENSION = 48;

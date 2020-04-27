@@ -147,4 +147,9 @@ public interface Player extends DefaultPlayer, utility.Character {
 	 * Methods used to get player's movement 
 	 */
 	public Movement getMove();
+
+	/**
+	 * @return
+	 */
+	public int getRof();
 }

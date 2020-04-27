@@ -56,6 +56,7 @@ public class PlayerImpl implements Player {
 	private int playerSpeed;
 	private int bulletSpeed;
 	private int dmg;
+	private int rof;
 	
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
 		this.position = pos;
@@ -63,6 +64,8 @@ public class PlayerImpl implements Player {
 		this.direction = dir;
 		this.playerSpeed = 1;
 		this.bulletSpeed = 1;
+		this.rof = 1000;
+		this.dmg = 10;
 		
 		try {
 			bowShoot = new Sound("./res/audio/bow/bow_fired.wav");
@@ -133,6 +136,11 @@ public class PlayerImpl implements Player {
 	public RoomDesign getRoom() {
 		return this.currentRoom;
 	}
+	
+	@Override
+	public int getRof() {
+		return this.rof;
+	}
 
 	@Override
 	public Direction getDirection() {
@@ -201,6 +209,7 @@ public class PlayerImpl implements Player {
 	
 	@Override
 	public int getDmg() {
+		System.out.println(dmg);
 		return dmg;
 	}
 	

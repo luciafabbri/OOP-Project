@@ -10,6 +10,8 @@ import player.PlayerImpl;
 public class BulletMovementImpl implements BulletMovement {
 	
 	private PlayerImpl player;
+	private long startMillis = 0; 
+	private long stopMillis;
 	
 	public BulletMovementImpl(PlayerImpl player) {
 		this.player = player;
@@ -17,11 +19,11 @@ public class BulletMovementImpl implements BulletMovement {
 		
 		@Override
 		public void checkShooting(Input input) {
-			
-			if(input.isKeyPressed(Input.KEY_SPACE)) {
+			stopMillis = System.currentTimeMillis();
+			if(input.isKeyDown(Input.KEY_SPACE) && (stopMillis - startMillis > player.getRof())) {
 				this.shoot();
-			}
-			
+				startMillis = System.currentTimeMillis();
+			}	
 		}
 		
 		public void shoot(){

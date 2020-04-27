@@ -22,7 +22,7 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings {
 
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		return ( checkCharacters(room, pos) && super.possiblePos(room, pos) );
+		return ( !checkCharacters(room, pos) && super.possiblePos(room, pos) );
 	}
 	
 	// DA CONTROLLARE SE POSIZIONE NEMICO VA BENE
@@ -33,14 +33,11 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings {
 			checkX = pos.getX() + enemy.getDimension().getLeft() < enemy.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + enemy.getDimension().getRight() > enemy.getPosition().getX();
 			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - enemy.getDimension().getRight()) && pos.getY() + enemy.getDimension().getDown() > enemy.getPosition().getY();
 			if (checkX && checkY) {
-				//fintanto che il nemico resta all'interno della traiettoria gli do danno ? thread.sleep()
-				System.out.println("nemico preso");
 				enemy.takeDmg(this.entity.getDmg());
-				System.out.println("vita nemico: " + enemy.getHealth().getCurrentHealth());
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 }
