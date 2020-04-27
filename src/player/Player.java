@@ -1,21 +1,22 @@
 package player;
 
+import java.util.Set;
+
+import bullet.BulletPlayer;
+
 import design.RoomDesign;
 import design.utilities.Pair;
+
 import levels.Level;
-import player.inventory.Inventory;
+
 import player.movement.Movement;
 import player.movement.check.CheckPlayer;
 import player.shoot.BulletMovement;
-
-import java.util.Set;
+import player.inventory.Inventory;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-
-import bullet.Bullet;
-import bullet.BulletPlayer;
 
 /**
  * Interface that presents all the methods needed or that can be used with regards to the player 
@@ -24,26 +25,27 @@ import bullet.BulletPlayer;
 public interface Player extends DefaultPlayer, utility.Character {
 	
 	/**
-	 * Methods used to set player's position
-	 * @param
+	 * Method used to set player's position
+	 * @param input, received from the keyboard
+	 * @param level, player's current level 
 	 * @throws SlickException 
 	 */
 	public void setPosition(Input input, Level level) throws SlickException;
-
 	
 	/**
-	 * Methods used to set the level in which the player should go
-	 * @param
+	 * Method used to set the level in which the player should go
+	 * @param level, to set the new player's level
 	 */
 	public void setLevel(int level);
 	
 	/**
-	 * Methods used to know in which level the character is 
+	 * Method used to know in which level the player is 
 	 */ 
 	public int getLevel();
 	
 	/**
-	 *  Methods used to get player's bullet
+	 *  Method used to get player's bullet
+	 *  @return the 
 	 */
 	public BulletMovement getBullet();
 
@@ -54,102 +56,99 @@ public interface Player extends DefaultPlayer, utility.Character {
 
 	/**
 	 * Methods used to set player's current room 
-	 * @param
+	 * @param room
 	 */
 	public void setCurrentRoom(RoomDesign room);
 	
 	/**
-	 * Methods used to set player's updated position
-	 * @param
+	 * Method used to set player's updated position
+	 * @param position, the coordinates of the player to be set 
 	 */
 	public void setPosition(Pair<Integer, Integer> position);
 	
 	/**
-	 * Methods used to load player's animations
+	 * Method used to load player's animations
 	 * @throws SlickException 
 	 */
 	public void loadAnimations() throws SlickException;
 	
-	
 	/**
-	 * Methods used to set player's front animation
+	 * Method used to set player's front animation
 	 */
 	public Animation getFront();
 
-	
 	/**
-	 * Methods used to set player's back animation
+	 * Method used to set player's back animation
 	 */
 	public Animation getBack();
 	
-	
 	/**
-	 * Methods used to set player's left animation
+	 * Method used to set player's left animation
 	 */
 	public Animation getLeft();
 	
-	
 	/**
-	 * Methods used to set player's right animation 
+	 * Method used to set player's right animation 
 	 */
 	public Animation getRight();
 
 	/**
-	 * Methods used to get player's speed 
+	 * Method used to get player's speed 
 	 */
 	public int getPlayerSpeed();
 	
 	/**
-	 * Methods used to get bullet's speed 
+	 * Method used to get bullet's speed 
 	 */
 	public int getBulletSpeed();
 
 	/**
-	 * Methods used to get player's check 
+	 * Method used to get player's check 
 	 */
 	public CheckPlayer getCheck();
 	
 	/**
-	 * Methods used to upgrade player's damage 
-	 * @param 
+	 * Method used to upgrade player's damage 
+	 * @param damage, an int value to add to player's current damage
 	 */
 	public void upgradeDmg(int damage);
 	
 	/**
-	 * Methods used to take player's damage from enemies or entities
-	 * @param
+	 * Method used to take player's damage from enemies or entities
+	 * @param damage, an int value to subtract to player's current health
 	 */
 	public void takeDmg(int damage);
 	
 	/**
-	 * Methods used to get player's inventory 
+	 * Method used to get player's inventory 
 	 */
 	public Inventory getInventory();
 	
 	/**
-	 * Methods used to get player's bullet set 
+	 * Method used to get player's bullet set 
 	 */
 	public Set<BulletPlayer> getRoomBullets();
 
 	/**
-	 * Methods used to upgrade player's speed 
-	 * @param
+	 * Method used to upgrade player's speed 
+	 * @param speedPlayer, an int value to be added to player's speed in order to move faster in the environment
 	 */
 	public void upgradePlayerSpeed(int speedPlayer);
 
 	/**
-	 * Methods used to upgrade bullet's speed 
-	 * @param 
+	 * Method used to upgrade bullet's speed 
+	 * @param speedBullet, an int value to be added to bullet's speed in order to move faster in the environment
 	 */
 	void upgradeBulletSpeed(int speedBullet);
 
 	/**
-	 * Methods used to get player's movement 
+	 * Method used to get player's movement 
 	 */
 	public Movement getMove();
 
 	/**
-	 * @return
+	 * Method used to get player's rof 
+	 * @return player's rof 
 	 */
 	public int getRof();
 }

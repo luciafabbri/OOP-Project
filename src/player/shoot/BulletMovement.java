@@ -14,16 +14,13 @@ public interface BulletMovement {
 
 	/** 
 	 * Method used to check if the space bare is pressed, which means that the player would start shooting
-	 * @param the input from the keyboard 
-	 *  
+	 * @param input, received from the keyboard 
 	 */
 	public void checkShooting(Input input);
 		
 	/**
-	 * 
-	 * Method used to make the player start shooting in the direction that he's going. 
+	 * Method used to make the player start shooting in the direction that he's going
 	 * A new BulletPlayerImpl() object is created
-	 * 
 	 */
 	public void shoot();	
 	

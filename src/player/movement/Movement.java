@@ -12,14 +12,17 @@ public interface Movement {
 
 	/** 
 	 * According to the input received, this method will change player's coordinates and his direction.
-	 * @param the input from the keyboard, the coordinates of the player and his direction
+	 * @param input, received from the keyboard
+	 * @param pos, player's coordinates inside the room
+	 * @param dir, player's direction inside the room
+	 * @param speed, player's speed
 	 * @return the new coordinates of the player
 	 */
 	public Pair<Integer, Integer> movePlayer (Input input, Pair<Integer, Integer> pos, Direction dir, int speed); 
 	
 	
 	/**
-	 * @return Player's direction  
+	 * @return player's direction  
 	 */	
 	public Direction getDirection();
 	

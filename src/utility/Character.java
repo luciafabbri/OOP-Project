@@ -3,26 +3,25 @@ package utility;
 import design.utilities.Pair;
 import utility.health.Health;
 
+/**
+ * Interface that extends interface Entity in order to add new methods and get information about characters 
+ */
+
 public interface Character extends Entity {
 	
 	/**
-	 * 
-	 * Methods used to get Character's position
-	 *  
+	 * @return character's coordinates 
 	 */	
 	public Pair<Integer, Integer> getPosition();	
 	
 	/**
-	 * 
-	 * Methods used to get Character's health
-	 *  
+	 * @return character's health
 	 */
 	public Health getHealth();
 	
 	/**
-	 * 
-	 * Methods used to set Character's direction
-	 *  
+	 * @return character's direction 
 	 */
 	public Direction getDirection();
+	
 }

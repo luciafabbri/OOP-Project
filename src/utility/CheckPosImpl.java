@@ -21,12 +21,7 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 		updateDimension();
 		return !(isOutOfLimits(pos) || checkObstaclesRoom(room, pos));
 	}
-
-	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
-		return ((pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix > LIMITRIGHT)
-				|| (pos.getY() + upPix < LIMITUP || pos.getY() + downPix > LIMITDOWN));
-	}
-
+	
 	public boolean checkObstaclesRoom(RoomDesign room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
 		for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
@@ -38,7 +33,12 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 		}
 		return false;
 	}
-	
+
+	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
+		return ((pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix > LIMITRIGHT)
+				|| (pos.getY() + upPix < LIMITUP || pos.getY() + downPix > LIMITDOWN));
+	}
+
 	private void updateDimension() {
 		this.upPix = entity.getDimension().getUp();
 		this.downPix = entity.getDimension().getDown();

@@ -1,12 +1,5 @@
 package utility.health;
 
-/**
- * 
- * Class that implements Interface Health and create an object HealthPlayerImpl
- * 
- */
-
-
 public class HealthImpl implements Health {
 	
 	private int totalHealth;
@@ -27,13 +20,14 @@ public class HealthImpl implements Health {
 		return this.currentHealth;
 	}
 	
+	@Override
 	public void setCurrentHealth(int health) {
 		this.currentHealth = health;
 	}
 	
 	@Override
-	public void takeDmg(int dmg) {
-		this.currentHealth = this.currentHealth - dmg;
+	public void takeDmg(int damage) {
+		this.currentHealth = this.currentHealth - damage;
 	}
 	
 	@Override

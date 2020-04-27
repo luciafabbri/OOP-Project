@@ -1,14 +1,19 @@
 package utility;
 
+/**
+ * Interface 
+ */
+
 public interface Entity {
 	
 	/**
-	 * 
-	 * Methods used to get Character's Dimensions
-	 *  
+	 * @return character's dimension 
 	 */
 	public UpDownLeftRight<Integer> getDimension();
 	
+	/**
+	 * @return character's damage 
+	 */
 	public int getDmg();
 
 }

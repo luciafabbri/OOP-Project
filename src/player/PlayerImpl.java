@@ -207,9 +207,7 @@ public class PlayerImpl implements Player {
 		this.bulletSpeed = this.bulletSpeed + speedBullet;
 	}
 	
-	@Override
 	public int getDmg() {
-		System.out.println(dmg);
 		return dmg;
 	}
 	
