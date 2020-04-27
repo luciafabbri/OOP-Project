@@ -32,13 +32,6 @@ import player.shoot.BulletMovement;
 import player.shoot.BulletMovementImpl;
 import design.RoomDesign;
 
-
-/**
- * 
- * Class that implements all the methods of Interface Player and create an object PlayerImpl
- * 
- */
-
 public class PlayerImpl implements Player {
 
 	private Pair<Integer,Integer> position;
