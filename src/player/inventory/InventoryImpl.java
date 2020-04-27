@@ -32,8 +32,4 @@ public class InventoryImpl implements Inventory {
 		this.key += 1;
 	}
 
-	@Override
-	public void printInventoryState() {
-		System.out.println("coin: " +this.getCoin() + "\nkey: " +this.getKey());
-	}
 }

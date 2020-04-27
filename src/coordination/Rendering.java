@@ -12,6 +12,8 @@ public interface Rendering {
 	void drawItems();
 	
 	void drawDoors();
+	
+	void drawEnemies();
 
 	void drawObstacles();
 

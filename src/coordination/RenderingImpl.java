@@ -69,6 +69,10 @@ public class RenderingImpl implements Rendering {
 		}
 	}
 	
+	public void drawEnemies() {
+		level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().forEach(s -> s.getAnimation().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE));
+	}
+	
 	public void drawMainProj() {
 		Set<BulletPlayer> bullets = player.getRoomBullets();
 		

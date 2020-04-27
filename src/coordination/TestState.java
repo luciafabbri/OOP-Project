@@ -33,9 +33,11 @@ public class TestState extends StateBasedGame {
 
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
-		this.getState(MENU).init(arg0, this); 
-		this.getState(LEVEL1).init(arg0, this);
-		this.enterState(MENU); //FIRST SCREEN USER SEES
+//		DO NOT REMOVE THESE COMMENTS, DOCUMENTATION SAYS THAT INITSTATES IS BROKEN
+		
+//		this.getState(MENU).init(arg0, this); 
+//		this.getState(LEVEL1).init(arg0, this);
+//		this.enterState(MENU); //FIRST SCREEN USER SEES
 	}
 	
 	//QUI VA MAIN PER INIZIALIZZARE PRIMA IL MENU
@@ -61,5 +63,9 @@ public class TestState extends StateBasedGame {
 		} catch (SlickException e) {
 			Logger.getLogger(TestPlay.class.getName()).log(Level.SEVERE, null, e);
 		}
+	}
+
+	public static Player getPlayer() {
+		return player;
 	}
 }

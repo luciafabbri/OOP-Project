@@ -48,6 +48,10 @@ public class LogicImpl {
 		player.setPosition(input, level);
 	}
 	
+	public void moveEnemies() {
+		level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().forEach(s -> s.updatePos());
+	}
+	
 	public void shootMain(final Input input) {
 		player.getBullet().checkShooting(input);
 	}
