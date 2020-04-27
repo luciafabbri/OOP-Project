@@ -20,17 +20,17 @@ public class CheckMonsterImpl extends CheckPosImpl implements CheckMonster, Game
 	@Override
 	public Direction changeDir(RoomDesign room, Pair<Integer, Integer> pos, Direction dir) {
 
-		if (pos.getX() + 49 >= LIMITRIGHT) {
+		if (pos.getX() + rightPix > LIMITRIGHT) {
 			this.x = -dir.getAbscissa();
-		} else if (pos.getX() + 15 < LIMITLEFT) {
+		} else if (pos.getX() + leftPix < LIMITLEFT) {
 			this.x = -dir.getAbscissa();
 		} else {
 			this.x = dir.getAbscissa();
 		}
 
-		if (pos.getY() + Enemy.DIMENSION >= LIMITDOWN) {
+		if (pos.getY() + downPix > LIMITDOWN) {
 			this.y = -dir.getOrdinate();
-		} else if (pos.getY() + 48 < LIMITUP) {
+		} else if (pos.getY() + upPix < LIMITUP) {
 			this.y = -dir.getOrdinate();
 		} else {
 			this.y = dir.getOrdinate();
@@ -39,10 +39,10 @@ public class CheckMonsterImpl extends CheckPosImpl implements CheckMonster, Game
 		if (checkObstaclesRoom(room, pos)) {
 			for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
 //				System.out.println(obstacleSet.size());
-				if (pos.getX() - 16 <= obst.getX() - TILESIZE || pos.getX() + 16 >= obst.getX() + TILESIZE) {
+				if ( pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE || pos.getX() + rightPix > obst.getX()) {
 					this.x = -dir.getAbscissa();
 				}
-				if (pos.getY() <= obst.getY() - TILESIZE || pos.getY() + 48 >= obst.getY() + TILESIZE) {
+				if (pos.getY() < obst.getY() + (TILESIZE - rightPix) || pos.getY() + downPix > obst.getY()) {
 					this.y = -dir.getOrdinate();
 				}
 			}

@@ -9,7 +9,7 @@ import utility.UpDownLeftRight;
 
 public enum EnemyImage {
 
-	FRONT_1("./res/chars/mainChar6_back.png"),
+	FRONT_1("./res/chars/mainChar6_front.png"),
 	BACK_1("./res/chars/mainChar6_back.png"),
 	LEFT_1("./res/chars/mainChar6_left.png"),
 	RIGHT_1("./res/chars/mainChar6_right.png"),
@@ -30,14 +30,15 @@ public enum EnemyImage {
 	public static UpDownLeftRight<Animation> getTexture(TypeEnemy mon) throws SlickException {
 		Animation front, back, left, right;
 		switch (mon) {
-			case MONSTER1:
-			case MONSTER2:
-			case MONSTER3:
 			case PLANT:
 				front = FRONT_2.getAnimation();
 				back = FRONT_2.getAnimation();
 				left = FRONT_2.getAnimation();
 				right = FRONT_2.getAnimation();
+				break;
+			case MONSTER1:
+			case MONSTER2:
+			case MONSTER3:
 			case BOSS:
 				front = FRONT_1.getAnimation();	
 				back = BACK_1.getAnimation();	

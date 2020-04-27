@@ -23,8 +23,8 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 	}
 
 	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
-		return ((pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix >= LIMITRIGHT)
-				|| (pos.getY() + upPix < LIMITUP || pos.getY() + downPix >= LIMITDOWN));
+		return ((pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix > LIMITRIGHT)
+				|| (pos.getY() + upPix < LIMITUP || pos.getY() + downPix > LIMITDOWN));
 	}
 
 	public boolean checkObstaclesRoom(RoomDesign room, Pair<Integer, Integer> pos) {
