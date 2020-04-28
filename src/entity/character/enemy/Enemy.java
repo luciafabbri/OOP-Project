@@ -5,8 +5,7 @@ import java.util.Set;
 import org.newdawn.slick.Animation;
 
 import design.utilities.GameSettings;
-import entity.bullet.BulletMonster;
-import entity.character.enemy.attack.TypeAttack;
+import entity.bullet.Bullet;
 
 public interface Enemy extends entity.character.Character {
 	
@@ -17,13 +16,11 @@ public interface Enemy extends entity.character.Character {
 
 	public void takeDmg(int damage);
 	
-	public TypeAttack getAttack();
-	
 	public TypeEnemy getTypeEnemy();
 	
-	public void addBullet(BulletMonster bullet);
+	public void addBullet(Bullet bullet);
 	
-	public Set<BulletMonster> getBullets();
+	public Set<Bullet> getBullets();
 	
 	public Animation getAnimation();
 	

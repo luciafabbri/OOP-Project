@@ -31,22 +31,22 @@ public class EnemyCreatorImpl implements EnemyCreator {
 	} */
 	
 	@Override
-	public Enemy getMonsterA(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
-		return new EnemyImpl(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.TRIPLE, room, TypeEnemy.MONSTER1);
+	public Enemy getMonsterA(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
+		return new EnemyImpl(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, TypeEnemy.MONSTER1);
 	}
 	
 	@Override
-	public Enemy getMonsterB(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
+	public Enemy getMonsterB(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
 		return new EnemyImpl(pos, damage, health, TypeMove.RANDOM, TypeAttack.TWO_SIDE, room, TypeEnemy.MONSTER2);
 	}
 	
 	@Override
-	public Enemy getMonsterC(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
+	public Enemy getMonsterC(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
 		return new EnemyImpl(pos, damage, health, TypeMove.TELEPORT, TypeAttack.TRIPLE, room, TypeEnemy.MONSTER3);
 	}
 	
 	@Override
-	public Enemy getMonsterD(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room) {
+	public Enemy getMonsterD(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
 		return new EnemyImpl(pos, damage, health, TypeMove.IMMOBILIZED, TypeAttack.FOUR_SIDE, room, TypeEnemy.PLANT);
 	}
 

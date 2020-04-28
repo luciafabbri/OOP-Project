@@ -3,7 +3,6 @@ package entity.character.player.shoot;
 import org.newdawn.slick.Input;
 
 import entity.bullet.Bullet;
-import entity.bullet.BulletPlayer;
 import entity.bullet.BulletPlayerImpl;
 import entity.character.player.PlayerImpl;
 
@@ -27,7 +26,7 @@ public class BulletMovementImpl implements BulletMovement {
 		}
 		
 		public void shoot(){
-			BulletPlayer bullet = new BulletPlayerImpl(player.getPosition(), player.getDamage(), player.getBulletSpeed(),player.getDirection(), player.getRoom());  	
+			Bullet bullet = new BulletPlayerImpl(player.getPosition(), player.getDamage(),player.getDirection(), player.getRoom());  	
 			if (bullet.isAlive()) {
 				player.getRoomBullets().add(bullet);
 				player.getBowShoot().play(1.0f, 0.05f);

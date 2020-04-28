@@ -6,7 +6,6 @@ import design.RoomDesign;
 import design.utilities.Pair;
 import entity.Entity;
 import entity.character.Debuff;
-import entity.move.CheckPos;
 import entity.move.Direction;
 
 /**
@@ -27,10 +26,11 @@ public interface Bullet extends Entity {
 	 */
 	public Pair<Integer,Integer> getPos();
 	
+
 	/**
 	 * @param check
 	 */
-	public void updatePos(CheckPos check);
+	public void updatePos();
 	
 	/**
 	 * @return

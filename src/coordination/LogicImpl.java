@@ -9,8 +9,7 @@ import org.newdawn.slick.SlickException;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
-import entity.bullet.BulletMonster;
-import entity.bullet.BulletPlayer;
+import entity.bullet.Bullet;
 import entity.character.enemy.Enemy;
 import entity.character.player.DoorCheck;
 import entity.character.player.Player;
@@ -61,7 +60,7 @@ public class LogicImpl {
 	}
 	
 	public void moveMainProj(final Input input) {
-		Iterator<BulletPlayer> it = player.getRoomBullets().iterator();
+		Iterator<Bullet> it = player.getRoomBullets().iterator();
 		Set<Enemy> enemy = level.getLevel().get(level.getRoomID()).getRoom().getEnemySet();
 		
 		while(it.hasNext()) {
@@ -69,7 +68,7 @@ public class LogicImpl {
 		}
 		
 		enemy.forEach(e-> {
-			Iterator<BulletMonster> enemyIt = e.getBullets().iterator();
+			Iterator<Bullet> enemyIt = e.getBullets().iterator();
 			while(enemyIt.hasNext() ) {
 				enemyIt.next().updatePos();
 				
@@ -79,7 +78,7 @@ public class LogicImpl {
 	}
 	
 	public void eliminateMainProj() {
-		Iterator<BulletPlayer> it = player.getRoomBullets().iterator();
+		Iterator<Bullet> it = player.getRoomBullets().iterator();
 		Set<Enemy> enemy = level.getLevel().get(level.getRoomID()).getRoom().getEnemySet();
 		
 		while(it.hasNext()) {
@@ -88,7 +87,7 @@ public class LogicImpl {
 		}
 		
 		enemy.forEach(e-> {
-			Iterator<BulletMonster> enemyIt = e.getBullets().iterator();
+			Iterator<Bullet> enemyIt = e.getBullets().iterator();
 			while(enemyIt.hasNext()) {
 				if(!enemyIt.next().isAlive())
 					enemyIt.remove();

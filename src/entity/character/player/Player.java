@@ -4,7 +4,7 @@ import java.util.Set;
 
 import design.RoomDesign;
 import design.utilities.Pair;
-import entity.bullet.BulletPlayer;
+import entity.bullet.Bullet;
 import entity.character.player.inventory.Inventory;
 import entity.character.player.movement.Movement;
 import entity.character.player.movement.check.CheckPlayer;
@@ -93,11 +93,6 @@ public interface Player extends DefaultPlayer, entity.character.Character {
 	 * Method used to get player's speed 
 	 */
 	public int getPlayerSpeed();
-	
-	/**
-	 * Method used to get bullet's speed 
-	 */
-	public int getBulletSpeed();
 
 	/**
 	 * Method used to get player's check 
@@ -124,19 +119,13 @@ public interface Player extends DefaultPlayer, entity.character.Character {
 	/**
 	 * Method used to get player's bullet set 
 	 */
-	public Set<BulletPlayer> getRoomBullets();
+	public Set<Bullet> getRoomBullets();
 
 	/**
 	 * Method used to upgrade player's speed 
 	 * @param speedPlayer, an int value to be added to player's speed in order to move faster in the environment
 	 */
 	public void upgradePlayerSpeed(int speedPlayer);
-
-	/**
-	 * Method used to upgrade bullet's speed 
-	 * @param speedBullet, an int value to be added to bullet's speed in order to move faster in the environment
-	 */
-	void upgradeBulletSpeed(int speedBullet);
 
 	/**
 	 * Method used to get player's movement 

@@ -5,15 +5,14 @@ import org.newdawn.slick.SlickException;
 
 import design.RoomDesign;
 import design.utilities.Pair;
-import entity.bullet.move.CheckMonsBull;
 import entity.character.Debuff;
 import entity.move.Direction;
-import entity.move.Speed;
 
-public class BulletMonsterImpl extends BulletImpl implements BulletMonster{
 
-	public BulletMonsterImpl(Pair<Integer, Integer> position, int damage, Speed speed, Debuff debuff, Direction direction, RoomDesign room) {
-		super(position, damage, speed, debuff, direction, room, TypeBullet.MONSTER);
+public class BulletMonsterImpl extends BulletImpl implements Bullet{
+
+	public BulletMonsterImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, RoomDesign room) {
+		super(position, damage, debuff, direction, room, TypeBullet.MONSTER);
 		try {
 			this.setTexture(new Image("./res/proj/EnemyProj.png"));
 		} catch (SlickException e) {
@@ -23,18 +22,13 @@ public class BulletMonsterImpl extends BulletImpl implements BulletMonster{
 	}
 	
 	public BulletMonsterImpl(Pair<Integer, Integer> position, int damage, Direction direction, RoomDesign room) {
-		this(position, damage, Speed.NORMAL, Debuff.NO_ONE, direction, room);
+		this(position, damage, Debuff.NO_ONE, direction, room);
 		try {
 			this.setTexture(new Image("./res/proj/EnemyProj.png"));
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	@Override
-	public void updatePos() {
-		super.updatePos(new CheckMonsBull(this));
 	}
 
 }
