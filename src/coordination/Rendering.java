@@ -22,6 +22,4 @@ public interface Rendering {
 	void drawMod();
 	
 	void drawDoorTop() throws SlickException;
-	
-	void drawMainProj();
 }

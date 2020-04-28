@@ -11,7 +11,7 @@ import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import coordination.TestPlay;
+import coordination.LevelsPlay;
 import java.util.Optional;
 import design.generation.LevelDesignGeneratorImpl;
 import design.utilities.GameSettings;
@@ -46,7 +46,7 @@ public class GenerationTest implements Game {
 			appgc.setMaximumLogicUpdateInterval(80);
 			appgc.start();
 		} catch (SlickException e) {
-			Logger.getLogger(TestPlay.class.getName()).log(Level.SEVERE, null, e);
+			Logger.getLogger(LevelsPlay.class.getName()).log(Level.SEVERE, null, e);
 		}
 
 	}

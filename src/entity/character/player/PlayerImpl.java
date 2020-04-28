@@ -31,6 +31,7 @@ import design.RoomDesign;
 public class PlayerImpl implements Player {
 
 	private int level;
+	private boolean clearRoom;
 	private int playerSpeed;
 	private int damage;
 	private int rof;
@@ -63,13 +64,8 @@ public class PlayerImpl implements Player {
 		this.check = new CheckPlayerImpl(this,this);
 		this.bullet = new BulletMovementImpl(this);
 		this.dimensions = PlayerDimensions.getPlayerDimensions(this);
-
-		try {
-			this.textures = PlayerImages.getTexture(this);
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
-
+		this.clearRoom = false;
+		
 		try {
 			bowShoot = new Sound("./res/audio/bow/bow_fired.wav");
 		} catch (SlickException e) {
@@ -85,7 +81,7 @@ public class PlayerImpl implements Player {
 		newPos = move.movePlayer(input, this.position, this.direction, this.playerSpeed); 
 
 		if( check.checkEntityRoom(this.currentRoom,newPos) || check.checkEnemyRoom(this.currentRoom, newPos) || 
-				check.possiblePos(this.currentRoom, newPos) || check.checkDoors(newPos, map) ) {
+				check.possiblePos(this.currentRoom, newPos) || (check.checkDoors(newPos, map) && clearRoom)) {
 			this.position = newPos;  
 		}
 		this.direction = move.getDirection();   /** direction changes even if the player can't actually go in that position */
@@ -216,4 +212,13 @@ public class PlayerImpl implements Player {
 	public Sound getBowShoot() {
 		return this.bowShoot;
 	}
+	
+	public void loadAnimations() throws SlickException {
+		this.textures = PlayerImages.getTexture(this);
+	}
+
+	public void setClearRoom(boolean clearRoom) {
+		this.clearRoom = clearRoom;
+	}
+
 }

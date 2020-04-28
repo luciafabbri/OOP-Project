@@ -5,6 +5,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -17,12 +18,15 @@ public class Menu extends BasicGameState{
 	private int x, y;
 	private boolean hoverButtonStart;
 	private boolean hoverButtonEnd;
+	private Music music;
 	
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		hoverButtonStart = false;
 		hoverButtonEnd = false;
+		this.music = new Music("./res/audio/music/Ominous_Music.wav");
+		
 	}
 
 	@Override
@@ -72,6 +76,7 @@ public class Menu extends BasicGameState{
 		(y < ((GameSettings.HEIGHT / 2) - 20) && y > ((GameSettings.HEIGHT / 2) - 60))) {
 			hoverButtonStart = true;
 			if(input.isMousePressed(0)) {
+				music.loop(1.0f, 0.04f);
 				arg1.enterState(1);
 			}
 		} else {

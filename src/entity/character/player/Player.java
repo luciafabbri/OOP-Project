@@ -107,5 +107,8 @@ public interface Player extends entity.character.Character {
 	public int getRof();
 	
 	public Animation getAnimation();
-
+	
+	public void loadAnimations() throws SlickException;
+	
+	public void setClearRoom(boolean clearRoom);
 }

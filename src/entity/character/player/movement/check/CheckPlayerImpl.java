@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 import design.RoomDesign;
 
@@ -27,9 +28,20 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 	private long startMillis = 0; 
 	private long stopMillis;
 	
+	private Sound keyPickup;
+	private Sound coinPickup;
+	
 	public CheckPlayerImpl(Entity entity, PlayerImpl player) {
 		super(entity);
 		this.player = player;
+		
+		try {
+			keyPickup = new Sound("./res/audio/pickups/keyPickup.wav");
+			coinPickup = new Sound("./res/audio/pickups/coinPickup.wav");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -58,10 +70,12 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 			if (checkX && checkY) {
 				if (item.getTypeEnt().equals(Entities.COIN)) {
 					player.getInventory().addCoin();
+					coinPickup.play(1.0f, 0.35f);
 					room.getPickupablesSet().remove(item);
 				}
 				if (item.getTypeEnt().equals(Entities.KEY)) {
 					player.getInventory().addKey();
+					keyPickup.play(1.0f, 0.25f);
 					room.getPickupablesSet().remove(item);
 				}
 				if (item.getTypeEnt().equals(Entities.HEALTHUPGRADE1)) {

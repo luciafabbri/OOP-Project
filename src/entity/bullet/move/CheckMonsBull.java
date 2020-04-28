@@ -1,6 +1,6 @@
 package entity.bullet.move;
 
-import coordination.TestState;
+import coordination.StateCoord;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
@@ -24,7 +24,7 @@ public class CheckMonsBull extends CheckPosImpl implements GameSettings, CheckPo
 	}
 	
 	public boolean checkCharacters(RoomDesign room, Pair<Integer, Integer> pos) {
-		Player player = TestState.getPlayer();
+		Player player = StateCoord.getPlayer();
 		boolean checkX, checkY;
 		checkX = pos.getX() + entity.getDimension().getLeft() < player.getPosition().getX() + player.getDimension().getRight() &&
 				pos.getX() + entity.getDimension().getRight() > player.getPosition().getX() + player.getDimension().getLeft();
