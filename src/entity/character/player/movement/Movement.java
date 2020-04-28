@@ -6,7 +6,7 @@ import design.utilities.Pair;
 import entity.move.Direction;
 
 /**
- * Interface that allows the player to move in the environment by pressing keyboard's keys
+ * An interface that allows the player to move in the environment by pressing keyboard's keys
  */
 
 public interface Movement {

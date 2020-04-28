@@ -5,7 +5,6 @@ import org.newdawn.slick.Image;
 import design.RoomDesign;
 import design.utilities.Pair;
 import entity.Entity;
-import entity.character.Debuff;
 import entity.move.Direction;
 
 /**
@@ -17,25 +16,20 @@ public interface Bullet extends Entity {
 	public final static int DIMENSION = 48;
 		
 	/**
-	 * @return
+	 * @return true if the bullet is alive
 	 */
 	public boolean isAlive();
 	
 	/** 
-	 * @return
+	 * @return bullet's position
 	 */
 	public Pair<Integer,Integer> getPos();
 	
 
 	/**
-	 * @param check
+	 * 
 	 */
 	public void updatePos();
-	
-	/**
-	 * @return
-	 */
-	public Debuff getDebuff();	
 	
 	/**
 	 * @return

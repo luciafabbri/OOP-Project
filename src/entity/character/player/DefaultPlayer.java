@@ -5,7 +5,7 @@ import entity.UpDownLeftRight;
 import entity.move.Direction;
 
 /**
- * Interface used to set several default values of the player   
+ * An interface used to set several default values of the player   
  */
 
 public interface DefaultPlayer {

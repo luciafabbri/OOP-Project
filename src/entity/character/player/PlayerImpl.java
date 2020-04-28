@@ -33,8 +33,18 @@ import design.RoomDesign;
 
 public class PlayerImpl implements Player {
 
-	private Pair<Integer,Integer> position;
 	private int level;
+	private int playerSpeed;
+	private int damage;
+	private int rof;
+	private Pair<Integer,Integer> position;
+	private Direction direction;
+	private Movement move;
+	private CheckPlayer check;
+	private Health health;
+	private RoomDesign currentRoom;
+	private Inventory inventory;
+
 	private Animation front;
 	private Animation back;
 	private Animation left;
@@ -42,28 +52,22 @@ public class PlayerImpl implements Player {
 
 	private Sound bowShoot;
 	
-	private Direction direction;
-	private Movement move = new MovementImpl();
-	private CheckPlayer check = new CheckPlayerImpl(this,this);
+	private BulletMovement bullet ;
+	Set<Bullet> roomBullets = new HashSet<>();
 
-	private Health health = new HealthImpl(HEALTH);
-	private RoomDesign currentRoom;
-	private Inventory inventory = new InventoryImpl(this);
-	private BulletMovement bullet = new BulletMovementImpl(this);
-	private Set<Bullet> roomBullets = new HashSet<>();
-	
-	private int playerSpeed;
-	private int dmg;
-	private int rof;
-	
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
 		this.position = pos;
 		this.level = level;
 		this.direction = dir;
 		this.playerSpeed = 1;
 		this.rof = 1000;
-		this.dmg = 10;
-		
+		this.damage = 10;
+		this.inventory = new InventoryImpl(this);
+		this.health = new HealthImpl(HEALTH);
+		this.move = new MovementImpl();
+		this.check = new CheckPlayerImpl(this,this);
+		this.bullet = new BulletMovementImpl(this);
+
 		try {
 			bowShoot = new Sound("./res/audio/bow/bow_fired.wav");
 		} catch (SlickException e) {
@@ -196,12 +200,12 @@ public class PlayerImpl implements Player {
 	
 
 	public int getDamage() {
-		return dmg;
+		return damage;
 	}
 	
 	@Override
 	public void upgradeDmg(int damage) {
-		this.dmg = this.dmg + damage;
+		this.damage = this.damage + damage;
 	}
 	
 	@Override

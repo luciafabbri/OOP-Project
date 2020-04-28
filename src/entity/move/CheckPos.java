@@ -4,7 +4,7 @@ import design.RoomDesign;
 import design.utilities.Pair;
 
 /**
- * Interface
+ * An interface 
  */
 
 public interface CheckPos {

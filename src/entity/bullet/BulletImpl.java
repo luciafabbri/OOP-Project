@@ -8,7 +8,6 @@ import entity.bullet.move.CheckMonsBull;
 import entity.bullet.move.CheckPlayerBull;
 import entity.bullet.move.MoveBull;
 import entity.bullet.move.MoveBullImpl;
-import entity.character.Debuff;
 import entity.move.CheckPos;
 import entity.move.Direction;
 
@@ -16,7 +15,6 @@ public class BulletImpl implements Bullet {
 	
 	private Pair<Integer, Integer> pos;
 	private int dmg;
-	private Debuff debuff;
 	private Direction direction;
 	private MoveBull move;
 	private Image texture;
@@ -24,10 +22,9 @@ public class BulletImpl implements Bullet {
 	private Pair<DimensionBullet, DimensionBullet> dimensions;
 	private CheckPos check;
 	
-	public BulletImpl(Pair<Integer, Integer> position, int damage, Debuff debuff, Direction direction, RoomDesign room, TypeBullet type){
+	public BulletImpl(Pair<Integer, Integer> position, int damage, Direction direction, RoomDesign room, TypeBullet type){
 		this.pos = position;
 		this.dmg = damage;
-		this.debuff = debuff;
 		this.direction = direction;	
 		this.room = room;
 		this.move = new MoveBullImpl(room);	
@@ -64,11 +61,6 @@ public class BulletImpl implements Bullet {
 	@Override
 	public int getDamage() {
 		return this.dmg;
-	}
-
-	@Override
-	public Debuff getDebuff() {
-		return this.debuff;
 	}
 
 	@Override

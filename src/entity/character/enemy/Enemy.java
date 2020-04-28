@@ -13,8 +13,6 @@ public interface Enemy extends entity.character.Character {
 	public final static int DIMENSION = GameSettings.TILESIZE;
 	
 	public void updatePos();
-
-	public void takeDmg(int damage);
 	
 	public TypeEnemy getTypeEnemy();
 	

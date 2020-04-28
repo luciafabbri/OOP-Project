@@ -1,7 +1,7 @@
 package entity.character.player.inventory;
 
 /**
- * Interface used to store objects that the player can pick up by walking into the environment
+ * An interface used to store objects that the player can pick up by walking into the environment
  */
 
 public interface Inventory {

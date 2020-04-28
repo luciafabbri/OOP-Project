@@ -16,7 +16,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 /**
- * Interface that presents all the methods needed or that can be used with regards to the player 
+ * An interface that presents all the methods needed or that can be used with regards to the player 
  */
 
 public interface Player extends DefaultPlayer, entity.character.Character {
@@ -36,24 +36,23 @@ public interface Player extends DefaultPlayer, entity.character.Character {
 	public void setLevel(int level);
 	
 	/**
-	 * Method used to know in which level the player is 
+	 * @return the player's current level 
 	 */ 
 	public int getLevel();
 	
 	/**
-	 *  Method used to get player's bullet
-	 *  @return the 
+	 *  @return player's bullet 
 	 */
 	public BulletMovement getBullet();
 
 	/**
-	 * Methods used to get player's current room 
+	 * @return player's current room 
 	 */
 	public RoomDesign getRoom();
 
 	/**
 	 * Methods used to set player's current room 
-	 * @param room
+	 * @param room, the room where the player would be moved
 	 */
 	public void setCurrentRoom(RoomDesign room);
 	
@@ -70,32 +69,32 @@ public interface Player extends DefaultPlayer, entity.character.Character {
 	public void loadAnimations() throws SlickException;
 	
 	/**
-	 * Method used to set player's front animation
+	 * @return player's front animation
 	 */
 	public Animation getFront();
 
 	/**
-	 * Method used to set player's back animation
+	 * @return player's back animation
 	 */
 	public Animation getBack();
 	
 	/**
-	 * Method used to set player's left animation
+	 * @return player's left animation
 	 */
 	public Animation getLeft();
 	
 	/**
-	 * Method used to set player's right animation 
+	 * @return player's right animation 
 	 */
 	public Animation getRight();
 
 	/**
-	 * Method used to get player's speed 
+	 * @return player's speed 
 	 */
 	public int getPlayerSpeed();
 
 	/**
-	 * Method used to get player's check 
+	 * @return player's check 
 	 */
 	public CheckPlayer getCheck();
 	
@@ -106,34 +105,27 @@ public interface Player extends DefaultPlayer, entity.character.Character {
 	public void upgradeDmg(int damage);
 	
 	/**
-	 * Method used to take player's damage from enemies or entities
-	 * @param damage, an int value to subtract to player's current health
-	 */
-	public void takeDmg(int damage);
-	
-	/**
-	 * Method used to get player's inventory 
+	 * @return player's inventory 
 	 */
 	public Inventory getInventory();
 	
 	/**
-	 * Method used to get player's bullet set 
+	 * @return player's bullet set 
 	 */
 	public Set<Bullet> getRoomBullets();
 
 	/**
 	 * Method used to upgrade player's speed 
-	 * @param speedPlayer, an int value to be added to player's speed in order to move faster in the environment
+	 * @param speedPlayer, an int value to be added to player's speed in order to move faster in the dungeon
 	 */
 	public void upgradePlayerSpeed(int speedPlayer);
 
 	/**
-	 * Method used to get player's movement 
+	 * @return player's movement 
 	 */
 	public Movement getMove();
 
 	/**
-	 * Method used to get player's rof 
 	 * @return player's rof 
 	 */
 	public int getRof();
