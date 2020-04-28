@@ -1,7 +1,6 @@
 package entity.bullet;
 
 import org.newdawn.slick.Image;
-
 import design.RoomDesign;
 import design.utilities.Pair;
 import entity.UpDownLeftRight;
@@ -11,7 +10,6 @@ import entity.character.Debuff;
 import entity.move.CheckPos;
 import entity.move.Direction;
 import entity.move.Speed;
-
 
 public class BulletImpl implements Bullet {
 	
@@ -35,7 +33,6 @@ public class BulletImpl implements Bullet {
 		this.move = new MoveBullImpl(room);	
 		this.dimensions = DimensionBullet.getDimensionBullet(type);
 	}	
-	
 
 	@Override
 	public boolean isAlive() {
@@ -53,7 +50,7 @@ public class BulletImpl implements Bullet {
 	}
 
 	@Override
-	public int getDmg() {
+	public int getDamage() {
 		return this.dmg;
 	}
 
@@ -81,12 +78,14 @@ public class BulletImpl implements Bullet {
 		}		
 	}
 
+	@Override
 	public void setTexture(Image texture) {
 		this.texture = texture;
 	}
 
-
+	@Override
 	public RoomDesign getRoom() {
 		return room;
 	}
+	
 }

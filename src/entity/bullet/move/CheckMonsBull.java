@@ -31,7 +31,7 @@ public class CheckMonsBull extends CheckPosImpl implements GameSettings {
 		checkY = pos.getY() + entity.getDimension().getUp() < player.getPosition().getY() + player.getDimension().getDown() &&
 				pos.getY() + entity.getDimension().getDown() > player.getPosition().getY();
 		if (checkX && checkY) {
-			player.takeDmg(entity.getDmg());
+			player.takeDmg(entity.getDamage());
 			return false;
 		}
 		return true;

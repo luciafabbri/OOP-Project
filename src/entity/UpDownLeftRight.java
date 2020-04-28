@@ -29,7 +29,5 @@ public class UpDownLeftRight <X> {
 	public X getRight() {
 		return right;
 	}
-	
-	
 
 }

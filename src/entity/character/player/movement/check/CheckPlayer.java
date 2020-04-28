@@ -11,7 +11,7 @@ import design.utilities.enums.Door;
 import entity.move.CheckPos;
 
 /**
- * Interface used to check player's position in the current room 
+ * An interface used to check player's position in the current room 
  */
 
 public interface CheckPlayer extends CheckPos{

@@ -6,14 +6,11 @@ import org.newdawn.slick.SlickException;
 import design.RoomDesign;
 import design.utilities.Pair;
 import entity.bullet.move.CheckMonsBull;
-import entity.bullet.move.CheckPlayerBull;
 import entity.character.Debuff;
 import entity.move.Direction;
 import entity.move.Speed;
 
 public class BulletMonsterImpl extends BulletImpl implements BulletMonster{
-	
-	
 
 	public BulletMonsterImpl(Pair<Integer, Integer> position, int damage, Speed speed, Debuff debuff, Direction direction, RoomDesign room) {
 		super(position, damage, speed, debuff, direction, room, TypeBullet.MONSTER);

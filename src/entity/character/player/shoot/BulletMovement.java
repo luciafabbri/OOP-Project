@@ -7,7 +7,7 @@ import entity.bullet.BulletImpl;
 import entity.move.Direction;
 
 /**
- * Interface used to create player's bullets 
+ * An interface used to create player's bullets 
  */
 
 public interface BulletMovement {

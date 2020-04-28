@@ -213,7 +213,7 @@ public class EnemyImpl implements Enemy {
 	}
 
 	@Override
-	public int getDmg() {
+	public int getDamage() {
 		return this.damage;
 	}
 

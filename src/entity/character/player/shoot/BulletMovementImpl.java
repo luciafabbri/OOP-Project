@@ -27,7 +27,7 @@ public class BulletMovementImpl implements BulletMovement {
 		}
 		
 		public void shoot(){
-			BulletPlayer bullet = new BulletPlayerImpl(player.getPosition(), player.getDmg(), player.getBulletSpeed(),player.getDirection(), player.getRoom());  	
+			BulletPlayer bullet = new BulletPlayerImpl(player.getPosition(), player.getDamage(), player.getBulletSpeed(),player.getDirection(), player.getRoom());  	
 			if (bullet.isAlive()) {
 				player.getRoomBullets().add(bullet);
 				player.getBowShoot().play(1.0f, 0.05f);

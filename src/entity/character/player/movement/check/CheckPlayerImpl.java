@@ -73,7 +73,7 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 				if (item.getTypeEnt().equals(Entities.ATTACKUPGRADE1)) {
 					ModifiersImpl mod = new AttackUpgrade1(item.getPosition());
 					player.upgradeDmg(mod.getModQty());
-					System.out.println("danno: "+ player.getDmg());
+					System.out.println("danno: "+ player.getDamage());
 					room.getPickupablesSet().remove(item);
 				}
 				return true;
@@ -104,7 +104,7 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - enemy.getDimension().getRight()) && pos.getY() + enemy.getDimension().getDown() > enemy.getPosition().getY();
 			stopMillis = System.currentTimeMillis();
 			if ( (checkX && checkY) && (stopMillis - startMillis > 1000) ){ 
-				player.getHealth().takeDmg(enemy.getDmg());
+				player.getHealth().takeDmg(enemy.getDamage());
 				System.out.println("danno dal nemico preso\n");
 				System.out.println("vita: "+ player.getHealth().getCurrentHealth());
 				startMillis = System.currentTimeMillis();

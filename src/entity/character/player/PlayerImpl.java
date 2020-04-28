@@ -207,7 +207,7 @@ public class PlayerImpl implements Player {
 		this.bulletSpeed = this.bulletSpeed + speedBullet;
 	}
 	
-	public int getDmg() {
+	public int getDamage() {
 		return dmg;
 	}
 	

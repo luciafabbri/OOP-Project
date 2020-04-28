@@ -33,7 +33,7 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings {
 			checkX = pos.getX() + enemy.getDimension().getLeft() < enemy.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + enemy.getDimension().getRight() > enemy.getPosition().getX();
 			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - enemy.getDimension().getRight()) && pos.getY() + enemy.getDimension().getDown() > enemy.getPosition().getY();
 			if (checkX && checkY) {
-				enemy.takeDmg(this.entity.getDmg());
+				enemy.takeDmg(this.entity.getDamage());
 				return true;
 			}
 		}
