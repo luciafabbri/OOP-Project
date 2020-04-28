@@ -3,6 +3,8 @@ package entity.character.player;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
 import entity.UpDownLeftRight;
+import entity.bullet.Bullet;
+import entity.bullet.BulletPlayer;
 import entity.character.health.Health;
 import entity.character.health.HealthImpl;
 import entity.character.player.inventory.Inventory;
@@ -28,8 +30,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
 
-import bullet.Bullet;
-import bullet.BulletPlayer;
 import design.RoomDesign;
 
 public class PlayerImpl implements Player {

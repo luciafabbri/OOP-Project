@@ -2,10 +2,9 @@ package entity.character.player;
 
 import java.util.Set;
 
-import bullet.BulletPlayer;
-
 import design.RoomDesign;
 import design.utilities.Pair;
+import entity.bullet.BulletPlayer;
 import entity.character.player.inventory.Inventory;
 import entity.character.player.movement.Movement;
 import entity.character.player.movement.check.CheckPlayer;

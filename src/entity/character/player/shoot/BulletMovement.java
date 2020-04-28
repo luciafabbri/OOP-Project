@@ -2,8 +2,8 @@ package entity.character.player.shoot;
 
 import org.newdawn.slick.Input;
 
-import bullet.BulletImpl;
 import design.utilities.Pair;
+import entity.bullet.BulletImpl;
 import entity.move.Direction;
 
 /**

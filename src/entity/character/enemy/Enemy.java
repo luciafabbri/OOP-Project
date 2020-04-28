@@ -4,8 +4,8 @@ import java.util.Set;
 
 import org.newdawn.slick.Animation;
 
-import bullet.BulletMonster;
 import design.utilities.GameSettings;
+import entity.bullet.BulletMonster;
 import entity.character.enemy.attack.TypeAttack;
 
 public interface Enemy extends entity.character.Character {

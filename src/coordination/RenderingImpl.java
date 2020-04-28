@@ -11,17 +11,15 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-import bullet.Bullet;
-import bullet.BulletPlayer;
-
-import bullet.BulletMonster;
-
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
 import design.utilities.enums.Pickupables;
+import entity.bullet.Bullet;
+import entity.bullet.BulletMonster;
+import entity.bullet.BulletPlayer;
 import entity.character.enemy.Enemy;
 import entity.character.player.Player;
 import entity.move.Direction;

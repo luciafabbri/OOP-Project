@@ -2,9 +2,9 @@ package entity.character.player.shoot;
 
 import org.newdawn.slick.Input;
 
-import bullet.Bullet;
-import bullet.BulletPlayer;
-import bullet.BulletPlayerImpl;
+import entity.bullet.Bullet;
+import entity.bullet.BulletPlayer;
+import entity.bullet.BulletPlayerImpl;
 import entity.character.player.PlayerImpl;
 
 public class BulletMovementImpl implements BulletMovement {

@@ -1,22 +1,23 @@
-package bullet;
+package entity.bullet;
 
 import org.newdawn.slick.Image;
 
-import bullet.move.MoveBull;
-import bullet.move.MoveBullImpl;
 import design.RoomDesign;
 import design.utilities.Pair;
 import entity.UpDownLeftRight;
+import entity.bullet.move.MoveBull;
+import entity.bullet.move.MoveBullImpl;
 import entity.character.Debuff;
 import entity.move.CheckPos;
 import entity.move.Direction;
+import entity.move.Speed;
 
 
 public class BulletImpl implements Bullet {
 	
 	private Pair<Integer, Integer> pos;
 	private int dmg;
-	private int speed;
+	private Speed speed;
 	private Debuff debuff;
 	private Direction direction;
 	private MoveBull move;
@@ -24,7 +25,7 @@ public class BulletImpl implements Bullet {
 	private RoomDesign room;
 	private Pair<DimensionBullet, DimensionBullet> dimensions;
 	
-	public BulletImpl(Pair<Integer, Integer> position, int damage, int speed, Debuff debuff, Direction direction, RoomDesign room, TypeBullet type){
+	public BulletImpl(Pair<Integer, Integer> position, int damage, Speed speed, Debuff debuff, Direction direction, RoomDesign room, TypeBullet type){
 		this.pos = position;
 		this.dmg = damage;
 		this.speed = speed;
@@ -48,7 +49,7 @@ public class BulletImpl implements Bullet {
 	
 	@Override
 	public void updatePos(CheckPos check) {
-		this.pos = move.nextPos(this.pos, direction, check, speed);	
+		this.pos = move.nextPos(this.pos, direction, check, Speed.getSpeed(speed));	
 	}
 
 	@Override

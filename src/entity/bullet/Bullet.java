@@ -1,4 +1,4 @@
-package bullet;
+package entity.bullet;
 
 import org.newdawn.slick.Image;
 

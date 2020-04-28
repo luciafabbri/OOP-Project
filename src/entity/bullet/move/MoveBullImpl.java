@@ -1,9 +1,10 @@
-package bullet.move;
+package entity.bullet.move;
 
 import design.RoomDesign;
 import design.utilities.Pair;
 import entity.move.CheckPos;
 import entity.move.Direction;
+import entity.move.Speed;
 
 public class MoveBullImpl implements MoveBull {
 
@@ -18,17 +19,8 @@ public class MoveBullImpl implements MoveBull {
 
 	@Override
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir, CheckPos check, int speed) {
-		int speedTest;
 		if(alive) {
-			if(test) {
-				test = false;
-				speedTest = 1;
-			} else {
-				test = true;
-				speedTest = 2;
-			}
-			System.out.println(speedTest);
-			Pair<Integer,Integer> nextPos = new Pair<Integer,Integer>(pos.getX() + (dir.getAbscissa() * speedTest), pos.getY() + (dir.getOrdinate() * speedTest));
+			Pair<Integer,Integer> nextPos = new Pair<Integer,Integer>(pos.getX() + (dir.getAbscissa() * speed), pos.getY() + (dir.getOrdinate() * speed));
 			alive = check.possiblePos(currentRoom, nextPos);
 			return nextPos;
 		}

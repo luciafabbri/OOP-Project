@@ -1,9 +1,9 @@
 package entity.character.enemy.attack;
 
-import bullet.BulletMonster;
-import bullet.BulletMonsterImpl;
 import design.RoomDesign;
 import design.utilities.Pair;
+import entity.bullet.BulletMonster;
+import entity.bullet.BulletMonsterImpl;
 import entity.character.enemy.Enemy;
 import entity.move.Direction;
 

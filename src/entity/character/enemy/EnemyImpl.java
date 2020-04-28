@@ -6,9 +6,9 @@ import java.util.Set;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 
-import bullet.BulletMonster;
 import coordination.TestState;
 import entity.UpDownLeftRight;
+import entity.bullet.BulletMonster;
 import entity.character.enemy.attack.FourSideAtt;
 import entity.character.enemy.attack.MonsterAttack;
 import entity.character.enemy.attack.OneSideAtt;
@@ -25,6 +25,7 @@ import entity.character.health.Health;
 import entity.character.health.HealthImpl;
 import entity.character.player.Player;
 import entity.move.Direction;
+import entity.move.Speed;
 import design.RoomDesign;
 import design.utilities.Pair;
 
@@ -32,7 +33,7 @@ public class EnemyImpl implements Enemy {
 
 	private Pair<Integer, Integer> position;
 	private int damage;
-	private int speed;
+	private Speed speed;
 	private Health health;
 	private MovePosMonster move;
 	private MonsterAttack attack;
@@ -45,7 +46,7 @@ public class EnemyImpl implements Enemy {
 	
 	private int sleepTime = 100;
 
-	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
+	public EnemyImpl(Pair<Integer, Integer> pos, int damage, Speed speed, int health, TypeMove move, Direction dir,
 			TypeAttack att, RoomDesign room, TypeEnemy mon) {
 		this.position = pos;
 		this.damage = damage;
@@ -67,7 +68,7 @@ public class EnemyImpl implements Enemy {
 
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomDesign room,
 			TypeEnemy mon) {
-		this(pos, damage, 1, health, move, Direction.getRandomDir(), att, room, mon);
+		this(pos, damage, Speed.SLOW, health, move, Direction.getRandomDir(), att, room, mon);
 	}
 
 	private MovePosMonster selectMove(TypeMove typeMove, RoomDesign room) {
@@ -122,7 +123,7 @@ public class EnemyImpl implements Enemy {
 
 	@Override
 	public void updatePos() {
-		this.position = move.nextPos(this.position, this.speed, this.direction);
+		this.position = move.nextPos(this.position, Speed.getSpeed(speed), this.direction);
 		this.direction = move.getDirection();
 	}
 

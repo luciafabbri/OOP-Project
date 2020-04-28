@@ -1,4 +1,4 @@
-package bullet;
+package entity.bullet;
 
 import design.utilities.Pair;
 import entity.UpDownLeftRight;

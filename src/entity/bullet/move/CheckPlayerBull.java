@@ -1,12 +1,12 @@
-package bullet.move;
+package entity.bullet.move;
 
 import java.util.Set;
 
-import bullet.BulletPlayerImpl;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import entity.Entity;
+import entity.bullet.BulletPlayerImpl;
 import entity.character.enemy.Enemy;
 import entity.move.CheckPosImpl;
 

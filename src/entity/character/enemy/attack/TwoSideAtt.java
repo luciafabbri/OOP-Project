@@ -2,11 +2,11 @@ package entity.character.enemy.attack;
 
 import java.util.List;
 
-import bullet.Bullet;
-import bullet.BulletMonster;
-import bullet.BulletMonsterImpl;
 import design.RoomDesign;
 import design.utilities.Pair;
+import entity.bullet.Bullet;
+import entity.bullet.BulletMonster;
+import entity.bullet.BulletMonsterImpl;
 import entity.character.enemy.Enemy;
 import entity.move.Direction;
 

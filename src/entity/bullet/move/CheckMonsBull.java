@@ -1,4 +1,4 @@
-package bullet.move;
+package entity.bullet.move;
 
 import coordination.TestState;
 import design.RoomDesign;

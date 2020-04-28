@@ -1,7 +1,7 @@
 package entity.character.enemy.attack;
 
-import bullet.Bullet;
 import design.utilities.Pair;
+import entity.bullet.Bullet;
 import entity.character.enemy.Enemy;
 import entity.move.Direction;
 

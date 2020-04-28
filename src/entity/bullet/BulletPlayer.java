@@ -1,4 +1,4 @@
-package bullet;
+package entity.bullet;
 
 /**
  * Interface 

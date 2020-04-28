@@ -6,11 +6,11 @@ import java.util.Set;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-import bullet.BulletPlayer;
-import bullet.BulletMonster;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
+import entity.bullet.BulletMonster;
+import entity.bullet.BulletPlayer;
 import entity.character.enemy.Enemy;
 import entity.character.player.DoorCheck;
 import entity.character.player.Player;
