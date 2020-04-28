@@ -2,7 +2,7 @@ package entity.character.enemy.attack;
 
 import design.RoomDesign;
 import design.utilities.Pair;
-import entity.bullet.BulletMonster;
+import entity.bullet.Bullet;
 import entity.bullet.BulletMonsterImpl;
 import entity.character.enemy.Enemy;
 import entity.move.Direction;
@@ -22,7 +22,7 @@ public class OneSideAtt extends MonsterAttAbst implements MonsterAttack{
 				
 		//CHECK IF CAN CREATE
 		
-		BulletMonster bull = new BulletMonsterImpl(calculateBullPos(pos, dir, enemy), dmg, dir, currentRoom);
+		Bullet bull = new BulletMonsterImpl(calculateBullPos(pos, dir, enemy), dmg, dir, currentRoom);
 		
 		enemy.addBullet(bull);
 				

@@ -57,7 +57,7 @@ public class TestState extends StateBasedGame {
 			appgc = new AppGameContainer(new TestState(GAMENAME));
 			appgc.setDisplayMode(GameSettings.WIDTH, GameSettings.HEIGHT, false);
 			appgc.setShowFPS(false);
-//			appgc.setVSync(true);
+			appgc.setVSync(true);
 			appgc.setMaximumLogicUpdateInterval(80);
 			appgc.start();
 		} catch (SlickException e) {

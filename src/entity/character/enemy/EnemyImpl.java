@@ -6,9 +6,8 @@ import java.util.Set;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 
-import coordination.TestState;
 import entity.UpDownLeftRight;
-import entity.bullet.BulletMonster;
+import entity.bullet.Bullet;
 import entity.character.enemy.attack.FourSideAtt;
 import entity.character.enemy.attack.MonsterAttack;
 import entity.character.enemy.attack.OneSideAtt;
@@ -23,9 +22,7 @@ import entity.character.enemy.move.TeleportMove;
 import entity.character.enemy.move.TypeMove;
 import entity.character.health.Health;
 import entity.character.health.HealthImpl;
-import entity.character.player.Player;
 import entity.move.Direction;
-import entity.move.Speed;
 import design.RoomDesign;
 import design.utilities.Pair;
 
@@ -33,7 +30,7 @@ public class EnemyImpl implements Enemy {
 
 	private Pair<Integer, Integer> position;
 	private int damage;
-	private Speed speed;
+	private int speed;
 	private Health health;
 	private MovePosMonster move;
 	private MonsterAttack attack;
@@ -41,12 +38,13 @@ public class EnemyImpl implements Enemy {
 	private Pair<DimensionMonster, DimensionMonster> dimensions;
 	private TypeEnemy typeEnemy;
 	private UpDownLeftRight<Animation> textures;
-	private RoomDesign room;
-	private Set<BulletMonster> bullets = new HashSet<>();
+	private Set<Bullet> bullets = new HashSet<>();
 	
-	private int sleepTime = 100;
+	private int sleepTime = 2000;
+	private long stopMillis;
+	private long startMillis;
 
-	public EnemyImpl(Pair<Integer, Integer> pos, int damage, Speed speed, int health, TypeMove move, Direction dir,
+	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
 			TypeAttack att, RoomDesign room, TypeEnemy mon) {
 		this.position = pos;
 		this.damage = damage;
@@ -57,7 +55,6 @@ public class EnemyImpl implements Enemy {
 		this.direction = dir;
 		this.dimensions = DimensionMonster.getDimensionMoster(mon);
 		this.typeEnemy = mon;
-		this.room = room;
 		try {
 			this.textures = EnemyImage.getTexture(mon);
 		} catch (SlickException e) {
@@ -68,7 +65,7 @@ public class EnemyImpl implements Enemy {
 
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomDesign room,
 			TypeEnemy mon) {
-		this(pos, damage, Speed.SLOW, health, move, Direction.getRandomDir(), att, room, mon);
+		this(pos, damage, 1, health, move, Direction.getRandomDir(), att, room, mon);
 	}
 
 	private MovePosMonster selectMove(TypeMove typeMove, RoomDesign room) {
@@ -123,18 +120,13 @@ public class EnemyImpl implements Enemy {
 
 	@Override
 	public void updatePos() {
-		this.position = move.nextPos(this.position, Speed.getSpeed(speed), this.direction);
+		this.position = move.nextPos(this.position, speed, this.direction);
 		this.direction = move.getDirection();
 	}
 
 	@Override
 	public void takeDmg(int damage) {
 		health.takeDmg(damage);
-	}
-
-	@Override
-	public TypeAttack getAttack() {
-		return null;
 	}
 
 	@Override
@@ -182,33 +174,20 @@ public class EnemyImpl implements Enemy {
 
 	@Override
 	public void attack() {
-		/*while (this.isAlive()) {
-			while (this.room.equals(player.getRoom())) {
-				if (sleepTime == 0) {
-					sleepTime = 240;
-					System.out.println("ATTACCO");
-					this.attack.createBullets(position, direction, damage);
-				} else {
-					sleepTime--;
-				}
-			}
-		}*/
-		
-		if(this.sleepTime == 0) {
+		stopMillis = System.currentTimeMillis();
+		if(stopMillis - startMillis > sleepTime) {
 			this.attack.createBullets(position, direction, damage);
-			sleepTime = 1000;
-		} else {
-			sleepTime --;
-		}
+			startMillis = System.currentTimeMillis();
+		}	
 	}
 
 	@Override
-	public void addBullet(BulletMonster bullet) {
+	public void addBullet(Bullet bullet) {
 		this.bullets.add(bullet);		
 	}
 
 	@Override
-	public Set<BulletMonster> getBullets() {
+	public Set<Bullet> getBullets() {
 		return this.bullets;
 	}
 

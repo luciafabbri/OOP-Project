@@ -16,9 +16,13 @@ public class TeleportMove implements MovePosMonster {
 	private Random rand = new Random();
 	private Pair<Integer, Integer> newPos;
 	private Direction nextDir = null;
-	private int sleepCounter = 0;
+	
 
 	private RoomDesign currentRoom;
+	
+	private int sleepTime = 5000;
+	private long startMillis = 0;
+	private long stopMillis;
 
 	public TeleportMove(RoomDesign room, Character character) {
 		currentRoom = room;
@@ -26,22 +30,23 @@ public class TeleportMove implements MovePosMonster {
 	}
 
 	@Override
-	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, int speed, Direction dir) {
-
-		if (this.sleepCounter > 0) {
-			this.sleepCounter--;
-			this.nextDir = dir;
-			this.newPos = pos;
-		} else {
+	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, int speed, Direction dir) {	
+		
+		stopMillis = System.currentTimeMillis();
+		if(stopMillis - startMillis > sleepTime) {
 			int x, y;
-			this.sleepCounter = 60;
 			do {
 				x = rand.nextInt(GameSettings.WIDTH);
 				y = rand.nextInt(GameSettings.HEIGHT);
 				newPos = new Pair<>(x, y);
 			} while (!check.possiblePos(currentRoom, newPos));
 			nextDir = Direction.getRandomDir();
+			startMillis = System.currentTimeMillis();
+		} else {
+			this.nextDir = dir;
+			this.newPos = pos;
 		}
+		
 		return newPos;
 	}
 

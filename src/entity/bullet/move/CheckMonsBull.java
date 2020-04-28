@@ -6,9 +6,10 @@ import design.utilities.GameSettings;
 import design.utilities.Pair;
 import entity.Entity;
 import entity.character.player.Player;
+import entity.move.CheckPos;
 import entity.move.CheckPosImpl;
 
-public class CheckMonsBull extends CheckPosImpl implements GameSettings {
+public class CheckMonsBull extends CheckPosImpl implements GameSettings, CheckPos {
 	
 	private Entity entity;
 	
@@ -16,7 +17,6 @@ public class CheckMonsBull extends CheckPosImpl implements GameSettings {
 		super(entity);
 		this.entity = entity;
 	}
-
 
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {

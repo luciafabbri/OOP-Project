@@ -8,9 +8,10 @@ import design.utilities.Pair;
 import entity.Entity;
 import entity.bullet.BulletPlayerImpl;
 import entity.character.enemy.Enemy;
+import entity.move.CheckPos;
 import entity.move.CheckPosImpl;
 
-public class CheckPlayerBull extends CheckPosImpl implements GameSettings {
+public class CheckPlayerBull extends CheckPosImpl implements GameSettings, CheckPos {
 	
 	private Entity entity;
 	

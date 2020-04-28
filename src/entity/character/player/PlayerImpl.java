@@ -4,7 +4,6 @@ import design.utilities.Pair;
 import design.utilities.enums.Door;
 import entity.UpDownLeftRight;
 import entity.bullet.Bullet;
-import entity.bullet.BulletPlayer;
 import entity.character.health.Health;
 import entity.character.health.HealthImpl;
 import entity.character.player.inventory.Inventory;
@@ -51,10 +50,9 @@ public class PlayerImpl implements Player {
 	private RoomDesign currentRoom;
 	private Inventory inventory = new InventoryImpl(this);
 	private BulletMovement bullet = new BulletMovementImpl(this);
-	private Set<BulletPlayer> roomBullets = new HashSet<>();
+	private Set<Bullet> roomBullets = new HashSet<>();
 	
 	private int playerSpeed;
-	private int bulletSpeed;
 	private int dmg;
 	private int rof;
 	
@@ -63,7 +61,6 @@ public class PlayerImpl implements Player {
 		this.level = level;
 		this.direction = dir;
 		this.playerSpeed = 1;
-		this.bulletSpeed = 1;
 		this.rof = 1000;
 		this.dmg = 10;
 		
@@ -197,16 +194,6 @@ public class PlayerImpl implements Player {
 		this.playerSpeed = this.playerSpeed + speedPlayer;
 	}
 	
-	@Override
-	public int getBulletSpeed() {
-		return this.bulletSpeed;
-	}
-	
-	@Override
-	public void upgradeBulletSpeed(int speedBullet) {
-		this.bulletSpeed = this.bulletSpeed + speedBullet;
-	}
-	
 	public int getDmg() {
 		return dmg;
 	}
@@ -232,7 +219,7 @@ public class PlayerImpl implements Player {
 	}
 
 	@Override
-	public Set<BulletPlayer> getRoomBullets() {
+	public Set<Bullet> getRoomBullets() {
 		return roomBullets;
 	}
 

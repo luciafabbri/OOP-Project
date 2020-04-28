@@ -18,8 +18,6 @@ import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
 import design.utilities.enums.Pickupables;
 import entity.bullet.Bullet;
-import entity.bullet.BulletMonster;
-import entity.bullet.BulletPlayer;
 import entity.character.enemy.Enemy;
 import entity.character.player.Player;
 import entity.move.Direction;
@@ -76,7 +74,7 @@ public class RenderingImpl implements Rendering {
 	}
 	
 	public void drawMainProj() {
-		Set<BulletPlayer> bullets = player.getRoomBullets();
+		Set<Bullet> bullets = player.getRoomBullets();
 		Set<Enemy> enemys = level.getLevel().get(level.getRoomID()).getRoom().getEnemySet();
 		
 		if(!bullets.isEmpty()) {
@@ -88,7 +86,7 @@ public class RenderingImpl implements Rendering {
 		}
 		
 		enemys.forEach(e-> {
-			Set<BulletMonster> bulletMon = e.getBullets();
+			Set<Bullet> bulletMon = e.getBullets();
 			
 			if(!bulletMon.isEmpty()) {
 				bulletMon.forEach(s -> {
