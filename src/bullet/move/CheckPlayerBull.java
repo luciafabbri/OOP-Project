@@ -6,9 +6,9 @@ import bullet.BulletPlayerImpl;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
-import enemy.Enemy;
-import utility.CheckPosImpl;
-import utility.Entity;
+import entity.Entity;
+import entity.character.enemy.Enemy;
+import entity.move.CheckPosImpl;
 
 public class CheckPlayerBull extends CheckPosImpl implements GameSettings {
 	

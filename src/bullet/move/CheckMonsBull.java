@@ -4,9 +4,9 @@ import coordination.TestState;
 import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
-import player.Player;
-import utility.CheckPosImpl;
-import utility.Entity;
+import entity.Entity;
+import entity.character.player.Player;
+import entity.move.CheckPosImpl;
 
 public class CheckMonsBull extends CheckPosImpl implements GameSettings {
 	

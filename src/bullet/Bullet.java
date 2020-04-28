@@ -4,10 +4,10 @@ import org.newdawn.slick.Image;
 
 import design.RoomDesign;
 import design.utilities.Pair;
-import utility.CheckPos;
-import utility.Debuff;
-import utility.Direction;
-import utility.Entity;
+import entity.Entity;
+import entity.character.Debuff;
+import entity.move.CheckPos;
+import entity.move.Direction;
 
 /**
  * Interface

@@ -3,7 +3,7 @@ package design;
 import java.util.Set;
 import design.utilities.Pair;
 import design.utilities.graphs.BidirectionalGraph;
-import enemy.Enemy;
+import entity.character.enemy.Enemy;
 import gameEntities.Obstacle;
 import gameEntities.Pickupable;
 import gameEntities.Stairs;

@@ -11,9 +11,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import design.utilities.GameSettings;
 import design.utilities.Pair;
-import player.Player;
-import player.PlayerImpl;
-import utility.Direction;
+import entity.character.player.Player;
+import entity.character.player.PlayerImpl;
+import entity.move.Direction;
 
 
 public class TestState extends StateBasedGame {

@@ -6,10 +6,10 @@ import bullet.move.MoveBull;
 import bullet.move.MoveBullImpl;
 import design.RoomDesign;
 import design.utilities.Pair;
-import utility.CheckPos;
-import utility.Debuff;
-import utility.Direction;
-import utility.UpDownLeftRight;
+import entity.UpDownLeftRight;
+import entity.character.Debuff;
+import entity.move.CheckPos;
+import entity.move.Direction;
 
 
 public class BulletImpl implements Bullet {

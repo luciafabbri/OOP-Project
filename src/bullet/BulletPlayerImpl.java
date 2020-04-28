@@ -1,9 +1,9 @@
 package bullet;
 
-import utility.Debuff;
-import utility.Direction;
 import design.RoomDesign;
 import design.utilities.Pair;
+import entity.character.Debuff;
+import entity.move.Direction;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;

@@ -1,7 +1,7 @@
 package bullet;
 
 import design.utilities.Pair;
-import utility.UpDownLeftRight;
+import entity.UpDownLeftRight;
 
 public enum DimensionBullet {
 	

@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 import design.RoomDesignImpl;
 import design.utilities.*;
 import design.utilities.enums.Pickupables;
-import enemy.*;
+import entity.character.enemy.*;
 import gameEntities.*;
 import gameEntities.items.*;
 import gameEntities.modifiers.*;

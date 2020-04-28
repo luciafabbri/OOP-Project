@@ -1,8 +1,8 @@
 package bullet.move;
 
-import utility.CheckPos;
-import utility.Direction;
 import design.utilities.Pair;
+import entity.move.CheckPos;
+import entity.move.Direction;
 
 public interface MoveBull {
 	

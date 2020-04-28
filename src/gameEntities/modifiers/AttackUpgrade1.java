@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 
 import design.utilities.Pair;
 import design.utilities.enums.Entities;
-import utility.Stats;
+import entity.character.Stats;
 
 public class AttackUpgrade1 extends ModifiersImpl{
 

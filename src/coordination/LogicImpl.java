@@ -11,10 +11,10 @@ import bullet.BulletMonster;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
-import enemy.Enemy;
+import entity.character.enemy.Enemy;
+import entity.character.player.DoorCheck;
+import entity.character.player.Player;
 import levels.Level;
-import player.Player;
-import utility.DoorCheck;
 
 public class LogicImpl {
 	

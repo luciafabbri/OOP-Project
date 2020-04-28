@@ -10,9 +10,9 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import design.utilities.GameSettings;
+import entity.character.player.Player;
 import levels.Level;
 import levels.LevelImpl;
-import player.Player;
 
 public class TestPlay extends BasicGameState {
 	

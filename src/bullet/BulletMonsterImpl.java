@@ -5,10 +5,10 @@ import org.newdawn.slick.SlickException;
 
 import bullet.move.CheckMonsBull;
 import bullet.move.CheckPlayerBull;
-import utility.Debuff;
-import utility.Direction;
 import design.RoomDesign;
 import design.utilities.Pair;
+import entity.character.Debuff;
+import entity.move.Direction;
 
 public class BulletMonsterImpl extends BulletImpl implements BulletMonster{
 	

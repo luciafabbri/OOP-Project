@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import design.utilities.Pair;
 import design.utilities.graphs.BidirectionalGraph;
-import enemy.Enemy;
+import entity.character.enemy.Enemy;
 import gameEntities.*;
 
 public class RoomDesignImpl implements RoomDesign {

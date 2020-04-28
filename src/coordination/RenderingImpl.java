@@ -22,14 +22,14 @@ import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
 import design.utilities.enums.Pickupables;
-import enemy.Enemy;
+import entity.character.enemy.Enemy;
+import entity.character.player.Player;
+import entity.move.Direction;
 import gameEntities.Obstacle;
 import gameEntities.Stairs;
 import gameEntities.items.ItemImpl;
 import levels.Level;
-import player.Player;
 import tiles.Tile;
-import utility.Direction;
 
 public class RenderingImpl implements Rendering {
 	
