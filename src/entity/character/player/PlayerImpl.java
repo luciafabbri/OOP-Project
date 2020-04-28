@@ -23,12 +23,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
-import org.newdawn.slick.SpriteSheet;
-
 import design.RoomDesign;
 
 public class PlayerImpl implements Player {
@@ -44,11 +41,9 @@ public class PlayerImpl implements Player {
 	private Health health;
 	private RoomDesign currentRoom;
 	private Inventory inventory;
-
-	private Animation front;
-	private Animation back;
-	private Animation left;
-	private Animation right;
+	
+	private UpDownLeftRight<Animation> textures;
+	private Pair<PlayerDimensions, PlayerDimensions> dimensions;
 
 	private Sound bowShoot;
 	
@@ -63,10 +58,17 @@ public class PlayerImpl implements Player {
 		this.rof = 1000;
 		this.damage = 10;
 		this.inventory = new InventoryImpl(this);
-		this.health = new HealthImpl(HEALTH);
+		this.health = new HealthImpl(100);
 		this.move = new MovementImpl();
 		this.check = new CheckPlayerImpl(this,this);
 		this.bullet = new BulletMovementImpl(this);
+		this.dimensions = PlayerDimensions.getPlayerDimensions(this);
+
+		try {
+			this.textures = PlayerImages.getTexture(this);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 
 		try {
 			bowShoot = new Sound("./res/audio/bow/bow_fired.wav");
@@ -74,20 +76,6 @@ public class PlayerImpl implements Player {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public PlayerImpl(int level, Image texture) throws SlickException {	
-		this(POSITION, DIRECTION, level);
-	}
-	
-	@Override
-	public void loadAnimations() throws SlickException {
-		
-		front = new Animation(new SpriteSheet(new Image("./res/chars/mainChar6_front.png"), 64, 64), 100);
-		back = new Animation(new SpriteSheet(new Image("./res/chars/mainChar6_back.png"), 64, 64), 100);
-		left = new Animation(new SpriteSheet(new Image("./res/chars/mainChar6_left.png"), 64, 64), 100);
-		right = new Animation(new SpriteSheet(new Image("./res/chars/mainChar6_right.png"), 64, 64), 100);
-		
 	}
 	
 	@Override 
@@ -145,32 +133,12 @@ public class PlayerImpl implements Player {
 
 	@Override
 	public Direction getDirection() {
-		return direction;
-	}
-
-	@Override
-	public Animation getFront() {
-		return front;
-	}
-
-	@Override
-	public Animation getBack() {
-		return back;
-	}
-
-	@Override
-	public Animation getLeft() {
-		return left;
-	}
-
-	@Override
-	public Animation getRight() {
-		return right;
+		return this.direction;
 	}
 	
 	@Override
 	public Movement getMove() {
-		return move;
+		return this.move;
 	}
 	
 	@Override
@@ -178,14 +146,31 @@ public class PlayerImpl implements Player {
 		return this.inventory;
 	}
 
+	public Animation getAnimation() {
+		switch (this.direction) {
+		case NORTH:
+			return textures.getUp();
+		case SOUTH:
+			return textures.getDown();
+		case WEST:
+			return textures.getLeft();
+		case EAST:
+			return textures.getRight();
+		default:
+			throw new IllegalArgumentException();
+
+		}
+	}
+	
 	@Override
 	public UpDownLeftRight<Integer> getDimension() {
 		if(direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
-			return VERTICAL;
-		}  else if(direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
-			return ORIZONTAL;
+			return dimensions.getX().getDimensions();
+		} else if(direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
+			return dimensions.getY().getDimensions();
+		} else {
+			throw new IllegalArgumentException();
 		}
-		return new UpDownLeftRight<Integer>(0, 0, 0, 0);
 	}
 	
 	@Override
@@ -200,7 +185,7 @@ public class PlayerImpl implements Player {
 	
 
 	public int getDamage() {
-		return damage;
+		return this.damage;
 	}
 	
 	@Override
@@ -225,10 +210,10 @@ public class PlayerImpl implements Player {
 
 	@Override
 	public Set<Bullet> getRoomBullets() {
-		return roomBullets;
+		return this.roomBullets;
 	}
 
 	public Sound getBowShoot() {
-		return bowShoot;
+		return this.bowShoot;
 	}
 }

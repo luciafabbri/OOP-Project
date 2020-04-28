@@ -9,7 +9,6 @@ import entity.bullet.Bullet;
 
 public interface Enemy extends entity.character.Character {
 	
-	
 	public final static int DIMENSION = GameSettings.TILESIZE;
 	
 	public void updatePos();

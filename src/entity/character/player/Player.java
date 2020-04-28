@@ -19,8 +19,10 @@ import org.newdawn.slick.SlickException;
  * An interface that presents all the methods needed or that can be used with regards to the player 
  */
 
-public interface Player extends DefaultPlayer, entity.character.Character {
+public interface Player extends entity.character.Character {
 	
+	public final static int DIMENSION = 64;
+
 	/**
 	 * Method used to set player's position
 	 * @param input, received from the keyboard
@@ -61,32 +63,6 @@ public interface Player extends DefaultPlayer, entity.character.Character {
 	 * @param position, the coordinates of the player to be set 
 	 */
 	public void setPosition(Pair<Integer, Integer> position);
-	
-	/**
-	 * Method used to load player's animations
-	 * @throws SlickException 
-	 */
-	public void loadAnimations() throws SlickException;
-	
-	/**
-	 * @return player's front animation
-	 */
-	public Animation getFront();
-
-	/**
-	 * @return player's back animation
-	 */
-	public Animation getBack();
-	
-	/**
-	 * @return player's left animation
-	 */
-	public Animation getLeft();
-	
-	/**
-	 * @return player's right animation 
-	 */
-	public Animation getRight();
 
 	/**
 	 * @return player's speed 
@@ -129,4 +105,7 @@ public interface Player extends DefaultPlayer, entity.character.Character {
 	 * @return player's rof 
 	 */
 	public int getRof();
+	
+	public Animation getAnimation();
+
 }
