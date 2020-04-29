@@ -2,6 +2,8 @@ package design.utilities.graphs;
 
 import java.util.*;
 
+import design.RoomDesignImpl;
+
 /**
  * A class containing methods to explore a graph of type
  * design.utilities.graphs.Graph<T> via Breadth First Search
@@ -43,6 +45,11 @@ public class BreadthFirstSearch<T> {
 		}
 
 		return false;
+	}
+	
+	public boolean areDoorsConnected(RoomDesignImpl room) {
+		return false;
+		
 	}
 
 }

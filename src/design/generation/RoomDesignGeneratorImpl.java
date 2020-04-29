@@ -5,12 +5,14 @@ import java.util.Random;
 import org.newdawn.slick.SlickException;
 import design.RoomDesignImpl;
 import design.utilities.*;
+import design.utilities.graphs.BreadthFirstSearch;
 
 public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 
 	private final Map<String, Integer> currentConfig;
 	private final Random random = new Random();
 	private final TilesGraphGenerator graphGen = new TilesGraphGeneratorImpl();
+	private final BreadthFirstSearch<Pair<Integer, Integer>> bfs = new BreadthFirstSearch<>();
 	private final int specialRoomID;
 	private final boolean isFinalLevel;
 
@@ -49,6 +51,12 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 		entitiesGen.generatePickupables(numOfPickupables);
 		// tiles graph generation
 		room.setTilesGraph(graphGen.generateTilesGraph(room));
+		// door-to-door path check, if false generate new room
+		/*
+		while(!bfs.areDoorsConnected(room)) {
+			return(this.generateRoom(index));
+		}
+		*/
 		return room;
 	}
 

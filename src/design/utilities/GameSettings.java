@@ -1,5 +1,7 @@
 package design.utilities;
 
+import java.util.HashSet;
+
 public interface GameSettings {
 	
 	final static int WIDTH = 1280;

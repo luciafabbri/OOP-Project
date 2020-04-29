@@ -60,6 +60,11 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 			case HEALTHUPGRADE1:
 				room.addPickupable(new HealthUpgrade1(pos));
 				break;
+			case ATTACKSPEED1:
+				room.addPickupable(new AttackSpeed1(pos));
+				break;
+			default:
+				break;
 			}
 		}
 
