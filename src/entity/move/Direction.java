@@ -7,6 +7,10 @@ import java.util.Random;
 
 import entity.character.enemy.CircularList;
 
+/**
+ * Enumeration used to represent all the different type of entities's direction
+ */
+
 public enum Direction {
 
 	NORTH_WEST(-1, -1),

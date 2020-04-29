@@ -10,11 +10,11 @@ public interface Entity {
 	 * @return character's dimension of type UpDownLeftRight, which means that for each entity have been checked
 	 * their exacts pixel in order to be displayed in the dungeon as real as possible
 	 */
-	public UpDownLeftRight<Integer> getDimension();
+	UpDownLeftRight<Integer> getDimension();
 	
 	/**
 	 * @return character's damage 
 	 */
-	public int getDamage();
+	int getDamage();
 
 }

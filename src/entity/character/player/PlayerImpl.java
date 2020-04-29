@@ -142,6 +142,7 @@ public class PlayerImpl implements Player {
 		return this.inventory;
 	}
 
+	@Override
 	public Animation getAnimation() {
 		switch (this.direction) {
 		case NORTH:
@@ -175,19 +176,25 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override
-	public void upgradePlayerSpeed(int speedPlayer) {
-		this.playerSpeed = this.playerSpeed + speedPlayer;
+	public void upgradePlayerSpeed(int upgrade) {
+		this.playerSpeed = this.playerSpeed + upgrade;
 	}
 	
-
+	@Override
+	public void upgradeDamage(int upgrade) {
+		this.damage = this.damage + upgrade;
+	} 
+	
+	@Override
+	public void upgradeRof(int upgrade) {
+		this.rof = this.rof - upgrade;
+	} 
+	
 	public int getDamage() {
 		return this.damage;
 	}
 	
-	@Override
-	public void upgradeDmg(int damage) {
-		this.damage = this.damage + damage;
-	}
+	
 	
 	@Override
 	public void takeDmg(int damage) {
@@ -209,14 +216,17 @@ public class PlayerImpl implements Player {
 		return this.roomBullets;
 	}
 
+	@Override
 	public Sound getBowShoot() {
 		return this.bowShoot;
 	}
 	
+	@Override
 	public void loadAnimations() throws SlickException {
 		this.textures = PlayerImages.getTexture(this);
 	}
 
+	@Override
 	public void setClearRoom(boolean clearRoom) {
 		this.clearRoom = clearRoom;
 	}

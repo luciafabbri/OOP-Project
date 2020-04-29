@@ -19,12 +19,12 @@ public interface Movement {
 	 * @param speed, player's speed
 	 * @return the new coordinates of the player
 	 */
-	public Pair<Integer, Integer> movePlayer (Input input, Pair<Integer, Integer> pos, Direction dir, int speed); 
+	Pair<Integer, Integer> movePlayer (Input input, Pair<Integer, Integer> pos, Direction dir, int speed); 
 	
 	
 	/**
 	 * @return player's direction  
 	 */	
-	public Direction getDirection();
+	Direction getDirection();
 	
 }

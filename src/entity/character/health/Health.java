@@ -9,31 +9,31 @@ public interface Health {
 	/**
 	 * @return the value of the entity's current life 
 	 */
-	public int getCurrentHealth();
+	int getCurrentHealth();
 	
 	/**
 	 * @param dmg, an int value to be subtracted to the entity's current life
 	 */
-	public void takeDmg(int damage);
+	void takeDmg(int damage);
 	
 	/**
 	 * @return true if entity's life value is greater than 0
 	 */
-	public boolean isAlive();
+	boolean isAlive();
 
 	/**
 	 * @return the value of the entity's max life 
 	 */
-	public int getMaxHealth();
+	int getMaxHealth();
 	
 	/**
 	 * @param upgrade, an int value to be added to the entity's current life
 	 */
-	public void upgradeHealth(int upgrade);
+	void upgradeHealth(int upgrade);
 
 	/**
 	 * @param health, an int value to be subtracted to the entity's current life
 	 */
-	public void setCurrentHealth(int health);
+	void setCurrentHealth(int health);
 
 }

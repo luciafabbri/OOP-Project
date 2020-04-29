@@ -17,7 +17,7 @@ public enum PlayerImages {
 	LEFT("./res/chars/mainChar6_left.png"),
 	RIGHT("./res/chars/mainChar6_right.png");
 
-	String image;
+	private String image;
 	
 	PlayerImages(String image)  {
 		this.image = image;

@@ -14,6 +14,7 @@ import levels.Level;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 /**
  * An interface that presents all the methods needed or that can be used with regards to the player 
@@ -21,7 +22,7 @@ import org.newdawn.slick.SlickException;
 
 public interface Player extends entity.character.Character {
 	
-	public final static int DIMENSION = 64;
+	final static int DIMENSION = 64;
 
 	/**
 	 * Method used to set player's position
@@ -29,86 +30,108 @@ public interface Player extends entity.character.Character {
 	 * @param level, player's current level 
 	 * @throws SlickException 
 	 */
-	public void setPosition(Input input, Level level) throws SlickException;
+	void setPosition(Input input, Level level) throws SlickException;
 	
 	/**
 	 * Method used to set the level in which the player should go
 	 * @param level, to set the new player's level
 	 */
-	public void setLevel(int level);
+	void setLevel(int level);
 	
 	/**
 	 * @return the player's current level 
 	 */ 
-	public int getLevel();
+	int getLevel();
 	
 	/**
 	 *  @return player's bullet 
 	 */
-	public BulletMovement getBullet();
+	BulletMovement getBullet();
 
 	/**
 	 * @return player's current room 
 	 */
-	public RoomDesign getRoom();
+	RoomDesign getRoom();
 
 	/**
 	 * Methods used to set player's current room 
 	 * @param room, the room where the player would be moved
 	 */
-	public void setCurrentRoom(RoomDesign room);
+	void setCurrentRoom(RoomDesign room);
 	
 	/**
 	 * Method used to set player's updated position
 	 * @param position, the coordinates of the player to be set 
 	 */
-	public void setPosition(Pair<Integer, Integer> position);
+	void setPosition(Pair<Integer, Integer> position);
 
 	/**
 	 * @return player's speed 
 	 */
-	public int getPlayerSpeed();
+	int getPlayerSpeed();
 
 	/**
 	 * @return player's check 
 	 */
-	public CheckPlayer getCheck();
+	CheckPlayer getCheck();
 	
 	/**
 	 * Method used to upgrade player's damage 
-	 * @param damage, an int value to add to player's current damage
+	 * @param upgrade, an int value to add to player's current damage
 	 */
-	public void upgradeDmg(int damage);
+	void upgradeDamage(int upgrade);
 	
 	/**
 	 * @return player's inventory 
 	 */
-	public Inventory getInventory();
+	Inventory getInventory();
 	
 	/**
 	 * @return player's bullet set 
 	 */
-	public Set<Bullet> getRoomBullets();
+	Set<Bullet> getRoomBullets();
 
 	/**
 	 * Method used to upgrade player's speed 
-	 * @param speedPlayer, an int value to be added to player's speed in order to move faster in the dungeon
+	 * @param upgrade, an int value to be added to player's speed in order to move faster in the dungeon
 	 */
-	public void upgradePlayerSpeed(int speedPlayer);
+	void upgradePlayerSpeed(int upgrade);
 
 	/**
 	 * @return player's movement 
 	 */
-	public Movement getMove();
+	Movement getMove();
 
 	/**
 	 * @return player's rof 
 	 */
-	public int getRof();
+	int getRof();
 	
-	public Animation getAnimation();
+	/**
+	 * @return player's Animation
+	 */
+	Animation getAnimation();
 	
-	public void loadAnimations() throws SlickException;
+	/**
+	 * Method used to load all player's animations 
+	 * @throws SlickException
+	 */
+	void loadAnimations() throws SlickException;
 	
-	public void setClearRoom(boolean clearRoom);
+	/**
+	 * Method used to  
+	 * @param clearRoom, 
+	 */
+	void setClearRoom(boolean clearRoom);
+	
+	/**
+	 * @return player's sound walking into the dungeon 
+	 */
+	Sound getBowShoot();
+
+	/**
+	 * Method used to upgrade player's rof 
+	 * @param upgrade, an int value used to change player's current rof in order to shoot faster 
+	 */
+	void upgradeRof(int upgrade);
 }

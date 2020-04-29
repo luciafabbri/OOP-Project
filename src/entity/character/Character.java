@@ -14,22 +14,22 @@ public interface Character extends Entity {
 	/**
 	 * @return character's coordinates 
 	 */	
-	public Pair<Integer, Integer> getPosition();	
+	Pair<Integer, Integer> getPosition();	
 	
 	/**
 	 * @return character's health
 	 */
-	public Health getHealth();
+	Health getHealth();
 	
 	/**
 	 * @return character's direction 
 	 */
-	public Direction getDirection();
+	Direction getDirection();
 	
 	/**
 	 * Method used to take player's damage from enemies or entities
 	 * @param damage, an int value to subtract to player's current health
 	 */
-	public void takeDmg(int damage);
+	void takeDmg(int damage);
 	
 }

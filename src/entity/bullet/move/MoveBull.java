@@ -11,16 +11,16 @@ import entity.move.Direction;
 public interface MoveBull {
 	
 	/**
-	 * @param pos, 
-	 * @param dir, 
+	 * @param pos, bullet's current position
+	 * @param dir, bullet's current direction
 	 * @param check, type of bullet's check
-	 * @return the possible next bullet's position in the dungeon
+	 * @return the possible next bullet's coordinates in the dungeon
 	 */
-	public Pair<Integer,Integer> nextPos(Pair<Integer,Integer> pos, Direction dir, CheckPos check);
+	Pair<Integer,Integer> nextPos(Pair<Integer,Integer> pos, Direction dir, CheckPos check);
 	
 	/**
 	 * @return true if the bullet is alive
 	 */
-	public boolean isAlive();
+	boolean isAlive();
 
 }

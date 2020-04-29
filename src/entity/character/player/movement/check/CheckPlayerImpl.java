@@ -10,6 +10,7 @@ import entity.character.player.PlayerImpl;
 import entity.move.CheckPosImpl;
 import gameEntities.GameEntity;
 import gameEntities.Pickupable;
+import gameEntities.modifiers.AttackSpeed1;
 import gameEntities.modifiers.AttackUpgrade1;
 import gameEntities.modifiers.HealthUpgrade1;
 import gameEntities.modifiers.ModifiersImpl;
@@ -60,6 +61,7 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		return false;
 	}
 
+	//FINISCI DI SISTEMARE LA ROCCOLTA ITEM 
 	@Override
 	public boolean checkEntityRoom(RoomDesign room, Pair<Integer, Integer> pos) throws SlickException {
 		boolean checkX, checkY;
@@ -86,8 +88,14 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 				}
 				if (item.getTypeEnt().equals(Entities.ATTACKUPGRADE1)) {
 					ModifiersImpl mod = new AttackUpgrade1(item.getPosition());
-					player.upgradeDmg(mod.getModQty());
+					player.upgradeDamage(mod.getModQty());
 					System.out.println("danno: "+ player.getDamage());
+					room.getPickupablesSet().remove(item);
+				}
+				if (item.getTypeEnt().equals(Entities.ATTACKUPGRADE1)) {
+					ModifiersImpl mod = new AttackSpeed1(item.getPosition());
+					player.upgradeRof(mod.getModQty());
+					System.out.println("rof : "+ player.getRof());
 					room.getPickupablesSet().remove(item);
 				}
 				return true;

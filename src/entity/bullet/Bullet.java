@@ -13,42 +13,41 @@ import entity.move.Direction;
 
 public interface Bullet extends Entity {
 	
-	public final static int DIMENSION = 48;
+	final static int DIMENSION = 48;
 		
 	/**
 	 * @return true if the bullet is alive
 	 */
-	public boolean isAlive();
+	boolean isAlive();
 	
 	/** 
-	 * @return bullet's position
+	 * @return bullet's current position
 	 */
-	public Pair<Integer,Integer> getPos();
-	
+	Pair<Integer,Integer> getPos();
 
 	/**
-	 * 
-	 */
-	public void updatePos();
+     * Method used to check if bullet's next coordinates are considered to be in a possible position	
+     */
+	void updatePos();
 	
 	/**
-	 * @return
+	 * @return bullet's current direction
 	 */
-	public Direction getDirection();
+	Direction getDirection();
 
 	/**
-	 * @return
+	 * @return bullet's image
 	 */
-	public Image getTexture();
+	Image getTexture();
 
 	/**
-	 * @param texture
+	 * @param texture, image used to represent bullets
 	 */
-	public void setTexture(Image texture);
+	void setTexture(Image texture);
 	
 	/**
-	 * @return
+	 * @return bullet's current room
 	 */
-	public RoomDesign getRoom();
+	RoomDesign getRoom();
 	
 }

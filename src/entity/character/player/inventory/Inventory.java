@@ -9,21 +9,21 @@ public interface Inventory {
 	/**
 	 * @return player's coins stored in the inventory
 	 */
-	public int getCoin();
+	int getCoin();
 
 	/**
 	 * @return player's keys stored in the inventory
 	 */
-	public int getKey();
+	int getKey();
 	
 	/**
 	 * Method used to add a new coin in the inventory 
 	 */
-	public void addCoin();
+	void addCoin();
 
 	/**
 	 * Method used to add a new key in the inventory
 	 */
-	public void addKey();
+	void addKey();
 
 }

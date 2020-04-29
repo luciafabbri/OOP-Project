@@ -8,7 +8,6 @@ import entity.move.Direction;
 public class MoveBullImpl implements MoveBull {
 
 	private boolean alive = true;
-	
 	private RoomDesign currentRoom;
 	
 	public MoveBullImpl(RoomDesign room) {

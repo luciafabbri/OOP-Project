@@ -21,7 +21,7 @@ public interface CheckPlayer extends CheckPos{
 	 * @param map, 
 	 * @return true if the player is next to the doors
 	 */
-	public boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomDesign>> map);
+	boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomDesign>> map);
 	
 	/**
 	 * Method used to check if the player is in collision with any entity (item or modifiers) in the room
@@ -32,20 +32,20 @@ public interface CheckPlayer extends CheckPos{
 	 * @return true if the player had a collision 
 	 * @throws SlickException 
 	 */
-	public boolean checkEntityRoom(RoomDesign room,Pair<Integer, Integer> pos) throws SlickException;	
+	boolean checkEntityRoom(RoomDesign room,Pair<Integer, Integer> pos) throws SlickException;	
 	
 	/**
 	 * @param room, current room where the player is
 	 * @param pos, player's coordinates inside the room
 	 * @return true if the player is above the stairs 
 	 */
-	public boolean checkStairs(RoomDesign room, Pair<Integer, Integer> pos);
+	boolean checkStairs(RoomDesign room, Pair<Integer, Integer> pos);
 	
 	/**
 	 * @param room, current room where the player is
 	 * @param pos, player's coordinates inside the room	 
 	 * @return true if the player is in collision with any enemy in the room
 	 */
-	public boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos);	
+	boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos);	
 
 }

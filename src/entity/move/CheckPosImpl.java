@@ -35,11 +35,18 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 		return false;
 	}
 
+	/**
+	 * @param pos, entity's current coordinates 
+	 * @return 
+	 */
 	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
 		return ((pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix > LIMITRIGHT)
 				|| (pos.getY() + upPix < LIMITUP || pos.getY() + downPix > LIMITDOWN));
 	}
 
+	/**
+	 * Method used to update entity's dimensions in the dungeon
+	 */
 	private void updateDimension() {
 		this.upPix = entity.getDimension().getUp();
 		this.downPix = entity.getDimension().getDown();
