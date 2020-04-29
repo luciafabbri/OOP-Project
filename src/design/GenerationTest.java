@@ -19,6 +19,7 @@ import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.graphs.BidirectionalGraph;
 import design.utilities.graphs.BreadthFirstSearch;
+import design.utilities.graphs.RoomBFS;
 
 /**
  * A class that includes tests for all the features implemented in the design
@@ -159,6 +160,10 @@ public class GenerationTest implements Game {
 		boolean isReachable = bfs.isReachable(tileGraph, new Pair<Integer, Integer>(64, 64),
 				new Pair<Integer, Integer>(320, 192));
 		System.out.println("Entered path is reachable? " + isReachable);
+		/*
+		final RoomBFS roomBfs = new RoomBFS();
+		System.out.println("Inside room 0 all doors are reachable: " + roomBfs.areDoorsReachable(testLevel.getRooms().get(0)));
+		*/
 
 		/*
 		// stairs generation test

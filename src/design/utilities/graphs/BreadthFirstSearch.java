@@ -12,6 +12,12 @@ import design.RoomDesignImpl;
  */
 public class BreadthFirstSearch<T> {
 
+	/**
+	 * @param graph       to be searched
+	 * @param source      of the path
+	 * @param destination of the path
+	 * @return true if a path from source to destination is present in the graph
+	 */
 	public boolean isReachable(Graph<T> graph, T source, T destination) {
 
 		final Map<T, Boolean> map = new HashMap<>();
@@ -45,11 +51,6 @@ public class BreadthFirstSearch<T> {
 		}
 
 		return false;
-	}
-	
-	public boolean areDoorsConnected(RoomDesignImpl room) {
-		return false;
-		
 	}
 
 }
