@@ -47,6 +47,7 @@ public class PlayerImpl implements Player {
 	private Pair<PlayerDimensions, PlayerDimensions> dimensions;
 
 	private Sound bowShoot;
+	private Sound hurtSound;
 	
 	private BulletMovement bullet ;
 	Set<Bullet> roomBullets = new HashSet<>();
@@ -68,6 +69,7 @@ public class PlayerImpl implements Player {
 		
 		try {
 			bowShoot = new Sound("./res/audio/bow/bow_fired.wav");
+			hurtSound = new Sound("./res/audio/mainChar/hurtSound.wav");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -198,6 +200,9 @@ public class PlayerImpl implements Player {
 	
 	@Override
 	public void takeDmg(int damage) {
+		if(!hurtSound.playing())
+			hurtSound.play(1.0f, 0.4f);
+	
 		this.health.takeDmg(damage);
 	}
 	

@@ -67,8 +67,9 @@ public class LevelsPlay extends BasicGameState {
 		graphics.drawDoors();
 		
 		graphics.drawMain(input);
-		graphics.drawEnemies();
 		
+		graphics.drawEnemies();
+			
 		graphics.drawDoorTop();
 		
 		ui.drawUI();

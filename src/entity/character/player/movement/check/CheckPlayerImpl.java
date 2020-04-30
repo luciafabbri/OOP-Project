@@ -31,6 +31,7 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 	
 	private Sound keyPickup;
 	private Sound coinPickup;
+	private Sound modPickup;
 	
 	public CheckPlayerImpl(Entity entity, PlayerImpl player) {
 		super(entity);
@@ -39,6 +40,7 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		try {
 			keyPickup = new Sound("./res/audio/pickups/keyPickup.wav");
 			coinPickup = new Sound("./res/audio/pickups/coinPickup.wav");
+			modPickup = new Sound("./res/audio/pickups/modifierPickup.wav");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,24 +79,27 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 				}
 				if (item.getTypeEnt().equals(Entities.KEY)) {
 					player.getInventory().addKey();
-					keyPickup.play(1.0f, 0.25f);
+					keyPickup.play(1.0f, 0.15f);
 					room.getPickupablesSet().remove(item);
 				}
 				if (item.getTypeEnt().equals(Entities.HEALTHUPGRADE1)) {
 					ModifiersImpl mod = new HealthUpgrade1(item.getPosition());
 					player.getHealth().upgradeHealth(mod.getModQty());
+					modPickup.play(1.0f, 0.2f);
 					System.out.println("vita: "+ player.getHealth().getCurrentHealth());
 					room.getPickupablesSet().remove(item);
 				}
 				if (item.getTypeEnt().equals(Entities.ATTACKUPGRADE1)) {
 					ModifiersImpl mod = new AttackUpgrade1(item.getPosition());
 					player.upgradeDamage(mod.getModQty());
+					modPickup.play(1.0f, 0.2f);
 					System.out.println("danno: "+ player.getDamage());
 					room.getPickupablesSet().remove(item);
 				}
 				if (item.getTypeEnt().equals(Entities.ATTACKUPGRADE1)) {
 					ModifiersImpl mod = new AttackSpeed1(item.getPosition());
 					player.upgradeRof(mod.getModQty());
+					modPickup.play(1.0f, 0.2f);
 					System.out.println("rof : "+ player.getRof());
 					room.getPickupablesSet().remove(item);
 				}

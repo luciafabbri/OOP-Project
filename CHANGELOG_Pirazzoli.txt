@@ -86,3 +86,9 @@ once testing for entities has been done extensively;
 -Added a new AttackSpeed modifier, increases rate of fire;
 -Added a sound effect for picking up keys and coins;
 -Also added a sound effect when the doors open;
+
+30/04/2020
+-Added tiles in front of doors inside RoomBFS;
+-Implemented sound for opening doors;
+-Added a modifier to increase movement speed;
+-Added sound for taking damage and for picking up modifiers;
