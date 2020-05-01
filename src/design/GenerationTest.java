@@ -141,10 +141,10 @@ public class GenerationTest implements Game {
 			System.out.println("Obstacle in pos: " + o.getPosition());
 		});
 
+		
 		// tileGraph and path finding
-
 		final BidirectionalGraph<Pair<Integer, Integer>> tileGraph = testLevel.getRooms().get(0).getTilesGraph();
-
+		/*
 		System.out.println("Room graph: ");
 		for (Pair<Integer, Integer> t : tileGraph.getNodes()) {
 			System.out.print("Tile " + t + " has connections to tiles: ");
@@ -153,6 +153,7 @@ public class GenerationTest implements Game {
 			}
 			System.out.println("");
 		}
+		*/
 		
 		//isReachable test
 		final BreadthFirstSearch<Pair<Integer, Integer>> bfs = new BreadthFirstSearch<>();

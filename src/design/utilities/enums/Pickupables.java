@@ -9,7 +9,7 @@ import java.util.*;
  */
 public enum Pickupables {
 
-	COIN(0), KEY(1), ATTACKUPGRADE1(2), HEALTHUPGRADE1(3), ATTACKSPEED1(4);
+	COIN(0), KEY(1), ATTACKUPGRADE1(2), HEALTHUPGRADE1(3), ATTACKSPEED1(4), MOVEMENTSPEED1(5);
 
 	private Integer pickupableCode;
 	private static Map<Integer, Pickupables> map = new HashMap<>();

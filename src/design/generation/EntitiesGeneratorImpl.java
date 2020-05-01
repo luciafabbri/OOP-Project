@@ -63,8 +63,8 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 			case ATTACKSPEED1:
 				room.addPickupable(new AttackSpeed1(pos));
 				break;
-			default:
-				break;
+			case MOVEMENTSPEED1:
+				room.addPickupable(new MovementSpeed1(pos));
 			}
 		}
 
