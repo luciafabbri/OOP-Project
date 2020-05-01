@@ -1,7 +1,7 @@
 package entity.character.health;
 
 /**
- * Class that implements interface Health, used to represent all the characters's health aspects in the dungeon
+ * Class that implements interface Health used to represent all the characters's health aspects in the dungeon
  */
 
 public class HealthImpl implements Health {

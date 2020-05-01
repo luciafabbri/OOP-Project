@@ -23,6 +23,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import design.RoomDesign;
 
+/**
+ * Class that implements interface Player used to define all the aspects concerning the player 
+ */
+
 public class PlayerImpl implements Player {
 
 	private int level;
@@ -47,6 +51,12 @@ public class PlayerImpl implements Player {
 	private BulletMovement bullet ;
 	Set<Bullet> roomBullets = new HashSet<>();
 
+	/**
+	 * Default constructor
+	 * @param pos, player's position
+	 * @param dir, player's direction
+	 * @param level, player's starting level
+	 */
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
 		this.position = pos;
 		this.level = level;
@@ -81,7 +91,10 @@ public class PlayerImpl implements Player {
 				check.possiblePos(this.currentRoom, newPos) || (check.checkDoors(newPos, map) && clearRoom)) {
 			this.position = newPos;  
 		}
-		this.direction = move.getDirection();   /** direction changes even if the player can't actually go in that position */
+		/**
+		 *  direction changes even if the player can't actually go in that position
+		 */
+		this.direction = move.getDirection();   
 	}
 	
 	@Override
@@ -187,6 +200,7 @@ public class PlayerImpl implements Player {
 		this.rof = this.rof - upgrade;
 	} 
 	
+	@Override
 	public int getDamage() {
 		return this.damage;
 	}

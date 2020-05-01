@@ -7,13 +7,12 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
-import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
 import entity.bullet.Bullet;
+import entity.character.DoorCheck;
 import entity.character.enemy.Enemy;
-import entity.character.player.DoorCheck;
 import entity.character.player.Player;
 import levels.Level;
 import levels.RoomImpl;
