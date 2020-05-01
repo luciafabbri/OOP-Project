@@ -196,8 +196,6 @@ public class PlayerImpl implements Player {
 		return this.damage;
 	}
 	
-	
-	
 	@Override
 	public void takeDmg(int damage) {
 		if(!hurtSound.playing())

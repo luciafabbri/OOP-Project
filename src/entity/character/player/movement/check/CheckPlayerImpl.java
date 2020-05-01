@@ -14,6 +14,7 @@ import gameEntities.modifiers.AttackSpeed1;
 import gameEntities.modifiers.AttackUpgrade1;
 import gameEntities.modifiers.HealthUpgrade1;
 import gameEntities.modifiers.ModifiersImpl;
+import gameEntities.modifiers.MovementSpeed1;
 import design.utilities.GameSettings;
 import java.util.Map;
 import java.util.Optional;
@@ -71,17 +72,27 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		for (GameEntity item : itemSet) {
 			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
 			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
+			stopMillis = System.currentTimeMillis();
 			if (checkX && checkY) {
+				/**
+				 * check item "COIN"
+				 */
 				if (item.getTypeEnt().equals(Entities.COIN)) {
 					player.getInventory().addCoin();
 					coinPickup.play(1.0f, 0.35f);
 					room.getPickupablesSet().remove(item);
 				}
+				/**
+				 * check item "KEY"
+				 */
 				if (item.getTypeEnt().equals(Entities.KEY)) {
 					player.getInventory().addKey();
 					keyPickup.play(1.0f, 0.15f);
 					room.getPickupablesSet().remove(item);
 				}
+				/**
+				 * check modifier "HEALTHUPGRADE1", to increase player's health
+				 */
 				if (item.getTypeEnt().equals(Entities.HEALTHUPGRADE1)) {
 					ModifiersImpl mod = new HealthUpgrade1(item.getPosition());
 					player.getHealth().upgradeHealth(mod.getModQty());
@@ -89,19 +100,36 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 					System.out.println("vita: "+ player.getHealth().getCurrentHealth());
 					room.getPickupablesSet().remove(item);
 				}
+				/**
+				 * check modifier "ATTACKUPGRADE1", to increase player's attack power
+				 */
 				if (item.getTypeEnt().equals(Entities.ATTACKUPGRADE1)) {
 					ModifiersImpl mod = new AttackUpgrade1(item.getPosition());
 					player.upgradeDamage(mod.getModQty());
 					modPickup.play(1.0f, 0.2f);
-					System.out.println("danno: "+ player.getDamage());
+					System.out.println("attacco: "+ player.getDamage());
 					room.getPickupablesSet().remove(item);
 				}
-				if (item.getTypeEnt().equals(Entities.ATTACKUPGRADE1)) {
+				/**
+				 * check modifier "ATTACKSPEED1", to increase player's attack speed
+				 */
+				if (item.getTypeEnt().equals(Entities.ATTACKSPEED1)) {
 					ModifiersImpl mod = new AttackSpeed1(item.getPosition());
 					player.upgradeRof(mod.getModQty());
 					modPickup.play(1.0f, 0.2f);
 					System.out.println("rof : "+ player.getRof());
 					room.getPickupablesSet().remove(item);
+				}
+				/**
+				 * check modifier "MOVEMENTSPEED1", to increase player's movement speed 
+				 */
+				if ( (item.getTypeEnt().equals(Entities.MOVEMENTSPEED1))  && (stopMillis - startMillis > 10000) ) {
+					ModifiersImpl mod = new MovementSpeed1(item.getPosition());
+					player.upgradePlayerSpeed(mod.getModQty());
+					modPickup.play(1.0f, 0.2f);
+					System.out.println("speed : "+ player.getPlayerSpeed());
+					room.getPickupablesSet().remove(item);
+					startMillis = System.currentTimeMillis();
 				}
 				return true;
 			}
@@ -134,6 +162,9 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 				player.getHealth().takeDmg(enemy.getDamage());
 				System.out.println("danno dal nemico preso\n");
 				System.out.println("vita: "+ player.getHealth().getCurrentHealth());
+				if(!player.getHealth().isAlive()) {
+					System.out.println("PLAYER MORTO");
+				}
 				startMillis = System.currentTimeMillis();
 				return true;
 			}

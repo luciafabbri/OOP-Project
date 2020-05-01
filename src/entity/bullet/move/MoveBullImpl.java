@@ -5,11 +5,20 @@ import design.utilities.Pair;
 import entity.move.CheckPos;
 import entity.move.Direction;
 
+/**
+ * Class that implements interface MoveBull used to check if it's possible to move bullet in his next position
+ * in the dungeon
+ */
+
 public class MoveBullImpl implements MoveBull {
 
 	private boolean alive = true;
 	private RoomDesign currentRoom;
 	
+	/**
+	 * Default constructor
+	 * @param room, bullet's current room
+	 */
 	public MoveBullImpl(RoomDesign room) {
 		currentRoom = room;
 	}

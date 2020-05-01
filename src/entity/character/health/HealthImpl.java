@@ -1,10 +1,18 @@
 package entity.character.health;
 
+/**
+ * Class that implements interface Health, used to represent all the characters's health aspects in the dungeon
+ */
+
 public class HealthImpl implements Health {
 	
 	private int totalHealth;
 	private int currentHealth;
 	
+	/**
+	 * Default constructor 
+	 * @param health, character's initial health
+	 */
 	public HealthImpl(int health) {
 		this.totalHealth = health;
 		this.currentHealth = health;

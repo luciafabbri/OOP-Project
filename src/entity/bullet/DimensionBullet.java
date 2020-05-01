@@ -17,6 +17,13 @@ public enum DimensionBullet {
 	
 	private UpDownLeftRight<Integer> dim;
 	
+	/**
+	 * Default constructor
+	 * @param up, bullet's up dimension
+	 * @param down, bullet's down dimension
+	 * @param left, bullet's left dimension
+	 * @param right, bullet's right dimension
+	 */
 	DimensionBullet(int up, int down, int left, int right) {
 		this.dim = new UpDownLeftRight<>(up, down, left, right);
 	}
