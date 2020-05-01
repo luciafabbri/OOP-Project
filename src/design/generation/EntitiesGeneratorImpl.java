@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import design.RoomDesignImpl;
 import design.utilities.*;
 import design.utilities.enums.Pickupables;
+import design.utilities.graphs.RoomBFS;
 import entity.character.enemy.*;
 import gameEntities.*;
 import gameEntities.items.*;
@@ -35,7 +36,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	 */
 	private Pair<Integer, Integer> generateCoherentPos() {
 		pos = randomPosition.generateRandomPosition();
-		while (room.getOccupiedTiles().contains(pos)) {
+		while (room.getOccupiedTiles().contains(pos) || RoomBFS.getDoorpositions().contains(pos)) {
 			pos = randomPosition.generateRandomPosition();
 		}
 		room.addOccupiedTile(pos);

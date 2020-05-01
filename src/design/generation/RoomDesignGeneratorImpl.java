@@ -6,13 +6,14 @@ import org.newdawn.slick.SlickException;
 import design.RoomDesignImpl;
 import design.utilities.*;
 import design.utilities.graphs.BreadthFirstSearch;
+import design.utilities.graphs.RoomBFS;
 
 public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 
 	private final Map<String, Integer> currentConfig;
 	private final Random random = new Random();
 	private final TilesGraphGenerator graphGen = new TilesGraphGeneratorImpl();
-	private final BreadthFirstSearch<Pair<Integer, Integer>> bfs = new BreadthFirstSearch<>();
+	private final RoomBFS bfs = new RoomBFS();
 	private final int specialRoomID;
 	private final boolean isFinalLevel;
 
@@ -52,11 +53,14 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 		// tiles graph generation
 		room.setTilesGraph(graphGen.generateTilesGraph(room));
 		// door-to-door path check, if false generate new room
-		/*
-		while(!bfs.areDoorsConnected(room)) {
+		
+		while(!bfs.areDoorsReachable(room)) {
+			// print for test purposes
+			System.out.println("Some door isn't reachable, generating room anew");
 			return(this.generateRoom(index));
 		}
-		*/
+		// print for test purposes
+		System.out.println("All doors are reachable, adding room");
 		return room;
 	}
 

@@ -16,6 +16,13 @@ public class RoomBFS extends BreadthFirstSearch<Pair<Integer, Integer>> {
 
 	private final static Set<Pair<Integer, Integer>> doorPositions;
 
+	/**
+	 * @return the set containing all four door positions
+	 */
+	public static Set<Pair<Integer, Integer>> getDoorpositions() {
+		return doorPositions;
+	}
+
 	// static map generation for door tiles
 	static {
 		doorPositions = new HashSet<>();
