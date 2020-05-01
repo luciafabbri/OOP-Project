@@ -19,12 +19,12 @@ public enum PlayerImages {
 
 	private String image;
 	
+	/**
+	 * Default constructor
+	 * @param image, image used to represent the player based on his direction
+	 */
 	PlayerImages(String image)  {
 		this.image = image;
-	}
-	
-	public Animation getAnimation() throws SlickException {
-		return new Animation(new SpriteSheet(new Image(image), 64, 64), 100);
 	}
 	
 	public static UpDownLeftRight<Animation> getTexture(PlayerImpl player) throws SlickException {
@@ -33,5 +33,14 @@ public enum PlayerImages {
 		Animation left = LEFT.getAnimation();	
 		Animation right = RIGHT.getAnimation();
 		return new UpDownLeftRight<>(back, front, left, right);
+	}
+	
+	/**
+	 * Method used to get player's animation from his image based on his current direction
+	 * @return player's correct animation
+	 * @throws SlickException
+	 */
+	private Animation getAnimation() throws SlickException {
+		return new Animation(new SpriteSheet(new Image(image), 64, 64), 100);
 	}
 }

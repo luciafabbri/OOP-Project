@@ -2,10 +2,6 @@ package entity.character.player.shoot;
 
 import org.newdawn.slick.Input;
 
-import design.utilities.Pair;
-import entity.bullet.BulletImpl;
-import entity.move.Direction;
-
 /**
  * An interface used to create player's bullets 
  */
@@ -17,11 +13,5 @@ public interface BulletMovement {
 	 * @param input, received from the keyboard 
 	 */
 	void checkShooting(Input input);
-		
-	/**
-	 * Method used to make the player start shooting in the direction that he's going
-	 * A new BulletPlayerImpl() object is created
-	 */
-	void shoot();	
 	
 }

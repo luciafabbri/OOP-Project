@@ -7,13 +7,19 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
+/**
+ * Class that implements interface Movement used to move the player through the different rooms in the dungeon 
+ */
+
 public class MovementImpl implements Movement {
 	
 	private Direction direction;
 	private int newSpeed;
 	private Sound footsteps;
 	
-	
+	/**
+	 * Default constructor
+	 */
 	public MovementImpl() {
 		try {
 			footsteps = new Sound("./res/audio/footsteps/footsteps.wav");
@@ -25,38 +31,9 @@ public class MovementImpl implements Movement {
 		
 	@Override
 	public Pair<Integer, Integer> movePlayer(Input input, Pair<Integer,Integer> pos, Direction dir, int speed) {
-		
 		direction = dir;
 		newSpeed = speed;
-		
-/**		//control UP-RIGHT input
-		if( input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_D) ) {
-			this.direction = Direction.NORTH_EAST;
-			return new Pair<Integer,Integer>(pos.getX() + newSpeed,pos.getY() - newSpeed);
-		}
-		
-		
-		//control UP-LEFT input
-		if( input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_A) ) {
-			direction = Direction.NORTH_WEST;
-			return new Pair<Integer,Integer>(pos.getX() - newSpeed,pos.getY() - newSpeed);
-		}
-		
-		
-		//control DOWN-LEFT input
-		if( input.isKeyDown(Input.KEY_S) && input.isKeyDown(Input.KEY_A) ) {
-			this.direction = Direction.SOUTH_WEST;
-			return new Pair<Integer,Integer>(pos.getX() - newSpeed,pos.getY() + newSpeed);
-		}
-		
-		
-		//control DOWN-RIGHT input 
-		if( input.isKeyDown(Input.KEY_S) && input.isKeyDown(Input.KEY_D) ) {
-			this.direction = Direction.SOUTH_EAST;
-			return new Pair<Integer,Integer>(pos.getX() + newSpeed,pos.getY() + newSpeed);
-		}
-		
-*/		
+			
 		//control UP input   
 		if( input.isKeyDown(Input.KEY_W) ) {
 			this.direction = Direction.NORTH;
@@ -95,7 +72,6 @@ public class MovementImpl implements Movement {
 		return pos;
 	}
 
-	
 	@Override
 	public Direction getDirection() {
 		return this.direction;

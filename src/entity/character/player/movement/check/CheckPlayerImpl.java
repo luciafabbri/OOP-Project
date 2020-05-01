@@ -4,36 +4,39 @@ import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
 import entity.Entity;
+import entity.character.DoorCheck;
 import entity.character.enemy.Enemy;
-import entity.character.player.DoorCheck;
 import entity.character.player.PlayerImpl;
 import entity.move.CheckPosImpl;
 import gameEntities.GameEntity;
 import gameEntities.Pickupable;
-import gameEntities.modifiers.AttackSpeed1;
-import gameEntities.modifiers.AttackUpgrade1;
-import gameEntities.modifiers.HealthUpgrade1;
-import gameEntities.modifiers.ModifiersImpl;
-import gameEntities.modifiers.MovementSpeed1;
+import gameEntities.modifiers.*;
 import design.utilities.GameSettings;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
-
 import design.RoomDesign;
+
+/**
+ * Class that implements interface CheckPlayer used to check and then to force the player to do the specific chosen actions
+ */
 
 public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSettings{
 				
 	private PlayerImpl player;
 	private long startMillis = 0; 
 	private long stopMillis;
-	
 	private Sound keyPickup;
 	private Sound coinPickup;
 	private Sound modPickup;
 	
+	/**
+	 * Default constructor
+	 *  @param entity, entity is used to inherit all the methods implemented in class CheckPosImpl
+	 *  @param player, current entity of which we will do the check
+	 */
 	public CheckPlayerImpl(Entity entity, PlayerImpl player) {
 		super(entity);
 		this.player = player;
@@ -72,7 +75,6 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		for (GameEntity item : itemSet) {
 			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
 			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
-			stopMillis = System.currentTimeMillis();
 			if (checkX && checkY) {
 				/**
 				 * check item "COIN"
@@ -123,13 +125,12 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 				/**
 				 * check modifier "MOVEMENTSPEED1", to increase player's movement speed 
 				 */
-				if ( (item.getTypeEnt().equals(Entities.MOVEMENTSPEED1))  && (stopMillis - startMillis > 10000) ) {
+				if (item.getTypeEnt().equals(Entities.MOVEMENTSPEED1)) {
 					ModifiersImpl mod = new MovementSpeed1(item.getPosition());
 					player.upgradePlayerSpeed(mod.getModQty());
 					modPickup.play(1.0f, 0.2f);
 					System.out.println("speed : "+ player.getPlayerSpeed());
 					room.getPickupablesSet().remove(item);
-					startMillis = System.currentTimeMillis();
 				}
 				return true;
 			}
@@ -137,6 +138,7 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		return false;
 	}
 	
+	@Override
 	public boolean checkStairs(RoomDesign room, Pair<Integer, Integer> pos) {
 		if( room.areStairsPresent() ) {
 			boolean checkX, checkY;
