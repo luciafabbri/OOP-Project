@@ -11,22 +11,30 @@ import design.utilities.*;
 import design.utilities.enums.Door;
 import design.utilities.graphs.BidirectionalGraph;
 
+/**
+ * Implementation of RoomsGraphGenerator interface
+ *
+ */
 public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 
 	private Random random = new Random();
 
+	@Override
 	public BidirectionalGraph<RoomDesign> generateRoomsGraph(LinkedList<RoomDesign> rooms) {
 
 		BidirectionalGraph<RoomDesign> graph = new BidirectionalGraph<RoomDesign>();
 
+		// each room is added as a node
 		rooms.forEach(r -> {
 			graph.addNode(r);
 		});
 
+		// for each node/room the random generation process is executed
 		graph.getNodes().forEach(n -> {
-
-			int numOfRemainingEdges = random.nextInt(GameSettings.MAXDOORS) + GameSettings.MINDOORS; // between 1 and 4
-																										// edge
+			// each room has a random number of edges/connection, between 1 and 4
+			int numOfRemainingEdges = random.nextInt(GameSettings.MAXDOORS) + GameSettings.MINDOORS;
+			// while a room still has edges to "fill", random connections to other rooms
+			// that have edges to "fill" themselves are created
 			while (graph.getEdges(n).size() < GameSettings.MINDOORS) {
 				while (numOfRemainingEdges > 0 && graph.getEdges(n).size() < GameSettings.MAXDOORS) {
 					int randomNodeIndex = random.nextInt(rooms.size());
@@ -50,10 +58,13 @@ public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 
 		Map<RoomDesign, Map<Door, Optional<RoomDesign>>> roomLayout = new HashMap<>();
 
+		// creates a map for each room
 		graph.getNodes().forEach(n -> {
 			roomLayout.put(n, new HashMap<Door, Optional<RoomDesign>>());
 		});
 
+		// rooms can have from 1 to 4 doors, if a room's door is not present, it is
+		// associated in the map to an empty optional
 		roomLayout.values().forEach(m -> {
 			m.put(Door.WEST, Optional.empty());
 			m.put(Door.NORTH, Optional.empty());
@@ -61,6 +72,7 @@ public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 			m.put(Door.SOUTH, Optional.empty());
 		});
 
+		// creates bidirectional doors association for all rooms based on cardinality
 		graph.getNodes().forEach(n -> {
 			roomLayout.keySet().forEach(k -> {
 				if (n.equals(k)) {
@@ -84,6 +96,10 @@ public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 		return roomLayout;
 	}
 
+	/**
+	 * @param door
+	 * @return cardinal opposite door
+	 */
 	private Door returnOppositeDoor(Door door) {
 		if (door.equals(Door.WEST)) {
 			return Door.EAST;

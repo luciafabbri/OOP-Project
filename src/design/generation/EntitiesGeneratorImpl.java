@@ -26,6 +26,10 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	private Pair<Integer, Integer> pos;
 	private final EnemyCreatorImpl enemyGen = new EnemyCreatorImpl();
 
+	/**
+	 * @param room           that the generator applies to
+	 * @param currentConfig, configuration map to be used
+	 */
 	public EntitiesGeneratorImpl(RoomDesignImpl room, Map<String, Integer> currentConfig) {
 		this.room = room;
 		this.currentConfig = currentConfig;

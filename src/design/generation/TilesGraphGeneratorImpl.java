@@ -8,6 +8,10 @@ import design.utilities.Pair;
 import design.utilities.graphs.BidirectionalGraph;
 import design.utilities.graphs.Graph;
 
+/**
+ * Implementation of TilesGraphGenerator interface
+ *
+ */
 public class TilesGraphGeneratorImpl implements TilesGraphGenerator {
 
 	@Override
@@ -34,6 +38,10 @@ public class TilesGraphGeneratorImpl implements TilesGraphGenerator {
 		return graph;
 	}
 
+	/**
+	 * @param coordinates of a tile
+	 * @return a List of adjacent tiles(0 to 4)
+	 */
 	private LinkedList<Pair<Integer, Integer>> computeAdjacentTile(Pair<Integer, Integer> tilePosition) {
 		LinkedList<Pair<Integer, Integer>> list = new LinkedList<>();
 		Pair<Integer, Integer> upperTile = new Pair<Integer, Integer>(tilePosition.getX() - 64, tilePosition.getY());
