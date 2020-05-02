@@ -4,7 +4,7 @@ import org.newdawn.slick.Image;
 
 import design.utilities.Pair;
 import design.utilities.enums.Entities;
-import entity.character.Stats;
+import dynamicBody.character.Stats;
 import gameEntities.Pickupable;
 
 public class ModifiersImpl extends Pickupable{

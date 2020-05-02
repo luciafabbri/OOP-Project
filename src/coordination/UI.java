@@ -13,7 +13,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 import design.utilities.GameSettings;
-import entity.character.player.Player;
+import dynamicBody.character.player.Player;
 
 public class UI {
 	

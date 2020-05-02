@@ -12,9 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import design.utilities.GameSettings;
 import design.utilities.Pair;
-import entity.character.player.Player;
-import entity.character.player.PlayerImpl;
-import entity.move.Direction;
+import dynamicBody.character.player.Player;
 import levels.Level;
 import levels.LevelImpl;
 

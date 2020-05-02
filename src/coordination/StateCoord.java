@@ -1,4 +1,4 @@
- 	package coordination;
+package coordination;
 
 import java.io.File;
 import java.util.logging.Level;
@@ -11,10 +11,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import design.utilities.GameSettings;
 import design.utilities.Pair;
-import entity.character.player.Player;
-import entity.character.player.PlayerImpl;
-import entity.move.Direction;
-
+import dynamicBody.character.player.Player;
+import dynamicBody.character.player.PlayerImpl;
+import dynamicBody.move.Direction;
 
 public class StateCoord extends StateBasedGame {
 

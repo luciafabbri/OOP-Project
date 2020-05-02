@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 
 import design.utilities.Pair;
 import design.utilities.enums.Entities;
-import entity.character.Stats;
+import dynamicBody.character.Stats;
 
 public class MovementSpeed1 extends ModifiersImpl{
 

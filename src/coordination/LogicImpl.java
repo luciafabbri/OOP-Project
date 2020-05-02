@@ -10,10 +10,10 @@ import org.newdawn.slick.Sound;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
-import entity.bullet.Bullet;
-import entity.character.DoorCheck;
-import entity.character.enemy.Enemy;
-import entity.character.player.Player;
+import dynamicBody.bullet.Bullet;
+import dynamicBody.character.DoorCheck;
+import dynamicBody.character.enemy.Enemy;
+import dynamicBody.character.player.Player;
 import levels.Level;
 import levels.RoomImpl;
 
@@ -91,7 +91,7 @@ public class LogicImpl {
 		}
 
 		enemy.forEach(e -> {
-			Iterator<Bullet> enemyIt = e.getBullets().iterator();
+			Iterator<Bullet> enemyIt = e.getRoomBullets().iterator();
 			while (enemyIt.hasNext()) {
 				enemyIt.next().updatePos();
 
@@ -128,7 +128,7 @@ public class LogicImpl {
 		Set<Enemy> enemy = level.getLevel().get(level.getRoomID()).getRoom().getEnemySet();
 
 		enemy.forEach(e -> {
-			Iterator<Bullet> enemyIt = e.getBullets().iterator();
+			Iterator<Bullet> enemyIt = e.getRoomBullets().iterator();
 			while (enemyIt.hasNext()) {
 				if (!enemyIt.next().isAlive())
 					enemyIt.remove();

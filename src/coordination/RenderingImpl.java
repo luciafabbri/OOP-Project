@@ -13,10 +13,10 @@ import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
-import entity.bullet.Bullet;
-import entity.character.enemy.Enemy;
-import entity.character.player.Player;
-import entity.move.Direction;
+import dynamicBody.bullet.Bullet;
+import dynamicBody.character.enemy.Enemy;
+import dynamicBody.character.player.Player;
+import dynamicBody.move.Direction;
 import gameEntities.Stairs;
 import levels.Level;
 import levels.RoomImpl;
@@ -98,7 +98,7 @@ public class RenderingImpl implements Rendering {
 		Set<Enemy> enemys = currentRoom.getRoom().getEnemySet();
 
 		enemys.forEach(e -> {
-			Set<Bullet> bulletMon = e.getBullets();
+			Set<Bullet> bulletMon = e.getRoomBullets();
 
 			if (!bulletMon.isEmpty()) {
 				bulletMon.forEach(s -> {
