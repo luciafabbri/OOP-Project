@@ -1,0 +1,48 @@
+package dynamicBody.bullet;
+
+import org.newdawn.slick.Image;
+
+import design.RoomDesign;
+import design.utilities.Pair;
+import dynamicBody.DynamicBody;
+import dynamicBody.move.Direction;
+
+/**
+ * An interface that defines all the main methods concerning bullets
+ */
+
+public interface Bullet extends DynamicBody {
+	
+	final static int DIMENSION = 48;
+	
+	/** 
+	 * @return bullet's current position
+	 */
+	Pair<Integer,Integer> getPos();
+
+	/**
+     * Method used to check if bullet's next coordinates are considered to be in a possible position	
+     */
+	void updatePos();
+	
+	/**
+	 * @return bullet's current direction
+	 */
+	Direction getDirection();
+
+	/**
+	 * @return bullet's image
+	 */
+	Image getTexture();
+
+	/**
+	 * @param texture, image used to represent bullets
+	 */
+	void setTexture(Image texture);
+	
+	/**
+	 * @return bullet's current room
+	 */
+	RoomDesign getRoom();
+	
+}
