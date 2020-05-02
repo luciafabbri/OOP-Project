@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import design.RoomDesignImpl;
 import design.utilities.*;
 import design.utilities.enums.Pickupables;
+import design.utilities.graphs.RoomBFS;
 import entity.character.enemy.*;
 import gameEntities.*;
 import gameEntities.items.*;
@@ -25,6 +26,10 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	private Pair<Integer, Integer> pos;
 	private final EnemyCreatorImpl enemyGen = new EnemyCreatorImpl();
 
+	/**
+	 * @param room           that the generator applies to
+	 * @param currentConfig, configuration map to be used
+	 */
 	public EntitiesGeneratorImpl(RoomDesignImpl room, Map<String, Integer> currentConfig) {
 		this.room = room;
 		this.currentConfig = currentConfig;
@@ -35,7 +40,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	 */
 	private Pair<Integer, Integer> generateCoherentPos() {
 		pos = randomPosition.generateRandomPosition();
-		while (room.getOccupiedTiles().contains(pos)) {
+		while (room.getOccupiedTiles().contains(pos) || RoomBFS.getDoorpositions().contains(pos)) {
 			pos = randomPosition.generateRandomPosition();
 		}
 		room.addOccupiedTile(pos);
@@ -60,6 +65,11 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 			case HEALTHUPGRADE1:
 				room.addPickupable(new HealthUpgrade1(pos));
 				break;
+			case ATTACKSPEED1:
+				room.addPickupable(new AttackSpeed1(pos));
+				break;
+			case MOVEMENTSPEED1:
+				room.addPickupable(new MovementSpeed1(pos));
 			}
 		}
 

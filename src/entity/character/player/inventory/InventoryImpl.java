@@ -2,11 +2,19 @@ package entity.character.player.inventory;
 
 import entity.character.player.Player;
 
+/**
+ * Class that implements interface Inventory used to manage all the player's objects picked up in each room
+ */
+
 public class InventoryImpl implements Inventory {
 	
 	private int coin;
 	private int key;
 	
+	/**
+	 * Default constructor
+	 * @param player, the player of which we will store the picked objects 
+	 */
 	public InventoryImpl(Player player) {
 		this.coin = 0;
 		this.key = 0;

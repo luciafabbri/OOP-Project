@@ -8,7 +8,7 @@ import java.util.Random;
 import entity.character.enemy.CircularList;
 
 /**
- * Enumeration used to represent all the different type of entities's direction
+ * Enumeration used to represent all the different type of entities's directions
  */
 
 public enum Direction {
@@ -25,6 +25,11 @@ public enum Direction {
 	private int abscissa;
 	private int ordinate;
 	
+	/**
+	 * Default constructor
+	 * @param x, x axe value 
+	 * @param y, y axe value 
+	 */
 	Direction(final int x, final int y) {
 		this.abscissa = x;
 		this.ordinate = y;

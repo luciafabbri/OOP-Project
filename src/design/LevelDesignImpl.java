@@ -7,6 +7,10 @@ import java.util.Optional;
 import design.utilities.enums.Door;
 import design.utilities.graphs.BidirectionalGraph;
 
+/**
+ * Implementation of LevelDesign interface
+ *
+ */
 public class LevelDesignImpl implements LevelDesign {
 
 	private boolean isGraphSet = false;

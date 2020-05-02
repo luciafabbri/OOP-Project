@@ -10,6 +10,6 @@ import entity.character.Stats;
 public class AttackSpeed1 extends ModifiersImpl{
 
 	public AttackSpeed1(Pair<Integer, Integer> coord) throws SlickException {
-		super(coord, Stats.HEALTH, 10, "Health Upgrade", new Image("./res/items/mod/AttackSpeedMod1.png"), Entities.HEALTHUPGRADE1);
+		super(coord, Stats.PROJ_SPEED, 10, "ROF Upgrade", new Image("./res/items/mod/AttackSpeedMod1.png"), Entities.ATTACKSPEED1);
 	}
 }

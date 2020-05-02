@@ -7,13 +7,12 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
-import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
 import entity.bullet.Bullet;
+import entity.character.DoorCheck;
 import entity.character.enemy.Enemy;
-import entity.character.player.DoorCheck;
 import entity.character.player.Player;
 import levels.Level;
 import levels.RoomImpl;
@@ -23,7 +22,7 @@ public class LogicImpl {
 	private Level level;
 	private Player player;
 	private RoomImpl currentRoom;
-	private boolean playSound = false;
+	private boolean playSound = true;
 	
 	private Sound doorOpen;
 
@@ -58,10 +57,17 @@ public class LogicImpl {
 		player.setCurrentRoom(level.getLevel().get(level.getRoomID()).getRoom());
 
 		currentRoom = level.getLevel().get(level.getRoomID());
+		if(!level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().isEmpty())
+			playSound = true;
 	}
 
 	public void setRoomCleared() {
 		player.setClearRoom(currentRoom.getRoom().getEnemySet().isEmpty());	
+		
+		if(level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().isEmpty() && !doorOpen.playing() && playSound) {
+			doorOpen.play(1.0f, 0.10f);
+			playSound = false;
+		}
 	}
 
 	public void moveMain(final Input input) throws SlickException {

@@ -1,5 +1,9 @@
 package design.utilities;
 
+/**
+ * An interface listing game parameters
+ *
+ */
 public interface GameSettings {
 	
 	final static int WIDTH = 1280;

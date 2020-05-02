@@ -12,15 +12,14 @@ import entity.move.Direction;
 public interface Movement {
 
 	/** 
-	 * According to the input received, this method will change player's coordinates and his direction.
+	 * According to the input received, this method will change player's coordinates and his direction
 	 * @param input, received from the keyboard
-	 * @param pos, player's coordinates inside the room
-	 * @param dir, player's direction inside the room
-	 * @param speed, player's speed
+	 * @param pos, player's current coordinates
+	 * @param dir, player's current direction 
+	 * @param speed, player's current speed
 	 * @return the new coordinates of the player
 	 */
-	Pair<Integer, Integer> movePlayer (Input input, Pair<Integer, Integer> pos, Direction dir, int speed); 
-	
+	Pair<Integer, Integer> movePlayer(Input input, Pair<Integer, Integer> pos, Direction dir, int speed); 
 	
 	/**
 	 * @return player's direction  

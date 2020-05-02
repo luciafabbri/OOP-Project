@@ -1,7 +1,11 @@
-package entity.character.player;
+package entity.character;
 
 import design.utilities.GameSettings;
 import design.utilities.Pair;
+
+/**
+ * Class
+ */
 
 public class DoorCheck {
 	

@@ -8,7 +8,7 @@ import design.utilities.enums.Door;
 import design.utilities.graphs.BidirectionalGraph;
 
 /**
- * An interface that defines the design aspects of each level of the game
+ * An interface that defines the design aspects of the games levels
  *
  */
 public interface LevelDesign {

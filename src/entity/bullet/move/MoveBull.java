@@ -11,7 +11,7 @@ import entity.move.Direction;
 public interface MoveBull {
 	
 	/**
-	 * @param pos, bullet's current position
+	 * @param pos, bullet's current coordinates
 	 * @param dir, bullet's current direction
 	 * @param check, type of bullet's check
 	 * @return the possible next bullet's coordinates in the dungeon

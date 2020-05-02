@@ -4,16 +4,11 @@ import design.utilities.Pair;
 import design.utilities.enums.Door;
 import entity.UpDownLeftRight;
 import entity.bullet.Bullet;
-import entity.character.health.Health;
-import entity.character.health.HealthImpl;
-import entity.character.player.inventory.Inventory;
-import entity.character.player.inventory.InventoryImpl;
-import entity.character.player.movement.Movement;
-import entity.character.player.movement.MovementImpl;
-import entity.character.player.movement.check.CheckPlayer;
-import entity.character.player.movement.check.CheckPlayerImpl;
-import entity.character.player.shoot.BulletMovement;
-import entity.character.player.shoot.BulletMovementImpl;
+import entity.character.health.*;
+import entity.character.player.inventory.*;
+import entity.character.player.movement.*;
+import entity.character.player.movement.check.*;
+import entity.character.player.shoot.*;
 import entity.move.Direction;
 import levels.Level;
 
@@ -27,6 +22,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import design.RoomDesign;
+
+/**
+ * Class that implements interface Player used to define all the aspects concerning the player 
+ */
 
 public class PlayerImpl implements Player {
 
@@ -47,10 +46,17 @@ public class PlayerImpl implements Player {
 	private Pair<PlayerDimensions, PlayerDimensions> dimensions;
 
 	private Sound bowShoot;
+	private Sound hurtSound;
 	
 	private BulletMovement bullet ;
 	Set<Bullet> roomBullets = new HashSet<>();
 
+	/**
+	 * Default constructor
+	 * @param pos, player's position
+	 * @param dir, player's direction
+	 * @param level, player's starting level
+	 */
 	public PlayerImpl(Pair<Integer,Integer> pos, Direction dir, int level) {	
 		this.position = pos;
 		this.level = level;
@@ -68,6 +74,7 @@ public class PlayerImpl implements Player {
 		
 		try {
 			bowShoot = new Sound("./res/audio/bow/bow_fired.wav");
+			hurtSound = new Sound("./res/audio/mainChar/hurtSound.wav");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,7 +91,10 @@ public class PlayerImpl implements Player {
 				check.possiblePos(this.currentRoom, newPos) || (check.checkDoors(newPos, map) && clearRoom)) {
 			this.position = newPos;  
 		}
-		this.direction = move.getDirection();   /** direction changes even if the player can't actually go in that position */
+		/**
+		 *  direction changes even if the player can't actually go in that position
+		 */
+		this.direction = move.getDirection();   
 	}
 	
 	@Override
@@ -190,14 +200,16 @@ public class PlayerImpl implements Player {
 		this.rof = this.rof - upgrade;
 	} 
 	
+	@Override
 	public int getDamage() {
 		return this.damage;
 	}
 	
-	
-	
 	@Override
 	public void takeDmg(int damage) {
+		if(!hurtSound.playing())
+			hurtSound.play(1.0f, 0.4f);
+	
 		this.health.takeDmg(damage);
 	}
 	

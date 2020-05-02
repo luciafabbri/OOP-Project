@@ -19,6 +19,7 @@ import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.graphs.BidirectionalGraph;
 import design.utilities.graphs.BreadthFirstSearch;
+import design.utilities.graphs.RoomBFS;
 
 /**
  * A class that includes tests for all the features implemented in the design
@@ -71,10 +72,11 @@ public class GenerationTest implements Game {
 		try {
 			testLevel = generator.generateLevel(1);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
+		// game entities listing for each room
+		
 		testLevel.getRooms().forEach(r -> {
 			System.out.println(r.toString() + "has ID : " + r.getRoomID());
 			System.out.print("Occupied tiles are the following: ");
@@ -105,7 +107,8 @@ public class GenerationTest implements Game {
 			System.out.println("");
 			System.out.println("");
 		});
-
+		
+		//rooms graph printing
 		final BidirectionalGraph<RoomDesign> graph = testLevel.getRoomsGraph();
 
 		System.out.println("Room graph: ");
@@ -116,7 +119,7 @@ public class GenerationTest implements Game {
 			}
 			System.out.println("");
 		}
-
+		// doors layout graph printing
 		final Map<RoomDesign, Map<Door, Optional<RoomDesign>>> layout = testLevel.getDoorsLayout();
 
 		for (RoomDesign d : layout.keySet()) {
@@ -138,10 +141,10 @@ public class GenerationTest implements Game {
 			System.out.println("Obstacle in pos: " + o.getPosition());
 		});
 
+		
 		// tileGraph and path finding
-
 		final BidirectionalGraph<Pair<Integer, Integer>> tileGraph = testLevel.getRooms().get(0).getTilesGraph();
-
+		/*
 		System.out.println("Room graph: ");
 		for (Pair<Integer, Integer> t : tileGraph.getNodes()) {
 			System.out.print("Tile " + t + " has connections to tiles: ");
@@ -150,19 +153,24 @@ public class GenerationTest implements Game {
 			}
 			System.out.println("");
 		}
-
+		*/
+		
+		//isReachable test
 		final BreadthFirstSearch<Pair<Integer, Integer>> bfs = new BreadthFirstSearch<>();
-
+		
 		boolean isReachable = bfs.isReachable(tileGraph, new Pair<Integer, Integer>(64, 64),
 				new Pair<Integer, Integer>(320, 192));
 		System.out.println("Entered path is reachable? " + isReachable);
+		/*
+		final RoomBFS roomBfs = new RoomBFS();
+		System.out.println("Inside room 0 all doors are reachable: " + roomBfs.areDoorsReachable(testLevel.getRooms().get(0)));
+		*/
 
 		/*
-		 * // stairs generation test Long num = testLevel.getRooms().stream().filter(r
-		 * -> r.areStairsPresent()).map(r -> r.getRoomID()).count();
-		 * System.out.println("Rooms with stairs are: " + num);
-		 */
-
+		// stairs generation test
+		Long num = testLevel.getRooms().stream().filter(r -> r.areStairsPresent()).map(r -> r.getRoomID()).count();
+		System.out.println("Rooms with stairs are: " + num);
+		*/
 	}
 
 	@Override

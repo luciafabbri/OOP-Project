@@ -1,7 +1,7 @@
 package entity.character;
 
 /**
- * 
+ *  
  */
 
 public enum Stats {

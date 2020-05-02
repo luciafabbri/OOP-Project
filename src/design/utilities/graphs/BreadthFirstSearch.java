@@ -2,6 +2,8 @@ package design.utilities.graphs;
 
 import java.util.*;
 
+import design.RoomDesignImpl;
+
 /**
  * A class containing methods to explore a graph of type
  * design.utilities.graphs.Graph<T> via Breadth First Search
@@ -10,6 +12,12 @@ import java.util.*;
  */
 public class BreadthFirstSearch<T> {
 
+	/**
+	 * @param graph       to be searched
+	 * @param source      of the path
+	 * @param destination of the path
+	 * @return true if a path from source to destination is present in the graph
+	 */
 	public boolean isReachable(Graph<T> graph, T source, T destination) {
 
 		final Map<T, Boolean> map = new HashMap<>();
