@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import design.utilities.Pair;
 import design.utilities.graphs.BidirectionalGraph;
-import entity.character.enemy.Enemy;
+import dynamicBody.character.enemy.Enemy;
 import gameEntities.*;
 
 /**

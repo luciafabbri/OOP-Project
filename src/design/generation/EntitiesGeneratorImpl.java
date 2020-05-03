@@ -8,7 +8,7 @@ import design.RoomDesignImpl;
 import design.utilities.*;
 import design.utilities.enums.Pickupables;
 import design.utilities.graphs.RoomBFS;
-import entity.character.enemy.*;
+import dynamicBody.character.enemy.EnemyCreatorImpl;
 import gameEntities.*;
 import gameEntities.items.*;
 import gameEntities.modifiers.*;

@@ -14,13 +14,35 @@ import design.utilities.GameSettings;
 
 public class Menu extends BasicGameState{
 
+	/**
+	 * Variable containing which input has been given from any controller
+	 */
 	private Input input;
-	private int x, y;
+	/**
+	 * Variable containing the current X coordinates of the mouse cursor
+	 */
+	private int x;
+	/**
+	 * Variable containing the current Y coordinates of the mouse cursor
+	 */
+	private int y;
+	/**
+	 * Variable that is true if the mouse cursor is on the Start button, otherwise false
+	 */
 	private boolean hoverButtonStart;
+	/**
+	 * Variable that is true if the mouse cursor is on the End button, otherwise false
+	 */
 	private boolean hoverButtonEnd;
+	/**
+	 * Variable containing the data regarding the music to play upon clicking the Start button
+	 */
 	private Music music;
 	
 	
+	/**
+	 *{@inheritDoc}
+	 */
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		hoverButtonStart = false;
@@ -29,6 +51,9 @@ public class Menu extends BasicGameState{
 		
 	}
 
+	/**
+	 *{@inheritDoc}
+	 */
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		
@@ -65,6 +90,9 @@ public class Menu extends BasicGameState{
 		
 	}
 
+	/**
+	 *{@inheritDoc}
+	 */
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		input = arg0.getInput();
@@ -95,9 +123,13 @@ public class Menu extends BasicGameState{
 		
 	}
 
+	
+	/**
+	 *Method that isn't used, must have because of inheritance
+	 */
 	@Override
 	public int getID() {
-		//Default ID for menu screen
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

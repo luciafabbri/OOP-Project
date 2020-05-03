@@ -92,3 +92,7 @@ once testing for entities has been done extensively;
 -Implemented sound for opening doors;
 -Added a modifier to increase movement speed;
 -Added sound for taking damage and for picking up modifiers;
+
+03/05/2020
+-Implemented iterface for LogicImpl class;
+-Commented all class regarding Pirazzoli's work until now (packages coordination, gameEntities.items, gameEntities.modifiers, levels, tiles);

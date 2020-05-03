@@ -12,28 +12,57 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import design.utilities.GameSettings;
 import design.utilities.Pair;
-import entity.character.player.Player;
-import entity.character.player.PlayerImpl;
-import entity.move.Direction;
+import dynamicBody.character.player.Player;
 import levels.Level;
 import levels.LevelImpl;
 
 public class LevelsPlay extends BasicGameState {
 	
+	/**
+	 * Variable that contains the data of the Player
+	 */
 	private Player player;
+	/**
+	 * Variable containing the Graphics class
+	 */
 	private Rendering graphics;
-	private LogicImpl logic;
+	/**
+	 * Variable containing the Logic class
+	 */
+	private Logic logic;
+	/**
+	 * Variable containing the UI class
+	 */
 	private UI ui;
+	/**
+	 * Variable containing the Level class
+	 */
 	private Level level;
+	/**
+	 * Variable containing which input is received from every computer controller
+	 */
 	private Input input;
+	/**
+	 * Variable containing the current level being displayed
+	 */
 	private int levelID;
 	
+	/**
+	 * Constructor to build initial level
+	 * @param state, indicates which level to load first
+	 * @param player, indicates the Player environment to keep track of
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public LevelsPlay(final int state, final Player player) throws SlickException {
 		super();
 		this.levelID = state;
 		this.player = player;
 	}
 	
+	/**
+	 *{@inheritDoc} 
+	 */
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		
@@ -53,6 +82,9 @@ public class LevelsPlay extends BasicGameState {
 		ui = new UI(player, arg0.getGraphics());
 	}
 
+	/**
+	 *{@inheritDoc}
+	 */
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		input = arg0.getInput();
@@ -84,6 +116,9 @@ public class LevelsPlay extends BasicGameState {
 		arg2.clearClip();
 	}
 
+	/**
+	 *{@inheritDoc}
+	 */
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		input = arg0.getInput();
@@ -91,8 +126,10 @@ public class LevelsPlay extends BasicGameState {
 		logic.setRoomCleared();
 		
 		logic.moveMain(input);
+		logic.shootMain(input);
 		
 		logic.moveEnemies();
+		logic.shootEnemies();
 		
 		logic.switchRooms(input);
 		
@@ -122,6 +159,10 @@ public class LevelsPlay extends BasicGameState {
 		*/
 	}
 	
+	/**
+	 * Method that returns current level
+	 * @return int, that indicates which current level is loaded
+	 */
 	public int getID() {
 		return levelID;
 	}
