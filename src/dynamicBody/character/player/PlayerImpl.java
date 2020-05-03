@@ -98,7 +98,7 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override
-	public void setPosition(Pair<Integer, Integer> position) {
+	public void transitionPos(Pair<Integer, Integer> position) {
 		this.position = position;
 	}
 

@@ -38,21 +38,21 @@ public class LogicImpl {
 
 		if ((check.transEast(player.getPosition()) || input.isKeyPressed(Input.KEY_RIGHT)) && checkEmpty(Door.EAST)) {
 			level.setRoomID(getRoomID(Door.EAST));
-			player.setPosition(
+			player.transitionPos(
 					new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE * 5 - GameSettings.TILESIZE / 2));
 		} else if ((check.transWest(player.getPosition()) || input.isKeyPressed(Input.KEY_LEFT))
 				&& checkEmpty(Door.WEST)) {
 			level.setRoomID(getRoomID(Door.WEST));
-			player.setPosition(new Pair<>(GameSettings.LIMITRIGHT - GameSettings.TILESIZE,
+			player.transitionPos(new Pair<>(GameSettings.LIMITRIGHT - GameSettings.TILESIZE,
 					GameSettings.TILESIZE * 5 - GameSettings.TILESIZE / 2));
 		} else if ((check.transNorth(player.getPosition()) || input.isKeyPressed(Input.KEY_UP))
 				&& checkEmpty(Door.NORTH)) {
 			level.setRoomID(getRoomID(Door.NORTH));
-			player.setPosition(new Pair<>(GameSettings.TILESIZE * 9, GameSettings.LIMITDOWN - GameSettings.TILESIZE));
+			player.transitionPos(new Pair<>(GameSettings.TILESIZE * 9, GameSettings.LIMITDOWN - GameSettings.TILESIZE));
 		} else if ((check.transSouth(player.getPosition()) || input.isKeyPressed(Input.KEY_DOWN))
 				&& checkEmpty(Door.SOUTH)) {
 			level.setRoomID(getRoomID(Door.SOUTH));
-			player.setPosition(new Pair<>(GameSettings.TILESIZE * 9, GameSettings.TILESIZE));
+			player.transitionPos(new Pair<>(GameSettings.TILESIZE * 9, GameSettings.TILESIZE));
 		}
 		player.setCurrentRoom(level.getLevel().get(level.getRoomID()).getRoom());
 

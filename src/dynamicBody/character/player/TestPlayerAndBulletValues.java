@@ -15,16 +15,27 @@ import dynamicBody.move.Direction;
 
 public class TestPlayerAndBulletValues {
 
-	private Player testPlayer;
-	private Bullet testBullet;
+	private static Player testPlayer;
+	private static Bullet testBullet;
 	
+	@org.junit.BeforeClass
+	public static void initTest() {
+		try {
+			// display.create is needed because default constructor of bulletPlayerImpl contains an Image 
+			Display.create();
+		} catch (LWJGLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		testPlayer = new PlayerImpl(new Pair<Integer,Integer>(64, 64), Direction.SOUTH, 0);
+		testBullet = new BulletPlayerImpl(testPlayer.getPosition(), testPlayer.getDamage(), testPlayer.getDirection(), testPlayer.getRoom());
+	}
+
 	/**
 	 * To check initial player's conditions  
 	 */
 	@org.junit.Test
 	public void testStartPlayer() {	
-		testPlayer = new PlayerImpl(new Pair<Integer,Integer>(64, 64), Direction.SOUTH, 0);
-
 		assertTrue(testPlayer.isAlive());
 		assertEquals(testPlayer.getHealth().getMaxHealth(), 100);
 		assertEquals(testPlayer.getPosition(), new Pair<>(64,64));
@@ -41,16 +52,7 @@ public class TestPlayerAndBulletValues {
 	 * To check initial bullet's conditions  
 	 */
 	@org.junit.Test
-	public void testBulletPlayer() {
-		try {
-			// display.create is needed because default constructor of bulletPlayerImpl contains an Image 
-			Display.create();
-		} catch (LWJGLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		testBullet = new BulletPlayerImpl(new Pair<Integer,Integer>(64, 64), 10, Direction.SOUTH, new RoomDesignImpl(1));	
-		
+	public void testBulletPlayer() {		
 		assertTrue(testBullet.isAlive());
 		assertEquals(testBullet.getDamage(), 10);
 		assertEquals(testBullet.getPos(), new Pair<>(64,64));

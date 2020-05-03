@@ -56,7 +56,7 @@ public interface Player extends dynamicBody.character.Character {
 	 * Method used to set player's updated position
 	 * @param position, the coordinates of the player to be set 
 	 */
-	void setPosition(Pair<Integer, Integer> position);
+	void transitionPos(Pair<Integer, Integer> position);
 
 	/**
 	 * @return player's speed 
