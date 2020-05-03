@@ -17,11 +17,29 @@ import dynamicBody.move.Direction;
 
 public class StateCoord extends StateBasedGame {
 
+	/**
+	 * Variable containing initializing of Player
+	 */
 	private static Player player;
+	/**
+	 * Variable containing the name of the Window
+	 */
 	private static final String GAMENAME = "JARG";
+	/**
+	 * Variable containing the ID for the Menu
+	 */
 	private static final int MENU = 0;  
+	/**
+	 * Variable containing the ID for the first level
+	 */
 	private static final int LEVEL1 = 1;
 	
+	/**
+	 * Constructor for StateCoord
+	 * @param name, which is the name of the Window
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public StateCoord(String name) throws SlickException {
 		super(name);
 		StateCoord.player = new PlayerImpl(new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE), Direction.SOUTH, 0);
@@ -30,6 +48,9 @@ public class StateCoord extends StateBasedGame {
 		this.addState(new LevelsPlay(LEVEL1, player));		
 	}
 
+	/**
+	 *{@inheritDoc}
+	 */
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
 //		DO NOT REMOVE THESE COMMENTS, DOCUMENTATION SAYS THAT INITSTATES IS BROKEN
@@ -41,6 +62,12 @@ public class StateCoord extends StateBasedGame {
 	
 	//QUI VA MAIN PER INIZIALIZZARE PRIMA IL MENU
 
+	/**
+	 * Main method for initializing the OpenGL context of the game, and the Player resource itself
+	 * @param args
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public static void main(String[] args) throws SlickException {
 		//Set the path for Slick2D libraries
 		System.setProperty("java.library.path", new File("./lib/libraries").getAbsolutePath());
@@ -64,6 +91,10 @@ public class StateCoord extends StateBasedGame {
 		}
 	}
 
+	/**
+	 * Method used by the enemies to get reference of Player
+	 * @return Player
+	 */
 	public static Player getPlayer() {
 		return player;
 	}

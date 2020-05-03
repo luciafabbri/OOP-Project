@@ -12,23 +12,57 @@ import design.utilities.enums.Door;
 import tiles.*;
 
 
-public class RoomImpl {
+public class RoomImpl implements Room {
 
+	/**
+	 * Variable containing the RoomDesign associated with the right room
+	 */
 	private RoomDesign room;
+	/**
+	 * Variable containing the Map with the door and rooms the current room is connected to
+	 */
 	private Map<Door, Optional<RoomDesign>> doorAccess;
 	
-	//Room Objects
+	/**
+	 * Variable containing the Tile of the floor
+	 */
 	private Tile floor;
+	/**
+	 * Variable containing the Tile of the vertical walls
+	 */
 	private Tile wallVert;
+	/**
+	 * Variable containing the Tile of the horizontal walls
+	 */
 	private Tile wallHor;
+	/**
+	 * Variable containing the Tile of the corner walls
+	 */
 	private Tile corners;
+	/**
+	 * Variable containing the Tile of the top of the vertical door
+	 */
 	private Tile topDoorVert;
+	/**
+	 * Variable containing the Tile of the top of the horizontal door
+	 */
 	private Tile topDoorHor;
 		
-	private Set<AnimatedTile> doorAnimation;
+	/**
+	 * Variable containing the AnimatedTile, so the animation of the west room
+	 */
 	private AnimatedTile doorWest;
+	/**
+	 * Variable containing the AnimatedTile, so the animation of the north room
+	 */
 	private AnimatedTile doorNorth;
+	/**
+	 * Variable containing the AnimatedTile, so the animation of the east room
+	 */
 	private AnimatedTile doorEast;
+	/**
+	 * Variable containing the AnimatedTile, so the animation of the south room
+	 */
 	private AnimatedTile doorSouth;
 	
 	public RoomImpl(final RoomDesign room, Map<RoomDesign, Map<Door, Optional<RoomDesign>>> doorAccess) {	
@@ -56,50 +90,62 @@ public class RoomImpl {
 		}
 	}
 	
+	@Override
 	public Tile getFloor() {
 		return floor;
 	}
 
+	@Override
 	public Tile getWallVert() {
 		return wallVert;
 	}
 
+	@Override
 	public Tile getWallHor() {
 		return wallHor;
 	}
 
+	@Override
 	public Tile getCorners() {
 		return corners;
 	}
 
+	@Override
 	public Map<Door, Optional<RoomDesign>> getDoorAccess() {
 		return doorAccess;
 	}
 
+	@Override
 	public RoomDesign getRoom() {
 		return room;
 	}
 
+	@Override
 	public AnimatedTile getDoorWest() {
 		return doorWest;
 	}
 
+	@Override
 	public AnimatedTile getDoorNorth() {
 		return doorNorth;
 	}
 
+	@Override
 	public AnimatedTile getDoorEast() {
 		return doorEast;
 	}
 
+	@Override
 	public AnimatedTile getDoorSouth() {
 		return doorSouth;
 	}
 
+	@Override
 	public Tile getTopDoorVert() {
 		return topDoorVert;
 	}
 
+	@Override
 	public Tile getTopDoorHor() {
 		return topDoorHor;
 	}

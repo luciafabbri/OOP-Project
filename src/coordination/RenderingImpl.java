@@ -19,15 +19,29 @@ import dynamicBody.character.player.Player;
 import dynamicBody.move.Direction;
 import gameEntities.Stairs;
 import levels.Level;
-import levels.RoomImpl;
+import levels.Room;
 import tiles.AnimatedTile;
 
 public class RenderingImpl implements Rendering {
 
+	/**
+	 * Variable containing data of current Level
+	 */
 	private Level level;
+	/**
+	 * Variable containing data of current Player
+	 */
 	private Player player;
-	private RoomImpl currentRoom;
+	/**
+	 * Variable containing data of current RoomImpl
+	 */
+	private Room currentRoom;
 
+	/**
+	 * Constructor for RenderingImpl
+	 * @param level, to keep track of current Level
+	 * @param player, to keep track of current Player
+	 */
 	public RenderingImpl(final Level level, final Player player) {
 		this.level = level;
 		this.player = player;
@@ -50,6 +64,9 @@ public class RenderingImpl implements Rendering {
 		this.drawMainProj();
 	}
 
+	/**
+	 * Method called by drawMain, so it renders the bullets while also rendering the Player
+	 */
 	private void drawMainProj() {
 		Set<Bullet> bullets = player.getRoomBullets();
 
@@ -63,6 +80,10 @@ public class RenderingImpl implements Rendering {
 
 	}
 
+	/**
+	 * Method called by drawMainProj for each projectile, to draw it appropriately based on direction
+	 * @param bullet, to check the stored direction of each bullet
+	 */
 	private void rotateMainProj(final Bullet bullet) {
 		if (bullet.getDirection().equals(Direction.NORTH)) {
 			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE,
@@ -94,6 +115,9 @@ public class RenderingImpl implements Rendering {
 		this.drawEnemyProj();
 	}
 
+	/**
+	 * Method called by drawEnemies, to draw the appropriate bullet according to each enemy
+	 */
 	private void drawEnemyProj() {
 		Set<Enemy> enemys = currentRoom.getRoom().getEnemySet();
 
@@ -144,6 +168,9 @@ public class RenderingImpl implements Rendering {
 		}
 	}
 
+	/**
+	 * Method called by drawFloor, to draw the Stairs in the room if present
+	 */
 	private void drawStairs() {
 		Stairs tmp = level.getLevel().get(level.getRoomID()).getRoom().getStairs();
 		tmp.getTexture().draw(tmp.getPosition().getX(), tmp.getPosition().getY(), GameSettings.TILESIZE,
@@ -202,6 +229,11 @@ public class RenderingImpl implements Rendering {
 		}
 	}
 
+	/**
+	 * Method called by drawDoors, to draw the right animation based on the Door cardinality, and if the room has been cleared
+	 * @param animation, the right animation based on the Door cardinality
+	 * @param door, the according Door Cardinality
+	 */
 	private void renderDoor(final AnimatedTile animation, Door door) {
 		if (currentRoom.getRoom().getEnemySet().isEmpty()) {
 			if (door.equals(Door.NORTH)) {

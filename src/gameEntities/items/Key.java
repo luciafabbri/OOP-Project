@@ -8,6 +8,12 @@ import design.utilities.enums.Entities;
 
 public class Key extends ItemImpl{
 	
+	/**
+	 * Constructor for Key item
+	 * @param coord, to know in which position it is
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public Key(final Pair<Integer, Integer> coord) throws SlickException {
 		super(coord, new Image("./res/items/key.png"), Entities.KEY);
 	}

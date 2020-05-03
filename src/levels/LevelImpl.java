@@ -9,15 +9,25 @@ import design.generation.LevelDesignGeneratorImpl;
 
 public class LevelImpl implements Level {
 	
+	/**
+	 * Variable containing the List of the rooms of the level
+	 */
 	private List<RoomImpl> level = new ArrayList<>();
-	private LevelDesignGeneratorImpl generator = new LevelDesignGeneratorImpl();
+	/**
+	 * Variable containing the general barebone design of each room
+	 */
 	private LevelDesign testLevel;
+	/**
+	 * Variable containing temporarly data of each room when adding it to the list
+	 */
 	private RoomImpl tmpRoom;
-	
+	/**
+	 * Variable containing ID of the current room loaded 
+	 */
 	private int roomID;
 	
 	public LevelImpl(final int levelID) throws IOException {
-		testLevel = generator.generateLevel(levelID);			
+		testLevel = new LevelDesignGeneratorImpl().generateLevel(levelID);
 		this.loadRooms();
 		this.roomID = 0;
 	}

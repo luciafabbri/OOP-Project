@@ -17,15 +17,46 @@ import dynamicBody.character.player.Player;
 
 public class UI {
 	
+	/**
+	 * Variable containing data of current Player environment
+	 */
 	private Player player;
+	/**
+	 * Variable containing data of the Keys
+	 */
 	private Image keyImage;
+	/**
+	 * Variable containing data of the Coins
+	 */
 	private Image coinImage;
+	/**
+	 * Variable containing data of the HealthUpgrade modifier
+	 */
 	private Image healthImage;
+	/**
+	 * Variable containing data of current Graphics environment
+	 */
 	private Graphics graphics;
+	/**
+	 * Variable containing data of the Font used for the UI
+	 */
 	private Font font;
+	/**
+	 * Variable containing data of TrueTypeFont to build Font
+	 */
 	private TrueTypeFont tmp;
+	/**
+	 * Variable containing data to choose Color (in this case white)
+	 */
 	private Color color;
 	
+	/**
+	 * Constructor for UI
+	 * @param player, containing data of current Player
+	 * @param graphics, containing data of current Graphics
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public UI(final Player player, final Graphics graphics) throws SlickException {
 		this.player = player;
 		this.keyImage = new Image("./res/UI/KeyUI.png");
@@ -38,6 +69,9 @@ public class UI {
 		this.color = new Color(72, 59, 58, 75);
 	}
 	
+	/**
+	 * Method used to draw each element of the UI
+	 */
 	public void drawUI() {
 		graphics.setColor(color);
 		

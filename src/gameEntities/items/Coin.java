@@ -8,6 +8,12 @@ import design.utilities.enums.Entities;
 
 public class Coin extends ItemImpl {
 
+	/**
+	 * Constructor for Coin item
+	 * @param coord, to know in which position it is
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public Coin(final Pair<Integer, Integer> coord) throws SlickException {
 		super(coord, new Image("./res/items/coin.png"), Entities.COIN);
 	}
