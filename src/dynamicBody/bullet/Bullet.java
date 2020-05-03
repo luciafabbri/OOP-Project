@@ -13,8 +13,6 @@ import dynamicBody.move.Direction;
 
 public interface Bullet extends DynamicBody {
 	
-	final static int DIMENSION = 48;
-	
 	/** 
 	 * @return bullet's current position
 	 */

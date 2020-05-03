@@ -7,7 +7,7 @@ import dynamicBody.bullet.BulletMonsterImpl;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.move.Direction;
 
-public class OneSideAtt extends MonsterAttAbst implements MonsterAttack{
+public class OneSideAtt extends DistanceBullAbst implements MonsterAttack{
 
 	private RoomDesign currentRoom;
 	private Enemy enemy;
@@ -22,7 +22,7 @@ public class OneSideAtt extends MonsterAttAbst implements MonsterAttack{
 				
 		//CHECK IF CAN CREATE
 		
-		Bullet bull = new BulletMonsterImpl(calculateBullPos(pos, dir, enemy), dmg, dir, currentRoom);
+		Bullet bull = new BulletMonsterImpl(calculateBullPos(dir, enemy), dmg, dir, currentRoom);
 		
 		enemy.addBullet(bull);
 				

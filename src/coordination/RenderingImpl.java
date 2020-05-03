@@ -15,6 +15,7 @@ import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.Enemy;
+import dynamicBody.character.enemy.TypeEnemy;
 import dynamicBody.character.player.Player;
 import dynamicBody.move.Direction;
 import gameEntities.Stairs;
@@ -108,6 +109,11 @@ public class RenderingImpl implements Rendering {
 
 	public void drawEnemies() {
 		currentRoom.getRoom().getEnemySet().forEach(s -> {
+			
+			if(s.getTypeEnemy().equals(TypeEnemy.MONSTER3)) {
+				s.getAnimation().setCurrentFrame(0);
+				s.getAnimation().getCurrentFrame().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			}
 			s.getAnimation().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE,
 					GameSettings.TILESIZE);
 		});

@@ -32,8 +32,8 @@ public enum DimensionBullet {
 		return dim;
 	}
 	
-	public static Pair<DimensionBullet, DimensionBullet> getDimensionBullet(TypeBullet mon) {
-		switch(mon) {
+	public static Pair<DimensionBullet, DimensionBullet> getDimensionBullet(TypeBullet bull) {
+		switch(bull) {
 			case PLAYER:
 				return new Pair<>(ORIZONTAL_PLAYER, VERTICAL_PLAYER);
 			case MONSTER:

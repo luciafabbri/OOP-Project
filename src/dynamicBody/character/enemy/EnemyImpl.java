@@ -40,7 +40,7 @@ public class EnemyImpl implements Enemy {
 	private UpDownLeftRight<Animation> textures;
 	private Set<Bullet> bullets = new HashSet<>();
 	
-	private int sleepTime = 2000;
+	private int sleepTime = EnemyDefault.ROF.getValue();
 	private long stopMillis;
 	private long startMillis;
 
