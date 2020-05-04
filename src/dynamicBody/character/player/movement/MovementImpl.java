@@ -31,10 +31,12 @@ public class MovementImpl implements Movement {
 		
 	@Override
 	public Pair<Integer, Integer> movePlayer(Input input, Pair<Integer,Integer> pos, Direction dir, int speed) {
-		direction = dir;
-		newSpeed = speed;
+		this.direction = dir;
+		this.newSpeed = speed;
 			
-		//control UP input   
+		/** 
+		 * UP input
+		 */		
 		if( input.isKeyDown(Input.KEY_W) ) {
 			this.direction = Direction.NORTH;
 			if(!footsteps.playing())
@@ -43,7 +45,9 @@ public class MovementImpl implements Movement {
 		}
 		
 		
-		//control DOWN input   
+		/** 
+		 * DOWN input
+		 */		
 		if( input.isKeyDown(Input.KEY_S) ) {
 			this.direction = Direction.SOUTH;
 			if(!footsteps.playing())
@@ -52,7 +56,9 @@ public class MovementImpl implements Movement {
 		}
 
 		
-		//control LEFT input   
+		/** 
+		 * LEFT input
+		 */ 
 		if( input.isKeyDown(Input.KEY_A) ) {
 			this.direction = Direction.WEST;
 			if(!footsteps.playing())
@@ -61,7 +67,9 @@ public class MovementImpl implements Movement {
 		}
 
 		
-		//control RIGHT input   
+		/** 
+		 * RIGHT input
+		 */
 		if( input.isKeyDown(Input.KEY_D) ) {
 			this.direction = Direction.EAST;
 			if(!footsteps.playing())
@@ -76,11 +84,5 @@ public class MovementImpl implements Movement {
 	public Direction getDirection() {
 		return this.direction;
 	}
-	
-	@Override
-	public void setDirection(Direction dir) {
-		this.direction = dir;
-	}
-
 
 }

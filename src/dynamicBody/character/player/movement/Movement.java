@@ -25,10 +25,5 @@ public interface Movement {
 	 * @return player's direction  
 	 */	
 	Direction getDirection();
-
-	/**
-	 * @param dir, player's direction to be set
-	 */
-	void setDirection(Direction dir);
 	
 }

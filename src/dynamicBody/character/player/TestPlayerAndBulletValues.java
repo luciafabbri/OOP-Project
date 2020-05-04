@@ -45,14 +45,35 @@ public class TestPlayerAndBulletValues {
 	public void testStartPlayer() throws SlickException {	
 		assertTrue(testPlayer.isAlive());
 		assertEquals(testPlayer.getHealth().getMaxHealth(), 100);
+		assertEquals(testPlayer.getHealth().getCurrentHealth(), 100);
+		testPlayer.getHealth().takeDmg(30);
+		assertEquals(testPlayer.getHealth().getCurrentHealth(), 70);
+		testPlayer.getHealth().heal(40);
+		assertEquals(testPlayer.getHealth().getCurrentHealth(), 100); /**perchè maxHealth è 100 (non va fino a 110)*/
+		testPlayer.upgradeMaxHealth(10);
+		assertEquals(testPlayer.getHealth().getMaxHealth(), 110);
+		testPlayer.getHealth().takeDmg(30);
+		assertEquals(testPlayer.getHealth().getCurrentHealth(), 70);
+		testPlayer.getHealth().heal(50);
+		assertEquals(testPlayer.getHealth().getCurrentHealth(), 110); /** perchè maxHealth è 110 (non va fino a 120)*/
 		assertEquals(testPlayer.getPosition(), new Pair<>(64,64));
 		assertEquals(testPlayer.getDirection(), Direction.SOUTH);
 		assertEquals(testPlayer.getDamage(), 10);
+		testPlayer.upgradeDamage(20);
+		assertEquals(testPlayer.getDamage(), 30);
 		assertEquals(testPlayer.getLevel(), 0);		
-		assertEquals(testPlayer.getInventory().getCoin(), 0);		
+		assertEquals(testPlayer.getInventory().getCoin(), 0);	
 		assertEquals(testPlayer.getInventory().getKey(), 0);	
-		assertEquals(testPlayer.getPlayerSpeed(), 1);		
-		assertEquals(testPlayer.getRateOfFire(), 1000);		
+		testPlayer.getInventory().addCoin();
+		testPlayer.getInventory().addKey();
+		assertEquals(testPlayer.getInventory().getKey(), 1);	
+		assertEquals(testPlayer.getInventory().getCoin(), 1);	
+		assertEquals(testPlayer.getPlayerSpeed(), 1);
+		testPlayer.upgradePlayerSpeed(10);
+		assertEquals(testPlayer.getPlayerSpeed(), 11);
+		assertEquals(testPlayer.getRateOfFire(), 1000);	
+		testPlayer.upgradeRateOfFire(500);
+		assertEquals(testPlayer.getRateOfFire(), 500);
 		assertEquals(testPlayer.getRoom(), null);
 	}
 	

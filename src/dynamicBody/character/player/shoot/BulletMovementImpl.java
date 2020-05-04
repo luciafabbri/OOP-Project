@@ -6,7 +6,6 @@ import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
 import dynamicBody.character.enemy.attack.DistanceBullAbst;
 import dynamicBody.character.player.Player;
-import dynamicBody.character.player.PlayerImpl;
 
 /**
  * Class that implements interface BulletMovement used to check if the user is pressing the space bar 
@@ -16,7 +15,18 @@ import dynamicBody.character.player.PlayerImpl;
 public class BulletMovementImpl extends DistanceBullAbst implements BulletMovement {
 	
 	private Player player;
+	
+	/**
+	 * Variable used to start counting milliseconds to track the passing of time 
+	 * Set to zero because the count repeats itself each time the player start pressing the keyboard
+	 */
 	private long startMillis = 0; 
+	
+	/**
+	 * Variable used to stop counting milliseconds to track the passing of time 
+	 * If the difference between start and stop is major than the variable representing player's rate of fire, 
+	 * the player will be able to shoot repeated bullets (because space bar it's still pressed) 
+	 */
 	private long stopMillis;
 	
 	/**

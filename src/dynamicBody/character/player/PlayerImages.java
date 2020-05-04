@@ -4,7 +4,6 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-
 import dynamicBody.UpDownLeftRight;
 
 /**

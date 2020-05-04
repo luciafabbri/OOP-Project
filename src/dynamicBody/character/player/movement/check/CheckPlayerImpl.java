@@ -26,8 +26,25 @@ import design.RoomDesign;
 public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSettings{
 				
 	private PlayerImpl player;
+	
+	/**
+	 * Variable used to start counting milliseconds to track the passing of time 
+	 * Set to zero because the count repeats itself each time the player start pressing the keyboard
+	 */
 	private long startMillis = 0; 
+	
+	/**
+	 * Variable used to stop counting milliseconds to track the passing of time 
+	 * Used in method checkEnemyRoom 
+	 * If the player has already had a first collision with an enemy and the difference between start and stop 
+	 * is major than 1000, he will take additional damage ( because it means that after 1 second the player
+	 * is still being hurt by an enemy ) 
+	 */
 	private long stopMillis;
+	
+	/**
+	 * Sounds variables used when the player picks an item or a modifier up
+	 */
 	private Sound keyPickup;
 	private Sound coinPickup;
 	private Sound modPickup;
@@ -92,10 +109,9 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 					room.getPickupablesSet().remove(item);
 				}
 				/**
-				 * check item "HEART", to increase player's current health
+				 * check modifier "RECOVERHEALTH", to increase player's current health
 				 */
-				// DA SISTEMARE QUANDO FATTO
-				if (item.getTypeEnt().equals(Entities.HEALTHUPGRADE1)) {
+				if (item.getTypeEnt().equals(Entities.RECOVERHEALTH)) {
 					ModifiersImpl mod = new HealthUpgrade1(item.getPosition());
 					player.heal(mod.getModQty());
 					modPickup.play(1.0f, 0.2f);

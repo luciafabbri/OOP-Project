@@ -53,7 +53,7 @@ public interface Player extends dynamicBody.character.Character {
 	void setCurrentRoom(RoomDesign room);
 	
 	/**
-	 * Method used to set player's updated position
+	 * Method used to update player's position
 	 * @param position, the coordinates of the player to be set 
 	 */
 	void transitionPos(Pair<Integer, Integer> position);
@@ -102,8 +102,9 @@ public interface Player extends dynamicBody.character.Character {
 	void loadAnimations() throws SlickException;
 	
 	/**
-	 * Method used to  
-	 * @param clearRoom, 
+	 * Method used to check the presence of any enemy in the room
+	 * If the room is empty, the doors will  open and the player will be able to change room
+	 * @param clearRoom, the boolean value to check 
 	 */
 	void setClearRoom(boolean clearRoom);
 	
@@ -129,6 +130,5 @@ public interface Player extends dynamicBody.character.Character {
 	 * @param heal, int value to be added to player's current health
 	 */
 	void heal(int heal);
-	
 	
 }
