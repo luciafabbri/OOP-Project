@@ -9,27 +9,6 @@ import dynamicBody.character.enemy.move.TypeMove;
 
 public class EnemyCreatorImpl implements EnemyCreator {
 	
-	/*private Monster getMonster(TypeMonster monster, Pair<Integer, Integer> pos, int lvl, RoomDesign room) {
-		
-		switch(monster) {
-			case MONSTER1:
-				return new Monster(pos, lvl, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, monster);
-				
-			case MONSTER2:
-				return new Monster(pos, lvl, TypeMove.RANDOM, TypeAttack.TWO_SIDE, room, monster);
-				
-			case MONSTER3:
-				return new Monster(pos, lvl, TypeMove.TELEPORT, TypeAttack.TRIPLE, room, monster);
-				
-			case PLANT:
-				return new Monster(pos, lvl, TypeMove.IMMOBILIZED, TypeAttack.FOUR_SIDE, room, monster);
-			
-			default:
-				throw new IllegalArgumentException();
-		}
-		
-	} */
-	
 	@Override
 	public Enemy getMonsterA(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
 		return new EnemyImpl(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, TypeEnemy.MONSTER1);

@@ -12,7 +12,5 @@ public interface Enemy extends dynamicBody.character.Character {
 				
 	public void attack();
 	
-	//public setBuff();
-	
 	
 }
