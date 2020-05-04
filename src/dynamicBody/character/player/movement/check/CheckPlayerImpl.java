@@ -92,7 +92,17 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 					room.getPickupablesSet().remove(item);
 				}
 				/**
-				 * check modifier "HEALTHUPGRADE1", to increase player's health
+				 * check item "HEART", to increase player's current health
+				 */
+				// DA SISTEMARE QUANDO FATTO
+				if (item.getTypeEnt().equals(Entities.HEALTHUPGRADE1)) {
+					ModifiersImpl mod = new HealthUpgrade1(item.getPosition());
+					player.heal(mod.getModQty());
+					modPickup.play(1.0f, 0.2f);
+					room.getPickupablesSet().remove(item);
+				}
+				/**
+				 * check modifier "HEALTHUPGRADE1", to increase player's max health
 				 */
 				if (item.getTypeEnt().equals(Entities.HEALTHUPGRADE1)) {
 					ModifiersImpl mod = new HealthUpgrade1(item.getPosition());

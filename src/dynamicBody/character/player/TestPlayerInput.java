@@ -6,13 +6,10 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-
-import coordination.LogicImpl;
 import design.utilities.Pair;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
 import dynamicBody.move.Direction;
-import levels.Level;
 
 /**
  * Class used to create a test for input using Slick2D library
@@ -95,21 +92,7 @@ public class TestPlayerInput extends BasicGame {
 		dirA = container.getInput().isKeyDown(Input.KEY_A);
 		dirW = container.getInput().isKeyDown(Input.KEY_W);
 		dirD = container.getInput().isKeyDown(Input.KEY_D);
-		dirS = container.getInput().isKeyDown(Input.KEY_S);
-	
-  	    if(inputA) {
-  			testPlayer.getMove().setDirection(Direction.NORTH);
-  		}
-    	if(inputW) {
-  			testPlayer.getMove().setDirection(Direction.SOUTH);
-  		}
-  		if(inputD) {
-  			testPlayer.getMove().setDirection(Direction.WEST);
-  		}
-  		if(inputS) {
-  			testPlayer.getMove().setDirection(Direction.EAST);
-  		} 
-	
+		dirS = container.getInput().isKeyDown(Input.KEY_S);	
 	}
 
 	/**

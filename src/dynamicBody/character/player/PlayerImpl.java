@@ -87,8 +87,10 @@ public class PlayerImpl implements Player {
 		Map<Door, Optional<RoomDesign>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
 		newPos = move.movePlayer(input, this.position, this.direction, this.playerSpeed); 
 
-		if( check.checkEntityRoom(this.currentRoom,newPos) || check.checkEnemyRoom(this.currentRoom, newPos) || 
-				check.possiblePos(this.currentRoom, newPos) || (check.checkDoors(newPos, map) && clearRoom)) {
+		check.checkEnemyRoom(this.currentRoom, newPos);
+		
+		if( check.checkEntityRoom(this.currentRoom,newPos) || check.possiblePos(this.currentRoom, newPos) 
+				|| (check.checkDoors(newPos, map) && clearRoom)) {
 			this.position = newPos;  
 		}
 		/**

@@ -6,7 +6,7 @@ package dynamicBody.character.health;
 
 public class HealthImpl implements Health {
 	
-	private int totalHealth;
+	private int maxHealth;
 	private int currentHealth;
 	
 	/**
@@ -14,13 +14,13 @@ public class HealthImpl implements Health {
 	 * @param health, character's initial health
 	 */
 	public HealthImpl(int health) {
-		this.totalHealth = health;
+		this.maxHealth = health;
 		this.currentHealth = health;
 	}
 	
 	@Override
 	public int getMaxHealth() {
-		return this.totalHealth;
+		return this.maxHealth;
 	}
 	
 	@Override
@@ -45,14 +45,14 @@ public class HealthImpl implements Health {
 	
 	@Override
 	public void upgradeMaxHealth(int upgrade) {
-		this.totalHealth = this.totalHealth + upgrade;
+		this.maxHealth = this.maxHealth + upgrade;
 	}
 	
 	@Override
 	public void heal(int heal) {
 		this.currentHealth = this.currentHealth + heal;
-		if (this.currentHealth > this.totalHealth) {
-			this.currentHealth = this.totalHealth;
+		if (this.currentHealth > this.maxHealth) {
+			this.currentHealth = this.maxHealth;
 		}
 	}
 
