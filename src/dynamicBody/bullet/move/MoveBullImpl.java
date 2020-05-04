@@ -2,6 +2,7 @@ package dynamicBody.bullet.move;
 
 import design.RoomDesign;
 import design.utilities.Pair;
+import dynamicBody.bullet.BulletDefault;
 import dynamicBody.move.CheckPos;
 import dynamicBody.move.Direction;
 
@@ -25,8 +26,9 @@ public class MoveBullImpl implements MoveBull {
 
 	@Override
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, Direction dir, CheckPos check) {
+		int speed = BulletDefault.SPEED.getValue();
 		if(alive) {
-			Pair<Integer,Integer> nextPos = new Pair<Integer,Integer>(pos.getX() + (dir.getAbscissa() * 2), pos.getY() + (dir.getOrdinate() * 2));
+			Pair<Integer,Integer> nextPos = new Pair<Integer,Integer>(pos.getX() + (dir.getAbscissa() * speed), pos.getY() + (dir.getOrdinate() * speed));
 			alive = check.possiblePos(currentRoom, nextPos);
 			return nextPos;
 		}

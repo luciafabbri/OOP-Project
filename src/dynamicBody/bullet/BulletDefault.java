@@ -2,7 +2,8 @@ package dynamicBody.bullet;
 
 public enum BulletDefault {
 
-	DISTANCESPAWNBULL(10);
+	DISTANCESPAWNBULL(10),
+	SPEED(2);
 
 	private int value;
 

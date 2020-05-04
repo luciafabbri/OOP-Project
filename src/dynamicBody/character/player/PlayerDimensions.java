@@ -9,8 +9,8 @@ import dynamicBody.UpDownLeftRight;
 
 public enum PlayerDimensions {
 	
-	VERTICAL (48, 64, 17, 46),
-	ORIZONTAL (48, 64, 15, 48);
+	VERTICAL (48, 64, 15, 46),
+	ORIZONTAL (48, 64, 15, 46);
 	
 	private UpDownLeftRight<Integer> dimensions;
 	

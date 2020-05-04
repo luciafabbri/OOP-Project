@@ -5,8 +5,8 @@ import dynamicBody.UpDownLeftRight;
 
 public enum DimensionMonster {
 	
-	VERTICAL_MON1(48, 64, 17, 46),
-	ORIZONTAL_MON1(48, 64, 15, 48);
+	VERTICAL_MON1(48, 64, 15, 46),
+	ORIZONTAL_MON1(48, 64, 15, 46);
 	
 	
 	private UpDownLeftRight<Integer> dim;

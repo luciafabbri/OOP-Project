@@ -1,5 +1,8 @@
 package dijkstra;
 
+import design.utilities.graphs.BidirectionalGraph;
+import design.utilities.graphs.Graph;
+
 public class Test {
 	
 	public static void main (String[] args) {
@@ -24,7 +27,7 @@ public class Test {
 		 
 		nodeF.addDestination(nodeE, 5);
 		 
-		Graph graph = new Graph();
+		Graph<Node> graph = new BidirectionalGraph<>();
 		 
 		graph.addNode(nodeA);
 		graph.addNode(nodeB);
@@ -34,6 +37,8 @@ public class Test {
 		graph.addNode(nodeF);
 		 
 		graph = DijkstraAlg.calculateShortestPathFromSource(graph, nodeA);
+		
+		System.out.println(nodeF.getShortestPath());
 	}
 	
 

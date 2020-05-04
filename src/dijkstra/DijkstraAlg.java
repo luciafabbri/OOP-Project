@@ -5,9 +5,11 @@ import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import design.utilities.graphs.Graph;
+
 public class DijkstraAlg {
 	
-	public static Graph calculateShortestPathFromSource(Graph graph, Node source) {
+	public static Graph<Node> calculateShortestPathFromSource(Graph<Node> graph, Node source) {
 	    source.setDistance(0);
 	 
 	    Set<Node> settledNodes = new HashSet<>();
