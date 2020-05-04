@@ -96,3 +96,6 @@ once testing for entities has been done extensively;
 03/05/2020
 -Implemented iterface for LogicImpl class;
 -Commented all class regarding Pirazzoli's work until now (packages coordination, gameEntities.items, gameEntities.modifiers, levels, tiles);
+
+04/05/2020
+-Implemented new item RecoverHealth, to let the Player recover health;
