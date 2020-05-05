@@ -64,10 +64,13 @@ public class RoomImpl implements Room {
 	 * Variable containing the AnimatedTile, so the animation of the south room
 	 */
 	private AnimatedTile doorSouth;
+	private boolean gotRoomKey;
+	
 	
 	public RoomImpl(final RoomDesign room, Map<RoomDesign, Map<Door, Optional<RoomDesign>>> doorAccess) {	
 		this.room = room;
 		this.doorAccess = doorAccess.entrySet().stream().filter(s -> s.getKey().getRoomID() == room.getRoomID()).findFirst().get().getValue();
+		this.gotRoomKey = false;
 		try {
 			
 			this.floor = new Floor1();
@@ -148,6 +151,14 @@ public class RoomImpl implements Room {
 	@Override
 	public Tile getTopDoorHor() {
 		return topDoorHor;
+	}
+
+	public boolean isGotRoomKey() {
+		return gotRoomKey;
+	}
+
+	public void setGotRoomKey(boolean gotRoomKey) {
+		this.gotRoomKey = gotRoomKey;
 	}
 
 }

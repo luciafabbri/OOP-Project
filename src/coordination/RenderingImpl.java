@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 
 import design.RoomDesign;
 import design.utilities.GameSettings;
+import design.utilities.Pair;
 import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
 import dynamicBody.bullet.Bullet;
@@ -148,15 +149,21 @@ public class RenderingImpl implements Rendering {
 
 	@Override
 	public void drawItems() {
-		level.getLevel().get(level.getRoomID()).getRoom().getPickupablesSet().stream()
-				.filter(s -> s.getTypeEnt().equals(Entities.COIN) || s.getTypeEnt().equals(Entities.KEY))
-				.forEach(s -> s.getTexture().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE,
-						GameSettings.TILESIZE));
+		Pair<Integer, Integer> tmp = currentRoom.getRoom().getKey().getPosition();
+		if(!currentRoom.isGotRoomKey())
+			currentRoom.getRoom().getKey().getTexture().draw(tmp.getX(), tmp.getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+		
+		if(currentRoom.getRoom().getCoin().isPresent() && !level.isGotLevelCoin()) {
+			tmp = currentRoom.getRoom().getCoin().get().getPosition();
+			currentRoom.getRoom().getCoin().get().getTexture().draw(tmp.getX(), tmp.getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+		}
 	}
 
 	public void drawMod() {
-		level.getLevel().get(level.getRoomID()).getRoom().getPickupablesSet().stream().filter(
-				s -> s.getTypeEnt().equals(Entities.ATTACKUPGRADE1) || s.getTypeEnt().equals(Entities.HEALTHUPGRADE1))
+		currentRoom.getRoom().getPickupablesSet().stream().filter(
+				s -> s.getTypeEnt().equals(Entities.ATTACKUPGRADE1) || s.getTypeEnt().equals(Entities.HEALTHUPGRADE1)
+				|| s.getTypeEnt().equals(Entities.MOVEMENTSPEED1) || s.getTypeEnt().equals(Entities.ATTACKSPEED1)
+				|| s.getTypeEnt().equals(Entities.RECOVERHEALTH))
 				.forEach(s -> s.getTexture().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE,
 						GameSettings.TILESIZE));
 
@@ -165,11 +172,11 @@ public class RenderingImpl implements Rendering {
 	public void drawFloor() {
 		for (int x = 0; x < GameSettings.WIDTH; x += GameSettings.TILESIZE) {
 			for (int y = 0; y < GameSettings.HEIGHT; y += GameSettings.TILESIZE) {
-				level.getLevel().get(level.getRoomID()).getFloor().getTexture().draw(x, y, GameSettings.TILESIZE,
+				currentRoom.getFloor().getTexture().draw(x, y, GameSettings.TILESIZE,
 						GameSettings.TILESIZE);
 			}
 		}
-		if (level.getLevel().get(level.getRoomID()).getRoom().areStairsPresent()) {
+		if (currentRoom.getRoom().areStairsPresent()) {
 			this.drawStairs();
 		}
 	}
@@ -178,7 +185,7 @@ public class RenderingImpl implements Rendering {
 	 * Method called by drawFloor, to draw the Stairs in the room if present
 	 */
 	private void drawStairs() {
-		Stairs tmp = level.getLevel().get(level.getRoomID()).getRoom().getStairs();
+		Stairs tmp = currentRoom.getRoom().getStairs();
 		tmp.getTexture().draw(tmp.getPosition().getX(), tmp.getPosition().getY(), GameSettings.TILESIZE,
 				GameSettings.TILESIZE);
 	}
@@ -187,18 +194,18 @@ public class RenderingImpl implements Rendering {
 		for (int x = 0; x < GameSettings.WIDTH; x += GameSettings.TILESIZE) {
 			for (int y = 0; y < GameSettings.HEIGHT; y += GameSettings.TILESIZE) {
 				if (x == 0 && y > 0 && y < GameSettings.HEIGHT - GameSettings.TILESIZE) {
-					level.getLevel().get(level.getRoomID()).getWallVert().getTexture().draw(x, y, GameSettings.TILESIZE,
+					currentRoom.getWallVert().getTexture().draw(x, y, GameSettings.TILESIZE,
 							GameSettings.TILESIZE);
 				} else if (x == GameSettings.WIDTH - GameSettings.TILESIZE && y > 0
 						&& y < GameSettings.HEIGHT - GameSettings.TILESIZE) {
-					level.getLevel().get(level.getRoomID()).getWallVert().getTexture().getFlippedCopy(true, false)
+					currentRoom.getWallVert().getTexture().getFlippedCopy(true, false)
 							.draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				} else if (y == 0 && x > 0 && x < GameSettings.WIDTH - GameSettings.TILESIZE) {
-					level.getLevel().get(level.getRoomID()).getWallHor().getTexture().getFlippedCopy(false, true)
+					currentRoom.getWallHor().getTexture().getFlippedCopy(false, true)
 							.draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				} else if (y == GameSettings.HEIGHT - GameSettings.TILESIZE && x > 0
 						&& x < GameSettings.WIDTH - GameSettings.TILESIZE) {
-					level.getLevel().get(level.getRoomID()).getWallHor().getTexture().draw(x, y, GameSettings.TILESIZE,
+					currentRoom.getWallHor().getTexture().draw(x, y, GameSettings.TILESIZE,
 							GameSettings.TILESIZE);
 				}
 			}
@@ -217,7 +224,7 @@ public class RenderingImpl implements Rendering {
 	}
 
 	public void drawDoors() {
-		Map<Door, Optional<RoomDesign>> doors = level.getLevel().get(level.getRoomID()).getDoorAccess();
+		Map<Door, Optional<RoomDesign>> doors = currentRoom.getDoorAccess();
 
 		for (Entry<Door, Optional<RoomDesign>> entry : doors.entrySet()) {
 			if (entry.getValue().isPresent()) {
@@ -241,7 +248,7 @@ public class RenderingImpl implements Rendering {
 	 * @param door, the according Door Cardinality
 	 */
 	private void renderDoor(final AnimatedTile animation, Door door) {
-		if (currentRoom.getRoom().getEnemySet().isEmpty()) {
+		if (currentRoom.isGotRoomKey()) {
 			if (door.equals(Door.NORTH)) {
 				animation.getAnimaton().stopAt(7);
 				animation.getAnimaton().draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, 0, GameSettings.TILESIZE,

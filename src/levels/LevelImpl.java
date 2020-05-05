@@ -25,6 +25,8 @@ public class LevelImpl implements Level {
 	 * Variable containing ID of the current room loaded 
 	 */
 	private int roomID;
+	private boolean gotLevelCoin;
+	
 	
 	public LevelImpl(final int levelID) throws IOException {
 		testLevel = new LevelDesignGeneratorImpl().generateLevel(levelID);
@@ -51,5 +53,13 @@ public class LevelImpl implements Level {
 
 	public void setRoomID(int roomID) {
 		this.roomID = roomID;
+	}
+
+	public boolean isGotLevelCoin() {
+		return gotLevelCoin;
+	}
+
+	public void setGotLevelCoin(boolean gotLevelCoin) {
+		this.gotLevelCoin = gotLevelCoin;
 	}
 }

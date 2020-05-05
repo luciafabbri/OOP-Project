@@ -99,3 +99,8 @@ once testing for entities has been done extensively;
 
 04/05/2020
 -Implemented new item RecoverHealth, to let the Player recover health;
+
+05/05/2020
+-ReImplemented the way keys work, once one is picked up, all doors open;
+-Coins are now collectibles;
+-Added a message when collecting coins now;

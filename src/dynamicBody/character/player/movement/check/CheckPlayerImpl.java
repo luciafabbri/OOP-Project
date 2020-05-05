@@ -10,7 +10,10 @@ import dynamicBody.character.player.PlayerImpl;
 import dynamicBody.move.CheckPosImpl;
 import gameEntities.GameEntity;
 import gameEntities.Pickupable;
+import gameEntities.items.Coin;
+import gameEntities.items.Key;
 import gameEntities.modifiers.*;
+import levels.Level;
 import design.utilities.GameSettings;
 import java.util.Map;
 import java.util.Optional;
@@ -93,22 +96,6 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
 			if (checkX && checkY) {
 				/**
-				 * check item "COIN"
-				 */
-				if (item.getTypeEnt().equals(Entities.COIN)) {
-					player.getInventory().addCoin();
-					coinPickup.play(1.0f, 0.35f);
-					room.getPickupablesSet().remove(item);
-				}
-				/**
-				 * check item "KEY"
-				 */
-				if (item.getTypeEnt().equals(Entities.KEY)) {
-					player.getInventory().addKey();
-					keyPickup.play(1.0f, 0.15f);
-					room.getPickupablesSet().remove(item);
-				}
-				/**
 				 * check modifier "RECOVERHEALTH", to increase player's current health
 				 */
 				if (item.getTypeEnt().equals(Entities.RECOVERHEALTH)) {
@@ -158,6 +145,44 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		}
 		return false;
 	}
+	
+	public boolean checkCoin(Pair<Integer, Integer> pos, Level level) {
+		boolean checkX, checkY;
+		
+		if(level.getLevel().get(level.getRoomID()).getRoom().getCoin().isPresent() && !level.isGotLevelCoin()) {
+			Coin item = level.getLevel().get(level.getRoomID()).getRoom().getCoin().get();
+			
+			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
+			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
+			
+			if(checkX && checkY) {
+				if(!coinPickup.playing())
+					coinPickup.play(1.0f, 0.35f);
+				level.setGotLevelCoin(true);
+				player.getInventory().addCoin();
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean checkKey(Pair<Integer, Integer> pos, Level level) {
+		boolean checkX, checkY;
+		
+		Key item = level.getLevel().get(level.getRoomID()).getRoom().getKey();
+		
+		checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
+		checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
+		
+		if((checkX && checkY) && !level.getLevel().get(level.getRoomID()).isGotRoomKey()) {
+			if(!keyPickup.playing())
+				keyPickup.play(1.0f, 0.15f);	
+			level.getLevel().get(level.getRoomID()).setGotRoomKey(true);
+			return true;
+		}
+		return false;
+	}
+	
 	
 	@Override
 	public boolean checkStairs(RoomDesign room, Pair<Integer, Integer> pos) {

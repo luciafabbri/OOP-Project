@@ -19,4 +19,6 @@ public interface GameSettings {
 	final static int LIMITUP = TILESIZE - 1;
 	final static int LIMITDOWN = HEIGHT - TILESIZE;
 	
+	final static int TOTCOINS = 4;
+	
 }

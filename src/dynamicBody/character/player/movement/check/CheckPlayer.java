@@ -7,6 +7,7 @@ import design.RoomDesign;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
 import dynamicBody.move.CheckPos;
+import levels.Level;
 
 /**
  * An interface used to check player's position in the current room 
@@ -49,5 +50,11 @@ public interface CheckPlayer extends CheckPos{
 	 * @return true if the player had a collision
 	 */
 	boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos);	
+	
+	
+	public boolean checkCoin(Pair<Integer, Integer> pos, Level level);
+	
+	public boolean checkKey(Pair<Integer, Integer> pos, Level level);
+	
 
 }

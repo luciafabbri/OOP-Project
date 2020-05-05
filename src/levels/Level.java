@@ -26,4 +26,16 @@ public interface Level {
 	 * @param roomID, the room ID that should be loaded
 	 */
 	void setRoomID(int roomID);
+	
+	/**
+	 * Method that returns whether the Coin placed in the level has been obtained
+	 * @return true if Coin obtained, false otherwise
+	 */
+	public boolean isGotLevelCoin();
+
+	/**
+	 * Method that sets the boolean if the Coin has been obtained
+	 * @param gotLevelCoin, boolean
+	 */
+	public void setGotLevelCoin(boolean gotLevelCoin);
 }

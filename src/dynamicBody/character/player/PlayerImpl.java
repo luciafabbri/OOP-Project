@@ -89,8 +89,8 @@ public class PlayerImpl implements Player {
 
 		check.checkEnemyRoom(this.currentRoom, newPos);
 		
-		if( check.checkEntityRoom(this.currentRoom,newPos) || check.possiblePos(this.currentRoom, newPos) 
-				|| (check.checkDoors(newPos, map) && clearRoom)) {
+		if(check.checkCoin(newPos, level) || check.checkKey(newPos, level) || check.checkEntityRoom(this.currentRoom,newPos) || 
+				check.possiblePos(this.currentRoom, newPos) || (check.checkDoors(newPos, map) && clearRoom)) {
 			this.position = newPos;  
 		}
 		/**
@@ -264,5 +264,4 @@ public class PlayerImpl implements Player {
 	public void setClearRoom(boolean clearRoom) {
 		this.clearRoom = clearRoom;
 	}
-
 }

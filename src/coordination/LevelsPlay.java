@@ -79,7 +79,7 @@ public class LevelsPlay extends BasicGameState {
 		
 		graphics = new RenderingImpl(level, player);
 	
-		ui = new UI(player, arg0.getGraphics());
+		ui = new UI(player, arg0.getGraphics(), level);
 	}
 
 	/**

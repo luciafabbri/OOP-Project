@@ -81,15 +81,15 @@ public class LogicImpl implements Logic {
 		player.setCurrentRoom(level.getLevel().get(level.getRoomID()).getRoom());
 
 		currentRoom = level.getLevel().get(level.getRoomID());
-		if(!level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().isEmpty())
+		if(!currentRoom.isGotRoomKey())
 			playSound = true;
 	}
 
 	@Override
 	public void setRoomCleared() {
-		player.setClearRoom(currentRoom.getRoom().getEnemySet().isEmpty());	
+		player.setClearRoom(currentRoom.isGotRoomKey());
 		
-		if(level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().isEmpty() && !doorOpen.playing() && playSound) {
+		if(currentRoom.isGotRoomKey() && !doorOpen.playing() && playSound) {
 			doorOpen.play(1.0f, 0.10f);
 			playSound = false;
 		}

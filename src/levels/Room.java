@@ -81,5 +81,17 @@ public interface Room {
 	 * @return Tile, the horizontal top of the door
 	 */
 	Tile getTopDoorHor();
+	
+	
+	/**
+	 * Method that returns a boolean indicating if the key in the room has been taken
+	 * @return true if key has been taken, false otherwise
+	 */
+	public boolean isGotRoomKey();
 
+	/**
+	 * Method that sets the boolean regarding obtaining the key in the room
+	 * @param gotRoomKey, boolean
+	 */
+	public void setGotRoomKey(boolean gotRoomKey);
 }
