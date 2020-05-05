@@ -4,7 +4,6 @@ import design.RoomDesign;
 import design.utilities.GameSettings;
 import design.utilities.Pair;
 import dynamicBody.character.Character;
-import dynamicBody.character.enemy.Enemy;
 import dynamicBody.move.CheckPosImpl;
 import dynamicBody.move.Direction;
 

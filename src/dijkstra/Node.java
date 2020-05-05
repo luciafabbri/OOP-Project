@@ -5,29 +5,29 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Node {
+public class Node<T> {
     
-    private String name;
+    private T name;
      
-    private List<Node> shortestPath = new LinkedList<>();
+    private List<Node<T>> shortestPath = new LinkedList<>();
      
     private Integer distance = Integer.MAX_VALUE;
      
-    Map<Node, Integer> adjacentNodes = new HashMap<>();
+    Map<Node<T>, Integer> adjacentNodes = new HashMap<>();
  
-    public void addDestination(Node destination, int distance) {
+    public void addDestination(Node<T> destination, int distance) {
         adjacentNodes.put(destination, distance);
     }
   
-    public Node(String name) {
+    public Node(T name) {
         this.name = name;
     }
 
-	public String getName() {
+	public T getName() {
 		return name;
 	}
 
-	public List<Node> getShortestPath() {
+	public List<Node<T>> getShortestPath() {
 		return shortestPath;
 	}
 
@@ -35,11 +35,11 @@ public class Node {
 		return distance;
 	}
 
-	public void setName(String name) {
+	public void setName(T name) {
 		this.name = name;
 	}
 
-	public void setShortestPath(List<Node> shortestPath) {
+	public void setShortestPath(List<Node<T>> shortestPath) {
 		this.shortestPath = shortestPath;
 	}
 
@@ -47,11 +47,11 @@ public class Node {
 		this.distance = distance;
 	}
 
-	public Map<Node, Integer> getAdjacentNodes() {
+	public Map<Node<T>, Integer> getAdjacentNodes() {
 		return adjacentNodes;
 	}
 
-	public void setAdjacentNodes(Map<Node, Integer> adjacentNodes) {
+	public void setAdjacentNodes(Map<Node<T>, Integer> adjacentNodes) {
 		this.adjacentNodes = adjacentNodes;
 	}
      

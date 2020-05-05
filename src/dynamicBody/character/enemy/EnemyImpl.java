@@ -21,6 +21,7 @@ import dynamicBody.character.enemy.move.MovePosMonster;
 import dynamicBody.character.enemy.move.RandomMove;
 import dynamicBody.character.enemy.move.StraightMove;
 import dynamicBody.character.enemy.move.TeleportMove;
+import dynamicBody.character.enemy.move.ToPlayerMove;
 import dynamicBody.character.enemy.move.TypeMove;
 import dynamicBody.character.health.Health;
 import dynamicBody.character.health.HealthImpl;
@@ -81,6 +82,9 @@ public class EnemyImpl implements Enemy {
 
 		case IMMOBILIZED:
 			return new ImmobilizedMove(room);
+			
+		case TO_PLAYER:
+			return new ToPlayerMove(room, this);
 
 		default:
 			throw new IllegalArgumentException();
