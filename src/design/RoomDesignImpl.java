@@ -7,6 +7,8 @@ import design.utilities.Pair;
 import design.utilities.graphs.BidirectionalGraph;
 import dynamicBody.character.enemy.Enemy;
 import gameEntities.*;
+import gameEntities.items.Coin;
+import gameEntities.items.Key;
 
 /**
  * Implementation of RoomDesign Interface
@@ -14,17 +16,19 @@ import gameEntities.*;
  */
 public class RoomDesignImpl implements RoomDesign {
 
-	private int roomID;
-	private HashSet<Pair<Integer, Integer>> occupiedTiles = new HashSet<>();
-	private HashSet<Enemy> enemySet = new HashSet<>();
-	private HashSet<Obstacle> obstacleSet = new HashSet<>();
-	private HashSet<Pickupable> pickupablesSet = new HashSet<>();
+	private final int roomID;
+	private final HashSet<Pair<Integer, Integer>> occupiedTiles = new HashSet<>();
+	private final HashSet<Enemy> enemySet = new HashSet<>();
+	private final HashSet<Obstacle> obstacleSet = new HashSet<>();
+	private final HashSet<Pickupable> pickupablesSet = new HashSet<>();
 	private BidirectionalGraph<Pair<Integer, Integer>> tilesGraph;
 	private boolean stairsPresent = false;
 	private Stairs stairs;
+	private Key roomKey;
+	private Optional<Coin> coin = Optional.empty();
 
 	/**
-	 * Constructor for a RoomDesignImpl object
+	 * Class constructor
 	 * 
 	 * @param roomID, the integer that identifies a room within a game level
 	 */
@@ -132,6 +136,29 @@ public class RoomDesignImpl implements RoomDesign {
 	 */
 	public void setStairsPresence(boolean stairsPresent) {
 		this.stairsPresent = stairsPresent;
+	}
+
+	@Override
+	public Key getKey() {
+		return this.roomKey;
+	}
+
+	/**
+	 * Setter for roomKey field
+	 * 
+	 * @param roomKey
+	 */
+	public void setRoomKey(Key roomKey) {
+		this.roomKey = roomKey;
+	}
+
+	@Override
+	public Optional<Coin> getCoin() {
+		return this.coin;
+	}
+	
+	public void addCoin(Coin coin) {
+		this.coin = Optional.of(coin);
 	}
 
 }

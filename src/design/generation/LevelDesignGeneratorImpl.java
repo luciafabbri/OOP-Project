@@ -44,11 +44,16 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 	public LevelDesign generateLevel(Integer levelNumber) throws IOException {
 		LevelDesignImpl level = new LevelDesignImpl();
 		currentConfig = getLevelConfig(levelNumber);
+		// randomly pick number of rooms between configuration bounds
 		final int numOfRooms = currentConfig.get("minRooms")
 				+ random.nextInt(1 + currentConfig.get("maxRooms") - currentConfig.get("minRooms"));
+		// randomly pick special room ID
 		final Integer specialRoomID = setSpecialRoom(numOfRooms);
+		// randomly pick coin room ID
+		final Integer coinRoomID = random.nextInt(numOfRooms);
+		// set whether level is final level
 		final boolean isFinalLevel = (levelNumber == 4);
-		RoomDesignGenerator roomGen = new RoomDesignGeneratorImpl(currentConfig, specialRoomID, isFinalLevel);
+		RoomDesignGenerator roomGen = new RoomDesignGeneratorImpl(currentConfig, specialRoomID, coinRoomID, isFinalLevel);
 		for (int i = 0; i < numOfRooms; i++) {
 			try {
 				level.addRoom(roomGen.generateRoom(i));

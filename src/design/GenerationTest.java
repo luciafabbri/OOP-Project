@@ -76,9 +76,11 @@ public class GenerationTest implements Game {
 		}
 
 		// game entities listing for each room
-		
+
 		testLevel.getRooms().forEach(r -> {
 			System.out.println(r.toString() + "has ID : " + r.getRoomID());
+			System.out.println("Room key is in position: " + r.getKey().getPosition());
+
 			System.out.print("Occupied tiles are the following: ");
 
 			r.getOccupiedTiles().forEach(t -> {
@@ -107,8 +109,13 @@ public class GenerationTest implements Game {
 			System.out.println("");
 			System.out.println("");
 		});
-		
-		//rooms graph printing
+
+		// coin room
+		int coinRoomID = testLevel.getRooms().stream().filter(r -> !r.getCoin().isEmpty()).findFirst().get()
+				.getRoomID();
+		System.out.println("Room with coin in this level has ID " + coinRoomID + "\n");
+
+		// rooms graph printing
 		final BidirectionalGraph<RoomDesign> graph = testLevel.getRoomsGraph();
 
 		System.out.println("Room graph: ");
@@ -141,36 +148,28 @@ public class GenerationTest implements Game {
 			System.out.println("Obstacle in pos: " + o.getPosition());
 		});
 
-		
 		// tileGraph and path finding
 		final BidirectionalGraph<Pair<Integer, Integer>> tileGraph = testLevel.getRooms().get(0).getTilesGraph();
 		/*
-		System.out.println("Room graph: ");
-		for (Pair<Integer, Integer> t : tileGraph.getNodes()) {
-			System.out.print("Tile " + t + " has connections to tiles: ");
-			for (Pair<Integer, Integer> next : tileGraph.getEdges(t)) {
-				System.out.print(next + " ");
-			}
-			System.out.println("");
-		}
-		*/
-		
-		//isReachable test
-		final BreadthFirstSearch<Pair<Integer, Integer>> bfs = new BreadthFirstSearch<>();
-		
-		boolean isReachable = bfs.isReachable(tileGraph, new Pair<Integer, Integer>(64, 64),
-				new Pair<Integer, Integer>(320, 192));
-		System.out.println("Entered path is reachable? " + isReachable);
-		/*
-		final RoomBFS roomBfs = new RoomBFS();
-		System.out.println("Inside room 0 all doors are reachable: " + roomBfs.areDoorsReachable(testLevel.getRooms().get(0)));
-		*/
+		 * System.out.println("Room graph: "); for (Pair<Integer, Integer> t :
+		 * tileGraph.getNodes()) { System.out.print("Tile " + t +
+		 * " has connections to tiles: "); for (Pair<Integer, Integer> next :
+		 * tileGraph.getEdges(t)) { System.out.print(next + " "); }
+		 * System.out.println(""); }
+		 */
 
-		/*
+		// BFS test
+		final RoomBFS roomBfs = new RoomBFS();
+		System.out.println(
+				"Inside room 0 all doors are reachable: " + roomBfs.areDoorsReachable(testLevel.getRooms().get(0)));
+
 		// stairs generation test
-		Long num = testLevel.getRooms().stream().filter(r -> r.areStairsPresent()).map(r -> r.getRoomID()).count();
-		System.out.println("Rooms with stairs are: " + num);
-		*/
+		Long numOfStairsRooms = testLevel.getRooms().stream().filter(r -> r.areStairsPresent()).map(r -> r.getRoomID()).count();
+		System.out.println("Rooms with stairs are: " + numOfStairsRooms);
+		int stairsRoomID = testLevel.getRooms().stream().filter(r -> r.areStairsPresent()).findFirst().get()
+				.getRoomID();
+		System.out.println("Room with stairs has ID: " + stairsRoomID);
+
 	}
 
 	@Override

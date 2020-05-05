@@ -1,12 +1,13 @@
 package design.generation;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 import org.newdawn.slick.SlickException;
 import design.RoomDesignImpl;
 import design.utilities.*;
-import design.utilities.enums.Pickupables;
+import design.utilities.enums.Modifiers;
 import design.utilities.graphs.RoomBFS;
 import dynamicBody.character.enemy.EnemyCreatorImpl;
 import gameEntities.*;
@@ -49,16 +50,10 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	}
 
 	@Override
-	public void generatePickupables(int numOfPickupables) throws SlickException {
-		for (int i = 0; i < numOfPickupables; i++) {
+	public void generateModifiers(int numOfModifiers) throws SlickException {
+		for (int i = 0; i < numOfModifiers; i++) {
 			pos = generateCoherentPos();
-			switch (Pickupables.valueOf(random.nextInt(Pickupables.values().length))) {
-			case COIN:
-				room.addPickupable(new Coin(pos));
-				break;
-			case KEY:
-				room.addPickupable(new Key(pos));
-				break;
+			switch (Modifiers.valueOf(random.nextInt(Modifiers.values().length))) {
 			case ATTACKUPGRADE1:
 				room.addPickupable(new AttackUpgrade1(pos));
 				break;
@@ -70,6 +65,9 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 				break;
 			case MOVEMENTSPEED1:
 				room.addPickupable(new MovementSpeed1(pos));
+			case RECOVERHEALRTH:
+				room.addPickupable(new RecoverHealth(pos));
+				break;
 			}
 		}
 
@@ -106,6 +104,17 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 			pos = generateCoherentPos();
 			room.addObstacle(new Obstacle(pos));
 		}
+	}
+
+	@Override
+	public void generateKey() throws SlickException {
+		room.setRoomKey(new Key(generateCoherentPos()));
+		
+	}
+
+	@Override
+	public void generateCoin() throws SlickException {
+		room.addCoin(new Coin(generateCoherentPos()));		
 	}
 
 }

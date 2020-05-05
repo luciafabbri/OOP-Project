@@ -1,5 +1,6 @@
 package design;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,8 @@ import dynamicBody.character.enemy.Enemy;
 import gameEntities.Obstacle;
 import gameEntities.Pickupable;
 import gameEntities.Stairs;
+import gameEntities.items.Coin;
+import gameEntities.items.Key;
 
 /**
  * An interface that defines the design aspects of the game's rooms
@@ -70,11 +73,21 @@ public interface RoomDesign {
 	 * @return true if a Stairs object is present inside the room
 	 */
 	boolean areStairsPresent();
-	
+
 	/**
 	 * @return Stairs object if present in the room, else throws
 	 *         IllegalStateException
 	 */
 	Stairs getStairs();
+
+	/**
+	 * @return the room's key
+	 */
+	Key getKey();
+
+	/**
+	 * @return Optional of Coin if the room contains Coin, empty optional otherwise
+	 */
+	Optional<Coin> getCoin();
 
 }
