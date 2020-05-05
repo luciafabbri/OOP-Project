@@ -6,7 +6,6 @@ import dynamicBody.UpDownLeftRight;
 import dynamicBody.bullet.BulletDefault;
 import dynamicBody.bullet.DimensionBullet;
 import dynamicBody.bullet.TypeBullet;
-import dynamicBody.character.enemy.EnemyDefault;
 import dynamicBody.move.Direction;
 
 public class DistanceBullAbst {
@@ -24,20 +23,7 @@ public class DistanceBullAbst {
 		UpDownLeftRight<Integer> dim = DimensionBullet.getDimensionBullet(TypeBullet.MONSTER).getX().getDimension();
 		
 		int distanceSpawn = BulletDefault.DISTANCESPAWNBULL.getValue();
-		/*switch (value) {
-		case 1:
-			return Enemy.DIMENSION + MonsterAttack.DISTANCESPAWN;
-			
-		case -1:
-			return -MonsterAttack.DISTANCESPAWN;
-			
-		case 0:
-			return (Enemy.DIMENSION - Bullet.DIMENSION)/2;
 		
-		default: 
-			throw new IllegalArgumentException();
-		
-		}*/
 		switch (dir) {
 			case NORTH:
 				return new Pair<Integer, Integer>(0 , - (dim.getDown() + distanceSpawn));

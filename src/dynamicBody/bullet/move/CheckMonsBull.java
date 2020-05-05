@@ -13,6 +13,8 @@ public class CheckMonsBull extends CheckPosImpl implements GameSettings, CheckPo
 	
 	private DynamicBody entity;
 	
+	private Player player = StateCoord.getPlayer();
+	
 	public CheckMonsBull(DynamicBody entity) {
 		super(entity);
 		this.entity = entity;
@@ -24,7 +26,6 @@ public class CheckMonsBull extends CheckPosImpl implements GameSettings, CheckPo
 	}
 	
 	public boolean checkCharacters(RoomDesign room, Pair<Integer, Integer> pos) {
-		Player player = StateCoord.getPlayer();
 		boolean checkX, checkY;
 		checkX = pos.getX() + entity.getDimension().getLeft() < player.getPosition().getX() + player.getDimension().getRight() &&
 				pos.getX() + entity.getDimension().getRight() > player.getPosition().getX() + player.getDimension().getLeft();

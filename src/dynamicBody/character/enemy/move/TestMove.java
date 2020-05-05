@@ -2,8 +2,6 @@ package dynamicBody.character.enemy.move;
 
 import org.junit.jupiter.api.Test;
 
-import dynamicBody.move.Direction;
-
 class TestMove {
 	
 	
