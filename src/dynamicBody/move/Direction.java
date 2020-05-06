@@ -1,9 +1,11 @@
 package dynamicBody.move;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import dynamicBody.character.enemy.CircularList;
 
@@ -64,5 +66,11 @@ public enum Direction {
 		dirAndNear.add(directions.get((index-distance) % directions.size()));
 		
 		return dirAndNear;
+	}
+	
+	public static List<Direction> getDirectionList(boolean i) {
+		return Arrays.asList(Direction.values()).stream()
+				.filter(x->(x.getAbscissa() * x.getOrdinate() == 0 ) == i )
+				.collect(Collectors.toList());
 	}
 }

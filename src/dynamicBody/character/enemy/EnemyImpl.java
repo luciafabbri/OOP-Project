@@ -16,6 +16,7 @@ import dynamicBody.character.enemy.attack.OneSideAtt;
 import dynamicBody.character.enemy.attack.TripleAtt;
 import dynamicBody.character.enemy.attack.TwoSideAtt;
 import dynamicBody.character.enemy.attack.TypeAttack;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.enemy.move.ImmobilizedMove;
 import dynamicBody.character.enemy.move.MovePosMonster;
 import dynamicBody.character.enemy.move.RandomMove;

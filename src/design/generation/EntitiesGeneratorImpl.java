@@ -9,7 +9,7 @@ import design.RoomDesignImpl;
 import design.utilities.*;
 import design.utilities.enums.Modifiers;
 import design.utilities.graphs.RoomBFS;
-import dynamicBody.character.enemy.EnemyCreatorImpl;
+import dynamicBody.character.enemy.creator.EnemyCreatorImpl;
 import gameEntities.*;
 import gameEntities.items.*;
 import gameEntities.modifiers.*;

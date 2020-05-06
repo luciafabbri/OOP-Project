@@ -1,11 +1,8 @@
-package dynamicBody.character.enemy.attack;
+package dynamicBody.bullet;
 
 import design.utilities.Pair;
 import dynamicBody.character.Character;
 import dynamicBody.UpDownLeftRight;
-import dynamicBody.bullet.BulletDefault;
-import dynamicBody.bullet.DimensionBullet;
-import dynamicBody.bullet.TypeBullet;
 import dynamicBody.move.Direction;
 
 public class DistanceBullAbst {

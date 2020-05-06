@@ -2,6 +2,7 @@ package dynamicBody.character.enemy;
 
 import design.utilities.Pair;
 import dynamicBody.UpDownLeftRight;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 
 public enum DimensionMonster {
 	

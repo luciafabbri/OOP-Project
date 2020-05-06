@@ -6,6 +6,7 @@ import design.RoomDesign;
 import design.utilities.Pair;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletMonsterImpl;
+import dynamicBody.bullet.DistanceBullAbst;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.move.Direction;
 
