@@ -23,7 +23,8 @@ import org.newdawn.slick.Sound;
 import design.RoomDesign;
 
 /**
- * Class that implements interface CheckPlayer used to check and then to force the player to do the specific chosen actions
+ * Class that implements interface CheckPlayer used to check and then to force the player 
+ * to do the specific chosen actions
  */
 
 public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSettings{
@@ -88,9 +89,56 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 	}
 
 	@Override
-	public boolean checkEntityRoom(RoomDesign room, Pair<Integer, Integer> pos) throws SlickException {
+	public boolean checkStairs(RoomDesign room, Pair<Integer, Integer> pos) {
+		if( room.areStairsPresent() ) {
+			boolean checkX, checkY;
+			checkX = pos.getX() + leftPix < room.getStairs().getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > room.getStairs().getPosition().getX();
+			checkY = pos.getY() < room.getStairs().getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > room.getStairs().getPosition().getY();
+			if (checkX && checkY) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//DA CONTROLLARE SE POSIZIONE NEMICO VA BENE
+	@Override
+	public boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
+		
+		Set<Enemy> enemySet = room.getEnemySet();
+		
+		for (Enemy enemy : enemySet) {
+			checkX = pos.getX() + enemy.getDimension().getLeft() < enemy.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + enemy.getDimension().getRight() > enemy.getPosition().getX();
+			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - enemy.getDimension().getRight()) && pos.getY() + enemy.getDimension().getDown() > enemy.getPosition().getY();
+			stopMillis = System.currentTimeMillis();
+			if ( (checkX && checkY) && (stopMillis - startMillis > 1000) ){ 
+				player.takeDamage(enemy.getDamage());
+				startMillis = System.currentTimeMillis();
+				return true;
+			}
+		}
+    	return false;
+    }
+	
+	@Override
+	public boolean checkGameEntities(RoomDesign room, Pair<Integer,Integer> pos, Level level) throws SlickException {
+		return ( checkCoin(pos, level) || checkKey(pos, level) || checkModifiers(room,pos) ) ;
+	}
+	
+	/**
+	 * Method used to check if the player is in collision with any modifiers in the room
+	 * In a positive case, he will change the corresponding parameter
+	 * @param room, current room where the player is
+	 * @param pos, player's coordinates inside the room
+	 * @return true if the player had a collision 
+	 * @throws SlickException 
+	 */
+	private boolean checkModifiers(RoomDesign room, Pair<Integer, Integer> pos) throws SlickException {
+		boolean checkX, checkY;
+		
 		Set<Pickupable> itemSet = room.getPickupablesSet();
+		
 		for (GameEntity item : itemSet) {
 			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
 			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
@@ -146,7 +194,14 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		return false;
 	}
 	
-	public boolean checkCoin(Pair<Integer, Integer> pos, Level level) {
+	/**
+	 * Method used to check if the player is above the coin and can pick it up
+	 * The coin appears only at each level and it represents only a collectible to the player
+	 * @param pos, player's current position
+	 * @param level, player's current level
+	 * @return true if the player is above the coin and can collect it 
+	 */
+	private boolean checkCoin(Pair<Integer, Integer> pos, Level level) {
 		boolean checkX, checkY;
 		
 		if(level.getLevel().get(level.getRoomID()).getRoom().getCoin().isPresent() && !level.isGotLevelCoin()) {
@@ -166,7 +221,14 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		return false;
 	}
 	
-	public boolean checkKey(Pair<Integer, Integer> pos, Level level) {
+	/**
+	 * Method used to check if the player is above the key and can pick it up
+	 * The key appears in each room in order to open the doors and let the player move into the dungeon and explore it
+	 * @param pos, player's current position
+	 * @param level, player's current level 
+	 * @return true if the player is above the key and can collect it 
+	 */
+	private boolean checkKey(Pair<Integer, Integer> pos, Level level) {
 		boolean checkX, checkY;
 		
 		Key item = level.getLevel().get(level.getRoomID()).getRoom().getKey();
@@ -183,35 +245,4 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 		return false;
 	}
 	
-	
-	@Override
-	public boolean checkStairs(RoomDesign room, Pair<Integer, Integer> pos) {
-		if( room.areStairsPresent() ) {
-			boolean checkX, checkY;
-			checkX = pos.getX() + leftPix < room.getStairs().getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > room.getStairs().getPosition().getX();
-			checkY = pos.getY() < room.getStairs().getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > room.getStairs().getPosition().getY();
-			if (checkX && checkY) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	//DA CONTROLLARE SE POSIZIONE NEMICO VA BENE
-	@Override
-	public boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos) {
-		boolean checkX, checkY;
-		Set<Enemy> enemySet = room.getEnemySet();
-		for (Enemy enemy : enemySet) {
-			checkX = pos.getX() + enemy.getDimension().getLeft() < enemy.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + enemy.getDimension().getRight() > enemy.getPosition().getX();
-			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - enemy.getDimension().getRight()) && pos.getY() + enemy.getDimension().getDown() > enemy.getPosition().getY();
-			stopMillis = System.currentTimeMillis();
-			if ( (checkX && checkY) && (stopMillis - startMillis > 1000) ){ 
-				player.takeDamage(enemy.getDamage());
-				startMillis = System.currentTimeMillis();
-				return true;
-			}
-		}
-    	return false;
-    }
 }

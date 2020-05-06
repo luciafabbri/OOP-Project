@@ -89,8 +89,8 @@ public class PlayerImpl implements Player {
 
 		check.checkEnemyRoom(this.currentRoom, newPos);
 		
-		if(check.checkCoin(newPos, level) || check.checkKey(newPos, level) || check.checkEntityRoom(this.currentRoom,newPos) || 
-				check.possiblePos(this.currentRoom, newPos) || (check.checkDoors(newPos, map) && clearRoom)) {
+		if(check.checkGameEntities(this.currentRoom, newPos, level)|| check.possiblePos(this.currentRoom, newPos) 
+					|| (check.checkDoors(newPos, map) && clearRoom)) {
 			this.position = newPos;  
 		}
 		/**

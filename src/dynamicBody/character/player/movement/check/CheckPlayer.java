@@ -25,15 +25,15 @@ public interface CheckPlayer extends CheckPos{
 	boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomDesign>> map);
 	
 	/**
-	 * Method used to check if the player is in collision with any entity (items or modifiers) in the room
-	 * In case he's above item's entity he would pick it up and added it to his inventory
-	 * In case he's above modifier's entity he would change the corresponding parameter
+	 * Method used to check if the player is in collision with any entity (coin, key or modifiers) in the room
+	 * In case he's above one of them, he will be able to recognize his type and he will do the specific action	 
 	 * @param room, current room where the player is
 	 * @param pos, player's coordinates inside the room
+	 * @param level, player's current level
 	 * @return true if the player had a collision 
 	 * @throws SlickException 
 	 */
-	boolean checkEntityRoom(RoomDesign room,Pair<Integer, Integer> pos) throws SlickException;	
+	boolean checkGameEntities(RoomDesign room,Pair<Integer, Integer> pos, Level level) throws SlickException;	
 	
 	/**
 	 * Method used to check if the player has found and he's above the stairs
@@ -51,10 +51,4 @@ public interface CheckPlayer extends CheckPos{
 	 */
 	boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos);	
 	
-	
-	public boolean checkCoin(Pair<Integer, Integer> pos, Level level);
-	
-	public boolean checkKey(Pair<Integer, Integer> pos, Level level);
-	
-
 }
