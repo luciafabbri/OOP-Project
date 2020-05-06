@@ -4,7 +4,7 @@ import org.newdawn.slick.Input;
 
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
-import dynamicBody.character.enemy.attack.DistanceBullAbst;
+import dynamicBody.bullet.DistanceBullAbst;
 import dynamicBody.character.player.Player;
 
 /**

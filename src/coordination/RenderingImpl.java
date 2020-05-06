@@ -16,7 +16,7 @@ import design.utilities.enums.Door;
 import design.utilities.enums.Entities;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.Enemy;
-import dynamicBody.character.enemy.TypeEnemy;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.player.Player;
 import dynamicBody.move.Direction;
 import gameEntities.Stairs;

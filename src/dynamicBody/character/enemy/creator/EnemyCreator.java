@@ -1,7 +1,8 @@
-package dynamicBody.character.enemy;
+package dynamicBody.character.enemy.creator;
 
 import design.RoomDesign;
 import design.utilities.Pair;
+import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.boss.Boss;
 
 

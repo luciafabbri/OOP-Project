@@ -1,4 +1,4 @@
-package dynamicBody.character.enemy;
+package dynamicBody.character.enemy.creator;
 
 public enum TypeEnemy {
 	

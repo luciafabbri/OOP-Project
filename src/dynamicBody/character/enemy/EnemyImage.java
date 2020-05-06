@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
 import dynamicBody.UpDownLeftRight;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 
 public enum EnemyImage {
 

@@ -1,7 +1,9 @@
-package dynamicBody.character.enemy;
+package dynamicBody.character.enemy.creator;
 
 import design.RoomDesign;
 import design.utilities.Pair;
+import dynamicBody.character.enemy.Enemy;
+import dynamicBody.character.enemy.EnemyImpl;
 import dynamicBody.character.enemy.attack.TypeAttack;
 import dynamicBody.character.enemy.boss.Boss;
 import dynamicBody.character.enemy.boss.BossImpl;
@@ -11,7 +13,7 @@ public class EnemyCreatorImpl implements EnemyCreator {
 	
 	@Override
 	public Enemy getMonsterA(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
-		return new EnemyImpl(pos, damage, health, TypeMove.TO_PLAYER, TypeAttack.ONE_SIDE, room, TypeEnemy.MONSTER1);
+		return new EnemyImpl(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, TypeEnemy.MONSTER1);
 	}
 	
 	@Override
