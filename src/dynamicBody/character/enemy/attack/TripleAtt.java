@@ -10,6 +10,11 @@ public class TripleAtt implements MonsterAttack {
 	private RoomDesign currentRoom;
 	private Enemy enemy;
 	
+	/**
+	 * Default Constructor
+	 * @param room, room where bullet spawn
+	 * @param enemy, the Enemy that create this Bullet
+	 */
 	public TripleAtt(RoomDesign room, Enemy enemy) {
 		currentRoom = room;
 		this.enemy = enemy;

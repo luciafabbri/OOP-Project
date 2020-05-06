@@ -45,7 +45,19 @@ public class EnemyImpl implements Enemy {
 	private int sleepTime = EnemyDefault.ROF.getValue();
 	private long stopMillis;
 	private long startMillis;
-
+	
+	/**
+	 * Default constructor
+	 * @param pos, position of the monster
+	 * @param damage, damage of the monster
+	 * @param speed, speed of the monster
+	 * @param health, max healt of the monster
+	 * @param move, TypeMove of monster 
+	 * @param dir, Direction of monster
+	 * @param att, TypeAttack of monster
+	 * @param room, RoomDesign where monster spawn
+	 * @param mon, TypeEnemy of monster
+	 */
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
 			TypeAttack att, RoomDesign room, TypeEnemy mon) {
 		this.position = pos;

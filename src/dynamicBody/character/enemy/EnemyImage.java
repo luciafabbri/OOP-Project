@@ -20,6 +20,10 @@ public enum EnemyImage {
 
 	String image;
 	
+	/**
+	 * Default constructor
+	 * @param String, a string where you can find the .png
+	 */
 	EnemyImage(String image)  {
 		this.image = image;
 	}
@@ -28,6 +32,11 @@ public enum EnemyImage {
 		return new Animation(new SpriteSheet(new Image(image), 64, 64), 100);
 	}
 	
+	/**
+	 * Method use to get the Animations of a monster
+	 * @param mon, the TypeMonster of the enemy
+	 * @return and UpDownLeftRight with animations of the TypeEnemy
+	 */
 	public static UpDownLeftRight<Animation> getTexture(TypeEnemy mon) throws SlickException {
 		Animation front, back, left, right;
 		switch (mon) {

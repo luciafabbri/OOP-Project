@@ -2,6 +2,9 @@ package dynamicBody.character.enemy;
 
 public enum EnemyDefault {
 
+	/**
+	 * Rate of Fire
+	 */
 	ROF(2000);
 
 	private int value;
