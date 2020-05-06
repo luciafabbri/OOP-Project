@@ -14,7 +14,7 @@ import levels.Level;
  * According to his position, he will be force to take specific actions
  */
 
-public interface CheckPlayer extends CheckPos{
+public interface CheckPlayerMovement extends CheckPos{
 
 	/**
 	 * @param pos, coordinates of the player

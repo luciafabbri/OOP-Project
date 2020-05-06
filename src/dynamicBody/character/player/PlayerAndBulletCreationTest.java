@@ -17,7 +17,7 @@ import dynamicBody.move.Direction;
  * JUnit test for player's and bullet's initial functionalities
  */
 
-public class TestPlayerAndBulletValues {
+public class PlayerAndBulletCreationTest {
 
 	private static Player testPlayer;
 	private static Bullet testBullet;

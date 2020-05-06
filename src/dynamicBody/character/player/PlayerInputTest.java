@@ -15,7 +15,7 @@ import dynamicBody.move.Direction;
  * Class used to create a test for input using Slick2D library
  */
 
-public class TestPlayerInput extends BasicGame {
+public class PlayerInputTest extends BasicGame {
 	
 	private AppGameContainer app;
 	private Input input;
@@ -38,7 +38,7 @@ public class TestPlayerInput extends BasicGame {
 	/**
 	 * Default constructor of this test class
 	 */
-	public TestPlayerInput() {
+	public PlayerInputTest() {
 		super(" INPUT TEST ");
 	}
 	
@@ -110,7 +110,7 @@ public class TestPlayerInput extends BasicGame {
  	 */
 	public static void main(String[] argv) {
 		try {
-			AppGameContainer container = new AppGameContainer(new TestPlayerInput());
+			AppGameContainer container = new AppGameContainer(new PlayerInputTest());
 			container.setDisplayMode(800,600,false);
 			container.start();
 		} catch (SlickException e) {

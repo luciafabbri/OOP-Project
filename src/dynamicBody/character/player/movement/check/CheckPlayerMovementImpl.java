@@ -27,7 +27,7 @@ import design.RoomDesign;
  * to do the specific chosen actions
  */
 
-public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSettings{
+public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayerMovement, GameSettings{
 				
 	private PlayerImpl player;
 	
@@ -58,7 +58,7 @@ public class CheckPlayerImpl extends CheckPosImpl implements CheckPlayer, GameSe
 	 *  @param entity, entity is used to inherit all the methods implemented in class CheckPosImpl
 	 *  @param player, current entity of which we will do the check
 	 */
-	public CheckPlayerImpl(DynamicBody entity, PlayerImpl player) {
+	public CheckPlayerMovementImpl(DynamicBody entity, PlayerImpl player) {
 		super(entity);
 		this.player = player;
 		

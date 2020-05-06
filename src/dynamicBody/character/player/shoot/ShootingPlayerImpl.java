@@ -12,7 +12,7 @@ import dynamicBody.character.player.Player;
  * in order to make the player start shooting, by creating a new bullet of type player 
  */
 
-public class BulletMovementImpl extends DistanceBullAbst implements BulletMovement {
+public class ShootingPlayerImpl extends DistanceBullAbst implements ShootingPlayer {
 	
 	private Player player;
 	
@@ -33,7 +33,7 @@ public class BulletMovementImpl extends DistanceBullAbst implements BulletMoveme
 	 * Default constructor
 	 * @param player, player that will start shooting
 	 */
-	public BulletMovementImpl(Player player) {
+	public ShootingPlayerImpl(Player player) {
 		this.player = player;
 	}
 		

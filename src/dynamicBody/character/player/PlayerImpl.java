@@ -37,7 +37,7 @@ public class PlayerImpl implements Player {
 	private Pair<Integer,Integer> position;
 	private Direction direction;
 	private Movement move;
-	private CheckPlayer check;
+	private CheckPlayerMovement check;
 	private Health health;
 	private RoomDesign currentRoom;
 	private Inventory inventory;
@@ -48,7 +48,7 @@ public class PlayerImpl implements Player {
 	private Sound bowShoot;
 	private Sound hurtSound;
 	
-	private BulletMovement bullet ;
+	private ShootingPlayer bullet ;
 	private Set<Bullet> roomBullets = new HashSet<>();
 
 	/**
@@ -67,8 +67,8 @@ public class PlayerImpl implements Player {
 		this.inventory = new InventoryImpl(this);
 		this.health = new HealthImpl(100);
 		this.move = new MovementImpl();
-		this.check = new CheckPlayerImpl(this,this);
-		this.bullet = new BulletMovementImpl(this);
+		this.check = new CheckPlayerMovementImpl(this,this);
+		this.bullet = new ShootingPlayerImpl(this);
 		this.dimensions = PlayerDimensions.getPlayerDimensions(this);
 		this.clearRoom = false;
 		
@@ -233,7 +233,7 @@ public class PlayerImpl implements Player {
 	 * used in class LogicImpl 
 	 */
 	@Override
-	public BulletMovement getBullet() {
+	public ShootingPlayer getBullet() {
 		return this.bullet;
 	} 
 	
@@ -241,7 +241,7 @@ public class PlayerImpl implements Player {
 	 * used in class LevelsPlay
 	 */
 	@Override    
-	public CheckPlayer getCheck() {
+	public CheckPlayerMovement getCheck() {
 		return this.check;
 	}
 
