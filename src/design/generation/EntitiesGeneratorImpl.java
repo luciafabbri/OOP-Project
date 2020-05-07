@@ -65,6 +65,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 				break;
 			case MOVEMENTSPEED1:
 				room.addPickupable(new MovementSpeed1(pos));
+				break;
 			case RECOVERHEALRTH:
 				room.addPickupable(new RecoverHealth(pos));
 				break;
