@@ -1,17 +1,18 @@
 package dynamicBody.character.player;
 
 import static org.junit.Assert.*;
+
+import java.io.IOException;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.SlickException;
-
 import design.RoomDesign;
-import design.RoomDesignImpl;
 import design.utilities.Pair;
-import design.utilities.enums.Entities;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
 import dynamicBody.move.Direction;
+import levels.Level;
+import levels.LevelImpl;
 
 /**
  * JUnit test for player's and bullet's initial functionalities
@@ -22,19 +23,21 @@ public class PlayerAndBulletCreationTest {
 	private static Player testPlayer;
 	private static Bullet testBullet;
 	private static RoomDesign testRoom;
+	private static Level testLevel; 
 	
 	@org.junit.BeforeClass
-	public static void initTest() {
+	public static void initTest() throws IOException {
 		try {
 			// display.create is needed because default constructor of bulletPlayerImpl contains an Image 
 			Display.create();
 		} catch (LWJGLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		testRoom = new RoomDesignImpl(1);
-		testPlayer = new PlayerImpl(new Pair<Integer,Integer>(64, 64), Direction.SOUTH, 0);
-		testBullet = new BulletPlayerImpl(testPlayer.getPosition(), testPlayer.getDamage(), testPlayer.getDirection(), testRoom);
+		testLevel = new LevelImpl(1); 
+		testRoom = testLevel.getLevel().get(0).getRoom();
+		testPlayer = new PlayerImpl(new Pair<Integer,Integer>(64, 64), Direction.SOUTH, testRoom.getRoomID());
+		testPlayer.setCurrentRoom(testRoom);
+		testBullet = new BulletPlayerImpl(testPlayer.getPosition(), testPlayer.getDamage(), testPlayer.getDirection(), testPlayer.getRoom());
 	}
 
 	/**
@@ -74,7 +77,7 @@ public class PlayerAndBulletCreationTest {
 		assertEquals(testPlayer.getRateOfFire(), 1000);	
 		testPlayer.upgradeRateOfFire(500);
 		assertEquals(testPlayer.getRateOfFire(), 500);
-		assertEquals(testPlayer.getRoom(), null);
+		assertEquals(testPlayer.getRoom(), testRoom);
 	}
 	
 	/**
