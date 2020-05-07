@@ -9,12 +9,20 @@ import dynamicBody.character.player.Player;
 import dynamicBody.move.CheckPos;
 import dynamicBody.move.CheckPosImpl;
 
+/**
+ * Class used to represent all the specific checks for a bullet of type Enemy 
+ */
+
 public class CheckMonsBull extends CheckPosImpl implements GameSettings, CheckPos {
 	
 	private DynamicBody entity;
 	
 	private Player player = StateCoord.getPlayer();
 	
+	/**
+	 * Default constructor
+	 * @param entity, the type of entity associated with this type of bullet's check
+	 */
 	public CheckMonsBull(DynamicBody entity) {
 		super(entity);
 		this.entity = entity;
@@ -22,10 +30,16 @@ public class CheckMonsBull extends CheckPosImpl implements GameSettings, CheckPo
 
 	@Override
 	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
-		return super.possiblePos(room, pos) && checkCharacters(room, pos) ;
+		return super.possiblePos(room, pos) && !checkCharacters(room, pos) ;
 	}
 	
-	public boolean checkCharacters(RoomDesign room, Pair<Integer, Integer> pos) {
+	/**
+	 * Method used to check if enemy's bullet is in collision with any enemy in the current room
+	 * @param room, bullet's current room 
+	 * @param pos, bullet's current coordinates
+	 * @return true if the bullet had a collision with the player, otherwise return false
+	 */
+	private boolean checkCharacters(RoomDesign room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
 		checkX = pos.getX() + entity.getDimension().getLeft() < player.getPosition().getX() + player.getDimension().getRight() &&
 				pos.getX() + entity.getDimension().getRight() > player.getPosition().getX() + player.getDimension().getLeft();
@@ -33,8 +47,8 @@ public class CheckMonsBull extends CheckPosImpl implements GameSettings, CheckPo
 				pos.getY() + entity.getDimension().getDown() > player.getPosition().getY();
 		if (checkX && checkY) {
 			player.takeDamage(entity.getDamage());
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 }

@@ -8,22 +8,27 @@ import dijkstra.Node;
 import dynamicBody.character.Character;
 import dynamicBody.move.Direction;
 
+/**
+ * Class that implement MovePosMonster use when enemy's movement is and ToPlayer
+ */
 public class ToPlayerMove extends ToPlayerAbs implements MovePosMonster {
 
-	private Direction nextDir = null;
-
-	private RoomDesign currentRoom;
-
 	private boolean inizialithed = false;
+	private Pair<Integer, Integer> checkPlayer = player.getPosition();
 
+	private Direction nextDir;
+	private RoomDesign currentRoom;
 	private MovePosMonster move;
+	private Character character;
 
 	private Graph<Node<Pair<Integer, Integer>>> graph;
 
-	private Pair<Integer, Integer> checkPlayer = player.getPosition();
-
-	private Character character;
-
+	/**
+	 * Default constructor
+	 * 
+	 * @param room,      room where character is
+	 * @param character, the character who need to move
+	 */
 	public ToPlayerMove(RoomDesign room, Character character) {
 		currentRoom = room;
 		this.character = character;
@@ -33,14 +38,15 @@ public class ToPlayerMove extends ToPlayerAbs implements MovePosMonster {
 	@Override
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, int speed, Direction dir) {
 
-		Pair<Integer, Integer> monsterDownRight = new Pair<>(pos.getX() + character.getDimension().getRight() - 1,
+		Pair<Integer, Integer> enemyDownRight = new Pair<>(pos.getX() + character.getDimension().getRight() - 1,
 				pos.getY() + character.getDimension().getDown() - 1);
-		Pair<Integer, Integer> monsterUpLeft = new Pair<>(pos.getX() + character.getDimension().getLeft() - 1,
+		Pair<Integer, Integer> enemyUpLeft = new Pair<>(pos.getX() + character.getDimension().getLeft() - 1,
 				pos.getY() + character.getDimension().getUp() - 1);
 
 		if (!inizialithed) {
 			graph = createGraph(currentRoom);
 			graph = DijkstraAlg.calculateShortestPathFromSource(graph, findNode(findTile(getPlayerPos()), graph));
+			nextDir = dir;
 			inizialithed = true;
 		}
 
@@ -50,12 +56,12 @@ public class ToPlayerMove extends ToPlayerAbs implements MovePosMonster {
 			checkPlayer = findTile(getPlayerPos());
 		}
 
-		if (findNode(findTile(monsterDownRight), graph).getShortestPath().isEmpty()
-				|| findNode(findTile(monsterUpLeft), graph).getShortestPath().isEmpty()) {
+		if (findNode(findTile(enemyDownRight), graph).getShortestPath().isEmpty()
+				|| findNode(findTile(enemyUpLeft), graph).getShortestPath().isEmpty()) {
 			nextDir = dir;
 			return pos;
 		}
-		nextDir = findDir(monsterUpLeft, monsterDownRight, graph);
+		nextDir = findDir(enemyUpLeft, enemyDownRight, graph);
 
 		Pair<Integer, Integer> nextPos = move.nextPos(pos, speed, nextDir);
 		return nextPos;

@@ -6,5 +6,5 @@ package dynamicBody.bullet;
 
 public enum TypeBullet {
 
-	PLAYER, MONSTER;
+	PLAYER, ENEMY;
 }
