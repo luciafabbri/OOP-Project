@@ -7,6 +7,9 @@ import design.utilities.Pair;
 import dynamicBody.character.Character;
 import dynamicBody.move.Direction;
 
+/**
+ * Class that implement MovePosMonster use when enemy's movement is Random
+ */
 public class RandomMove implements MovePosMonster {
 
 	private static final int MINIMUM_STEPS = 250;
@@ -17,6 +20,12 @@ public class RandomMove implements MovePosMonster {
 	private Random random = new Random();
 	private Direction nextDir;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param room,      room where character is
+	 * @param character, the character who need to move
+	 */
 	public RandomMove(RoomDesign room, Character character) {
 		move = new StraightMove(room, character);
 	}

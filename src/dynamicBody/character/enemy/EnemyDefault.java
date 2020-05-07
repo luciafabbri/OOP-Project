@@ -1,8 +1,14 @@
 package dynamicBody.character.enemy;
 
+/**
+ * Enumeration use to locate the default's value for enemy
+ */
 public enum EnemyDefault {
 
-	ROF(2000);
+	/**
+	 * Rate of Fire
+	 */
+	ROF(2000), SPEED(1);
 
 	private int value;
 
