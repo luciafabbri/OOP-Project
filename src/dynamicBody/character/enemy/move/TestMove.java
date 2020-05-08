@@ -21,18 +21,16 @@ import levels.Level;
 import levels.LevelImpl;
 
 /**
- * JUnit test for graph functionalities
+ * JUnit test for Enemy move functionalities
  *
  */
 public class TestMove {
 
-	private static Enemy testMonster;
-
 	// private static Bullet testBullet;
 	private static RoomDesign testRoom;
 
-	@org.junit.Before
-	public void initTest() throws IOException {
+	@org.junit.BeforeClass
+	public static void initTest() throws IOException {
 		try {
 			// display.create is needed because default constructor of bulletPlayerImpl
 			// contains an Image
@@ -45,94 +43,140 @@ public class TestMove {
 		level.loadRooms();
 		testRoom = level.getLevel().get(0).getRoom();
 		// RIMUOVO TUTTI GLI OSCACOLI PER IL TEST
-		testRoom.getObstacleSet().removeAll(testRoom.getObstacleSet());
+		//testRoom.getObstacleSet().removeAll(testRoom.getObstacleSet());
 
 	}
 
 	@org.junit.Test
 	public void testStraightMove() {
-		/* 
+		/*
 		 * CONTROLLO CHE PER OGNI DIREZIONE IL NEMICO SI MUOVA DALLA PARTE GIUSTA
 		 */
+
 		Direction.getDirectionList(true).forEach(d -> {
-			testMonster = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100, TypeMove.STRAIGHT, d,
+
+			Enemy testStraight = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100, TypeMove.STRAIGHT, d,
 					TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
-			testMonster.updatePos();
+			testStraight.updatePos();
 			assertEquals(new Pair<Integer, Integer>(128 + d.getAbscissa(), 128 + d.getOrdinate()),
-					testMonster.getPosition());
-			testMonster.updatePos();
-			testMonster.updatePos();
-			testMonster.updatePos();
+					testStraight.getPosition());
+			testStraight.updatePos();
+			testStraight.updatePos();
+			testStraight.updatePos();
 			assertEquals(new Pair<Integer, Integer>(128 + d.getAbscissa() * 4, 128 + d.getOrdinate() * 4),
-					testMonster.getPosition());
+					testStraight.getPosition());
 		});
 
 		/*
-		 *  CONTROLLO CHE IL NEMICO UNA VOLTA SBATTUTO NEL LIMITI CAMBI DIREZIONI
+		 * CONTROLLO CHE IL NEMICO UNA VOLTA SBATTUTO NEL LIMITI CAMBI DIREZIONI
 		 */
-		
-		testMonster = new EnemyImpl(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 65), 10, 1, 100,
+		Enemy testStraight;
+		testStraight = new EnemyImpl(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 65), 10, 1, 100,
 				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
-		
-		// IL NEMICO SI MUOVE CORRETTAMENTE VERSO IL BASSO ED ORA SI TROVA ATTACCATO AL MURO
-		testMonster.updatePos();
-		assertEquals(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 64), testMonster.getPosition());
-		assertEquals(Direction.SOUTH, testMonster.getDirection());
-		
-		// IL NEMICO CERCA DI MUOVERSI VERSO IL BASSO MA ESSENDO ATTACCATO AL MURO SBATTE E CAMBIA DIREZIONE
-		testMonster.updatePos();
-		assertEquals(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 64), testMonster.getPosition());
-		assertEquals(Direction.NORTH, testMonster.getDirection());
-		
-		//IL NEMICO HA CAMBIATO DIREZIONE E SI MUOVE DALLA PARTE OPPOSTA
-		testMonster.updatePos();
-		assertEquals(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 65), testMonster.getPosition());
-		assertEquals(Direction.NORTH, testMonster.getDirection());
-		
+
+		// IL NEMICO SI MUOVE CORRETTAMENTE VERSO IL BASSO ED ORA SI TROVA ATTACCATO AL
+		// MURO
+		testStraight.updatePos();
+		assertEquals(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 64), testStraight.getPosition());
+		assertEquals(Direction.SOUTH, testStraight.getDirection());
+
+		// IL NEMICO CERCA DI MUOVERSI VERSO IL BASSO MA ESSENDO ATTACCATO AL MURO
+		// SBATTE E CAMBIA DIREZIONE
+		testStraight.updatePos();
+		assertEquals(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 64), testStraight.getPosition());
+		assertEquals(Direction.NORTH, testStraight.getDirection());
+
+		// IL NEMICO HA CAMBIATO DIREZIONE E SI MUOVE DALLA PARTE OPPOSTA
+		testStraight.updatePos();
+		assertEquals(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 65), testStraight.getPosition());
+		assertEquals(Direction.NORTH, testStraight.getDirection());
+
 		/*
 		 * CONTROLLO CHE IL NEMICO SBATTA CONTRO GLI OSTACOLI
 		 */
-		testMonster = new EnemyImpl(new Pair<Integer, Integer>(64, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+		testStraight = new EnemyImpl(new Pair<Integer, Integer>(64, 128), 10, 1, 100, TypeMove.STRAIGHT,
+				Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
 		try {
 			testRoom.addObstacle(new Obstacle(new Pair<Integer, Integer>(64, 128 + 65)));
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		// IL NEMICO SI MUOVE CORRETTAMENTE VERSO IL BASSO ED ORA SI TROVA ATTACCATO ALL'OSTACOLO
-		testMonster.updatePos();
-		assertEquals(new Pair<Integer, Integer>(64, 128 + 1), testMonster.getPosition());
-		assertEquals(Direction.SOUTH, testMonster.getDirection());
-		
-		// IL NEMICO CERCA DI MUOVERSI VERSO IL BASSO MA ESSENDO ATTACCATO ALL'OSTACOLO SBATTE E CAMBIA DIREZIONE
-		testMonster.updatePos();
-		assertEquals(new Pair<Integer, Integer>(64, 128 + 1), testMonster.getPosition());
-		assertEquals(Direction.NORTH, testMonster.getDirection());
-		
-		//IL NEMICO HA CAMBIATO DIREZIONE E SI MUOVE DALLA PARTE OPPOSTA
-		testMonster.updatePos();
-		assertEquals(new Pair<Integer, Integer>(64, 128), testMonster.getPosition());
-		assertEquals(Direction.NORTH, testMonster.getDirection());
+		// IL NEMICO SI MUOVE CORRETTAMENTE VERSO IL BASSO ED ORA SI TROVA ATTACCATO
+		// ALL'OSTACOLO
+		testStraight.updatePos();
+		assertEquals(new Pair<Integer, Integer>(64, 128 + 1), testStraight.getPosition());
+		assertEquals(Direction.SOUTH, testStraight.getDirection());
+
+		// IL NEMICO CERCA DI MUOVERSI VERSO IL BASSO MA ESSENDO ATTACCATO ALL'OSTACOLO
+		// SBATTE E CAMBIA DIREZIONE
+		testStraight.updatePos();
+		assertEquals(new Pair<Integer, Integer>(64, 128 + 1), testStraight.getPosition());
+		assertEquals(Direction.NORTH, testStraight.getDirection());
+
+		// IL NEMICO HA CAMBIATO DIREZIONE E SI MUOVE DALLA PARTE OPPOSTA
+		testStraight.updatePos();
+		assertEquals(new Pair<Integer, Integer>(64, 128), testStraight.getPosition());
+		assertEquals(Direction.NORTH, testStraight.getDirection());
 	}
 
-//	@org.junit.Test
-//	public void testRandomMove() {
-//
-//	}
-//
-//	@org.junit.Test
-//	public void testImmobilizedMove() {
-//
-//	}
-//
-//	@org.junit.Test
-//	public void testTeleportMove() {
-//
-//	}
-//
-//	@org.junit.Test
-//	public void testToPlayerMove() {
-//
-//	}
+	@org.junit.Test
+	public void testRandomMove() {
+		Enemy testRandom;
+		testRandom = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 1, 100, TypeMove.RANDOM, Direction.SOUTH,
+				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+		// IL MOVIMENTO RANDOM UNA VOLTA INIZIALIZZATO CAMBIA LA DIREZIONE OGNI TOT PASSI
+		testRandom.updatePos();
+		testRandom.updatePos();
+		assertNotEquals(new Pair<Integer, Integer>(250, 250), testRandom.getPosition());
+		assertNotEquals(Direction.SOUTH, testRandom.getDirection());
+
+	}
+
+	@org.junit.Test
+	public void testImmobilizedMove() {
+		Enemy testImmobilized;
+		testImmobilized = new EnemyImpl(new Pair<Integer, Integer>(64, 64), 10, 1, 100, TypeMove.IMMOBILIZED, Direction.SOUTH,
+				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+		//AGGIORNARE LA POSIZIONE RITORNERA SEMPRE QUELLA PRECEDENTE		
+		testImmobilized.updatePos();
+		testImmobilized.updatePos();
+		testImmobilized.updatePos();
+		assertEquals(new Pair<Integer, Integer>(64, 64), testImmobilized.getPosition());
+		assertEquals(Direction.SOUTH, testImmobilized.getDirection());
+
+	}
+
+	@org.junit.Test
+	public void testTeleportMove() {
+		Enemy testTeleport;
+		testTeleport = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 1, 100, TypeMove.TELEPORT, Direction.SOUTH,
+				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+		// IL MOVIMENTO TELEPORT SI TELETRASPORTA IN UNA POSIZIONE E RIMANI LI PER UN PAIO DI SECONDI
+		testTeleport.updatePos();
+		assertNotEquals(new Pair<Integer, Integer>(250, 250), testTeleport.getPosition());
+		Pair<Integer, Integer> newPos = testTeleport.getPosition();
+		Direction newDirection = testTeleport.getDirection();
+		testTeleport.updatePos();
+		assertEquals(newPos, testTeleport.getPosition());
+		assertEquals(newDirection, testTeleport.getDirection());
+		
+	}
+
+	@org.junit.Test
+	public void testToPlayerMove() {
+		Enemy testToPlayer1, testToPlayer2;		
+		testToPlayer1 = new EnemyImpl(new Pair<Integer, Integer>(64, 248), 10, 1, 100, TypeMove.TO_PLAYER, Direction.SOUTH,
+				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+		testToPlayer2 = new EnemyImpl(new Pair<Integer, Integer>(248, 64), 10, 1, 100, TypeMove.TO_PLAYER, Direction.SOUTH,
+				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+		testToPlayer1.updatePos();
+		testToPlayer2.updatePos();
+		testToPlayer1.updatePos();
+		testToPlayer2.updatePos();
+		System.out.println(testToPlayer1.getPosition() + "->" + testToPlayer2.getDirection());
+		assertEquals(Direction.NORTH, testToPlayer1.getDirection());
+		assertEquals(Direction.WEST, testToPlayer2.getDirection());
+		
+	}
 
 }

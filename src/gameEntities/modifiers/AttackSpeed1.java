@@ -10,6 +10,6 @@ import dynamicBody.character.Stats;
 public class AttackSpeed1 extends ModifiersImpl{
 
 	public AttackSpeed1(Pair<Integer, Integer> coord) throws SlickException {
-		super(coord, Stats.PROJ_SPEED, 500, "ROF Upgrade", new Image("./res/items/mod/AttackSpeedMod1.png"), Entities.ATTACKSPEED1);
+		super(coord, Stats.PROJ_SPEED, 100, "ROF Upgrade", new Image("./res/items/mod/AttackSpeedMod1.png"), Entities.ATTACKSPEED1);
 	}
 }
