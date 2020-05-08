@@ -20,12 +20,12 @@ public class EnemyCreatorImpl implements EnemyCreator {
 
 	@Override
 	public Enemy getMonsterB(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
-		return new EnemyImpl(pos, damage, health, TypeMove.RANDOM, TypeAttack.TWO_SIDE, room, TypeEnemy.MONSTER2);
+		return new EnemyImpl(pos, damage, health, TypeMove.TELEPORT, TypeAttack.TWO_SIDE, room, TypeEnemy.MONSTER2);
 	}
 
 	@Override
 	public Enemy getMonsterC(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
-		return new EnemyImpl(pos, damage, health, TypeMove.TELEPORT, TypeAttack.TRIPLE, room, TypeEnemy.MONSTER3);
+		return new EnemyImpl(pos, damage, health, TypeMove.RANDOM, TypeAttack.TRIPLE, room, TypeEnemy.MONSTER3);
 	}
 
 	@Override

@@ -162,21 +162,4 @@ public class TestMove {
 		
 	}
 
-	@org.junit.Test
-	public void testToPlayerMove() {
-		Enemy testToPlayer1, testToPlayer2;		
-		testToPlayer1 = new EnemyImpl(new Pair<Integer, Integer>(64, 248), 10, 1, 100, TypeMove.TO_PLAYER, Direction.SOUTH,
-				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
-		testToPlayer2 = new EnemyImpl(new Pair<Integer, Integer>(248, 64), 10, 1, 100, TypeMove.TO_PLAYER, Direction.SOUTH,
-				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
-		testToPlayer1.updatePos();
-		testToPlayer2.updatePos();
-		testToPlayer1.updatePos();
-		testToPlayer2.updatePos();
-		System.out.println(testToPlayer1.getPosition() + "->" + testToPlayer2.getDirection());
-		assertEquals(Direction.NORTH, testToPlayer1.getDirection());
-		assertEquals(Direction.WEST, testToPlayer2.getDirection());
-		
-	}
-
 }
