@@ -77,12 +77,6 @@ public class RoomImpl implements Room {
 		
 		try {
 			
-			this.room.addObstacle(new Obstacle(new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE * 2)));
-			this.room.addObstacle(new Obstacle(new Pair<>(GameSettings.LIMITRIGHT - GameSettings.TILESIZE * 2, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE)));
-			this.room.addObstacle(new Obstacle(new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.HEIGHT - GameSettings.TILESIZE * 3)));
-			this.room.addObstacle(new Obstacle(new Pair<>(GameSettings.TILESIZE * 2, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE)));
-			
-			
 			this.floor = new Floor1();
 			this.wallVert = new WallVert1();
 			this.wallHor = new WallHor1();
