@@ -9,7 +9,7 @@ import design.RoomDesignImpl;
 import design.utilities.*;
 import design.utilities.enums.Modifiers;
 import design.utilities.graphs.RoomBFS;
-import dynamicBody.character.enemy.EnemyCreatorImpl;
+import dynamicBody.character.enemy.creator.EnemyCreatorImpl;
 import gameEntities.*;
 import gameEntities.items.*;
 import gameEntities.modifiers.*;
@@ -65,6 +65,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 				break;
 			case MOVEMENTSPEED1:
 				room.addPickupable(new MovementSpeed1(pos));
+				break;
 			case RECOVERHEALRTH:
 				room.addPickupable(new RecoverHealth(pos));
 				break;

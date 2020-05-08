@@ -1,14 +1,16 @@
 package dynamicBody.character.enemy.move;
 
-import design.RoomDesign;
 import design.utilities.Pair;
 import dynamicBody.move.Direction;
 
+/**
+ * Class that implement MovePosMonster use when enemy's movement is Immobilized
+ */
 public class ImmobilizedMove implements MovePosMonster {
 
 	private Direction nextDir;
 
-	public ImmobilizedMove(RoomDesign room) {
+	public ImmobilizedMove() {
 	}
 
 	@Override

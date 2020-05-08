@@ -10,6 +10,10 @@ import dijkstra.Node;
 import dynamicBody.character.player.Player;
 import dynamicBody.move.Direction;
 
+/**
+ * Abstract Class with utilities' function for the movement ToPlayer and for the
+ * Dijkstra Algorithms
+ */
 public class ToPlayerAbs {
 
 	private Direction lastDir;
@@ -19,30 +23,46 @@ public class ToPlayerAbs {
 	private int disPX = (player.getDimension().getRight() + player.getDimension().getLeft()) / 2;
 	private int disPY = (player.getDimension().getUp() + player.getDimension().getDown()) / 2;
 
+	/**
+	 * Method use to find the tile of a position
+	 * 
+	 * @param pos, Position that you need to known the Tile
+	 * @return a Pair that identify a tile
+	 */
 	protected Pair<Integer, Integer> findTile(Pair<Integer, Integer> pos) {
 		int x = pos.getX() / GameSettings.TILESIZE;
 		int y = pos.getY() / GameSettings.TILESIZE;
 		return new Pair<Integer, Integer>(x * GameSettings.TILESIZE, y * GameSettings.TILESIZE);
 	}
 
-	protected Direction findDir(Pair<Integer, Integer> pos1, Pair<Integer, Integer> pos2,
+	/**
+	 * Method use to find the direction of an Enemy that want to know where is
+	 * Player
+	 * 
+	 * @param posUpLeft,    Position of bite UpLeft of enemy
+	 * @param posDownRight, Position of bite DownLeft of enemy
+	 * @param graph,        The TileGraph of the room
+	 * @return return the Direction of the enemy
+	 */
+	protected Direction findDir(Pair<Integer, Integer> posUpLeft, Pair<Integer, Integer> posDownRight,
 			Graph<Node<Pair<Integer, Integer>>> graph) {
 		Direction dir;
 
-		int size1 = findNode(findTile(pos1), graph).getShortestPath().size() - 1;
-		Pair<Integer, Integer> checkPos1 = findNode(findTile(pos1), graph).getShortestPath().get(size1).getName();
+		int size1 = findNode(findTile(posUpLeft), graph).getShortestPath().size() - 1;
+		Pair<Integer, Integer> checkPos1 = findNode(findTile(posUpLeft), graph).getShortestPath().get(size1).getName();
 
-		int size2 = findNode(findTile(pos2), graph).getShortestPath().size() - 1;
-		Pair<Integer, Integer> checkPos2 = findNode(findTile(pos2), graph).getShortestPath().get(size2).getName();
+		int size2 = findNode(findTile(posDownRight), graph).getShortestPath().size() - 1;
+		Pair<Integer, Integer> checkPos2 = findNode(findTile(posDownRight), graph).getShortestPath().get(size2)
+				.getName();
 
 		if (checkPos1.equals(checkPos2)) {
-			if (pos1.getX() < checkPos1.getX()) {
+			if (posUpLeft.getX() < checkPos1.getX()) {
 				dir = Direction.EAST;
-			} else if (pos1.getX() > checkPos1.getX()) {
+			} else if (posUpLeft.getX() > checkPos1.getX()) {
 				dir = Direction.WEST;
-			} else if (pos1.getY() < checkPos1.getY()) {
+			} else if (posUpLeft.getY() < checkPos1.getY()) {
 				dir = Direction.SOUTH;
-			} else if (pos1.getY() > checkPos1.getY()) {
+			} else if (posUpLeft.getY() > checkPos1.getY()) {
 				dir = Direction.NORTH;
 			} else {
 				throw new IllegalArgumentException();

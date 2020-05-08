@@ -16,6 +16,7 @@ import dynamicBody.character.enemy.attack.OneSideAtt;
 import dynamicBody.character.enemy.attack.TripleAtt;
 import dynamicBody.character.enemy.attack.TwoSideAtt;
 import dynamicBody.character.enemy.attack.TypeAttack;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.enemy.move.ImmobilizedMove;
 import dynamicBody.character.enemy.move.MovePosMonster;
 import dynamicBody.character.enemy.move.RandomMove;
@@ -27,6 +28,10 @@ import dynamicBody.character.health.Health;
 import dynamicBody.character.health.HealthImpl;
 import dynamicBody.move.Direction;
 
+/**
+ * Class that implements interface Player used to define all the aspects
+ * concerning the player
+ */
 public class EnemyImpl implements Enemy {
 
 	private Pair<Integer, Integer> position;
@@ -36,15 +41,28 @@ public class EnemyImpl implements Enemy {
 	private MovePosMonster move;
 	private MonsterAttack attack;
 	private Direction direction;
-	private Pair<DimensionMonster, DimensionMonster> dimensions;
+	private Pair<EnemyDimension, EnemyDimension> dimensions;
 	private TypeEnemy typeEnemy;
 	private UpDownLeftRight<Animation> textures;
 	private Set<Bullet> bullets = new HashSet<>();
-	
+
 	private int sleepTime = EnemyDefault.ROF.getValue();
 	private long stopMillis;
 	private long startMillis;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param pos,    position of the monster
+	 * @param damage, damage of the monster
+	 * @param speed,  speed of the monster
+	 * @param health, max health of the monster
+	 * @param move,   TypeMove of monster
+	 * @param dir,    Direction of monster
+	 * @param att,    TypeAttack of monster
+	 * @param room,   RoomDesign where monster spawn
+	 * @param mon,    TypeEnemy of monster
+	 */
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
 			TypeAttack att, RoomDesign room, TypeEnemy mon) {
 		this.position = pos;
@@ -54,7 +72,7 @@ public class EnemyImpl implements Enemy {
 		this.move = selectMove(move, room);
 		this.attack = selectAttack(att, room);
 		this.direction = dir;
-		this.dimensions = DimensionMonster.getDimensionMoster(mon);
+		this.dimensions = EnemyDimension.getDimensionMoster(mon);
 		this.typeEnemy = mon;
 		try {
 			this.textures = EnemyImage.getTexture(mon);
@@ -66,7 +84,7 @@ public class EnemyImpl implements Enemy {
 
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomDesign room,
 			TypeEnemy mon) {
-		this(pos, damage, 1, health, move, Direction.getRandomDir(), att, room, mon);
+		this(pos, damage, EnemyDefault.SPEED.getValue(), health, move, Direction.getRandomDir(), att, room, mon);
 	}
 
 	private MovePosMonster selectMove(TypeMove typeMove, RoomDesign room) {
@@ -81,8 +99,8 @@ public class EnemyImpl implements Enemy {
 			return new RandomMove(room, this);
 
 		case IMMOBILIZED:
-			return new ImmobilizedMove(room);
-			
+			return new ImmobilizedMove();
+
 		case TO_PLAYER:
 			return new ToPlayerMove(room, this);
 
@@ -179,15 +197,15 @@ public class EnemyImpl implements Enemy {
 	@Override
 	public void attack() {
 		stopMillis = System.currentTimeMillis();
-		if(stopMillis - startMillis > sleepTime) {
+		if (stopMillis - startMillis > sleepTime) {
 			this.attack.createBullets(position, direction, damage);
 			startMillis = System.currentTimeMillis();
-		}	
+		}
 	}
 
 	@Override
 	public void addBullet(Bullet bullet) {
-		this.bullets.add(bullet);		
+		this.bullets.add(bullet);
 	}
 
 	@Override

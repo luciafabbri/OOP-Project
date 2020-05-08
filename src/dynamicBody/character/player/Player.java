@@ -4,8 +4,8 @@ import design.RoomDesign;
 import design.utilities.Pair;
 import dynamicBody.character.player.inventory.Inventory;
 import dynamicBody.character.player.movement.Movement;
-import dynamicBody.character.player.movement.check.CheckPlayer;
-import dynamicBody.character.player.shoot.BulletMovement;
+import dynamicBody.character.player.movement.check.CheckPlayerMovement;
+import dynamicBody.character.player.shoot.ShootingPlayer;
 import levels.Level;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
@@ -39,7 +39,7 @@ public interface Player extends dynamicBody.character.Character {
 	/**
 	 *  @return player's bullet 
 	 */
-	BulletMovement getBullet();
+	ShootingPlayer getBullet();
 
 	/**
 	 * @return player's current room 
@@ -66,7 +66,7 @@ public interface Player extends dynamicBody.character.Character {
 	/**
 	 * @return player's check 
 	 */
-	CheckPlayer getCheck();
+	CheckPlayerMovement getCheck();
 	
 	/**
 	 * Method used to upgrade player's damage 

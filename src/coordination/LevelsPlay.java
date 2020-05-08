@@ -1,6 +1,7 @@
 package coordination;
 import java.io.IOException;
 
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
