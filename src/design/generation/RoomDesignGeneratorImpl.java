@@ -71,12 +71,8 @@ public class RoomDesignGeneratorImpl implements RoomDesignGenerator {
 		room.setTilesGraph(graphGen.generateTilesGraph(room));
 		// door-to-door path check, if false generate new room
 		while (!bfs.areDoorsReachable(room)) {
-			// print for test purposes
-			//System.out.println("Some door isn't reachable, generating room anew");
 			return (this.generateRoom(index));
 		}
-		// print for test purposes
-		//System.out.println("All doors are reachable, adding room");
 		return room;
 	}
 
