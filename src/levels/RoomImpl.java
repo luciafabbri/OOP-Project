@@ -7,8 +7,10 @@ import java.util.Set;
 import org.newdawn.slick.SlickException;
 
 import design.RoomDesign;
+import design.utilities.GameSettings;
 import design.utilities.Pair;
 import design.utilities.enums.Door;
+import gameEntities.Obstacle;
 import tiles.*;
 
 
@@ -71,7 +73,15 @@ public class RoomImpl implements Room {
 		this.room = room;
 		this.doorAccess = doorAccess.entrySet().stream().filter(s -> s.getKey().getRoomID() == room.getRoomID()).findFirst().get().getValue();
 		this.gotRoomKey = false;
+		
+		
 		try {
+			
+			this.room.addObstacle(new Obstacle(new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE * 2)));
+			this.room.addObstacle(new Obstacle(new Pair<>(GameSettings.LIMITRIGHT - GameSettings.TILESIZE * 2, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE)));
+			this.room.addObstacle(new Obstacle(new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.HEIGHT - GameSettings.TILESIZE * 3)));
+			this.room.addObstacle(new Obstacle(new Pair<>(GameSettings.TILESIZE * 2, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE)));
+			
 			
 			this.floor = new Floor1();
 			this.wallVert = new WallVert1();

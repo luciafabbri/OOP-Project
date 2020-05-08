@@ -94,10 +94,13 @@ public class UI {
 		
 		graphics.fillRect(0, 0, GameSettings.TILESIZE, GameSettings.TILESIZE * 3);
 		
-		healthImage.draw(16, 8, 48, 48);
 		
 		coinImage.draw(-5, GameSettings.TILESIZE, 40, 40);
 		tmp.drawString(30, GameSettings.TILESIZE + 2, Integer.toString(player.getInventory().getCoin()), Color.white);
+		
+		this.healthUpdate();
+		
+		graphics.setColor(Color.white);
 		
 		if(level.isGotLevelCoin()) {
 			if(player.getInventory().getCoin() == GameSettings.TOTCOINS) {
@@ -107,7 +110,22 @@ public class UI {
 			}
 		}
 			
-		graphics.setColor(Color.white);
+	}
+	
+	
+	private void healthUpdate() {
+		float healthPer = (((3 * GameSettings.TILESIZE) / 4 * 6) - 8) / player.getMaxHealth();
+		float remainingHealth = (player.getMaxHealth() - player.getCurrentHealth()) * healthPer;
+		
+		
+		graphics.setColor(Color.lightGray);
+		graphics.fillRect(GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 6, (3 * GameSettings.TILESIZE) / 4 * 6, (3 * GameSettings.TILESIZE) / 4);
+		
+		graphics.setColor(Color.black);
+		graphics.fillRect(GameSettings.TILESIZE / 2 + 4, GameSettings.TILESIZE / 6 + 4, ((3 * GameSettings.TILESIZE) / 4 * 6) - 8, (3 * GameSettings.TILESIZE) / 4 - 8);
+		
+		graphics.setColor(Color.red);
+		graphics.fillRect(GameSettings.TILESIZE / 2 + 4, GameSettings.TILESIZE / 6 + 4, (((3 * GameSettings.TILESIZE) / 4 * 6) - 8) - remainingHealth, (3 * GameSettings.TILESIZE) / 4 - 8);
 	}
 
 	private void congratsTextEachCoin() {

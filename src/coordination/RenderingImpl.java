@@ -225,7 +225,7 @@ public class RenderingImpl implements Rendering {
 
 	public void drawDoors() {
 		Map<Door, Optional<RoomDesign>> doors = currentRoom.getDoorAccess();
-
+		
 		for (Entry<Door, Optional<RoomDesign>> entry : doors.entrySet()) {
 			if (entry.getValue().isPresent()) {
 				if (entry.getKey().equals(Door.NORTH)) {

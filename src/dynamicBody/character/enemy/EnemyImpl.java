@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 import design.RoomDesign;
 import design.utilities.Pair;
@@ -50,6 +51,8 @@ public class EnemyImpl implements Enemy {
 	private long stopMillis;
 	private long startMillis;
 
+	private Sound enemyDamage;
+	
 	/**
 	 * Default constructor
 	 * 
@@ -75,6 +78,7 @@ public class EnemyImpl implements Enemy {
 		this.dimensions = EnemyDimension.getDimensionMoster(mon);
 		this.typeEnemy = mon;
 		try {
+			this.enemyDamage = new Sound("./res/audio/enemy/takeDamage.wav");
 			this.textures = EnemyImage.getTexture(mon);
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -143,6 +147,7 @@ public class EnemyImpl implements Enemy {
 
 	@Override
 	public void takeDamage(int damage) {
+		enemyDamage.play(1.0f, 0.2f);
 		health.takeDmg(damage);
 	}
 

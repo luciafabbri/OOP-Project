@@ -104,3 +104,9 @@ once testing for entities has been done extensively;
 -ReImplemented the way keys work, once one is picked up, all doors open;
 -Coins are now collectibles;
 -Added a message when collecting coins now;
+
+08/05/2020
+-Implemented a full functional health bar;
+-Changed the icons for AttackDamage and AttackSpeed;
+-Implemented a sound when you hit an enemy;
+-Fixed an issues with passing through obstacles;

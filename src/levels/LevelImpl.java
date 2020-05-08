@@ -38,6 +38,10 @@ public class LevelImpl implements Level {
 	public void loadRooms() {	
 		for(int i = 0; i < testLevel.getRooms().size(); i++) {
 			tmpRoom = new RoomImpl(testLevel.getRooms().get(i), testLevel.getDoorsLayout());
+			
+			
+			
+			
 			//Qui aggiungo solo un livello come test, ma dovrei metterli tutti
 			level.add(tmpRoom);
 		}
