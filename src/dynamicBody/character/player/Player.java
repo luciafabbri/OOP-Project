@@ -3,7 +3,6 @@ package dynamicBody.character.player;
 import design.RoomDesign;
 import design.utilities.Pair;
 import dynamicBody.character.player.inventory.Inventory;
-import dynamicBody.character.player.movement.Movement;
 import dynamicBody.character.player.movement.check.CheckPlayerMovement;
 import dynamicBody.character.player.shoot.ShootingPlayer;
 import levels.Level;
@@ -86,11 +85,6 @@ public interface Player extends dynamicBody.character.Character {
 	void upgradePlayerSpeed(int upgrade);
 
 	/**
-	 * @return player's movement 
-	 */
-	Movement getMove();
-
-	/**
 	 * @return player's rate of fire 
 	 */
 	int getRateOfFire();
@@ -124,6 +118,16 @@ public interface Player extends dynamicBody.character.Character {
 	 * @param upgrade, an int value to be added to the player's max health
 	 */
 	void upgradeMaxHealth(int upgrade);
+	
+	/**
+	 * @return player's current health 
+	 */
+	int getCurrentHealth();
+	
+	/**
+	 * @return player's max health 
+	 */
+	int getMaxHealth();
 
 	/**
 	 * Method used to upgrade player's current health

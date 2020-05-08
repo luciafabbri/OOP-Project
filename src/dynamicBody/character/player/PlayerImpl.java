@@ -81,6 +81,14 @@ public class PlayerImpl implements Player {
 		}
 	}
 	
+	/**
+	 * Method used to get player's object Health 
+	 * @return players object Health 
+	 *
+	private Health getHealth() {
+		return this.health;
+	} */
+	
 	@Override 
 	public void setPosition(Input input, Level level) throws SlickException {
 		Pair<Integer,Integer> newPos;
@@ -137,11 +145,6 @@ public class PlayerImpl implements Player {
 	@Override
 	public Direction getDirection() {
 		return this.direction;
-	}
-	
-	@Override
-	public Movement getMove() {
-		return this.move;
 	}
 	
 	@Override
@@ -258,5 +261,15 @@ public class PlayerImpl implements Player {
 	@Override
 	public void setClearRoom(boolean clearRoom) {
 		this.clearRoom = clearRoom;
+	}
+
+	@Override
+	public int getCurrentHealth() {
+		return this.health.getCurrentHealth();
+	}
+
+	@Override
+	public int getMaxHealth() {
+		return this.health.getMaxHealth();
 	}
 }

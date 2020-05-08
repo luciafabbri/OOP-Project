@@ -1,7 +1,6 @@
 package dynamicBody.character.player;
 
 import static org.junit.Assert.*;
-
 import java.io.IOException;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -24,7 +23,7 @@ public class PlayerAndBulletCreationTest {
 	private static Bullet testBullet;
 	private static RoomDesign testRoom;
 	private static Level testLevel; 
-	
+			
 	@org.junit.BeforeClass
 	public static void initTest() throws IOException {
 		try {
@@ -33,6 +32,7 @@ public class PlayerAndBulletCreationTest {
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
+		
 		testLevel = new LevelImpl(1); 
 		testRoom = testLevel.getLevel().get(0).getRoom();
 		testPlayer = new PlayerImpl(new Pair<Integer,Integer>(64, 64), Direction.SOUTH, testRoom.getRoomID());
@@ -47,36 +47,36 @@ public class PlayerAndBulletCreationTest {
 	@org.junit.Test
 	public void testStartPlayer() throws SlickException {	
 		assertTrue(testPlayer.isAlive());
-//		assertEquals(testPlayer.getHealth().getMaxHealth(), 100);
-//		assertEquals(testPlayer.getHealth().getCurrentHealth(), 100);
-//		testPlayer.getHealth().takeDmg(30);
-//		assertEquals(testPlayer.getHealth().getCurrentHealth(), 70);
-//		testPlayer.getHealth().heal(40);
-//		assertEquals(testPlayer.getHealth().getCurrentHealth(), 100); /**perchè maxHealth è 100 (non va fino a 110)*/
-//		testPlayer.upgradeMaxHealth(10);
-//		assertEquals(testPlayer.getHealth().getMaxHealth(), 110);
-//		testPlayer.getHealth().takeDmg(30);
-//		assertEquals(testPlayer.getHealth().getCurrentHealth(), 70);
-//		testPlayer.getHealth().heal(50);
-//		assertEquals(testPlayer.getHealth().getCurrentHealth(), 110); /** perchè maxHealth è 110 (non va fino a 120)*/
-		assertEquals(testPlayer.getPosition(), new Pair<>(64,64));
-		assertEquals(testPlayer.getDirection(), Direction.SOUTH);
-		assertEquals(testPlayer.getDamage(), 10);
+		assertEquals(100, testPlayer.getMaxHealth());
+		assertEquals(100, testPlayer.getCurrentHealth());
+		testPlayer.takeDamage(30);
+		assertEquals(70, testPlayer.getCurrentHealth());
+		testPlayer.heal(40);
+		assertEquals(100, testPlayer.getCurrentHealth()); /**perchè maxHealth è 100 (non va fino a 110)*/
+		testPlayer.upgradeMaxHealth(10);
+		assertEquals(110, testPlayer.getMaxHealth());
+		testPlayer.takeDamage(30);
+		assertEquals(70, testPlayer.getCurrentHealth());
+		testPlayer.heal(50);
+		assertEquals(110, testPlayer.getCurrentHealth()); /** perchè maxHealth è 110 (non va fino a 120)*/
+		assertEquals(new Pair<>(64,64), testPlayer.getPosition());
+		assertEquals(Direction.SOUTH, testPlayer.getDirection());
+		assertEquals(10, testPlayer.getDamage());
 		testPlayer.upgradeDamage(20);
-		assertEquals(testPlayer.getDamage(), 30);
-		assertEquals(testPlayer.getLevel(), 0);		
-		assertEquals(testPlayer.getInventory().getCoin(), 0);	
-		assertEquals(testPlayer.getInventory().getKey(), 0);	
+		assertEquals(30, testPlayer.getDamage());
+		assertEquals(0, testPlayer.getLevel());		
+		assertEquals(0, testPlayer.getInventory().getCoin());	
+		assertEquals(0, testPlayer.getInventory().getKey());	
 		testPlayer.getInventory().addCoin();
 		testPlayer.getInventory().addKey();
-		assertEquals(testPlayer.getInventory().getKey(), 1);	
-		assertEquals(testPlayer.getInventory().getCoin(), 1);	
-		assertEquals(testPlayer.getPlayerSpeed(), 1);
+		assertEquals(1,testPlayer.getInventory().getKey());	
+		assertEquals(1, testPlayer.getInventory().getCoin());	
+		assertEquals(1, testPlayer.getPlayerSpeed());
 		testPlayer.upgradePlayerSpeed(10);
-		assertEquals(testPlayer.getPlayerSpeed(), 11);
-		assertEquals(testPlayer.getRateOfFire(), 1000);	
+		assertEquals(11, testPlayer.getPlayerSpeed());
+		assertEquals(1000, testPlayer.getRateOfFire());	
 		testPlayer.upgradeRateOfFire(500);
-		assertEquals(testPlayer.getRateOfFire(), 500);
+		assertEquals(500, testPlayer.getRateOfFire());
 		assertEquals(testPlayer.getRoom(), testRoom);
 	}
 	
@@ -86,10 +86,9 @@ public class PlayerAndBulletCreationTest {
 	@org.junit.Test
 	public void testBulletPlayer() {		
 		assertTrue(testBullet.isAlive());
-		assertEquals(testBullet.getDamage(), 10);
-		assertEquals(testBullet.getPos(), new Pair<>(64,64));
-		assertEquals(testBullet.getDirection(), Direction.SOUTH);
-		assertEquals(testBullet.getRoom(), testRoom);
+		assertEquals(10, testBullet.getDamage());
+		assertEquals(new Pair<>(64,64), testBullet.getPos());
+		assertEquals(Direction.SOUTH, testBullet.getDirection());
+		assertEquals(testRoom, testBullet.getRoom());
 	} 
-
 }
