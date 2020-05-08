@@ -35,6 +35,7 @@ public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 		graph.getNodes().forEach(n -> {
 			// each room has a random number of edges/connection, between 1 and 4
 			int numOfRemainingEdges = random.nextInt(GameSettings.MAXDOORS) + GameSettings.MINDOORS;
+			System.out.println("Room" + n.getRoomID() + "rem edges: " + numOfRemainingEdges);
 			// while a room still has edges to "fill", random connections to other rooms
 			// that have edges to "fill" themselves are created
 			while (graph.getEdges(n).size() < GameSettings.MINDOORS) {
@@ -43,8 +44,9 @@ public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 					if (randomNodeIndex != n.getRoomID() && !graph.getEdges(n).contains(rooms.get(randomNodeIndex))) {
 						if (graph.getEdges(rooms.get(randomNodeIndex)).size() < GameSettings.MAXDOORS) {
 							graph.addEdge(n, rooms.get(randomNodeIndex));
+							numOfRemainingEdges--;
 						}
-						numOfRemainingEdges--;
+						
 					}
 				}
 			}

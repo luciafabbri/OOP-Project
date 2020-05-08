@@ -64,6 +64,7 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		graphGen.generateDoorsLayout(graph);
 		level.addGraph(graph);
 		level.addDoorsLayout(graphGen.generateDoorsLayout(graph));
+
 		/*
 		// debug prints
 	    System.out.println("Level " + levelNumber + " is supposed to have " + numOfRooms + " rooms");

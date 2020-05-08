@@ -70,7 +70,7 @@ public class GenerationTest implements Game {
 
 		LevelDesign testLevel = new LevelDesignImpl();
 		try {
-			testLevel = generator.generateLevel(1);
+			testLevel = generator.generateLevel(3);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

@@ -87,7 +87,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateBoss() throws SlickException {
 		pos = generateCoherentPos();
-		room.addEnemy(enemyGen.getBossA(pos, room));
+		//room.addEnemy(enemyGen.getBossA(pos, room));
 
 	}
 
