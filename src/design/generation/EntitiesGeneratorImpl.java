@@ -79,7 +79,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 		room.setStairsPresence(true);
 		pos = generateCoherentPos();
 		room.setStairs(new Stairs(pos));
-		System.out.println("Stairs are in room: " + room.getRoomID() + " in position: " + room.getStairs().getPosition());
+		// System.out.println("Stairs are in room: " + room.getRoomID() + " in position: " + room.getStairs().getPosition());
 
 	}
 

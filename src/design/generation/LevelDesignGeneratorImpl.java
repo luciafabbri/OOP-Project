@@ -2,7 +2,6 @@ package design.generation;
 
 import java.io.*;
 import java.util.*;
-
 import org.newdawn.slick.SlickException;
 import design.*;
 import design.utilities.graphs.BidirectionalGraph;
@@ -65,8 +64,23 @@ public class LevelDesignGeneratorImpl implements LevelDesignGenerator {
 		graphGen.generateDoorsLayout(graph);
 		level.addGraph(graph);
 		level.addDoorsLayout(graphGen.generateDoorsLayout(graph));
-		// debug print
+		/*
+		// debug prints
 	    System.out.println("Level " + levelNumber + " is supposed to have " + numOfRooms + " rooms");
+	    for (RoomDesign d : level.getDoorsLayout().keySet()) {
+			System.out.println("Key: " + d.getRoomID());
+			System.out.print(" has doors: ");
+			for (Entry<Door, Optional<RoomDesign>> e : level.getDoorsLayout().get(d).entrySet()) {
+				if (e.getValue().isPresent()) {
+					System.out.print(e.getKey().toString() + " " + e.getValue().get().getRoomID() + ", ");
+				} else {
+					System.out.print(e.getKey().toString() + " " + e.getValue() + ", ");
+				}
+
+			}
+			System.out.println("");
+		}
+		*/
 		return level;
 	}
 

@@ -10,6 +10,7 @@ import design.RoomDesign;
 import design.utilities.*;
 import design.utilities.enums.Door;
 import design.utilities.graphs.BidirectionalGraph;
+import design.utilities.graphs.LevelBFS;
 
 /**
  * Implementation of RoomsGraphGenerator interface
@@ -17,7 +18,8 @@ import design.utilities.graphs.BidirectionalGraph;
  */
 public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 
-	private Random random = new Random();
+	private final Random random = new Random();
+	private final LevelBFS bfs = new LevelBFS();
 
 	@Override
 	public BidirectionalGraph<RoomDesign> generateRoomsGraph(LinkedList<RoomDesign> rooms) {
@@ -48,7 +50,14 @@ public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 			}
 
 		});
-
+		// level-to-level path check, if false generate new level
+		while (!bfs.areRoomsReachable(graph)) {
+			// print for test purposes
+			System.out.println("Some room isn't reachable, generating level anew");
+			return (this.generateRoomsGraph(rooms));
+		}
+		// print for test purposes
+		System.out.println("All rooms are reachable, adding level");
 		return graph;
 
 	}
