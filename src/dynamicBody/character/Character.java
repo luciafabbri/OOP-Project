@@ -22,11 +22,6 @@ public interface Character extends DynamicBody {
 	Pair<Integer, Integer> getPosition();	
 	
 	/**
-	 * @return character's health
-	 */
-	Health getHealth();
-	
-	/**
 	 * @return character's direction 
 	 */
 	Direction getDirection();

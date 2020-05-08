@@ -136,11 +136,6 @@ public class EnemyImpl implements Enemy {
 	}
 
 	@Override
-	public Health getHealth() {
-		return this.health;
-	}
-
-	@Override
 	public void updatePos() {
 		this.position = move.nextPos(this.position, speed, this.direction);
 		this.direction = move.getDirection();

@@ -70,8 +70,7 @@ public class TestMove {
 		/*
 		 * CONTROLLO CHE IL NEMICO UNA VOLTA SBATTUTO NEL LIMITI CAMBI DIREZIONI
 		 */
-		Enemy testStraight;
-		testStraight = new EnemyImpl(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 65), 10, 1, 100,
+		Enemy testStraight = new EnemyImpl(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 65), 10, 1, 100,
 				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
 
 		// IL NEMICO SI MUOVE CORRETTAMENTE VERSO IL BASSO ED ORA SI TROVA ATTACCATO AL
@@ -121,8 +120,7 @@ public class TestMove {
 
 	@org.junit.Test
 	public void testRandomMove() {
-		Enemy testRandom;
-		testRandom = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 1, 100, TypeMove.RANDOM, Direction.SOUTH,
+		Enemy testRandom = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 1, 100, TypeMove.RANDOM, Direction.SOUTH,
 				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
 		// IL MOVIMENTO RANDOM UNA VOLTA INIZIALIZZATO CAMBIA LA DIREZIONE OGNI TOT PASSI
 		testRandom.updatePos();
@@ -134,8 +132,7 @@ public class TestMove {
 
 	@org.junit.Test
 	public void testImmobilizedMove() {
-		Enemy testImmobilized;
-		testImmobilized = new EnemyImpl(new Pair<Integer, Integer>(64, 64), 10, 1, 100, TypeMove.IMMOBILIZED, Direction.SOUTH,
+		Enemy testImmobilized = new EnemyImpl(new Pair<Integer, Integer>(64, 64), 10, 1, 100, TypeMove.IMMOBILIZED, Direction.SOUTH,
 				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
 		//AGGIORNARE LA POSIZIONE RITORNERA SEMPRE QUELLA PRECEDENTE		
 		testImmobilized.updatePos();
@@ -148,8 +145,7 @@ public class TestMove {
 
 	@org.junit.Test
 	public void testTeleportMove() {
-		Enemy testTeleport;
-		testTeleport = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 1, 100, TypeMove.TELEPORT, Direction.SOUTH,
+		Enemy testTeleport = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 1, 100, TypeMove.TELEPORT, Direction.SOUTH,
 				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
 		// IL MOVIMENTO TELEPORT SI TELETRASPORTA IN UNA POSIZIONE E RIMANI LI PER UN PAIO DI SECONDI
 		testTeleport.updatePos();

@@ -120,11 +120,6 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override
-	public Health getHealth() {
-		return this.health;
-	}
-	
-	@Override
 	public void setCurrentRoom(RoomDesign room) {
 		this.currentRoom = room;
 	}
@@ -226,7 +221,7 @@ public class PlayerImpl implements Player {
 	
 	@Override
 	public boolean isAlive() {
-		return this.getHealth().isAlive() ;
+		return this.health.isAlive() ;
 	}
 	
 	/**
