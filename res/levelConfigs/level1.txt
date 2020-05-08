@@ -1,3 +1,4 @@
+level 1
 minRooms 8
 maxRooms 10
 minEnemies 1

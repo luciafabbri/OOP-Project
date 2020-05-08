@@ -9,6 +9,7 @@ import design.RoomDesignImpl;
 import design.utilities.*;
 import design.utilities.enums.Modifiers;
 import design.utilities.graphs.RoomBFS;
+import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.creator.EnemyCreatorImpl;
 import gameEntities.*;
 import gameEntities.items.*;
@@ -79,7 +80,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 		room.setStairsPresence(true);
 		pos = generateCoherentPos();
 		room.setStairs(new Stairs(pos));
-		System.out.println("Stairs are in room: " + room.getRoomID() + " in position: " + room.getStairs().getPosition());
+		// System.out.println("Stairs are in room: " + room.getRoomID() + " in position: " + room.getStairs().getPosition());
 
 	}
 
@@ -94,8 +95,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	public void generateEnemies(int numOfEnemies) throws SlickException {
 		for (int j = 0; j < numOfEnemies; j++) {
 			pos = generateCoherentPos();
-			room.addEnemy(enemyGen.getMonsterA(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
-					room));
+			room.addEnemy(this.generateMonster());
 		}
 
 	}
@@ -117,6 +117,32 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateCoin() throws SlickException {
 		room.addCoin(new Coin(generateCoherentPos()));		
+	}
+	
+	/**
+	 * @return monster for the current level
+	 */
+	private Enemy generateMonster() {
+		if(currentConfig.get("level") == 1) {
+			return enemyGen.getMonsterA(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
+					room);
+		}
+		else if (currentConfig.get("level") == 2) {
+			return enemyGen.getMonsterB(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
+					room);
+		}
+		else if (currentConfig.get("level") == 3) {
+			return enemyGen.getMonsterC(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
+					room);
+		}
+		else if (currentConfig.get("level") == 4) {
+			return enemyGen.getMonsterD(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
+					room);
+		}
+		else {
+			throw new IllegalStateException();
+		}
+		
 	}
 
 }
