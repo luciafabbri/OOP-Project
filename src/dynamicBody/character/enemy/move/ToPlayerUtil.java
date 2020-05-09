@@ -14,25 +14,47 @@ import dynamicBody.move.Direction;
  * Abstract Class with utilities' function for the movement ToPlayer and for the
  * Dijkstra Algorithms
  */
-public class ToPlayerAbs {
+public final class ToPlayerUtil {
 
-	private Direction lastDir;
+	private static Direction lastDir;
 
-	protected Player player = StateCoord.getPlayer();
+	private static Player player = StateCoord.getPlayer();
 
-	private int disPX = (player.getDimension().getRight() + player.getDimension().getLeft()) / 2;
-	private int disPY = (player.getDimension().getUp() + player.getDimension().getDown()) / 2;
+	private static int disPX = (player.getDimension().getRight() + player.getDimension().getLeft()) / 2;
+	private static int disPY = (player.getDimension().getUp() + player.getDimension().getDown()) / 2;
 
+	/**
+	 * Private constructors to prevent instantiation
+	 */
+	private ToPlayerUtil(){
+		
+	}
 	/**
 	 * Method use to find the tile of a position
 	 * 
 	 * @param pos, Position that you need to known the Tile
 	 * @return a Pair that identify a tile
 	 */
-	protected Pair<Integer, Integer> findTile(Pair<Integer, Integer> pos) {
+	public static Pair<Integer, Integer> findTile(Pair<Integer, Integer> pos) {
 		int x = pos.getX() / GameSettings.TILESIZE;
 		int y = pos.getY() / GameSettings.TILESIZE;
 		return new Pair<Integer, Integer>(x * GameSettings.TILESIZE, y * GameSettings.TILESIZE);
+	}
+	
+	/**
+	 * Method use to find the node in a Graph
+	 * @param pos, name of Node
+	 * @param graph, graph where is located the node
+	 * @return the Node you need to find
+	 */
+	public static Node<Pair<Integer, Integer>> findNode(Pair<Integer, Integer> pos,
+			Graph<Node<Pair<Integer, Integer>>> graph) {
+		for (Node<Pair<Integer, Integer>> node : graph.getNodes()) {
+			if (node.getName().equals(pos)) {
+				return node;
+			}
+		}
+		throw new IllegalStateException("Node not found");
 	}
 
 	/**
@@ -44,7 +66,7 @@ public class ToPlayerAbs {
 	 * @param graph,        The TileGraph of the room
 	 * @return return the Direction of the enemy
 	 */
-	protected Direction findDir(Pair<Integer, Integer> posUpLeft, Pair<Integer, Integer> posDownRight,
+	public static Direction findDir(Pair<Integer, Integer> posUpLeft, Pair<Integer, Integer> posDownRight,
 			Graph<Node<Pair<Integer, Integer>>> graph) {
 		Direction dir;
 
@@ -75,36 +97,7 @@ public class ToPlayerAbs {
 
 	}
 
-	protected Node<Pair<Integer, Integer>> findNode(Pair<Integer, Integer> pos,
-			Graph<Node<Pair<Integer, Integer>>> graph) {
-		for (Node<Pair<Integer, Integer>> node : graph.getNodes()) {
-			if (node.getName().equals(pos)) {
-				return node;
-			}
-		}
-		return null;
-	}
-
-	protected Graph<Node<Pair<Integer, Integer>>> createGraph(RoomDesign room) {
-		Graph<Node<Pair<Integer, Integer>>> graph = new BidirectionalGraph<>();
-		// INSERISCO NODI DENTRO AL GRAFO
-		room.getTilesGraph().getNodes().forEach(x -> {
-			if (!room.getObstaclePositions().contains(x)) {
-				graph.addNode(new Node<Pair<Integer, Integer>>(x));
-			}
-		});
-		// System.out.println(graph.getNodes().size());
-		// SETTO I NODI ADIANCENTI IN TUTTI I NODI
-		graph.getNodes().forEach(x -> {
-			room.getTilesGraph().getEdges(x.getName()).forEach(y -> {
-				x.addDestination(findNode(y, graph), 1);
-			});
-		});
-
-		return graph;
-	}
-
-	protected Pair<Integer, Integer> getPlayerPos() {
+	public static Pair<Integer, Integer> getPlayerPos() {
 		return new Pair<>(player.getPosition().getX() + disPX, player.getPosition().getY() + disPY);
 	}
 

@@ -6,7 +6,7 @@ import design.RoomDesign;
 import design.utilities.Pair;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletMonsterImpl;
-import dynamicBody.bullet.DistanceBullAbst;
+import dynamicBody.bullet.DistanceBull;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.move.Direction;
 
@@ -14,7 +14,7 @@ import dynamicBody.move.Direction;
  * Class implements use to create 2 bullet when enemy attack in 2 different
  * direction
  */
-public class TwoSideAtt extends DistanceBullAbst implements MonsterAttack {
+public class TwoSideAtt implements MonsterAttack {
 
 	private RoomDesign currentRoom;
 	private Enemy enemy;
@@ -36,7 +36,7 @@ public class TwoSideAtt extends DistanceBullAbst implements MonsterAttack {
 		List<Direction> bullDir = Direction.getNearDistance(dir, 1);
 
 		for (int i = 0; i < 2; i++) {
-			Bullet bull = new BulletMonsterImpl(calculateBullPos(dirSpawn.get(i), enemy), dmg, bullDir.get(i),
+			Bullet bull = new BulletMonsterImpl(DistanceBull.calculateBullPos(dirSpawn.get(i), enemy), dmg, bullDir.get(i),
 					currentRoom);
 
 			enemy.addBullet(bull);

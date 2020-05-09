@@ -5,8 +5,16 @@ import dynamicBody.character.Character;
 import dynamicBody.UpDownLeftRight;
 import dynamicBody.move.Direction;
 
-public class DistanceBullAbst {
+public final class DistanceBull {
 
+	
+	/**
+	 * Private constructors to prevent instantiation
+	 */
+	private DistanceBull() {
+		
+	}
+	
 	/**
 	 * Method that calculate the position where spawn bullet
 	 * 
@@ -15,7 +23,7 @@ public class DistanceBullAbst {
 	 * @return return a Pair with the coordinates
 	 */
 
-	protected Pair<Integer, Integer> calculateBullPos(Direction dir, Character character) {
+	public static Pair<Integer, Integer> calculateBullPos(Direction dir, Character character) {
 
 		Pair<Integer, Integer> distance = calcDistance(dir, character);
 		return new Pair<Integer, Integer>(character.getPosition().getX() + distance.getX(),
@@ -23,7 +31,7 @@ public class DistanceBullAbst {
 
 	}
 
-	private Pair<Integer, Integer> calcDistance(Direction dir, Character character) {
+	private static Pair<Integer, Integer> calcDistance(Direction dir, Character character) {
 
 		UpDownLeftRight<Integer> dim = DimensionBullet.getDimensionBullet(TypeBullet.ENEMY).getX().getDimension();
 

@@ -28,6 +28,7 @@ public interface EnemyCreator {
 
 	public Enemy getMonsterD(Pair<Integer, Integer> pos, int damage, int health, RoomDesign room);
 
+	public Enemy getMonster(int type, Pair<Integer, Integer> pos, int health, int damage, RoomDesign room);
 	/**
 	 * Create Boss
 	 * 

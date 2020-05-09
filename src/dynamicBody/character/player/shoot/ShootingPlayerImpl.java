@@ -4,7 +4,7 @@ import org.newdawn.slick.Input;
 
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
-import dynamicBody.bullet.DistanceBullAbst;
+import dynamicBody.bullet.DistanceBull;
 import dynamicBody.character.player.Player;
 
 /**
@@ -12,7 +12,7 @@ import dynamicBody.character.player.Player;
  * in order to make the player start shooting, by creating a new bullet of type player 
  */
 
-public class ShootingPlayerImpl extends DistanceBullAbst implements ShootingPlayer {
+public class ShootingPlayerImpl implements ShootingPlayer {
 	
 	private Player player;
 	
@@ -51,7 +51,7 @@ public class ShootingPlayerImpl extends DistanceBullAbst implements ShootingPlay
 	 * A new BulletPlayerImpl() object is created
 	 */	
 	private void shoot(){
-		Bullet bullet = new BulletPlayerImpl(calculateBullPos(player.getDirection(), player), player.getDamage(),player.getDirection(), player.getRoom());  	
+		Bullet bullet = new BulletPlayerImpl(DistanceBull.calculateBullPos(player.getDirection(), player), player.getDamage(),player.getDirection(), player.getRoom());  	
 		if (bullet.isAlive()) {
 			player.getRoomBullets().add(bullet);
 			player.getBowShoot().play(1.0f, 0.05f);
