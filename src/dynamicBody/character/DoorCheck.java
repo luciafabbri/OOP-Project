@@ -11,7 +11,7 @@ public class DoorCheck {
 	 * @return true if the Player is inside the door boundaries, otherwise false
 	 */
 	public boolean doorNorth(final Pair<Integer, Integer> pos) {
-		 return (pos.getX() > (GameSettings.TILESIZE * 9) - 11 && pos.getX() < (GameSettings.TILESIZE * 9 ) + 11) && (pos.getY() < GameSettings.TILESIZE && pos.getY() > -15);
+		 return (pos.getX() > (GameSettings.TILESIZE * 9) - 11 && pos.getX() < (GameSettings.TILESIZE * 9 ) + 11) && (pos.getY() < GameSettings.TILESIZE && pos.getY() > -18);
 	}
 	
 	/**
@@ -20,7 +20,7 @@ public class DoorCheck {
 	 * @return true if the Player is inside the designated area, otherwise false
 	 */
 	public boolean transNorth(final Pair<Integer, Integer> pos) {
-		 return ((pos.getX() > (GameSettings.TILESIZE * 9) - 11 && (pos.getX() < (GameSettings.TILESIZE * 9 ) + 11)) && (pos.getY() <= -14));
+		 return ((pos.getX() > (GameSettings.TILESIZE * 9) - 11 && (pos.getX() < (GameSettings.TILESIZE * 9 ) + 11)) && (pos.getY() <= -12));
 	}
 	
 	

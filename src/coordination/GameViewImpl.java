@@ -111,12 +111,13 @@ public class GameViewImpl implements GameView {
 	public void drawEnemies() {
 		currentRoom.getRoom().getEnemySet().forEach(s -> {
 			
-			if(s.getTypeEnemy().equals(TypeEnemy.MAGE)) {
+			if(s.getTypeEnemy().equals(TypeEnemy.NINJA)) {
 				s.getAnimation().setCurrentFrame(0);
 				s.getAnimation().getCurrentFrame().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			} else {
+				s.getAnimation().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE,
+						GameSettings.TILESIZE);
 			}
-			s.getAnimation().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE,
-					GameSettings.TILESIZE);
 		});
 
 		this.drawEnemyProj();

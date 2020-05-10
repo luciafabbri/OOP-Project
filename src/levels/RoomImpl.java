@@ -74,8 +74,9 @@ public class RoomImpl implements Room {
 		this.doorAccess = doorAccess.entrySet().stream().filter(s -> s.getKey().getRoomID() == room.getRoomID()).findFirst().get().getValue();
 		this.gotRoomKey = false;
 		
-		
 		try {
+			this.room.addObstacle(new Obstacle(new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE * 2)));
+			
 			
 			this.floor = new Floor1();
 			this.wallVert = new WallVert1();
