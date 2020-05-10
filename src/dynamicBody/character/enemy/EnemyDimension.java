@@ -38,9 +38,9 @@ public enum EnemyDimension {
 	 */
 	public static Pair<EnemyDimension, EnemyDimension> getDimensionMoster(TypeEnemy mon) {
 		switch (mon) {
-		case MONSTER1:
-		case MONSTER2:
-		case MONSTER3:
+		case BOWMAN:
+		case NINJA:
+		case MAGE:
 		case PLANT:
 		case BOSS:
 			return new Pair<>(ORIZONTAL_MON1, VERTICAL_MON1);

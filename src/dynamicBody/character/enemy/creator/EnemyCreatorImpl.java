@@ -15,17 +15,17 @@ public class EnemyCreatorImpl implements EnemyCreator {
 
 	@Override
 	public Enemy getMonsterA(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
-		return new EnemyImpl(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, TypeEnemy.MONSTER1);
+		return new EnemyImpl(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, TypeEnemy.BOWMAN);
 	}
 
 	@Override
 	public Enemy getMonsterB(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
-		return new EnemyImpl(pos, damage, health, TypeMove.TELEPORT, TypeAttack.TWO_SIDE, room, TypeEnemy.MONSTER2);
+		return new EnemyImpl(pos, damage, health, TypeMove.TELEPORT, TypeAttack.TWO_SIDE, room, TypeEnemy.NINJA);
 	}
 
 	@Override
 	public Enemy getMonsterC(Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
-		return new EnemyImpl(pos, damage, health, TypeMove.RANDOM, TypeAttack.TRIPLE, room, TypeEnemy.MONSTER3);
+		return new EnemyImpl(pos, damage, health, TypeMove.RANDOM, TypeAttack.TRIPLE, room, TypeEnemy.MAGE);
 	}
 
 	@Override
@@ -37,11 +37,11 @@ public class EnemyCreatorImpl implements EnemyCreator {
 	public Enemy getMonster(int type, Pair<Integer, Integer> pos, int health, int damage, RoomDesign room) {
 		switch (type) {
 		case 1:
-			return new EnemyImpl(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, TypeEnemy.MONSTER1);
+			return new EnemyImpl(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, TypeEnemy.BOWMAN);
 		case 2:
-			return new EnemyImpl(pos, damage, health, TypeMove.TELEPORT, TypeAttack.TWO_SIDE, room, TypeEnemy.MONSTER2);
+			return new EnemyImpl(pos, damage, health, TypeMove.TELEPORT, TypeAttack.TWO_SIDE, room, TypeEnemy.NINJA);
 		case 3:
-			return new EnemyImpl(pos, damage, health, TypeMove.RANDOM, TypeAttack.TRIPLE, room, TypeEnemy.MONSTER3);
+			return new EnemyImpl(pos, damage, health, TypeMove.RANDOM, TypeAttack.TRIPLE, room, TypeEnemy.MAGE);
 		case 4:
 			return new EnemyImpl(pos, damage, health, TypeMove.IMMOBILIZED, TypeAttack.FOUR_SIDE, room,	TypeEnemy.PLANT);
 		default:

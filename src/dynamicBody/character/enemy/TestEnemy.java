@@ -49,13 +49,13 @@ public class TestEnemy {
 	@org.junit.Test
 	public void testStartPlayer() throws SlickException {
 		Enemy testEnemy = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
 		assertTrue(testEnemy.isAlive());
 		testEnemy.takeDamage(30);
 		assertTrue(testEnemy.isAlive());
 		assertEquals(new Pair<>(128,128), testEnemy.getPosition());
 		assertEquals(Direction.SOUTH, testEnemy.getDirection());
-		assertEquals(TypeEnemy.MONSTER1, testEnemy.getTypeEnemy());
+		assertEquals(TypeEnemy.BOWMAN, testEnemy.getTypeEnemy());
 		testEnemy.takeDamage(70);
 		assertFalse(testEnemy.isAlive());
 	}

@@ -111,7 +111,7 @@ public class RenderingImpl implements Rendering {
 	public void drawEnemies() {
 		currentRoom.getRoom().getEnemySet().forEach(s -> {
 			
-			if(s.getTypeEnemy().equals(TypeEnemy.MONSTER3)) {
+			if(s.getTypeEnemy().equals(TypeEnemy.MAGE)) {
 				s.getAnimation().setCurrentFrame(0);
 				s.getAnimation().getCurrentFrame().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
 			}
