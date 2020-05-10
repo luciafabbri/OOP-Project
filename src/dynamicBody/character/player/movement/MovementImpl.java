@@ -24,7 +24,6 @@ public class MovementImpl implements Movement {
 		try {
 			footsteps = new Sound("./res/audio/footsteps/footsteps.wav");
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

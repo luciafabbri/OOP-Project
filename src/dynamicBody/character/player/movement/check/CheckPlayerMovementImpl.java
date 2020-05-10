@@ -67,7 +67,6 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 			coinPickup = new Sound("./res/audio/pickups/coinPickup.wav");
 			modPickup = new Sound("./res/audio/pickups/modifierPickup.wav");
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -101,7 +100,6 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 		return false;
 	}
 
-	//DA CONTROLLARE SE POSIZIONE NEMICO VA BENE
 	@Override
 	public boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;

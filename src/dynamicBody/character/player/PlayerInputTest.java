@@ -1,18 +1,23 @@
 package dynamicBody.character.player;
 
+import java.io.IOException;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import design.RoomDesign;
 import design.utilities.Pair;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
 import dynamicBody.move.Direction;
+import levels.Level;
+import levels.LevelImpl;
 
 /**
- * Class used to create a test for input using Slick2D library
+ * Class used to create a test for input using Slick2D library and update player's current coordinates and position
  */
 
 public class PlayerInputTest extends BasicGame {
@@ -21,8 +26,9 @@ public class PlayerInputTest extends BasicGame {
 	private Input input;
 	
 	private static Player testPlayer;
-	private static Bullet testBullet; 
-		
+	private static Level testLevel; 
+	private static RoomDesign testRoom;
+
 	/** Input variables to check, true if pressed */
 	private boolean space;
 	private boolean inputA;
@@ -50,16 +56,22 @@ public class PlayerInputTest extends BasicGame {
 			app = (AppGameContainer) container;
 		}
 		input = container.getInput();
-		testPlayer = new PlayerImpl(new Pair<>(128, 128), Direction.SOUTH, 0);
-		testBullet = new BulletPlayerImpl(testPlayer.getPosition(), testPlayer.getDamage(), testPlayer.getDirection(), testPlayer.getRoom());
+		try {
+			testLevel = new LevelImpl(1);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		testRoom = testLevel.getLevel().get(0).getRoom();
+		testPlayer = new PlayerImpl(new Pair<>(128, 128), Direction.SOUTH, testRoom.getRoomID());
+		testPlayer.setCurrentRoom(testRoom);
 	}
 
 	/**
 	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
 	 */
 	public void render(GameContainer container, Graphics g) {
-		g.drawString("Posizione iniziale del player: " + testPlayer.getPosition() + " Direzione: " +testPlayer.getDirection(), 10, 30);
-		g.drawString("Posizione iniziale del proiettile: " +testBullet.getPos() + " Direzione: " +testBullet.getDirection(), 10, 50);
+		g.drawString("Premere i tasti 'W' 'A' 'S' 'D' per verificare il movimento del player", 10, 30);
+		g.drawString("Premere la 'space bar' per verificare l'azione di attacco del player", 10, 50);
 
 		g.drawString("Il player sta sparando: "+ space, 10, 100); 
 
@@ -75,6 +87,9 @@ public class PlayerInputTest extends BasicGame {
         g.drawString("KEY RIGHT (D): "+ inputD, 10, 330); 
         g.drawString("EAST: "+ dirD, 10, 350); 
         
+        g.drawString("Posizione corrente del player", 10, 400);
+        g.drawString("X: "+ testPlayer.getPosition().getX() + " | Y: " +testPlayer.getPosition().getY(), 10, 420);         
+        g.drawString("Direzione corrente del player:  "+ testPlayer.getDirection(), 10, 440);   
 	}
 
 	/**
@@ -93,6 +108,9 @@ public class PlayerInputTest extends BasicGame {
 		dirW = container.getInput().isKeyDown(Input.KEY_W);
 		dirD = container.getInput().isKeyDown(Input.KEY_D);
 		dirS = container.getInput().isKeyDown(Input.KEY_S);	
+		
+		testPlayer.setPosition(input, testLevel);
+		testPlayer.getBullet().checkShooting(input);
 	}
 
 	/**

@@ -26,13 +26,13 @@ public class PlayerAndBulletCreationTest {
 			
 	@org.junit.BeforeClass
 	public static void initTest() throws IOException {
+		/** need to insert display.create inside try-catch because default constructor of bulletPlayerImpl contains 
+		 * an Image, otherwise we will have a runtime exception of type "No OpenGL context found" */
 		try {
-			// display.create is needed because default constructor of bulletPlayerImpl contains an Image 
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
-		}
-		
+		} 
 		testLevel = new LevelImpl(1); 
 		testRoom = testLevel.getLevel().get(0).getRoom();
 		testPlayer = new PlayerImpl(new Pair<Integer,Integer>(64, 64), Direction.SOUTH, testRoom.getRoomID());

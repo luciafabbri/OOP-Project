@@ -3,6 +3,7 @@ package dynamicBody.character.player;
 import design.RoomDesign;
 import design.utilities.Pair;
 import dynamicBody.character.player.inventory.Inventory;
+import dynamicBody.character.player.movement.Movement;
 import dynamicBody.character.player.movement.check.CheckPlayerMovement;
 import dynamicBody.character.player.shoot.ShootingPlayer;
 import levels.Level;
@@ -135,4 +136,9 @@ public interface Player extends dynamicBody.character.Character {
 	 */
 	void heal(int heal);
 	
+	/**
+	 * Method used to get player's movement (only used in class PlayerAndBulletCreationTest)
+	 * @return new current player's coordinates and his direction  
+	 */
+	Movement getMove();	
 }

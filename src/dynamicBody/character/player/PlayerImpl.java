@@ -76,18 +76,9 @@ public class PlayerImpl implements Player {
 			bowShoot = new Sound("./res/audio/bow/bow_fired.wav");
 			hurtSound = new Sound("./res/audio/mainChar/hurtSound.wav");
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * Method used to get player's object Health 
-	 * @return players object Health 
-	 *
-	private Health getHealth() {
-		return this.health;
-	} */
 	
 	@Override 
 	public void setPosition(Input input, Level level) throws SlickException {
@@ -271,5 +262,10 @@ public class PlayerImpl implements Player {
 	@Override
 	public int getMaxHealth() {
 		return this.health.getMaxHealth();
+	}
+	
+	@Override
+	public Movement getMove() {
+		return this.move;
 	}
 }
