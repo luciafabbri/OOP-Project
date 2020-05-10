@@ -3,7 +3,7 @@ package coordination;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-public interface Logic {
+public interface ModelCommunicator {
 
 	/**
 	 * Method used to check if the Player has used one of the doors to, and then changes the room to the appropriate one

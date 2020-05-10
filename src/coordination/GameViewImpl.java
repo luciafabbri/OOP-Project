@@ -24,7 +24,7 @@ import worldModel.utilities.Pair;
 import worldModel.utilities.enums.Door;
 import worldModel.utilities.enums.Entities;
 
-public class RenderingImpl implements Rendering {
+public class GameViewImpl implements GameView {
 
 	/**
 	 * Variable containing data of current Level
@@ -44,7 +44,7 @@ public class RenderingImpl implements Rendering {
 	 * @param level, to keep track of current Level
 	 * @param player, to keep track of current Player
 	 */
-	public RenderingImpl(final Level level, final Player player) {
+	public GameViewImpl(final Level level, final Player player) {
 		this.level = level;
 		this.player = player;
 		this.currentRoom = level.getLevel().get(level.getRoomID());

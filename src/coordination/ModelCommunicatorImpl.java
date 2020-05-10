@@ -17,7 +17,7 @@ import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;
 import worldModel.utilities.enums.Door;
 
-public class LogicImpl implements Logic {
+public class ModelCommunicatorImpl implements ModelCommunicator {
 
 	/**
 	 * Variable containing the current Level environment
@@ -48,7 +48,7 @@ public class LogicImpl implements Logic {
 	 * @throws SlickException
 	 * @see SlickException
 	 */
-	public LogicImpl(final Level level, final Player player) throws SlickException {
+	public ModelCommunicatorImpl(final Level level, final Player player) throws SlickException {
 		this.level = level;
 		this.player = player;
 		this.currentRoom = level.getLevel().get(level.getRoomID());

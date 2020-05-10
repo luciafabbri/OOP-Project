@@ -45,7 +45,7 @@ public class StateCoord extends StateBasedGame {
 		StateCoord.player = new PlayerImpl(new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE), Direction.SOUTH, 0);
 
 		this.addState(new Menu());
-		this.addState(new LevelsPlay(LEVEL1, player));		
+		this.addState(new GameController(LEVEL1, player));		
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class StateCoord extends StateBasedGame {
 			appgc.setMaximumLogicUpdateInterval(80);
 			appgc.start();
 		} catch (SlickException e) {
-			Logger.getLogger(LevelsPlay.class.getName()).log(Level.SEVERE, null, e);
+			Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, e);
 		}
 	}
 

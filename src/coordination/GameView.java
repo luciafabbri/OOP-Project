@@ -3,7 +3,7 @@ package coordination;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-public interface Rendering {
+public interface GameView {
 
 	/**
 	 * Method used to draw the wall in each room

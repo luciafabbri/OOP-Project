@@ -17,7 +17,7 @@ import levels.LevelImpl;
 import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;
 
-public class LevelsPlay extends BasicGameState {
+public class GameController extends BasicGameState {
 	
 	/**
 	 * Variable that contains the data of the Player
@@ -26,11 +26,11 @@ public class LevelsPlay extends BasicGameState {
 	/**
 	 * Variable containing the Graphics class
 	 */
-	private Rendering graphics;
+	private GameView graphics;
 	/**
 	 * Variable containing the Logic class
 	 */
-	private Logic logic;
+	private ModelCommunicator logic;
 	/**
 	 * Variable containing the UI class
 	 */
@@ -55,7 +55,7 @@ public class LevelsPlay extends BasicGameState {
 	 * @throws SlickException
 	 * @see SlickException
 	 */
-	public LevelsPlay(final int state, final Player player) throws SlickException {
+	public GameController(final int state, final Player player) throws SlickException {
 		super();
 		this.levelID = state;
 		this.player = player;
@@ -71,14 +71,14 @@ public class LevelsPlay extends BasicGameState {
 			level = new LevelImpl(this.levelID);
 			this.player.loadAnimations();
 			
-			logic = new LogicImpl(level, player);
+			logic = new ModelCommunicatorImpl(level, player);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		player.setCurrentRoom(level.getLevel().get(0).getRoom());
 		
-		graphics = new RenderingImpl(level, player);
+		graphics = new GameViewImpl(level, player);
 	
 		ui = new UI(player, arg0.getGraphics(), level);
 	}
