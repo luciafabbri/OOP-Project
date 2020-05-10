@@ -11,9 +11,9 @@ import org.newdawn.slick.font.effects.OutlineEffect;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
-import design.utilities.GameSettings;
 import dynamicBody.character.player.Player;
 import levels.Level;
+import worldModel.utilities.GameSettings;
 
 public class UI {
 

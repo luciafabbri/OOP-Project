@@ -7,15 +7,15 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
-import design.utilities.GameSettings;
-import design.utilities.Pair;
-import design.utilities.enums.Door;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.DoorCheck;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.player.Player;
 import levels.Level;
 import levels.Room;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
+import worldModel.utilities.enums.Door;
 
 public class LogicImpl implements Logic {
 
@@ -197,7 +197,7 @@ public class LogicImpl implements Logic {
 	/**
 	 * Method called by switchRooms, to check if a Door in a certain cardinal directions is present or not
 	 * @param door, to filter the appropriate value in the map
-	 * @return true if the RoomDesign paired with the Door used as a filter is present, otherwise false
+	 * @return true if the RoomModel paired with the Door used as a filter is present, otherwise false
 	 */
 	private boolean checkEmpty(final Door door) {
 		return level.getLevel().get(level.getRoomID()).getDoorAccess().entrySet().stream()
@@ -206,7 +206,7 @@ public class LogicImpl implements Logic {
 
 	/**
 	 * Method called by switchRooms, to get the roomId that belongs to the right Door the player has stepped into
-	 * @param door, to filter the appropriate RoomDesign paired with the Door, to get the right roomID
+	 * @param door, to filter the appropriate RoomModel paired with the Door, to get the right roomID
 	 * @return an int, which is the roomID filtered
 	 */
 	private int getRoomID(final Door door) {

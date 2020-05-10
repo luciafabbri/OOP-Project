@@ -1,7 +1,7 @@
 package dynamicBody.character.player.movement;
 
-import design.utilities.Pair;
 import dynamicBody.move.Direction;
+import worldModel.utilities.Pair;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;

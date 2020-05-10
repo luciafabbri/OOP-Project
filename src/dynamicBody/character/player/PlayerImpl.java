@@ -1,7 +1,5 @@
 package dynamicBody.character.player;
 
-import design.utilities.Pair;
-import design.utilities.enums.Door;
 import dynamicBody.UpDownLeftRight;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.health.*;
@@ -11,6 +9,9 @@ import dynamicBody.character.player.movement.check.*;
 import dynamicBody.character.player.shoot.*;
 import dynamicBody.move.Direction;
 import levels.Level;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
+import worldModel.utilities.enums.Door;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -21,7 +22,6 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
-import design.RoomDesign;
 
 /**
  * Class that implements interface Player used to define all the aspects concerning the player 
@@ -39,7 +39,7 @@ public class PlayerImpl implements Player {
 	private Movement move;
 	private CheckPlayerMovement check;
 	private Health health;
-	private RoomDesign currentRoom;
+	private RoomModel currentRoom;
 	private Inventory inventory;
 	
 	private UpDownLeftRight<Animation> textures;
@@ -83,7 +83,7 @@ public class PlayerImpl implements Player {
 	@Override 
 	public void setPosition(Input input, Level level) throws SlickException {
 		Pair<Integer,Integer> newPos;
-		Map<Door, Optional<RoomDesign>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
+		Map<Door, Optional<RoomModel>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
 		newPos = move.movePlayer(input, this.position, this.direction, this.playerSpeed); 
 
 		check.checkEnemyRoom(this.currentRoom, newPos);
@@ -119,12 +119,12 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override
-	public void setCurrentRoom(RoomDesign room) {
+	public void setCurrentRoom(RoomModel room) {
 		this.currentRoom = room;
 	}
 	
 	@Override
-	public RoomDesign getRoom() {
+	public RoomModel getRoom() {
 		return this.currentRoom;
 	}
 	

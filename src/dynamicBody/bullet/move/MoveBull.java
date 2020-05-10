@@ -1,8 +1,8 @@
 package dynamicBody.bullet.move;
 
-import design.utilities.Pair;
 import dynamicBody.move.CheckPos;
 import dynamicBody.move.Direction;
+import worldModel.utilities.Pair;
 
 /**
  * An interface used to move bullet's position in the dungeon

@@ -2,10 +2,10 @@ package dynamicBody.bullet;
 
 import org.newdawn.slick.Image;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.DynamicBody;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * An interface that defines all the main methods concerning bullets
@@ -41,6 +41,6 @@ public interface Bullet extends DynamicBody {
 	/**
 	 * @return bullet's current room
 	 */
-	RoomDesign getRoom();
+	RoomModel getRoom();
 	
 }

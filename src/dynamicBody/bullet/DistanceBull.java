@@ -1,9 +1,9 @@
 package dynamicBody.bullet;
 
-import design.utilities.Pair;
 import dynamicBody.character.Character;
 import dynamicBody.UpDownLeftRight;
 import dynamicBody.move.Direction;
+import worldModel.utilities.Pair;
 
 public final class DistanceBull {
 

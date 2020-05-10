@@ -2,13 +2,13 @@ package dynamicBody.bullet.move;
 
 import java.util.Set;
 
-import design.RoomDesign;
-import design.utilities.GameSettings;
-import design.utilities.Pair;
 import dynamicBody.DynamicBody;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.move.CheckPos;
 import dynamicBody.move.CheckPosImpl;
+import worldModel.RoomModel;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
 
 /**
  * Class used to represent all the specific checks for a bullet of type player 
@@ -28,7 +28,7 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings, Check
 	}
 
 	@Override
-	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
+	public boolean possiblePos(RoomModel room, Pair<Integer, Integer> pos) {
 		return ( !checkEnemy(room, pos) && super.possiblePos(room, pos) );
 	}
 	
@@ -38,7 +38,7 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings, Check
 	 * @param pos, bullet's current coordinates
 	 * @return true if the bullet had a collision with an enemy, otherwise return false
 	 */
-	private boolean checkEnemy(RoomDesign room, Pair<Integer, Integer> pos) {
+	private boolean checkEnemy(RoomModel room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
 		Set<Enemy> enemySet = room.getEnemySet();
 		for (Enemy enemy : enemySet) {

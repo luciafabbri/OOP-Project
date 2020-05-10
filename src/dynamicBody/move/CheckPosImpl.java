@@ -1,9 +1,9 @@
 package dynamicBody.move;
 
-import design.RoomDesign;
-import design.utilities.GameSettings;
-import design.utilities.Pair;
 import dynamicBody.DynamicBody;
+import worldModel.RoomModel;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
 
 /**
  * Class that implements interface CheckPos used to check if a dynamic body is going out of bounds or 
@@ -28,7 +28,7 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 	}
 	
 	@Override
-	public boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos) {
+	public boolean possiblePos(RoomModel room, Pair<Integer, Integer> pos) {
 		updateDimension();
 		return !(isOutOfLimits(pos) || checkObstaclesRoom(room, pos));
 	}
@@ -39,7 +39,7 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 	 * @param pos, dynamic body's current position
 	 * @return true if the dynamic body had a collision with an obstacle
 	 */
-	protected boolean checkObstaclesRoom(RoomDesign room, Pair<Integer, Integer> pos) {
+	protected boolean checkObstaclesRoom(RoomModel room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
 		for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
 			checkX = pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE && pos.getX() + rightPix > obst.getX() ;

@@ -5,13 +5,14 @@ import java.io.IOException;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.SlickException;
-import design.RoomDesign;
-import design.utilities.Pair;
+
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
 import dynamicBody.move.Direction;
 import levels.Level;
 import levels.LevelImpl;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * JUnit test for player's and bullet's initial functionalities
@@ -21,7 +22,7 @@ public class PlayerAndBulletCreationTest {
 
 	private static Player testPlayer;
 	private static Bullet testBullet;
-	private static RoomDesign testRoom;
+	private static RoomModel testRoom;
 	private static Level testLevel; 
 			
 	@org.junit.BeforeClass

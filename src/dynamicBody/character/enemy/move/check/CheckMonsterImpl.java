@@ -1,11 +1,11 @@
 package dynamicBody.character.enemy.move.check;
 
-import design.RoomDesign;
-import design.utilities.GameSettings;
-import design.utilities.Pair;
 import dynamicBody.character.Character;
 import dynamicBody.move.CheckPosImpl;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
 
 public class CheckMonsterImpl extends CheckPosImpl implements CheckMonster, GameSettings {
 
@@ -17,7 +17,7 @@ public class CheckMonsterImpl extends CheckPosImpl implements CheckMonster, Game
 	private Direction newDir;
 
 	@Override
-	public Direction changeDir(RoomDesign room, Pair<Integer, Integer> pos, Direction dir) {
+	public Direction changeDir(RoomModel room, Pair<Integer, Integer> pos, Direction dir) {
 
 		if (pos.getX() + rightPix > LIMITRIGHT) {
 			this.x = -dir.getAbscissa();

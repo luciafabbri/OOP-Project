@@ -1,8 +1,5 @@
 package dynamicBody.character.player.movement.check;
 
-import design.utilities.Pair;
-import design.utilities.enums.Door;
-import design.utilities.enums.Entities;
 import dynamicBody.DynamicBody;
 import dynamicBody.character.DoorCheck;
 import dynamicBody.character.enemy.Enemy;
@@ -14,13 +11,17 @@ import gameEntities.items.Coin;
 import gameEntities.items.Key;
 import gameEntities.modifiers.*;
 import levels.Level;
-import design.utilities.GameSettings;
+import worldModel.RoomModel;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
+import worldModel.utilities.enums.Door;
+import worldModel.utilities.enums.Entities;
+
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
-import design.RoomDesign;
 
 /**
  * Class that implements interface CheckPlayer used to check and then to force the player 
@@ -72,7 +73,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	}
 	
 	@Override
-	public boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomDesign>> map) {
+	public boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomModel>> map) {
 		DoorCheck check = new DoorCheck();
 		
 		if(map.entrySet().stream().filter(s -> s.getKey().equals(Door.NORTH)).findFirst().get().getValue().isPresent() && check.doorNorth(pos)){
@@ -88,7 +89,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	}
 
 	@Override
-	public boolean checkStairs(RoomDesign room, Pair<Integer, Integer> pos) {
+	public boolean checkStairs(RoomModel room, Pair<Integer, Integer> pos) {
 		if( room.areStairsPresent() ) {
 			boolean checkX, checkY;
 			checkX = pos.getX() + leftPix < room.getStairs().getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > room.getStairs().getPosition().getX();
@@ -101,7 +102,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	}
 
 	@Override
-	public boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos) {
+	public boolean checkEnemyRoom(RoomModel room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
 		
 		Set<Enemy> enemySet = room.getEnemySet();
@@ -120,7 +121,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
     }
 	
 	@Override
-	public boolean checkGameEntities(RoomDesign room, Pair<Integer,Integer> pos, Level level) throws SlickException {
+	public boolean checkGameEntities(RoomModel room, Pair<Integer,Integer> pos, Level level) throws SlickException {
 		return ( checkCoin(pos, level) || checkKey(pos, level) || checkModifiers(room,pos) ) ;
 	}
 	
@@ -132,7 +133,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	 * @return true if the player had a collision 
 	 * @throws SlickException 
 	 */
-	private boolean checkModifiers(RoomDesign room, Pair<Integer, Integer> pos) throws SlickException {
+	private boolean checkModifiers(RoomModel room, Pair<Integer, Integer> pos) throws SlickException {
 		boolean checkX, checkY;
 		
 		Set<Pickupable> itemSet = room.getPickupablesSet();

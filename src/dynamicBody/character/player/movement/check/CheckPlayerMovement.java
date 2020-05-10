@@ -3,11 +3,12 @@ package dynamicBody.character.player.movement.check;
 import java.util.Map;
 import java.util.Optional;
 import org.newdawn.slick.SlickException;
-import design.RoomDesign;
-import design.utilities.Pair;
-import design.utilities.enums.Door;
+
 import dynamicBody.move.CheckPos;
 import levels.Level;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
+import worldModel.utilities.enums.Door;
 
 /**
  * An interface used to check player's position in the current room 
@@ -22,7 +23,7 @@ public interface CheckPlayerMovement extends CheckPos{
 				   In case the association room-door exists, the player is allowed to pass by the specific doors
 	 * @return true if the player is next to the doors
 	 */
-	boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomDesign>> map);
+	boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomModel>> map);
 	
 	/**
 	 * Method used to check if the player is in collision with any entity (coin, key or modifiers) in the room
@@ -33,7 +34,7 @@ public interface CheckPlayerMovement extends CheckPos{
 	 * @return true if the player had a collision 
 	 * @throws SlickException 
 	 */
-	boolean checkGameEntities(RoomDesign room,Pair<Integer, Integer> pos, Level level) throws SlickException;	
+	boolean checkGameEntities(RoomModel room,Pair<Integer, Integer> pos, Level level) throws SlickException;	
 	
 	/**
 	 * Method used to check if the player has found and he's above the stairs
@@ -41,7 +42,7 @@ public interface CheckPlayerMovement extends CheckPos{
 	 * @param pos, player's coordinates inside the room
 	 * @return true if the player is above the stairs  
 	 */
-	boolean checkStairs(RoomDesign room, Pair<Integer, Integer> pos);
+	boolean checkStairs(RoomModel room, Pair<Integer, Integer> pos);
 	
 	/**
 	 * Method used to check in the player is in collision with any enemy in the room
@@ -49,6 +50,6 @@ public interface CheckPlayerMovement extends CheckPos{
 	 * @param pos, player's coordinates inside the room	 
 	 * @return true if the player had a collision
 	 */
-	boolean checkEnemyRoom(RoomDesign room, Pair<Integer, Integer> pos);	
+	boolean checkEnemyRoom(RoomModel room, Pair<Integer, Integer> pos);	
 	
 }

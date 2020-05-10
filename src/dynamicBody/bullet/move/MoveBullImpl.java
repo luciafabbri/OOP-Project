@@ -1,10 +1,10 @@
 package dynamicBody.bullet.move;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.bullet.BulletDefault;
 import dynamicBody.move.CheckPos;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * Class that implements interface MoveBull used to check if it's possible to move bullet in his next position
@@ -14,13 +14,13 @@ import dynamicBody.move.Direction;
 public class MoveBullImpl implements MoveBull {
 
 	private boolean alive = true;
-	private RoomDesign currentRoom;
+	private RoomModel currentRoom;
 	
 	/**
 	 * Default constructor
 	 * @param room, bullet's current room
 	 */
-	public MoveBullImpl(RoomDesign room) {
+	public MoveBullImpl(RoomModel room) {
 		currentRoom = room;
 	}
 

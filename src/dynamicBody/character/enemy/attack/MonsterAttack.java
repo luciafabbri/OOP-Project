@@ -1,7 +1,7 @@
 package dynamicBody.character.enemy.attack;
 
-import design.utilities.Pair;
 import dynamicBody.move.Direction;
+import worldModel.utilities.Pair;
 
 /**
  * Interface use to create bullets when monster attack

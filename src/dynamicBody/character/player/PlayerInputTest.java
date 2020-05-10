@@ -8,13 +8,14 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import design.RoomDesign;
-import design.utilities.Pair;
+
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
 import dynamicBody.move.Direction;
 import levels.Level;
 import levels.LevelImpl;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * Class used to create a test for input using Slick2D library and update player's current coordinates and position
@@ -27,7 +28,7 @@ public class PlayerInputTest extends BasicGame {
 	
 	private static Player testPlayer;
 	private static Level testLevel; 
-	private static RoomDesign testRoom;
+	private static RoomModel testRoom;
 
 	/** Input variables to check, true if pressed */
 	private boolean space;

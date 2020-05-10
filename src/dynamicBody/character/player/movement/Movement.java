@@ -2,8 +2,8 @@ package dynamicBody.character.player.movement;
 
 import org.newdawn.slick.Input;
 
-import design.utilities.Pair;
 import dynamicBody.move.Direction;
+import worldModel.utilities.Pair;
 
 /**
  * An interface that allows the player to move in the environment by pressing keyboard's keys

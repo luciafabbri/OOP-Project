@@ -4,11 +4,11 @@ import java.util.Set;
 
 import org.newdawn.slick.Animation;
 
-import design.utilities.Pair;
 import dynamicBody.DynamicBody;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.health.Health;
 import dynamicBody.move.Direction;
+import worldModel.utilities.Pair;
 
 /**
  * An interface that extends interface DynamicBody in order to add new methods and get information about characters 

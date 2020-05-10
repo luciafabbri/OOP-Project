@@ -9,11 +9,11 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import design.utilities.GameSettings;
-import design.utilities.Pair;
 import dynamicBody.character.player.Player;
 import dynamicBody.character.player.PlayerImpl;
 import dynamicBody.move.Direction;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
 
 public class StateCoord extends StateBasedGame {
 

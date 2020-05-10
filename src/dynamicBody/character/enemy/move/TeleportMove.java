@@ -2,13 +2,13 @@ package dynamicBody.character.enemy.move;
 
 import java.util.Random;
 
-import design.RoomDesign;
-import design.utilities.GameSettings;
-import design.utilities.Pair;
 import dynamicBody.character.Character;
 import dynamicBody.character.enemy.move.check.CheckMonster;
 import dynamicBody.character.enemy.move.check.CheckMonsterImpl;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
 
 /**
  * Class that implement MovePosMonster use when enemy's movement is and Teleport
@@ -20,7 +20,7 @@ public class TeleportMove implements MovePosMonster {
 	private Pair<Integer, Integer> newPos;
 	private Direction nextDir = null;
 
-	private RoomDesign currentRoom;
+	private RoomModel currentRoom;
 
 	private int sleepTime = 5000;
 	private long startMillis = 0;
@@ -32,7 +32,7 @@ public class TeleportMove implements MovePosMonster {
 	 * @param room,      room where character is
 	 * @param character, the character who need to move
 	 */
-	public TeleportMove(RoomDesign room, Character character) {
+	public TeleportMove(RoomModel room, Character character) {
 		currentRoom = room;
 		check = new CheckMonsterImpl(character);
 	}

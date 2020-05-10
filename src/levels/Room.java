@@ -3,10 +3,10 @@ package levels;
 import java.util.Map;
 import java.util.Optional;
 
-import design.RoomDesign;
-import design.utilities.enums.Door;
 import tiles.AnimatedTile;
 import tiles.Tile;
+import worldModel.RoomModel;
+import worldModel.utilities.enums.Door;
 
 public interface Room {
 
@@ -38,13 +38,13 @@ public interface Room {
 	 * method that returns the Map with the existing doors, based on which rooms are connected which
 	 * @return Map, with the value being other RoomDesigns that can exist, which is associated with a Door
 	 */
-	Map<Door, Optional<RoomDesign>> getDoorAccess();
+	Map<Door, Optional<RoomModel>> getDoorAccess();
 
 	/**
-	 * method that returns the RoomDesign of the current room
-	 * @return RoomDesign, containing the current room entities and objects
+	 * method that returns the RoomModel of the current room
+	 * @return RoomModel, containing the current room entities and objects
 	 */
-	RoomDesign getRoom();
+	RoomModel getRoom();
 
 	/**
 	 * method that returns the animated tiles with the western door

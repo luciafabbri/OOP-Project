@@ -1,7 +1,7 @@
 package dynamicBody.move;
 
-import design.RoomDesign;
-import design.utilities.Pair;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * An interface used to check if dynamic body's next position is going to be in a possible free space in the dungeon or not
@@ -16,6 +16,6 @@ public interface CheckPos {
 	 * @param pos, dynamic body's current coordinates 
 	 * @return true if the dynamic body could move in its next position
 	 */
-	boolean possiblePos(RoomDesign room, Pair<Integer, Integer> pos);
+	boolean possiblePos(RoomModel room, Pair<Integer, Integer> pos);
 
 }

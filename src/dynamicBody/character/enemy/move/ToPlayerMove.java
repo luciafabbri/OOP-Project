@@ -1,14 +1,14 @@
 package dynamicBody.character.enemy.move;
 
 import coordination.StateCoord;
-import design.RoomDesign;
-import design.utilities.Pair;
-import design.utilities.graphs.Graph;
 import dijkstra.DijkstraAlg;
 import dijkstra.Node;
 import dynamicBody.character.Character;
 import dynamicBody.character.player.Player;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
+import worldModel.utilities.graphs.Graph;
 
 /**
  * Class that implement MovePosMonster use when enemy's movement is and ToPlayer
@@ -20,7 +20,7 @@ public class ToPlayerMove implements MovePosMonster {
 	private Pair<Integer, Integer> checkPlayer = player.getPosition();
 
 	private Direction nextDir;
-	private RoomDesign currentRoom;
+	private RoomModel currentRoom;
 	private MovePosMonster move;
 	private Character character;
 
@@ -32,7 +32,7 @@ public class ToPlayerMove implements MovePosMonster {
 	 * @param room,      room where character is
 	 * @param character, the character who need to move
 	 */
-	public ToPlayerMove(RoomDesign room, Character character) {
+	public ToPlayerMove(RoomModel room, Character character) {
 		currentRoom = room;
 		this.character = character;
 		move = new StraightMove(room, character);

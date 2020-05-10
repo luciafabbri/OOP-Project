@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import design.LevelDesign;
-import design.generation.LevelDesignGeneratorImpl;
+import worldModel.LevelModel;
+import worldModel.generation.LevelModelGeneratorImpl;
 
 public class LevelImpl implements Level {
 	
@@ -14,9 +14,9 @@ public class LevelImpl implements Level {
 	 */
 	private List<RoomImpl> level = new ArrayList<>();
 	/**
-	 * Variable containing the general barebone design of each room
+	 * Variable containing the general barebone worldModel of each room
 	 */
-	private LevelDesign testLevel;
+	private LevelModel testLevel;
 	/**
 	 * Variable containing temporarly data of each room when adding it to the list
 	 */
@@ -29,7 +29,7 @@ public class LevelImpl implements Level {
 	
 	
 	public LevelImpl(final int levelID) throws IOException {
-		testLevel = new LevelDesignGeneratorImpl().generateLevel(levelID);
+		testLevel = new LevelModelGeneratorImpl().generateLevel(levelID);
 		this.loadRooms();
 		this.roomID = 0;
 	}

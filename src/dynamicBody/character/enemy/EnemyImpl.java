@@ -7,8 +7,6 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.UpDownLeftRight;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.attack.FourSideAtt;
@@ -28,6 +26,8 @@ import dynamicBody.character.enemy.move.TypeMove;
 import dynamicBody.character.health.Health;
 import dynamicBody.character.health.HealthImpl;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * Class that implements interface Player used to define all the aspects
@@ -63,11 +63,11 @@ public class EnemyImpl implements Enemy {
 	 * @param move,   TypeMove of monster
 	 * @param dir,    Direction of monster
 	 * @param att,    TypeAttack of monster
-	 * @param room,   RoomDesign where monster spawn
+	 * @param room,   RoomModel where monster spawn
 	 * @param mon,    TypeEnemy of monster
 	 */
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
-			TypeAttack att, RoomDesign room, TypeEnemy mon) {
+			TypeAttack att, RoomModel room, TypeEnemy mon) {
 		this.position = pos;
 		this.damage = damage;
 		this.speed = speed;
@@ -86,12 +86,12 @@ public class EnemyImpl implements Enemy {
 
 	}
 
-	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomDesign room,
+	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomModel room,
 			TypeEnemy mon) {
 		this(pos, damage, EnemyDefault.SPEED.getValue(), health, move, Direction.getRandomDir(), att, room, mon);
 	}
 
-	private MovePosMonster selectMove(TypeMove typeMove, RoomDesign room) {
+	private MovePosMonster selectMove(TypeMove typeMove, RoomModel room) {
 		switch (typeMove) {
 		case STRAIGHT:
 			return new StraightMove(room, this);
@@ -114,7 +114,7 @@ public class EnemyImpl implements Enemy {
 		}
 	}
 
-	private MonsterAttack selectAttack(TypeAttack typeAttack, RoomDesign room) {
+	private MonsterAttack selectAttack(TypeAttack typeAttack, RoomModel room) {
 		switch (typeAttack) {
 		case ONE_SIDE:
 			return new OneSideAtt(room, this);

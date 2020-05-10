@@ -3,9 +3,9 @@ package gameEntities.modifiers;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import design.utilities.Pair;
-import design.utilities.enums.Entities;
 import dynamicBody.character.Stats;
+import worldModel.utilities.Pair;
+import worldModel.utilities.enums.Entities;
 
 public class AttackSpeed1 extends ModifiersImpl{
 

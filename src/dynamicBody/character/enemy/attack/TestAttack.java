@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.EnemyImpl;
@@ -19,6 +17,8 @@ import dynamicBody.character.enemy.move.TypeMove;
 import dynamicBody.move.Direction;
 import levels.Level;
 import levels.LevelImpl;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * JUnit test for Enemy attack functionalities
@@ -26,7 +26,7 @@ import levels.LevelImpl;
  */
 public class TestAttack {
 
-	private static RoomDesign testRoom;
+	private static RoomModel testRoom;
 
 	@org.junit.BeforeClass
 	public static void initTest() throws IOException {

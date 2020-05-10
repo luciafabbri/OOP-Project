@@ -1,7 +1,7 @@
 package dynamicBody.bullet;
 
-import design.utilities.Pair;
 import dynamicBody.UpDownLeftRight;
+import worldModel.utilities.Pair;
 
 /**
  * Enumeration used to represent bullet's dimension, which means that for each

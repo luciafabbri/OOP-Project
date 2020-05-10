@@ -1,6 +1,6 @@
 package dynamicBody.move;
 
-import design.utilities.Pair;
+import worldModel.utilities.Pair;
 
 /**
  * An interface used to set next dynamic body's coordinates and direction in the dungeon 

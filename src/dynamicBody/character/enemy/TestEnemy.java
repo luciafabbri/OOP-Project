@@ -7,14 +7,15 @@ import java.io.IOException;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.SlickException;
-import design.RoomDesign;
-import design.utilities.Pair;
+
 import dynamicBody.character.enemy.attack.TypeAttack;
 import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.enemy.move.TypeMove;
 import dynamicBody.move.Direction;
 import levels.Level;
 import levels.LevelImpl;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * JUnit test for player's and bullet's initial functionalities
@@ -22,7 +23,7 @@ import levels.LevelImpl;
 
 public class TestEnemy {
 
-	private static RoomDesign testRoom;
+	private static RoomModel testRoom;
 	
 	@org.junit.BeforeClass
 	public static void initTest() throws IOException {

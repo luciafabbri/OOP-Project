@@ -1,19 +1,19 @@
 package dynamicBody.character.enemy.attack;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletMonsterImpl;
 import dynamicBody.bullet.DistanceBull;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * Class implements use to create 1 bullet when enemy attack
  */
 public class OneSideAtt implements MonsterAttack {
 
-	private RoomDesign currentRoom;
+	private RoomModel currentRoom;
 	private Enemy enemy;
 
 	/**
@@ -22,7 +22,7 @@ public class OneSideAtt implements MonsterAttack {
 	 * @param room,  room where bullet spawn
 	 * @param enemy, the Enemy that create this Bullet
 	 */
-	public OneSideAtt(RoomDesign room, Enemy enemy) {
+	public OneSideAtt(RoomModel room, Enemy enemy) {
 		currentRoom = room;
 		this.enemy = enemy;
 	}

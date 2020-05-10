@@ -2,8 +2,8 @@ package gameEntities;
 
 import org.newdawn.slick.Image;
 
-import design.utilities.Pair;
-import design.utilities.enums.Entities;
+import worldModel.utilities.Pair;
+import worldModel.utilities.enums.Entities;
 
 public abstract class GameEntity {
 	

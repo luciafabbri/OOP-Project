@@ -1,14 +1,14 @@
 package dynamicBody.character.enemy.move;
 
 import coordination.StateCoord;
-import design.RoomDesign;
-import design.utilities.GameSettings;
-import design.utilities.Pair;
-import design.utilities.graphs.BidirectionalGraph;
-import design.utilities.graphs.Graph;
 import dijkstra.Node;
 import dynamicBody.character.player.Player;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
+import worldModel.utilities.graphs.BidirectionalGraph;
+import worldModel.utilities.graphs.Graph;
 
 /**
  * Abstract Class with utilities' function for the movement ToPlayer and for the
@@ -31,13 +31,13 @@ public final class ToPlayerUtil {
 	}
 
 	/**
-	 * Method that transform the TileGraph of Pair in RoomDesign to a Graph of Node
+	 * Method that transform the TileGraph of Pair in RoomModel to a Graph of Node
 	 * of Pair
 	 * 
 	 * @param room, the room where you can find the TileGraph
 	 * @return The graph of Node
 	 */
-	public static Graph<Node<Pair<Integer, Integer>>> createGraph(RoomDesign room) {
+	public static Graph<Node<Pair<Integer, Integer>>> createGraph(RoomModel room) {
 		Graph<Node<Pair<Integer, Integer>>> graph = new BidirectionalGraph<>();
 		// INSERISCO NODI DENTRO AL GRAFO
 		room.getTilesGraph().getNodes().forEach(x -> {

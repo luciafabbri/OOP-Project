@@ -2,13 +2,13 @@ package dynamicBody.character.enemy.attack;
 
 import java.util.List;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletMonsterImpl;
 import dynamicBody.bullet.DistanceBull;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * Class implements use to create 2 bullet when enemy attack in 2 different
@@ -16,7 +16,7 @@ import dynamicBody.move.Direction;
  */
 public class TwoSideAtt implements MonsterAttack {
 
-	private RoomDesign currentRoom;
+	private RoomModel currentRoom;
 	private Enemy enemy;
 
 	/**
@@ -25,7 +25,7 @@ public class TwoSideAtt implements MonsterAttack {
 	 * @param room,  room where bullet spawn
 	 * @param enemy, the Enemy that create this Bullet
 	 */
-	public TwoSideAtt(RoomDesign room, Enemy enemy) {
+	public TwoSideAtt(RoomModel room, Enemy enemy) {
 		currentRoom = room;
 		this.enemy = enemy;
 	}

@@ -1,7 +1,7 @@
 package dynamicBody.character.player;
 
-import design.utilities.Pair;
 import dynamicBody.UpDownLeftRight;
+import worldModel.utilities.Pair;
 
 /**
  * Enumeration used to get player's dimensions based on his current direction

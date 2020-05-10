@@ -2,8 +2,8 @@ package dijkstra;
 
 import static org.junit.Assert.*;
 
-import design.utilities.graphs.BidirectionalGraph;
-import design.utilities.graphs.Graph;
+import worldModel.utilities.graphs.BidirectionalGraph;
+import worldModel.utilities.graphs.Graph;
 
 public class Test {
 	

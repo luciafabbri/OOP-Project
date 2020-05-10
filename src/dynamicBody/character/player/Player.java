@@ -1,12 +1,13 @@
 package dynamicBody.character.player;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.character.player.inventory.Inventory;
 import dynamicBody.character.player.movement.Movement;
 import dynamicBody.character.player.movement.check.CheckPlayerMovement;
 import dynamicBody.character.player.shoot.ShootingPlayer;
 import levels.Level;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
+
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -44,13 +45,13 @@ public interface Player extends dynamicBody.character.Character {
 	/**
 	 * @return player's current room 
 	 */
-	RoomDesign getRoom();
+	RoomModel getRoom();
 
 	/**
 	 * Methods used to set player's current room 
 	 * @param room, the room where the player would be moved
 	 */
-	void setCurrentRoom(RoomDesign room);
+	void setCurrentRoom(RoomModel room);
 	
 	/**
 	 * Method used to update player's position

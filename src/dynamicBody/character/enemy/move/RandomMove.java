@@ -2,10 +2,10 @@ package dynamicBody.character.enemy.move;
 
 import java.util.Random;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.character.Character;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * Class that implement MovePosMonster use when enemy's movement is Random
@@ -26,7 +26,7 @@ public class RandomMove implements MovePosMonster {
 	 * @param room,      room where character is
 	 * @param character, the character who need to move
 	 */
-	public RandomMove(RoomDesign room, Character character) {
+	public RandomMove(RoomModel room, Character character) {
 		move = new StraightMove(room, character);
 	}
 

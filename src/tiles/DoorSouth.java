@@ -5,7 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-import design.utilities.GameSettings;
+import worldModel.utilities.GameSettings;
 
 public class DoorSouth extends AnimatedTile {
 

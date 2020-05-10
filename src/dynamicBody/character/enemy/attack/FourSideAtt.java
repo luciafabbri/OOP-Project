@@ -2,10 +2,10 @@ package dynamicBody.character.enemy.attack;
 
 import java.util.List;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * Class implements MonsterAttack use to create 4 bullet in each direction when
@@ -13,7 +13,7 @@ import dynamicBody.move.Direction;
  */
 public class FourSideAtt implements MonsterAttack {
 
-	private RoomDesign currentRoom;
+	private RoomModel currentRoom;
 	private Enemy enemy;
 
 	/**
@@ -22,7 +22,7 @@ public class FourSideAtt implements MonsterAttack {
 	 * @param room,  room where bullet spawn
 	 * @param enemy, the Enemy that create this Bullet
 	 */
-	public FourSideAtt(RoomDesign room, Enemy enemy) {
+	public FourSideAtt(RoomModel room, Enemy enemy) {
 		currentRoom = room;
 		this.enemy = enemy;
 	}

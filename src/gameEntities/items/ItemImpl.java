@@ -2,9 +2,9 @@ package gameEntities.items;
 
 import org.newdawn.slick.Image;
 
-import design.utilities.Pair;
-import design.utilities.enums.Entities;
 import gameEntities.Pickupable;
+import worldModel.utilities.Pair;
+import worldModel.utilities.enums.Entities;
 
 public class ItemImpl extends Pickupable{
 		

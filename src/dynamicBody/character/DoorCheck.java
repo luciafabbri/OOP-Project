@@ -1,7 +1,7 @@
 package dynamicBody.character;
 
-import design.utilities.GameSettings;
-import design.utilities.Pair;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
 
 public class DoorCheck {
 	

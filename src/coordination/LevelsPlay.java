@@ -11,11 +11,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import design.utilities.GameSettings;
-import design.utilities.Pair;
 import dynamicBody.character.player.Player;
 import levels.Level;
 import levels.LevelImpl;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
 
 public class LevelsPlay extends BasicGameState {
 	

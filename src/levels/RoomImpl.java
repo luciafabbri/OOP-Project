@@ -6,24 +6,24 @@ import java.util.Set;
 
 import org.newdawn.slick.SlickException;
 
-import design.RoomDesign;
-import design.utilities.GameSettings;
-import design.utilities.Pair;
-import design.utilities.enums.Door;
 import gameEntities.Obstacle;
 import tiles.*;
+import worldModel.RoomModel;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
+import worldModel.utilities.enums.Door;
 
 
 public class RoomImpl implements Room {
 
 	/**
-	 * Variable containing the RoomDesign associated with the right room
+	 * Variable containing the RoomModel associated with the right room
 	 */
-	private RoomDesign room;
+	private RoomModel room;
 	/**
 	 * Variable containing the Map with the door and rooms the current room is connected to
 	 */
-	private Map<Door, Optional<RoomDesign>> doorAccess;
+	private Map<Door, Optional<RoomModel>> doorAccess;
 	
 	/**
 	 * Variable containing the Tile of the floor
@@ -69,7 +69,7 @@ public class RoomImpl implements Room {
 	private boolean gotRoomKey;
 	
 	
-	public RoomImpl(final RoomDesign room, Map<RoomDesign, Map<Door, Optional<RoomDesign>>> doorAccess) {	
+	public RoomImpl(final RoomModel room, Map<RoomModel, Map<Door, Optional<RoomModel>>> doorAccess) {	
 		this.room = room;
 		this.doorAccess = doorAccess.entrySet().stream().filter(s -> s.getKey().getRoomID() == room.getRoomID()).findFirst().get().getValue();
 		this.gotRoomKey = false;
@@ -118,12 +118,12 @@ public class RoomImpl implements Room {
 	}
 
 	@Override
-	public Map<Door, Optional<RoomDesign>> getDoorAccess() {
+	public Map<Door, Optional<RoomModel>> getDoorAccess() {
 		return doorAccess;
 	}
 
 	@Override
-	public RoomDesign getRoom() {
+	public RoomModel getRoom() {
 		return room;
 	}
 

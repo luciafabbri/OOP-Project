@@ -2,10 +2,10 @@ package gameEntities.modifiers;
 
 import org.newdawn.slick.Image;
 
-import design.utilities.Pair;
-import design.utilities.enums.Entities;
 import dynamicBody.character.Stats;
 import gameEntities.Pickupable;
+import worldModel.utilities.Pair;
+import worldModel.utilities.enums.Entities;
 
 public class ModifiersImpl extends Pickupable{
 	

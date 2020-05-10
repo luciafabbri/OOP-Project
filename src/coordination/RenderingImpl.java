@@ -9,11 +9,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-import design.RoomDesign;
-import design.utilities.GameSettings;
-import design.utilities.Pair;
-import design.utilities.enums.Door;
-import design.utilities.enums.Entities;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.creator.TypeEnemy;
@@ -23,6 +18,11 @@ import gameEntities.Stairs;
 import levels.Level;
 import levels.Room;
 import tiles.AnimatedTile;
+import worldModel.RoomModel;
+import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
+import worldModel.utilities.enums.Door;
+import worldModel.utilities.enums.Entities;
 
 public class RenderingImpl implements Rendering {
 
@@ -224,9 +224,9 @@ public class RenderingImpl implements Rendering {
 	}
 
 	public void drawDoors() {
-		Map<Door, Optional<RoomDesign>> doors = currentRoom.getDoorAccess();
+		Map<Door, Optional<RoomModel>> doors = currentRoom.getDoorAccess();
 		
-		for (Entry<Door, Optional<RoomDesign>> entry : doors.entrySet()) {
+		for (Entry<Door, Optional<RoomModel>> entry : doors.entrySet()) {
 			if (entry.getValue().isPresent()) {
 				if (entry.getKey().equals(Door.NORTH)) {
 					this.renderDoor(currentRoom.getDoorNorth(), Door.NORTH);
@@ -288,9 +288,9 @@ public class RenderingImpl implements Rendering {
 	}
 
 	public void drawDoorTop() throws SlickException {
-		Map<Door, Optional<RoomDesign>> doors = level.getLevel().get(level.getRoomID()).getDoorAccess();
+		Map<Door, Optional<RoomModel>> doors = level.getLevel().get(level.getRoomID()).getDoorAccess();
 
-		for (Entry<Door, Optional<RoomDesign>> entry : doors.entrySet()) {
+		for (Entry<Door, Optional<RoomModel>> entry : doors.entrySet()) {
 			if (entry.getValue().isPresent()) {
 				if (entry.getKey().equals(Door.NORTH)) {
 					currentRoom.getTopDoorHor().getTexture().getFlippedCopy(true, false)

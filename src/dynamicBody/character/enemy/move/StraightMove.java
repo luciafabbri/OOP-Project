@@ -1,11 +1,11 @@
 package dynamicBody.character.enemy.move;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.character.Character;
 import dynamicBody.character.enemy.move.check.CheckMonster;
 import dynamicBody.character.enemy.move.check.CheckMonsterImpl;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * Class that implement MovePosMonster use when enemy's movement is Straight
@@ -15,7 +15,7 @@ public class StraightMove implements MovePosMonster {
 	private CheckMonster check;
 	private Direction nextDir = null;
 
-	private RoomDesign currentRoom;
+	private RoomModel currentRoom;
 
 	/**
 	 * Default constructor
@@ -23,7 +23,7 @@ public class StraightMove implements MovePosMonster {
 	 * @param room,      room where character is
 	 * @param character, the character who need to move
 	 */
-	public StraightMove(RoomDesign room, Character character) {
+	public StraightMove(RoomModel room, Character character) {
 		currentRoom = room;
 		check = new CheckMonsterImpl(character);
 	}

@@ -1,8 +1,8 @@
 package dynamicBody.bullet;
 
-import design.RoomDesign;
-import design.utilities.Pair;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -20,7 +20,7 @@ public class BulletPlayerImpl extends BulletImpl implements Bullet {
 	 * @param direction, bullet's direction
 	 * @param room, bullet's current room
 	 */
-	public BulletPlayerImpl(Pair<Integer, Integer> position, int damage, Direction direction, RoomDesign room) {
+	public BulletPlayerImpl(Pair<Integer, Integer> position, int damage, Direction direction, RoomModel room) {
 		super(position, damage, direction, room, TypeBullet.PLAYER);
 		try {
 			this.setTexture(new Image("./res/proj/MainProj.png"));

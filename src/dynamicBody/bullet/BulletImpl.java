@@ -1,8 +1,7 @@
 package dynamicBody.bullet;
 
 import org.newdawn.slick.Image;
-import design.RoomDesign;
-import design.utilities.Pair;
+
 import dynamicBody.UpDownLeftRight;
 import dynamicBody.bullet.move.CheckMonsBull;
 import dynamicBody.bullet.move.CheckPlayerBull;
@@ -10,6 +9,8 @@ import dynamicBody.bullet.move.MoveBull;
 import dynamicBody.bullet.move.MoveBullImpl;
 import dynamicBody.move.CheckPos;
 import dynamicBody.move.Direction;
+import worldModel.RoomModel;
+import worldModel.utilities.Pair;
 
 /**
  * Class that implements interface Bullet used to represent a character's
@@ -23,7 +24,7 @@ public class BulletImpl implements Bullet {
 	private Direction direction;
 	private MoveBull move;
 	private Image texture;
-	private RoomDesign room;
+	private RoomModel room;
 	private Pair<DimensionBullet, DimensionBullet> dimensions;
 	private CheckPos check;
 
@@ -36,7 +37,7 @@ public class BulletImpl implements Bullet {
 	 * @param room,      bullet's current room
 	 * @param type,      bullet's type (player type or enemy type)
 	 */
-	public BulletImpl(Pair<Integer, Integer> position, int damage, Direction direction, RoomDesign room,
+	public BulletImpl(Pair<Integer, Integer> position, int damage, Direction direction, RoomModel room,
 			TypeBullet type) {
 		this.pos = position;
 		this.dmg = damage;
@@ -110,7 +111,7 @@ public class BulletImpl implements Bullet {
 	}
 
 	@Override
-	public RoomDesign getRoom() {
+	public RoomModel getRoom() {
 		return room;
 	}
 
