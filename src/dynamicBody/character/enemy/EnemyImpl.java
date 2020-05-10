@@ -9,19 +9,12 @@ import org.newdawn.slick.Sound;
 
 import dynamicBody.UpDownLeftRight;
 import dynamicBody.bullet.Bullet;
-import dynamicBody.character.enemy.attack.FourSideAtt;
+import dynamicBody.character.enemy.attack.AttackFactory;
 import dynamicBody.character.enemy.attack.MonsterAttack;
-import dynamicBody.character.enemy.attack.OneSideAtt;
-import dynamicBody.character.enemy.attack.TripleAtt;
-import dynamicBody.character.enemy.attack.TwoSideAtt;
 import dynamicBody.character.enemy.attack.TypeAttack;
 import dynamicBody.character.enemy.creator.TypeEnemy;
-import dynamicBody.character.enemy.move.ImmobilizedMove;
+import dynamicBody.character.enemy.move.MoveFactory;
 import dynamicBody.character.enemy.move.MovePosMonster;
-import dynamicBody.character.enemy.move.RandomMove;
-import dynamicBody.character.enemy.move.StraightMove;
-import dynamicBody.character.enemy.move.TeleportMove;
-import dynamicBody.character.enemy.move.ToPlayerMove;
 import dynamicBody.character.enemy.move.TypeMove;
 import dynamicBody.character.health.Health;
 import dynamicBody.character.health.HealthImpl;
@@ -46,6 +39,9 @@ public class EnemyImpl implements Enemy {
 	private TypeEnemy typeEnemy;
 	private UpDownLeftRight<Animation> textures;
 	private Set<Bullet> bullets = new HashSet<>();
+	
+	private MoveFactory moveFactory = new MoveFactory();
+	private AttackFactory attackFactory = new AttackFactory();
 
 	private int sleepTime = EnemyDefault.ROF.getValue();
 	private long stopMillis;
@@ -72,8 +68,8 @@ public class EnemyImpl implements Enemy {
 		this.damage = damage;
 		this.speed = speed;
 		this.health = new HealthImpl(health);
-		this.move = selectMove(move, room);
-		this.attack = selectAttack(att, room);
+		this.move = moveFactory.selectMove(move, room, this);
+		this.attack = attackFactory.selectAttack(att, room, this);
 		this.direction = dir;
 		this.dimensions = EnemyDimension.getDimensionMoster(mon);
 		this.typeEnemy = mon;
@@ -89,49 +85,6 @@ public class EnemyImpl implements Enemy {
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomModel room,
 			TypeEnemy mon) {
 		this(pos, damage, EnemyDefault.SPEED.getValue(), health, move, Direction.getRandomDir(), att, room, mon);
-	}
-
-	private MovePosMonster selectMove(TypeMove typeMove, RoomModel room) {
-		switch (typeMove) {
-		case STRAIGHT:
-			return new StraightMove(room, this);
-
-		case TELEPORT:
-			return new TeleportMove(room, this);
-
-		case RANDOM:
-			return new RandomMove(room, this);
-
-		case IMMOBILIZED:
-			return new ImmobilizedMove();
-
-		case TO_PLAYER:
-			return new ToPlayerMove(room, this);
-
-		default:
-			throw new IllegalArgumentException();
-
-		}
-	}
-
-	private MonsterAttack selectAttack(TypeAttack typeAttack, RoomModel room) {
-		switch (typeAttack) {
-		case ONE_SIDE:
-			return new OneSideAtt(room, this);
-
-		case TWO_SIDE:
-			return new TwoSideAtt(room, this);
-
-		case FOUR_SIDE:
-			return new FourSideAtt(room, this);
-
-		case TRIPLE:
-			return new TripleAtt(room, this);
-
-		default:
-			throw new IllegalArgumentException();
-
-		}
 	}
 
 	@Override
@@ -168,7 +121,7 @@ public class EnemyImpl implements Enemy {
 		case EAST:
 			return textures.getRight();
 		default:
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The Animation of the Direction isn't implemented");
 
 		}
 	}
@@ -185,7 +138,7 @@ public class EnemyImpl implements Enemy {
 		} else if (direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
 			return dimensions.getY().getDimension();
 		} else {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The Dimension of the Direction isn't implemented");
 		}
 	}
 

@@ -45,7 +45,7 @@ public class EnemyCreatorImpl implements EnemyCreator {
 		case 4:
 			return new EnemyImpl(pos, damage, health, TypeMove.IMMOBILIZED, TypeAttack.FOUR_SIDE, room,	TypeEnemy.PLANT);
 		default:
-			throw new IllegalArgumentException("Number in not between 1 and 4");
+			throw new IllegalArgumentException("Number isn't between 1 and 4");
 		}
 	}
 

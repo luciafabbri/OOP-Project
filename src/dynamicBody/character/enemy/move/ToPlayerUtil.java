@@ -115,7 +115,7 @@ public final class ToPlayerUtil {
 			} else if (posUpLeft.getY() > checkPos1.getY()) {
 				dir = Direction.NORTH;
 			} else {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Error in ShortPath, Enemy can't move in Diagonal");
 			}
 		} else {
 			dir = lastDir;

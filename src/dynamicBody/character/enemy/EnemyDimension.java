@@ -10,7 +10,9 @@ import worldModel.utilities.Pair;
 
 public enum EnemyDimension {
 
-	VERTICAL_MON1(48, 64, 15, 46), ORIZONTAL_MON1(48, 64, 15, 46);
+	VERTICAL(48, 64, 15, 46), ORIZONTAL(48, 64, 15, 46),
+	
+	PLANT(0, 64, 0, 64);
 
 	private UpDownLeftRight<Integer> dim;
 
@@ -38,15 +40,16 @@ public enum EnemyDimension {
 	 */
 	public static Pair<EnemyDimension, EnemyDimension> getDimensionMoster(TypeEnemy mon) {
 		switch (mon) {
+		case PLANT:
+			return new Pair<>(PLANT, PLANT);
 		case BOWMAN:
 		case NINJA:
 		case MAGE:
-		case PLANT:
 		case BOSS:
-			return new Pair<>(ORIZONTAL_MON1, VERTICAL_MON1);
+			return new Pair<>(ORIZONTAL, VERTICAL);
 
 		default:
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The Dimension of the TypeEnemy isn't implemented");
 		}
 
 	}
