@@ -52,7 +52,7 @@ public class TestAttack {
 		 * CONTROLLO CHE IL NEMICO CREI I PROIETTILI
 		 */
 		Enemy testOneSide = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
 
 		//IL NEMICO CREA CORRETTAMENTE IL PROIETTILE
 		testOneSide.attack();
@@ -72,7 +72,7 @@ public class TestAttack {
 		 * CONTROLLO CHE IL NEMICO CREI I PROIETTILI
 		 */
 		Enemy testTwoSide = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.TWO_SIDE, testRoom, TypeEnemy.MONSTER1);
+				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.TWO_SIDE, testRoom, TypeEnemy.BOWMAN);
 
 		//IL NEMICO CREA CORRETTAMENTE 2 PROIETTILE
 		testTwoSide.attack();
@@ -85,7 +85,7 @@ public class TestAttack {
 		 * CONTROLLO CHE IL NEMICO CREI I PROIETTILI
 		 */
 		Enemy testTriple = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.TRIPLE, testRoom, TypeEnemy.MONSTER1);
+				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.TRIPLE, testRoom, TypeEnemy.BOWMAN);
 
 		//IL NEMICO CREA CORRETTAMENTE 3 PROIETTILE
 		testTriple.attack();
@@ -99,7 +99,7 @@ public class TestAttack {
 		 * CONTROLLO CHE IL NEMICO CREI I PROIETTILI
 		 */
 		Enemy testFourSide = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.FOUR_SIDE, testRoom, TypeEnemy.MONSTER1);
+				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.FOUR_SIDE, testRoom, TypeEnemy.BOWMAN);
 
 		//IL NEMICO CREA CORRETTAMENTE 4 PROIETTILE
 		testFourSide.attack();

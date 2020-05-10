@@ -56,7 +56,7 @@ public class TestMove {
 		Direction.getDirectionList(true).forEach(d -> {
 
 			Enemy testStraight = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100, TypeMove.STRAIGHT, d,
-					TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+					TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
 			testStraight.updatePos();
 			assertEquals(new Pair<Integer, Integer>(128 + d.getAbscissa(), 128 + d.getOrdinate()),
 					testStraight.getPosition());
@@ -71,7 +71,7 @@ public class TestMove {
 		 * CONTROLLO CHE IL NEMICO UNA VOLTA SBATTUTO NEL LIMITI CAMBI DIREZIONI
 		 */
 		Enemy testStraight = new EnemyImpl(new Pair<Integer, Integer>(64, GameSettings.LIMITDOWN - 65), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
 
 		// IL NEMICO SI MUOVE CORRETTAMENTE VERSO IL BASSO ED ORA SI TROVA ATTACCATO AL
 		// MURO
@@ -94,7 +94,7 @@ public class TestMove {
 		 * CONTROLLO CHE IL NEMICO SBATTA CONTRO GLI OSTACOLI
 		 */
 		testStraight = new EnemyImpl(new Pair<Integer, Integer>(64, 128), 10, 1, 100, TypeMove.STRAIGHT,
-				Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+				Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
 		try {
 			testRoom.addObstacle(new Obstacle(new Pair<Integer, Integer>(64, 128 + 65)));
 		} catch (SlickException e) {
@@ -121,7 +121,7 @@ public class TestMove {
 	@org.junit.Test
 	public void testRandomMove() {
 		Enemy testRandom = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 1, 100, TypeMove.RANDOM, Direction.SOUTH,
-				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
 		// IL MOVIMENTO RANDOM UNA VOLTA INIZIALIZZATO CAMBIA LA DIREZIONE OGNI TOT PASSI
 		testRandom.updatePos();
 		testRandom.updatePos();
@@ -133,7 +133,7 @@ public class TestMove {
 	@org.junit.Test
 	public void testImmobilizedMove() {
 		Enemy testImmobilized = new EnemyImpl(new Pair<Integer, Integer>(64, 64), 10, 1, 100, TypeMove.IMMOBILIZED, Direction.SOUTH,
-				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
 		//AGGIORNARE LA POSIZIONE RITORNERA SEMPRE QUELLA PRECEDENTE		
 		testImmobilized.updatePos();
 		testImmobilized.updatePos();
@@ -146,7 +146,7 @@ public class TestMove {
 	@org.junit.Test
 	public void testTeleportMove() {
 		Enemy testTeleport = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 1, 100, TypeMove.TELEPORT, Direction.SOUTH,
-				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.MONSTER1);
+				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
 		// IL MOVIMENTO TELEPORT SI TELETRASPORTA IN UNA POSIZIONE E RIMANI LI PER UN PAIO DI SECONDI
 		testTeleport.updatePos();
 		assertNotEquals(new Pair<Integer, Integer>(250, 250), testTeleport.getPosition());

@@ -7,14 +7,13 @@ import dynamicBody.move.Direction;
 
 public final class DistanceBull {
 
-	
 	/**
 	 * Private constructors to prevent instantiation
 	 */
 	private DistanceBull() {
-		
+
 	}
-	
+
 	/**
 	 * Method that calculate the position where spawn bullet
 	 * 

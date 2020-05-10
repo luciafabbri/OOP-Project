@@ -14,24 +14,20 @@ import dynamicBody.character.enemy.creator.TypeEnemy;
 
 public enum EnemyImage {
 
-	FRONT_PLANT("./res/chars/enemies/plan.png"),
+	PLANT("./res/chars/enemies/plan.png"),
 
-	
-	FRONT_1("./res/chars/enemies/Enemy1_front.png"), BACK_1("./res/chars/enemies/Enemy1_back.png"),
-	LEFT_1("./res/chars/enemies/Enemy1_left.png"), RIGHT_1("./res/chars/enemies/Enemy1_right.png"),
-	
-	
-	FRONT_2("./res/chars/enemies/Enemy2_front.png"), BACK_2("./res/chars/enemies/Enemy2_back.png"),
-	LEFT_2("./res/chars/enemies/Enemy2_left.png"), RIGHT_2("./res/chars/enemies/Enemy2_right.png"),
-	
-	
-	FRONT_3("./res/chars/enemies/Enemy3_front.png"), BACK_3("./res/chars/enemies/Enemy3_back.png"),
-	LEFT_3("./res/chars/enemies/Enemy3_left.png"), RIGHT_3("./res/chars/enemies/Enemy3_right.png"),
-	
-	
+	FRONT_BOWMAN("./res/chars/enemies/Enemy1_front.png"), BACK_BOWMAN("./res/chars/enemies/Enemy1_back.png"),
+	LEFT_BOWMAN("./res/chars/enemies/Enemy1_left.png"), RIGHT_BOWMAN("./res/chars/enemies/Enemy1_right.png"),
+
+	FRONT_MAGE("./res/chars/enemies/Enemy2_front.png"), BACK_MAGE("./res/chars/enemies/Enemy2_back.png"),
+	LEFT_MAGE("./res/chars/enemies/Enemy2_left.png"), RIGHT_MAGE("./res/chars/enemies/Enemy2_right.png"),
+
+	FRONT_NINJA("./res/chars/enemies/Enemy3_front.png"), BACK_NINJA("./res/chars/enemies/Enemy3_back.png"),
+	LEFT_NINJA("./res/chars/enemies/Enemy3_left.png"), RIGHT_NINJA("./res/chars/enemies/Enemy3_right.png"),
+
 	FRONT_BOSS("./res/chars/enemies/mainChar6_front.png"), BACK_BOSS("./res/chars/enemies/mainChar6_back.png"),
 	LEFT_BOSS("./res/chars/enemies/mainChar6_left.png"), RIGHT_BOSS("./res/chars/enemies/mainChar6_right.png");
-	
+
 	String image;
 
 	/**
@@ -56,29 +52,29 @@ public enum EnemyImage {
 	public static UpDownLeftRight<Animation> getTexture(TypeEnemy mon) throws SlickException {
 		Animation front, back, left, right;
 		switch (mon) {
+		case BOWMAN:
+			front = FRONT_BOWMAN.getAnimation();
+			back = BACK_BOWMAN.getAnimation();
+			left = LEFT_BOWMAN.getAnimation();
+			right = RIGHT_BOWMAN.getAnimation();
+			break;
+		case MAGE:
+			front = FRONT_MAGE.getAnimation();
+			back = BACK_MAGE.getAnimation();
+			left = LEFT_MAGE.getAnimation();
+			right = RIGHT_MAGE.getAnimation();
+			break;
+		case NINJA:
+			front = FRONT_NINJA.getAnimation();
+			back = BACK_NINJA.getAnimation();
+			left = LEFT_NINJA.getAnimation();
+			right = RIGHT_NINJA.getAnimation();
+			break;
 		case PLANT:
-			front = FRONT_PLANT.getAnimation();
-			back = FRONT_PLANT.getAnimation();
-			left = FRONT_PLANT.getAnimation();
-			right = FRONT_PLANT.getAnimation();
-			break;
-		case MONSTER1:
-			front = FRONT_1.getAnimation();
-			back = BACK_1.getAnimation();
-			left = LEFT_1.getAnimation();
-			right = RIGHT_1.getAnimation();
-			break;
-		case MONSTER2:
-			front = FRONT_2.getAnimation();
-			back = BACK_2.getAnimation();
-			left = LEFT_2.getAnimation();
-			right = RIGHT_2.getAnimation();
-			break;
-		case MONSTER3:
-			front = FRONT_2.getAnimation();
-			back = BACK_2.getAnimation();
-			left = LEFT_2.getAnimation();
-			right = RIGHT_2.getAnimation();
+			front = PLANT.getAnimation();
+			back = PLANT.getAnimation();
+			left = PLANT.getAnimation();
+			right = PLANT.getAnimation();
 			break;
 		case BOSS:
 			front = FRONT_BOSS.getAnimation();

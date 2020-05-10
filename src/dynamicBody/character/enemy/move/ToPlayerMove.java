@@ -3,7 +3,6 @@ package dynamicBody.character.enemy.move;
 import coordination.StateCoord;
 import design.RoomDesign;
 import design.utilities.Pair;
-import design.utilities.graphs.BidirectionalGraph;
 import design.utilities.graphs.Graph;
 import dijkstra.DijkstraAlg;
 import dijkstra.Node;
@@ -72,28 +71,10 @@ public class ToPlayerMove implements MovePosMonster {
 		}
 		return nextDir;
 	}
-	
-	private void buildGraph() {
-		graph = this.createGraph(currentRoom);
-		graph = DijkstraAlg.calculateShortestPathFromSource(graph, ToPlayerUtil.findNode(ToPlayerUtil.findTile(ToPlayerUtil.getPlayerPos()), graph));
-	}
-	
-	private Graph<Node<Pair<Integer, Integer>>> createGraph(RoomDesign room) {
-		Graph<Node<Pair<Integer, Integer>>> graph = new BidirectionalGraph<>();
-		// INSERISCO NODI DENTRO AL GRAFO
-		room.getTilesGraph().getNodes().forEach(x -> {
-			if (!room.getObstaclePositions().contains(x)) {
-				graph.addNode(new Node<Pair<Integer, Integer>>(x));
-			}
-		});
-		// System.out.println(graph.getNodes().size());
-		// SETTO I NODI ADIANCENTI IN TUTTI I NODI
-		graph.getNodes().forEach(x -> {
-			room.getTilesGraph().getEdges(x.getName()).forEach(y -> {
-				x.addDestination(ToPlayerUtil.findNode(y, graph), 1);
-			});
-		});
 
-		return graph;
+	private void buildGraph() {
+		graph = ToPlayerUtil.createGraph(currentRoom);
+		graph = DijkstraAlg.calculateShortestPathFromSource(graph,
+				ToPlayerUtil.findNode(ToPlayerUtil.findTile(ToPlayerUtil.getPlayerPos()), graph));
 	}
 }

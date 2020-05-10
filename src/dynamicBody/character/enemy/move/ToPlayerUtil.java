@@ -26,9 +26,36 @@ public final class ToPlayerUtil {
 	/**
 	 * Private constructors to prevent instantiation
 	 */
-	private ToPlayerUtil(){
-		
+	private ToPlayerUtil() {
+
 	}
+
+	/**
+	 * Method that transform the TileGraph of Pair in RoomDesign to a Graph of Node
+	 * of Pair
+	 * 
+	 * @param room, the room where you can find the TileGraph
+	 * @return The graph of Node
+	 */
+	public static Graph<Node<Pair<Integer, Integer>>> createGraph(RoomDesign room) {
+		Graph<Node<Pair<Integer, Integer>>> graph = new BidirectionalGraph<>();
+		// INSERISCO NODI DENTRO AL GRAFO
+		room.getTilesGraph().getNodes().forEach(x -> {
+			if (!room.getObstaclePositions().contains(x)) {
+				graph.addNode(new Node<Pair<Integer, Integer>>(x));
+			}
+		});
+		// System.out.println(graph.getNodes().size());
+		// SETTO I NODI ADIANCENTI IN TUTTI I NODI
+		graph.getNodes().forEach(x -> {
+			room.getTilesGraph().getEdges(x.getName()).forEach(y -> {
+				x.addDestination(ToPlayerUtil.findNode(y, graph), 1);
+			});
+		});
+
+		return graph;
+	}
+
 	/**
 	 * Method use to find the tile of a position
 	 * 
@@ -40,10 +67,11 @@ public final class ToPlayerUtil {
 		int y = pos.getY() / GameSettings.TILESIZE;
 		return new Pair<Integer, Integer>(x * GameSettings.TILESIZE, y * GameSettings.TILESIZE);
 	}
-	
+
 	/**
 	 * Method use to find the node in a Graph
-	 * @param pos, name of Node
+	 * 
+	 * @param pos,   name of Node
 	 * @param graph, graph where is located the node
 	 * @return the Node you need to find
 	 */
