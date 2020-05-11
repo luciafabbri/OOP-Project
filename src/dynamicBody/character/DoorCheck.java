@@ -20,7 +20,7 @@ public class DoorCheck {
 	 * @return true if the Player is inside the designated area, otherwise false
 	 */
 	public boolean transNorth(final Pair<Integer, Integer> pos) {
-		 return ((pos.getX() > (GameSettings.TILESIZE * 9) - 11 && (pos.getX() < (GameSettings.TILESIZE * 9 ) + 11)) && (pos.getY() <= -12));
+		 return (pos.getX() > (GameSettings.TILESIZE * 9) - 11 && pos.getX() < (GameSettings.TILESIZE * 9 ) + 11) && (pos.getY() <= -12);
 	}
 	
 	

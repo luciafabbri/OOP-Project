@@ -1,6 +1,7 @@
 package coordination;
 
 import java.awt.Font;
+import java.math.BigDecimal;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -114,8 +115,12 @@ public class UI {
 	
 	
 	private void healthUpdate() {
-		float healthPer = (((3 * GameSettings.TILESIZE) / 4 * 6) - 8) / player.getMaxHealth();
-		float remainingHealth = (player.getMaxHealth() - player.getCurrentHealth()) * healthPer;
+		float healthPer = (((3f * (float) GameSettings.TILESIZE) / 4f * 6f) - 8f) / (float) player.getMaxHealth();
+		
+		float remainingHealth = ((float) player.getMaxHealth() - (float) player.getCurrentHealth()) * healthPer;
+		
+		System.out.print(healthPer + " ");
+		System.out.println(remainingHealth);
 		
 		
 		graphics.setColor(Color.lightGray);
