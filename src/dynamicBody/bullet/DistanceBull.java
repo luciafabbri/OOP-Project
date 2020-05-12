@@ -15,6 +15,7 @@ public final class DistanceBull {
 
 	/**
 	 * Method that calculate the position where spawn bullet
+	 * 
 	 * @param dir, direction where to spawn
 	 * @param character, the Character who create that
 	 * @return return a Pair with the coordinates
@@ -27,6 +28,7 @@ public final class DistanceBull {
 
 	/**
 	 * Method used to 
+	 * 
 	 * @param dir
 	 * @param character
 	 * @return

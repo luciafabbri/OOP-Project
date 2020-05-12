@@ -39,11 +39,9 @@ public enum DimensionBullet {
 			return new Pair<>(ORIZONTAL_PLAYER, VERTICAL_PLAYER);
 		case ENEMY:
 			return new Pair<>(MONSTER, MONSTER);
-
 		default:
 			throw new IllegalArgumentException();
 		}
-
 	}
 
 }

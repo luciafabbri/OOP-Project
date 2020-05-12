@@ -15,6 +15,7 @@ public class BulletPlayerImpl extends BulletImpl implements Bullet {
 
 	/**
 	 * Default constructor
+	 * 
 	 * @param position, bullet's position
 	 * @param damage, bullet's damage power
 	 * @param direction, bullet's direction
@@ -25,7 +26,6 @@ public class BulletPlayerImpl extends BulletImpl implements Bullet {
 		try {
 			this.setTexture(new Image("./res/proj/MainProj.png"));
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

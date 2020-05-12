@@ -29,6 +29,7 @@ public enum Direction {
 	
 	/**
 	 * Default constructor
+	 * 
 	 * @param x, x axe value 
 	 * @param y, y axe value 
 	 */

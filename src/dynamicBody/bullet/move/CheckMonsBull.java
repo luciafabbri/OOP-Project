@@ -16,7 +16,6 @@ import worldModel.utilities.Pair;
 public class CheckMonsBull extends CheckPosImpl implements GameSettings, CheckPos {
 	
 	private DynamicBody entity;
-	
 	private Player player = StateCoord.getPlayer();
 	
 	/**

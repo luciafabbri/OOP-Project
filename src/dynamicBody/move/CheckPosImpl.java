@@ -21,6 +21,7 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 	
 	/**
 	 * Default constructor
+	 * 
 	 * @param entity, the dynamic body's of which we have to check the next available position	 
 	 */
 	public CheckPosImpl(DynamicBody entity) {
@@ -35,6 +36,7 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 	
 	/**
 	 * Method used to check if a dynamic body is in collision with an obstacle in the dungeon
+	 * 
 	 * @param room, dynamic body's current room
 	 * @param pos, dynamic body's current position
 	 * @return true if the dynamic body had a collision with an obstacle
@@ -42,8 +44,10 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 	protected boolean checkObstaclesRoom(RoomModel room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
 		for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
-			checkX = pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE && pos.getX() + rightPix > obst.getX() ;
-			checkY = pos.getY() + upPix < obst.getY() + TILESIZE  && pos.getY() + downPix > obst.getY();
+			checkX = pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE &&
+					pos.getX() + rightPix > obst.getX() ;
+			checkY = pos.getY() + upPix < obst.getY() + TILESIZE  && 
+					pos.getY() + downPix > obst.getY();
 			if (checkX && checkY) {
 				return true;
 			}
@@ -53,6 +57,7 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 
 	/**
 	 * Method used to check if a dynamic body's is going out of dungeon's bounds
+	 * 
 	 * @param pos, dynamic body's current coordinates 
 	 * @return true if the dynamic body is out of bounds
 	 */

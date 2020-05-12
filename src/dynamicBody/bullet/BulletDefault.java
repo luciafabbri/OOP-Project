@@ -13,7 +13,8 @@ public enum BulletDefault {
 
 	/**
 	 * Default constructor 
-	 * @param value, 
+	 * 
+	 * @param value,
 	 */
 	BulletDefault(int value) {
 		this.value = value;

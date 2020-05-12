@@ -20,6 +20,7 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings, Check
 	
 	/**
 	 * Default constructor
+	 * 
 	 * @param entity, the type of entity associated with this type of bullet's check
 	 */
 	public CheckPlayerBull(DynamicBody entity) {
@@ -34,6 +35,7 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings, Check
 	
 	/**
 	 * Method used to check if player's bullet is in collision with any enemy in the current room
+	 * 
 	 * @param room, bullet's current room 
 	 * @param pos, bullet's current coordinates
 	 * @return true if the bullet had a collision with an enemy, otherwise return false
