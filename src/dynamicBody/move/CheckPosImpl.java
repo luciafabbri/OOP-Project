@@ -47,7 +47,7 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 		for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
 			checkX = pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE &&
 					pos.getX() + rightPix > obst.getX() ;
-			checkY = pos.getY() + upPix < obst.getY() + TILESIZE  && 
+			checkY = pos.getY() + upPix < obst.getY() + GameSettings.OBST_DOWN  && 
 					pos.getY() + downPix > obst.getY();
 			if (checkX && checkY) {
 				return true;
