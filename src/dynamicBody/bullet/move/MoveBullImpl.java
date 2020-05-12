@@ -18,6 +18,7 @@ public class MoveBullImpl implements MoveBull {
 	
 	/**
 	 * Default constructor
+	 * 
 	 * @param room, bullet's current room
 	 */
 	public MoveBullImpl(RoomModel room) {

@@ -8,34 +8,32 @@ import worldModel.utilities.Pair;
 public final class DistanceBull {
 
 	/**
-	 * Private constructors to prevent instantiation
+	 * Private constructor to prevent instantiation
 	 */
 	private DistanceBull() {
-
 	}
 
 	/**
 	 * Method that calculate the position where spawn bullet
-	 * 
-	 * @param dir,       direction where to spawn
+	 * @param dir, direction where to spawn
 	 * @param character, the Character who create that
 	 * @return return a Pair with the coordinates
 	 */
-
 	public static Pair<Integer, Integer> calculateBullPos(Direction dir, Character character) {
-
 		Pair<Integer, Integer> distance = calcDistance(dir, character);
 		return new Pair<Integer, Integer>(character.getPosition().getX() + distance.getX(),
 				character.getPosition().getY() + distance.getY());
-
 	}
 
+	/**
+	 * Method used to 
+	 * @param dir
+	 * @param character
+	 * @return
+	 */
 	private static Pair<Integer, Integer> calcDistance(Direction dir, Character character) {
-
 		UpDownLeftRight<Integer> dim = DimensionBullet.getDimensionBullet(TypeBullet.ENEMY).getX().getDimension();
-
 		int distanceSpawn = BulletDefault.DISTANCESPAWNBULL.getValue();
-
 		switch (dir) {
 		case NORTH:
 			return new Pair<Integer, Integer>(0, -(dim.getDown() + distanceSpawn));

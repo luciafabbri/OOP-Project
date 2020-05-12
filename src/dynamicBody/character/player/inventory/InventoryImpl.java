@@ -13,6 +13,7 @@ public class InventoryImpl implements Inventory {
 	
 	/**
 	 * Default constructor
+	 * 
 	 * @param player, the player of which we will store the picked objects 
 	 */
 	public InventoryImpl(Player player) {

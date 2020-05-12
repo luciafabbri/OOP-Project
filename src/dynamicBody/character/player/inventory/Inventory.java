@@ -12,7 +12,7 @@ public interface Inventory {
 	int getCoin();
 
 	/**
-	 * @return player's keys stored in the inventory
+	 * @return player's keys
 	 */
 	int getKey();
 	
@@ -22,7 +22,7 @@ public interface Inventory {
 	void addCoin();
 
 	/**
-	 * Method used to add a new key in the inventory
+	 * Method used to add a new key 
 	 */
 	void addKey();
 

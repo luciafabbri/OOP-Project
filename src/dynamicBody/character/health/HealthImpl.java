@@ -11,6 +11,7 @@ public class HealthImpl implements Health {
 	
 	/**
 	 * Default constructor 
+	 * 
 	 * @param health, character's initial health
 	 */
 	public HealthImpl(int health) {

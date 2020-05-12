@@ -1,7 +1,8 @@
 package dynamicBody.character.health;
 
 /**
- * An interface that defines all the aspects of the class Health, used to get information about player's and enemies's lives
+ * An interface that defines all the aspects of the class Health, used to get information
+ * about player's and enemies's lives
  */
 
 public interface Health {

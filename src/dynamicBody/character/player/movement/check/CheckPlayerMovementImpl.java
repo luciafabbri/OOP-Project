@@ -56,6 +56,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	
 	/**
 	 * Default constructor
+	 * 
 	 *  @param entity, entity is used to inherit all the methods implemented in class CheckPosImpl
 	 *  @param player, current entity of which we will do the check
 	 */
@@ -75,7 +76,6 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	@Override
 	public boolean checkDoors(Pair<Integer, Integer> pos, Map<Door, Optional<RoomModel>> map) {
 		DoorCheck check = new DoorCheck();
-		
 		if(map.entrySet().stream().filter(s -> s.getKey().equals(Door.NORTH)).findFirst().get().getValue().isPresent() && check.doorNorth(pos)){
 			return true;
 		} else if(map.entrySet().stream().filter(s -> s.getKey().equals(Door.SOUTH)).findFirst().get().getValue().isPresent() && check.doorSouth(pos)) {
@@ -92,8 +92,10 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	public boolean checkStairs(RoomModel room, Pair<Integer, Integer> pos) {
 		if( room.areStairsPresent() ) {
 			boolean checkX, checkY;
-			checkX = pos.getX() + leftPix < room.getStairs().getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > room.getStairs().getPosition().getX();
-			checkY = pos.getY() < room.getStairs().getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > room.getStairs().getPosition().getY();
+			checkX = pos.getX() + leftPix < room.getStairs().getPosition().getX() + GameSettings.TILESIZE && 
+					pos.getX() + rightPix > room.getStairs().getPosition().getX();
+			checkY = pos.getY() < room.getStairs().getPosition().getY() + (TILESIZE - rightPix) &&
+					pos.getY() + downPix > room.getStairs().getPosition().getY();
 			if (checkX && checkY) {
 				return true;
 			}
@@ -104,12 +106,12 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	@Override
 	public boolean checkEnemyRoom(RoomModel room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
-		
 		Set<Enemy> enemySet = room.getEnemySet();
-		
 		for (Enemy enemy : enemySet) {
-			checkX = pos.getX() + enemy.getDimension().getLeft() < enemy.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + enemy.getDimension().getRight() > enemy.getPosition().getX();
-			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - enemy.getDimension().getRight()) && pos.getY() + enemy.getDimension().getDown() > enemy.getPosition().getY();
+			checkX = pos.getX() + enemy.getDimension().getLeft() < enemy.getPosition().getX() + GameSettings.TILESIZE &&
+					pos.getX() + enemy.getDimension().getRight() > enemy.getPosition().getX();
+			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - enemy.getDimension().getRight()) &&
+					pos.getY() + enemy.getDimension().getDown() > enemy.getPosition().getY();
 			stopMillis = System.currentTimeMillis();
 			if ( (checkX && checkY) && (stopMillis - startMillis > 1000) ){ 
 				player.takeDamage(enemy.getDamage());
@@ -128,6 +130,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	/**
 	 * Method used to check if the player is in collision with any modifiers in the room
 	 * In a positive case, he will change the corresponding parameter
+	 * 
 	 * @param room, current room where the player is
 	 * @param pos, player's coordinates inside the room
 	 * @return true if the player had a collision 
@@ -196,22 +199,23 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	/**
 	 * Method used to check if the player is above the coin and can pick it up
 	 * The coin appears only at each level and it represents only a collectible to the player
+	 * 
 	 * @param pos, player's current position
 	 * @param level, player's current level
 	 * @return true if the player is above the coin and can collect it 
 	 */
 	private boolean checkCoin(Pair<Integer, Integer> pos, Level level) {
 		boolean checkX, checkY;
-		
-		if(level.getLevel().get(level.getRoomID()).getRoom().getCoin().isPresent() && !level.isGotLevelCoin()) {
+		if( level.getLevel().get(level.getRoomID()).getRoom().getCoin().isPresent() && !level.isGotLevelCoin() ){
 			Coin item = level.getLevel().get(level.getRoomID()).getRoom().getCoin().get();
-			
-			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
-			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
-			
+			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && 
+					pos.getX() + rightPix > item.getPosition().getX();
+			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && 
+					pos.getY() + downPix > item.getPosition().getY();
 			if(checkX && checkY) {
-				if(!coinPickup.playing())
+				if(!coinPickup.playing()) {
 					coinPickup.play(1.0f, 0.35f);
+				}
 				level.setGotLevelCoin(true);
 				player.getInventory().addCoin();
 				return true;
@@ -223,21 +227,22 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	/**
 	 * Method used to check if the player is above the key and can pick it up
 	 * The key appears in each room in order to open the doors and let the player move into the dungeon and explore it
+	 * 
 	 * @param pos, player's current position
 	 * @param level, player's current level 
 	 * @return true if the player is above the key and can collect it 
 	 */
 	private boolean checkKey(Pair<Integer, Integer> pos, Level level) {
 		boolean checkX, checkY;
-		
 		Key item = level.getLevel().get(level.getRoomID()).getRoom().getKey();
-		
-		checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
-		checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
-		
-		if((checkX && checkY) && !level.getLevel().get(level.getRoomID()).isGotRoomKey()) {
-			if(!keyPickup.playing())
+		checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE &&
+				pos.getX() + rightPix > item.getPosition().getX();
+		checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && 
+				pos.getY() + downPix > item.getPosition().getY();
+		if( (checkX && checkY) && !level.getLevel().get(level.getRoomID()).isGotRoomKey() ) {
+			if(!keyPickup.playing()) {
 				keyPickup.play(1.0f, 0.15f);	
+			}
 			level.getLevel().get(level.getRoomID()).setGotRoomKey(true);
 			return true;
 		}

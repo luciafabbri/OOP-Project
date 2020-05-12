@@ -31,6 +31,7 @@ public class ShootingPlayerImpl implements ShootingPlayer {
 	
 	/**
 	 * Default constructor
+	 * 
 	 * @param player, player that will start shooting
 	 */
 	public ShootingPlayerImpl(Player player) {

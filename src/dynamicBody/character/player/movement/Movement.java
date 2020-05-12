@@ -13,6 +13,7 @@ public interface Movement {
 
 	/** 
 	 * According to the input received, this method will change player's coordinates and his direction
+	 * 
 	 * @param input, received from the keyboard
 	 * @param pos, player's current coordinates
 	 * @param dir, player's current direction 

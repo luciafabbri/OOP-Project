@@ -38,8 +38,9 @@ public class MovementImpl implements Movement {
 		 */		
 		if( input.isKeyDown(Input.KEY_W) ) {
 			this.direction = Direction.NORTH;
-			if(!footsteps.playing())
+			if(!footsteps.playing()) {
 				footsteps.play(1.0f, 0.5f);
+			}
 			return new Pair<Integer,Integer>(pos.getX(),pos.getY() - newSpeed);
 		}
 		
@@ -49,8 +50,9 @@ public class MovementImpl implements Movement {
 		 */		
 		if( input.isKeyDown(Input.KEY_S) ) {
 			this.direction = Direction.SOUTH;
-			if(!footsteps.playing())
+			if(!footsteps.playing()) {
 				footsteps.play(1.0f, 0.5f);
+			}
 			return new Pair<Integer,Integer>(pos.getX(),pos.getY() + newSpeed);
 		}
 
@@ -60,8 +62,9 @@ public class MovementImpl implements Movement {
 		 */ 
 		if( input.isKeyDown(Input.KEY_A) ) {
 			this.direction = Direction.WEST;
-			if(!footsteps.playing())
+			if(!footsteps.playing()) {
 				footsteps.play(1.0f, 0.5f);
+			}
 			return new Pair<Integer,Integer>(pos.getX() - newSpeed,pos.getY());
 		}
 
@@ -71,11 +74,11 @@ public class MovementImpl implements Movement {
 		 */
 		if( input.isKeyDown(Input.KEY_D) ) {
 			this.direction = Direction.EAST;
-			if(!footsteps.playing())
+			if(!footsteps.playing()) {
 				footsteps.play(1.0f, 0.5f);
+			}
 			return new Pair<Integer,Integer>(pos.getX() + newSpeed,pos.getY());
 		}
-		
 		return pos;
 	}
 

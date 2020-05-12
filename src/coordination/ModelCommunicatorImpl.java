@@ -109,7 +109,7 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 
 	@Override
 	public void shootMain(final Input input) {
-		player.getBullet().checkShooting(input);
+		player.getShootingBullet().checkShooting(input);
 
 		this.moveMainProj();
 	}

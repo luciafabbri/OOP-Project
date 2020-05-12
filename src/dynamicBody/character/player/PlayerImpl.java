@@ -218,17 +218,11 @@ public class PlayerImpl implements Player {
 		return this.health.isAlive() ;
 	}
 	
-	/**
-	 * used in class LogicImpl 
-	 */
 	@Override
-	public ShootingPlayer getBullet() {
+	public ShootingPlayer getShootingBullet() {
 		return this.bullet;
 	} 
 	
-	/**
-	 * used in class LevelsPlay
-	 */
 	@Override    
 	public CheckPlayerMovement getCheck() {
 		return this.check;

@@ -111,7 +111,7 @@ public class PlayerInputTest extends BasicGame {
 		dirS = container.getInput().isKeyDown(Input.KEY_S);	
 		
 		testPlayer.setPosition(input, testLevel);
-		testPlayer.getBullet().checkShooting(input);
+		testPlayer.getShootingBullet().checkShooting(input);
 	}
 
 	/**

@@ -20,6 +20,7 @@ public interface Player extends dynamicBody.character.Character {
 	
 	/**
 	 * Method used to set player's position
+	 * 
 	 * @param input, received from the keyboard
 	 * @param level, player's current level 
 	 * @throws SlickException 
@@ -28,6 +29,7 @@ public interface Player extends dynamicBody.character.Character {
 	
 	/**
 	 * Method used to set the level in which the player should go
+	 * 
 	 * @param level, to set the new player's level
 	 */
 	void setLevel(int level);
@@ -38,9 +40,12 @@ public interface Player extends dynamicBody.character.Character {
 	int getLevel();
 	
 	/**
-	 *  @return player's bullet 
+	 *
+	 * Method used to get player's type of shooting bullet 
+	 * 
+	 * @return player's bullet 
 	 */
-	ShootingPlayer getBullet();
+	ShootingPlayer getShootingBullet();
 
 	/**
 	 * @return player's current room 
@@ -49,12 +54,14 @@ public interface Player extends dynamicBody.character.Character {
 
 	/**
 	 * Methods used to set player's current room 
+	 * 
 	 * @param room, the room where the player would be moved
 	 */
 	void setCurrentRoom(RoomModel room);
 	
 	/**
 	 * Method used to update player's position
+	 * 
 	 * @param position, the coordinates of the player to be set 
 	 */
 	void transitionPos(Pair<Integer, Integer> position);
@@ -65,12 +72,15 @@ public interface Player extends dynamicBody.character.Character {
 	int getPlayerSpeed();
 
 	/**
+	 * Method used to get player's type of check 
+	 * 
 	 * @return player's check 
 	 */
 	CheckPlayerMovement getCheck();
 	
 	/**
 	 * Method used to upgrade player's damage 
+	 * 
 	 * @param upgrade, an int value to add to player's current damage
 	 */
 	void upgradeDamage(int upgrade);
@@ -82,6 +92,7 @@ public interface Player extends dynamicBody.character.Character {
 
 	/**
 	 * Method used to upgrade player's speed 
+	 * 
 	 * @param upgrade, an int value to be added to player's speed in order to move faster in the dungeon
 	 */
 	void upgradePlayerSpeed(int upgrade);
@@ -93,6 +104,7 @@ public interface Player extends dynamicBody.character.Character {
 	
 	/**
 	 * Method used to load all player's animations 
+	 * 
 	 * @throws SlickException
 	 */
 	void loadAnimations() throws SlickException;
@@ -100,6 +112,7 @@ public interface Player extends dynamicBody.character.Character {
 	/**
 	 * Method used to check the presence of any enemy in the room
 	 * If the room is empty, the doors will  open and the player will be able to change room
+	 * 
 	 * @param clearRoom, the boolean value to check 
 	 */
 	void setClearRoom(boolean clearRoom);
@@ -111,12 +124,14 @@ public interface Player extends dynamicBody.character.Character {
 
 	/**
 	 * Method used to upgrade player's rate of fire 
+	 * 
 	 * @param upgrade, an int value used to change player's current rate of fire in order to shoot faster 
 	 */
 	void upgradeRateOfFire(int upgrade);
 
 	/**
 	 * Method used to upgrade player's max health 
+	 * 
 	 * @param upgrade, an int value to be added to the player's max health
 	 */
 	void upgradeMaxHealth(int upgrade);
@@ -133,12 +148,14 @@ public interface Player extends dynamicBody.character.Character {
 
 	/**
 	 * Method used to upgrade player's current health
+	 * 
 	 * @param heal, int value to be added to player's current health
 	 */
 	void heal(int heal);
 	
 	/**
 	 * Method used to get player's movement (only used in class PlayerAndBulletCreationTest)
+	 * 
 	 * @return new current player's coordinates and his direction  
 	 */
 	Movement getMove();	
