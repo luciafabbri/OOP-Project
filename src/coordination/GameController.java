@@ -99,15 +99,13 @@ public class GameController extends BasicGameState {
 		
 		graphics.drawDoors();
 		
+		graphics.drawEnemies();
+		
 		graphics.drawMain(input);
 		
-		graphics.drawEnemies();
-			
 		graphics.drawDoorTop();
 		
 		ui.drawUI();
-		
-		
 		
 		
 		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 0);
@@ -126,17 +124,21 @@ public class GameController extends BasicGameState {
 		
 		logic.setRoomCleared();
 		
-		logic.moveMain(input);
-		logic.shootMain(input);
+		if(!level.isPauseMenu()) {
+			logic.moveMain(input);
+			logic.shootMain(input);
+			
+			logic.moveEnemies();
+			logic.shootEnemies();
+			
+			logic.switchRooms(input);
+		}
 		
-		logic.moveEnemies();
-		logic.shootEnemies();
-		
-		logic.switchRooms(input);
+		logic.pauseMenu(input);
 		
 		if(player.getCheck().checkStairs(level.getLevel().get(level.getRoomID()).getRoom(), player.getPosition())) {
 			this.levelID++;
-			init(arg0, arg1);
+			this.init(arg0, arg1);
 		}
 			
 		

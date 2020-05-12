@@ -26,11 +26,12 @@ public class LevelImpl implements Level {
 	 */
 	private int roomID;
 	private boolean gotLevelCoin;
-	
+	private boolean pauseMenu;
 	
 	public LevelImpl(final int levelID) throws IOException {
 		testLevel = new LevelModelGeneratorImpl().generateLevel(levelID);
 		this.loadRooms();
+		this.pauseMenu = false;
 		this.roomID = 0;
 	}
 	
@@ -65,5 +66,13 @@ public class LevelImpl implements Level {
 
 	public void setGotLevelCoin(boolean gotLevelCoin) {
 		this.gotLevelCoin = gotLevelCoin;
+	}
+
+	public boolean isPauseMenu() {
+		return pauseMenu;
+	}
+
+	public void setPauseMenu(boolean pauseMenu) {
+		this.pauseMenu = pauseMenu;
 	}
 }

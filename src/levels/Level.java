@@ -38,4 +38,8 @@ public interface Level {
 	 * @param gotLevelCoin, boolean
 	 */
 	public void setGotLevelCoin(boolean gotLevelCoin);
+	
+	public boolean isPauseMenu();
+	
+	public void setPauseMenu(boolean pauseMenu);
 }

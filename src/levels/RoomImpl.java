@@ -75,8 +75,6 @@ public class RoomImpl implements Room {
 		this.gotRoomKey = false;
 		
 		try {
-			this.room.addObstacle(new Obstacle(new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE * 2)));
-			
 			
 			this.floor = new Floor1();
 			this.wallVert = new WallVert1();

@@ -52,14 +52,15 @@ public class UI {
 	private Color color;
 
 	private long timeNow;
-	private long timeEnd = 0;
+	private long timeEnd;
 
 	private boolean gotCoin;
 	private boolean gotCoin2;
 	private boolean gotCoin3;
 
-	private int i = 0;
+	private int index;
 	private Color tmp2;
+	private Color pauseBackground;
 
 	/**
 	 * Constructor for UI
@@ -73,13 +74,20 @@ public class UI {
 	public UI(final Player player, final Graphics graphics, final Level level) throws SlickException {
 		this.player = player;
 		this.level = level;
+		this.graphics = graphics;
+		
+		this.timeEnd = 0;
+		this.index = 0;
+		
 		this.coinImage = new Image("./res/UI/CoinUI.png");
 		this.healthImage = new Image("./res/UI/healthUI.png");
-		this.graphics = graphics;
+		
 		this.font = new Font("Default", Font.ROMAN_BASELINE, 30);
 		this.tmp = new TrueTypeFont(font, false);
+		
 		this.tmp2 = new Color(255, 255, 255, 0);
 		this.color = new Color(72, 59, 58, 75);
+		this.pauseBackground = new Color(0, 0, 0, 150);
 
 		this.gotCoin = true;
 		this.gotCoin2 = false;
@@ -101,6 +109,8 @@ public class UI {
 		
 		this.healthUpdate();
 		
+		this.pauseMenu();
+		
 		graphics.setColor(Color.white);
 		
 		if(level.isGotLevelCoin()) {
@@ -113,15 +123,28 @@ public class UI {
 			
 	}
 	
+	private void pauseMenu() {
+		if(this.level.isPauseMenu()) {
+			
+			graphics.setColor(pauseBackground);
+			
+			graphics.fillRect(0, 0, GameSettings.WIDTH, GameSettings.HEIGHT);
+			
+			graphics.scale(2, 2);
+			
+			graphics.setColor(Color.white);
+			
+			graphics.drawString("Pause Menu", GameSettings.TILESIZE * 4, GameSettings.TILESIZE * 2);
+			
+			graphics.scale(1, 1);
+			
+		}
+	}
 	
 	private void healthUpdate() {
 		float healthPer = (((3f * (float) GameSettings.TILESIZE) / 4f * 6f) - 8f) / (float) player.getMaxHealth();
 		
 		float remainingHealth = ((float) player.getMaxHealth() - (float) player.getCurrentHealth()) * healthPer;
-		
-		System.out.print(healthPer + " ");
-		System.out.println(remainingHealth);
-		
 		
 		graphics.setColor(Color.lightGray);
 		graphics.fillRect(GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 6, (3 * GameSettings.TILESIZE) / 4 * 6, (3 * GameSettings.TILESIZE) / 4);
@@ -139,9 +162,9 @@ public class UI {
 		if (this.gotCoin) {
 
 			if (timeNow - timeEnd > 4) {
-				tmp2 = new Color(255, 255, 255, i);
+				tmp2 = new Color(255, 255, 255, index);
 
-				i++;
+				index++;
 				timeEnd = System.currentTimeMillis();
 
 				if (tmp2.getAlpha() >= 255) {
@@ -161,9 +184,9 @@ public class UI {
 		} else if (this.gotCoin3) {
 
 			if (timeNow - timeEnd > 4) {
-				tmp2 = new Color(255, 255, 255, i);
+				tmp2 = new Color(255, 255, 255, index);
 
-				i--;
+				index--;
 				timeEnd = System.currentTimeMillis();
 
 				if (tmp2.getAlpha() <= 0) {
@@ -182,9 +205,9 @@ public class UI {
 		if (this.gotCoin) {
 
 			if (timeNow - timeEnd > 4) {
-				tmp2 = new Color(255, 255, 255, i);
+				tmp2 = new Color(255, 255, 255, index);
 
-				i++;
+				index++;
 				timeEnd = System.currentTimeMillis();
 
 				if (tmp2.getAlpha() >= 255) {
@@ -204,9 +227,9 @@ public class UI {
 		} else if (this.gotCoin3) {
 
 			if (timeNow - timeEnd > 4) {
-				tmp2 = new Color(255, 255, 255, i);
+				tmp2 = new Color(255, 255, 255, index);
 
-				i--;
+				index--;
 				timeEnd = System.currentTimeMillis();
 
 				if (tmp2.getAlpha() <= 0) {

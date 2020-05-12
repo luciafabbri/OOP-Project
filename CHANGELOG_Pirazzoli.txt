@@ -110,3 +110,8 @@ once testing for entities has been done extensively;
 -Changed the icons for AttackDamage and AttackSpeed;
 -Implemented a sound when you hit an enemy;
 -Fixed an issues with passing through obstacles;
+
+12/05/2020
+-Implemented a simple pause screen while playing;
+-Implemented a "How to Play" button on the menu screen, giving the user a tutorial;
+-Fixed again the way the door and transitioning works;

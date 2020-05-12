@@ -39,5 +39,7 @@ public interface ModelCommunicator {
 	 * Method that calls the shoot method for every enemy placed inside each room
 	 */
 	void shootEnemies();
+	
+	void pauseMenu(Input input);
 
 }

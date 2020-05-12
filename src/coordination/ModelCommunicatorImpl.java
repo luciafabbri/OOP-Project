@@ -55,6 +55,12 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		this.doorOpen = new Sound("./res/audio/doors/door_open.wav");
 		this.playSound = true;
 	}
+	
+	public void pauseMenu(final Input input) {
+		if(input.isKeyPressed(Input.KEY_ESCAPE))
+			this.level.setPauseMenu(!this.level.isPauseMenu());
+	}
+	
 
 	@Override
 	public void switchRooms(final Input input) {
