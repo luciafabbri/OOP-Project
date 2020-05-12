@@ -11,9 +11,9 @@ import worldModel.utilities.Pair;
 
 public enum DimensionBullet {
 
-	VERTICAL_PLAYER(30, 33, 20, 51), ORIZONTAL_PLAYER(13, 47, 28, 37),
+	VERTICAL_PLAYER(48, 33, 20, 51), ORIZONTAL_PLAYER(48, 47, 28, 37),
 
-	MONSTER(22, 40, 23, 42);
+	MONSTER(48, 40, 23, 42);
 
 	private UpDownLeftRight<Integer> dim;
 
