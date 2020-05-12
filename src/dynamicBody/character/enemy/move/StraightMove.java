@@ -8,9 +8,9 @@ import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
 /**
- * Class that implement MovePosMonster use when enemy's movement is Straight
+ * Class that implement EnemyMovement use when enemy's movement is Straight
  */
-public class StraightMove implements MovePosMonster {
+public class StraightMove implements EnemyMovement {
 
 	private CheckMonster check;
 	private Direction nextDir = null;

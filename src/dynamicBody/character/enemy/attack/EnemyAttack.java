@@ -6,7 +6,7 @@ import worldModel.utilities.Pair;
 /**
  * Interface use to create bullets when monster attack
  */
-public interface MonsterAttack {
+public interface EnemyAttack {
 
 	/**
 	 * Method use to createBullets

@@ -9,9 +9,9 @@ import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
 /**
- * Class implements use to create 1 bullet when enemy attack
+ * Class implements EnemyAttack use to create 1 bullet when enemy attack
  */
-public class OneSideAtt implements MonsterAttack {
+public class OneSideAtt implements EnemyAttack {
 
 	private RoomModel currentRoom;
 	private Enemy enemy;

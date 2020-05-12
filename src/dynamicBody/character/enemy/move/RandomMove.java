@@ -8,14 +8,14 @@ import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
 /**
- * Class that implement MovePosMonster use when enemy's movement is Random
+ * Class that implement EnemyMovement use when enemy's movement is Random
  */
-public class RandomMove implements MovePosMonster {
+public class RandomMove implements EnemyMovement {
 
 	private static final int MINIMUM_STEPS = 250;
 	private static final int RANDOM_ADD = 130;
 
-	private MovePosMonster move;
+	private EnemyMovement move;
 	private int moveCounter = 0;
 	private Random random = new Random();
 	private Direction nextDir;

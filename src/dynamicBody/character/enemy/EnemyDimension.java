@@ -2,7 +2,6 @@ package dynamicBody.character.enemy;
 
 import dynamicBody.UpDownLeftRight;
 import dynamicBody.character.enemy.creator.TypeEnemy;
-import worldModel.utilities.Pair;
 
 /**
  * Enumeration used to get enemy's dimensions based on his current direction
@@ -10,7 +9,7 @@ import worldModel.utilities.Pair;
 
 public enum EnemyDimension {
 
-	VERTICAL(48, 64, 15, 46), ORIZONTAL(48, 64, 15, 46),
+	DEFAULT(48, 64, 15, 46),
 	
 	PLANT(0, 64, 0, 64);
 
@@ -38,15 +37,15 @@ public enum EnemyDimension {
 	 * @param mon, TypeMonster of the monster
 	 * @return the a Pair<DimensionMonster, DimensionMonster> of the TypeEnemy
 	 */
-	public static Pair<EnemyDimension, EnemyDimension> getDimensionMoster(TypeEnemy mon) {
+	public static  EnemyDimension getDimensionMoster(TypeEnemy mon) {
 		switch (mon) {
 		case PLANT:
-			return new Pair<>(PLANT, PLANT);
+			return PLANT;
 		case BOWMAN:
 		case NINJA:
 		case MAGE:
 		case BOSS:
-			return new Pair<>(ORIZONTAL, VERTICAL);
+			return DEFAULT;
 
 		default:
 			throw new IllegalArgumentException("The Dimension of the TypeEnemy isn't implemented");

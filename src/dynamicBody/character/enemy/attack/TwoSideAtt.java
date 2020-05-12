@@ -11,10 +11,10 @@ import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
 /**
- * Class implements use to create 2 bullet when enemy attack in 2 different
+ * Class implements EnemyAttack use to create 2 bullet when enemy attack in 2 different
  * direction
  */
-public class TwoSideAtt implements MonsterAttack {
+public class TwoSideAtt implements EnemyAttack {
 
 	private RoomModel currentRoom;
 	private Enemy enemy;

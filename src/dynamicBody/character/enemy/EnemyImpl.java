@@ -10,11 +10,11 @@ import org.newdawn.slick.Sound;
 import dynamicBody.UpDownLeftRight;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.attack.AttackFactory;
-import dynamicBody.character.enemy.attack.MonsterAttack;
+import dynamicBody.character.enemy.attack.EnemyAttack;
 import dynamicBody.character.enemy.attack.TypeAttack;
 import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.enemy.move.MoveFactory;
-import dynamicBody.character.enemy.move.MovePosMonster;
+import dynamicBody.character.enemy.move.EnemyMovement;
 import dynamicBody.character.enemy.move.TypeMove;
 import dynamicBody.character.health.Health;
 import dynamicBody.character.health.HealthImpl;
@@ -23,8 +23,8 @@ import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
 /**
- * Class that implements interface Player used to define all the aspects
- * concerning the player
+ * Class that implements interface Enemy used to define all the aspects
+ * concerning the enemy
  */
 public class EnemyImpl implements Enemy {
 
@@ -32,10 +32,10 @@ public class EnemyImpl implements Enemy {
 	private int damage;
 	private int speed;
 	private Health health;
-	private MovePosMonster move;
-	private MonsterAttack attack;
+	private EnemyMovement move;
+	private EnemyAttack attack;
 	private Direction direction;
-	private Pair<EnemyDimension, EnemyDimension> dimensions;
+	private EnemyDimension dimensions;
 	private TypeEnemy typeEnemy;
 	private UpDownLeftRight<Animation> textures;
 	private Set<Bullet> bullets = new HashSet<>();
@@ -133,13 +133,7 @@ public class EnemyImpl implements Enemy {
 
 	@Override
 	public UpDownLeftRight<Integer> getDimension() {
-		if (direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
-			return dimensions.getX().getDimension();
-		} else if (direction.equals(Direction.WEST) || direction.equals(Direction.EAST)) {
-			return dimensions.getY().getDimension();
-		} else {
-			throw new IllegalArgumentException("The Dimension of the Direction isn't implemented");
-		}
+		return this.dimensions.getDimension();
 	}
 
 	@Override
