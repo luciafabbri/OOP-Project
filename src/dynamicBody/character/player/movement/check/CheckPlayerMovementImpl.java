@@ -63,7 +63,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	public CheckPlayerMovementImpl(DynamicBody entity, PlayerImpl player) {
 		super(entity);
 		this.player = player;
-		
+
 		try {
 			keyPickup = new Sound("./res/audio/pickups/keyPickup.wav");
 			coinPickup = new Sound("./res/audio/pickups/coinPickup.wav");
@@ -92,10 +92,10 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	public boolean checkStairs(RoomModel room, Pair<Integer, Integer> pos) {
 		if( room.areStairsPresent() ) {
 			boolean checkX, checkY;
-			checkX = pos.getX() + leftPix < room.getStairs().getPosition().getX() + GameSettings.TILESIZE && 
-					pos.getX() + rightPix > room.getStairs().getPosition().getX();
-			checkY = pos.getY() < room.getStairs().getPosition().getY() + (TILESIZE - rightPix) &&
-					pos.getY() + downPix > room.getStairs().getPosition().getY();
+			checkX = pos.getX() + player.getDimension().getLeft() < room.getStairs().getPosition().getX() + GameSettings.TILESIZE && 
+					pos.getX() + player.getDimension().getRight() > room.getStairs().getPosition().getX();
+			checkY = pos.getY() < room.getStairs().getPosition().getY() + (TILESIZE - player.getDimension().getRight()) &&
+					pos.getY() + player.getDimension().getDown() > room.getStairs().getPosition().getY();
 			if (checkX && checkY) {
 				return true;
 			}
@@ -108,10 +108,10 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 		boolean checkX, checkY;
 		Set<Enemy> enemySet = room.getEnemySet();
 		for (Enemy enemy : enemySet) {
-			checkX = pos.getX() + enemy.getDimension().getLeft() < enemy.getPosition().getX() + GameSettings.TILESIZE &&
-					pos.getX() + enemy.getDimension().getRight() > enemy.getPosition().getX();
-			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - enemy.getDimension().getRight()) &&
-					pos.getY() + enemy.getDimension().getDown() > enemy.getPosition().getY();
+			checkX = pos.getX() + player.getDimension().getLeft() < enemy.getPosition().getX() + GameSettings.TILESIZE &&
+					pos.getX() + player.getDimension().getRight() > enemy.getPosition().getX();
+			checkY = pos.getY() < enemy.getPosition().getY() + (TILESIZE - player.getDimension().getRight()) &&
+					pos.getY() + player.getDimension().getDown() > enemy.getPosition().getY();
 			stopMillis = System.currentTimeMillis();
 			if ( (checkX && checkY) && (stopMillis - startMillis > 1000) ){ 
 				player.takeDamage(enemy.getDamage());
@@ -138,12 +138,12 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	 */
 	private boolean checkModifiers(RoomModel room, Pair<Integer, Integer> pos) throws SlickException {
 		boolean checkX, checkY;
-		
 		Set<Pickupable> itemSet = room.getPickupablesSet();
-		
 		for (GameEntity item : itemSet) {
-			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && pos.getX() + rightPix > item.getPosition().getX();
-			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && pos.getY() + downPix > item.getPosition().getY();
+			checkX = pos.getX() + player.getDimension().getLeft() < item.getPosition().getX() + GameSettings.TILESIZE && 
+					pos.getX() + player.getDimension().getRight() > item.getPosition().getX();
+			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - player.getDimension().getRight()) && 
+					pos.getY() + player.getDimension().getDown() > item.getPosition().getY();
 			if (checkX && checkY) {
 				/**
 				 * check modifier "RECOVERHEALTH", to increase player's current health
@@ -208,10 +208,10 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 		boolean checkX, checkY;
 		if( level.getLevel().get(level.getRoomID()).getRoom().getCoin().isPresent() && !level.isGotLevelCoin() ){
 			Coin item = level.getLevel().get(level.getRoomID()).getRoom().getCoin().get();
-			checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE && 
-					pos.getX() + rightPix > item.getPosition().getX();
-			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && 
-					pos.getY() + downPix > item.getPosition().getY();
+			checkX = pos.getX() + player.getDimension().getLeft() < item.getPosition().getX() + GameSettings.TILESIZE && 
+					pos.getX() + player.getDimension().getRight() > item.getPosition().getX();
+			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - player.getDimension().getRight()) && 
+					pos.getY() + player.getDimension().getDown() > item.getPosition().getY();
 			if(checkX && checkY) {
 				if(!coinPickup.playing()) {
 					coinPickup.play(1.0f, 0.35f);
@@ -235,10 +235,10 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	private boolean checkKey(Pair<Integer, Integer> pos, Level level) {
 		boolean checkX, checkY;
 		Key item = level.getLevel().get(level.getRoomID()).getRoom().getKey();
-		checkX = pos.getX() + leftPix < item.getPosition().getX() + GameSettings.TILESIZE &&
-				pos.getX() + rightPix > item.getPosition().getX();
-		checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - rightPix) && 
-				pos.getY() + downPix > item.getPosition().getY();
+		checkX = pos.getX() + player.getDimension().getLeft() < item.getPosition().getX() + GameSettings.TILESIZE &&
+				pos.getX() + player.getDimension().getRight() > item.getPosition().getX();
+		checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - player.getDimension().getRight()) && 
+				pos.getY() + player.getDimension().getDown() > item.getPosition().getY();
 		if( (checkX && checkY) && !level.getLevel().get(level.getRoomID()).isGotRoomKey() ) {
 			if(!keyPickup.playing()) {
 				keyPickup.play(1.0f, 0.15f);	

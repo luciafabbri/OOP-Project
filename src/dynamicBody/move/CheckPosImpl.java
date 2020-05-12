@@ -13,6 +13,7 @@ import worldModel.utilities.Pair;
 
 public class CheckPosImpl implements CheckPos, GameSettings{
 	
+	// REMEMBER TO CHANGE FROM PROTECTED TO PRIVATE 
 	protected int leftPix;
 	protected int rightPix;
 	protected int downPix;
