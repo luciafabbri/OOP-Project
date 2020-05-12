@@ -88,7 +88,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateBoss() throws SlickException {
 		pos = generateCoherentPos();
-		//room.addEnemy(enemyGen.getBossA(pos, room));
+		room.addEnemy(enemyGen.getBossA(pos, room));
 
 	}
 
@@ -124,6 +124,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	 * @return monster for the current level
 	 */
 	private Enemy generateMonster() {
+		pos = randomPosition.generateRandomPosition();
 		if(currentConfig.get("level") == 1) {
 			return enemyGen.getMonsterA(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
 					room);
