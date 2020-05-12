@@ -60,7 +60,7 @@ public class PlayerImpl implements Player {
 		this.level = level;
 		this.direction = dir;
 		this.playerSpeed = 1;
-		this.rateOfFire = 1000;
+		this.rateOfFire = 800;
 		this.damage = 10;
 		this.inventory = new InventoryImpl(this);
 		this.health = new HealthImpl(100);
@@ -83,11 +83,9 @@ public class PlayerImpl implements Player {
 		Pair<Integer,Integer> newPos;
 		Map<Door, Optional<RoomModel>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
 		newPos = move.movePlayer(input, this.position, this.direction, this.playerSpeed); 
-
 		check.checkEnemyRoom(this.currentRoom, newPos);
-		
-		if(check.checkGameEntities(this.currentRoom, newPos, level)|| check.possiblePos(this.currentRoom, newPos) 
-					|| (check.checkDoors(newPos, map) && clearRoom)) {
+		check.checkGameEntities(this.currentRoom, newPos, level);
+		if( check.possiblePos(this.currentRoom, newPos) || (check.checkDoors(newPos, map) && clearRoom)) {
 			this.position = newPos;  
 		}
 		/**

@@ -177,7 +177,10 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 				 */
 				if (item.getTypeEnt().equals(Entities.ATTACKSPEED1)) {
 					ModifiersImpl mod = new AttackSpeed1(item.getPosition());
-					player.upgradeRateOfFire(mod.getModQty());
+					if (player.getRateOfFire() > 400) {
+						player.upgradeRateOfFire(mod.getModQty());
+						System.out.println("rate : " +player.getRateOfFire());
+					}
 					modPickup.play(1.0f, 0.2f);
 					room.getPickupablesSet().remove(item);
 				}
