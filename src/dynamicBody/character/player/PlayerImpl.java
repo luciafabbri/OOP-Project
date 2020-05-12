@@ -41,18 +41,16 @@ public class PlayerImpl implements Player {
 	private Health health;
 	private RoomModel currentRoom;
 	private Inventory inventory;
-	
 	private UpDownLeftRight<Animation> textures;
 	private Pair<PlayerDimensions, PlayerDimensions> dimensions;
-
 	private Sound bowShoot;
 	private Sound hurtSound;
-	
 	private ShootingPlayer bullet ;
 	private Set<Bullet> roomBullets = new HashSet<>();
 
 	/**
 	 * Default constructor
+	 * 
 	 * @param pos, player's position
 	 * @param dir, player's direction
 	 * @param level, player's starting level
@@ -156,7 +154,6 @@ public class PlayerImpl implements Player {
 			return textures.getRight();
 		default:
 			throw new IllegalArgumentException();
-
 		}
 	}
 	
@@ -208,8 +205,9 @@ public class PlayerImpl implements Player {
 	
 	@Override
 	public void takeDamage(int damage) {
-		if(!hurtSound.playing())
+		if(!hurtSound.playing()) {
 			hurtSound.play(1.0f, 0.4f);
+		}
 		this.health.takeDmg(damage);
 	}
 	

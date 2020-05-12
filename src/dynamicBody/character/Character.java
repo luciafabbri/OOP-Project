@@ -27,6 +27,7 @@ public interface Character extends DynamicBody {
 	
 	/**
 	 * Method used to take character's damage from any other entity
+	 * 
 	 * @param damage, an int value to subtract to character's current health
 	 */
 	void takeDamage(int damage);

@@ -8,9 +8,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-
-import dynamicBody.bullet.Bullet;
-import dynamicBody.bullet.BulletPlayerImpl;
 import dynamicBody.move.Direction;
 import levels.Level;
 import levels.LevelImpl;
@@ -49,9 +46,6 @@ public class PlayerInputTest extends BasicGame {
 		super(" INPUT TEST ");
 	}
 	
-	/**
-	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
-	 */
 	public void init(GameContainer container) throws SlickException {
 		if (container instanceof AppGameContainer) {
 			app = (AppGameContainer) container;
@@ -67,9 +61,6 @@ public class PlayerInputTest extends BasicGame {
 		testPlayer.setCurrentRoom(testRoom);
 	}
 
-	/**
-	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
-	 */
 	public void render(GameContainer container, Graphics g) {
 		g.drawString("Premere i tasti 'W' 'A' 'S' 'D' per verificare il movimento del player", 10, 30);
 		g.drawString("Premere la 'space bar' per verificare l'azione di attacco del player", 10, 50);
@@ -93,10 +84,6 @@ public class PlayerInputTest extends BasicGame {
         g.drawString("Direzione corrente del player:  "+ testPlayer.getDirection(), 10, 440);   
 	}
 
-	/**
-	 * @throws SlickException 
-	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
-	 */
 	public void update(GameContainer container, int delta) throws SlickException {
 		space = container.getInput().isKeyDown(Input.KEY_SPACE); 
 		
@@ -112,15 +99,6 @@ public class PlayerInputTest extends BasicGame {
 		
 		testPlayer.setPosition(input, testLevel);
 		testPlayer.getShootingBullet().checkShooting(input);
-	}
-
-	/**
-	 * @see org.newdawn.slick.BasicGame#keyPressed(int, char)
-	 */
-	public void keyPressed(int key, char c) {
-		if (key == Input.KEY_ESCAPE) {
-			System.exit(0);
-		}
 	}
 	
 	/**

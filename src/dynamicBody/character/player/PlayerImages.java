@@ -21,6 +21,7 @@ public enum PlayerImages {
 	
 	/**
 	 * Default constructor
+	 * 
 	 * @param image, image used to represent the player based on his direction
 	 */
 	PlayerImages(String image)  {
@@ -37,6 +38,7 @@ public enum PlayerImages {
 	
 	/**
 	 * Method used to get player's animation from his image based on his current direction
+	 * 
 	 * @return player's correct animation
 	 * @throws SlickException
 	 */

@@ -15,6 +15,7 @@ public enum PlayerDimensions {
 	
 	/**
 	 * Default constructor
+	 * 
 	 * @param up, player's up dimension
 	 * @param down, player's down dimension
 	 * @param left, player's left dimension
