@@ -6,10 +6,10 @@ import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
 /**
- * Class implements use to create 3 bullet in 3 different direction when enemy
+ * Class implements EnemyAttack use to create 3 bullet in 3 different direction when enemy
  * attack
  */
-public class TripleAtt implements MonsterAttack {
+public class TripleAtt implements EnemyAttack {
 
 	private RoomModel currentRoom;
 	private Enemy enemy;
@@ -28,8 +28,8 @@ public class TripleAtt implements MonsterAttack {
 
 	@Override
 	public void createBullets(Pair<Integer, Integer> pos, Direction dir, int dmg) {
-		MonsterAttack attOne = new OneSideAtt(currentRoom, enemy);
-		MonsterAttack attTwo = new TwoSideAtt(currentRoom, enemy);
+		EnemyAttack attOne = new OneSideAtt(currentRoom, enemy);
+		EnemyAttack attTwo = new TwoSideAtt(currentRoom, enemy);
 
 		attOne.createBullets(pos, dir, dmg);
 		attTwo.createBullets(pos, dir, dmg);

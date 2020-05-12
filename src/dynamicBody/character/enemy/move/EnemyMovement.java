@@ -6,7 +6,7 @@ import worldModel.utilities.Pair;
 /**
  * Interface use to move enemy
  */
-public interface MovePosMonster {
+public interface EnemyMovement {
 
 	/**
 	 * Method use to get the next position of enemy

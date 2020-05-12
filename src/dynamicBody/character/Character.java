@@ -6,7 +6,6 @@ import org.newdawn.slick.Animation;
 
 import dynamicBody.DynamicBody;
 import dynamicBody.bullet.Bullet;
-import dynamicBody.character.health.Health;
 import dynamicBody.move.Direction;
 import worldModel.utilities.Pair;
 

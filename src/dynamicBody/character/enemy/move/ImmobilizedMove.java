@@ -4,9 +4,9 @@ import dynamicBody.move.Direction;
 import worldModel.utilities.Pair;
 
 /**
- * Class that implement MovePosMonster use when enemy's movement is Immobilized
+ * Class that implement EnemyMovement use when enemy's movement is Immobilized
  */
-public class ImmobilizedMove implements MovePosMonster {
+public class ImmobilizedMove implements EnemyMovement {
 
 	private Direction nextDir;
 

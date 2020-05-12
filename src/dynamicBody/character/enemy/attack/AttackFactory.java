@@ -3,9 +3,19 @@ package dynamicBody.character.enemy.attack;
 import dynamicBody.character.enemy.Enemy;
 import worldModel.RoomModel;
 
+/**
+ * Factory use to get the type of the Attack of an Enemy
+ */
 public class AttackFactory {
 
-	public MonsterAttack selectAttack(TypeAttack typeAttack, RoomModel room, Enemy enemy) {
+	/**
+	 * Method use from an Enemy to get the type of the Attack
+	 * @param typeAttack, the type of attack
+	 * @param room, room where enemy is located
+	 * @param enemy, the enemy that will use this type of attack
+	 * @return the EnemyAttack
+	 */
+	public EnemyAttack selectAttack(TypeAttack typeAttack, RoomModel room, Enemy enemy) {
 		switch (typeAttack) {
 		case ONE_SIDE:
 			return new OneSideAtt(room, enemy);

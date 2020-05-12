@@ -11,9 +11,9 @@ import worldModel.utilities.Pair;
 import worldModel.utilities.graphs.Graph;
 
 /**
- * Class that implement MovePosMonster use when enemy's movement is and ToPlayer
+ * Class that implement EnemyMovement use when enemy's movement is and ToPlayer
  */
-public class ToPlayerMove implements MovePosMonster {
+public class ToPlayerMove implements EnemyMovement {
 
 	private boolean inizialized = false;
 	private Player player = StateCoord.getPlayer();
@@ -21,7 +21,7 @@ public class ToPlayerMove implements MovePosMonster {
 
 	private Direction nextDir;
 	private RoomModel currentRoom;
-	private MovePosMonster move;
+	private EnemyMovement move;
 	private Character character;
 
 	private Graph<Node<Pair<Integer, Integer>>> graph;

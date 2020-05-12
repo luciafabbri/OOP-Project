@@ -11,9 +11,9 @@ import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;
 
 /**
- * Class that implement MovePosMonster use when enemy's movement is and Teleport
+ * Class that implement EnemyMovement use when enemy's movement is and Teleport
  */
-public class TeleportMove implements MovePosMonster {
+public class TeleportMove implements EnemyMovement {
 
 	private CheckMonster check;
 	private Random rand = new Random();

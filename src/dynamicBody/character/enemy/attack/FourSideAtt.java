@@ -8,10 +8,10 @@ import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
 /**
- * Class implements MonsterAttack use to create 4 bullet in each direction when
+ * Class implements EnemyAttack use to create 4 bullet in each direction when
  * enemy attack
  */
-public class FourSideAtt implements MonsterAttack {
+public class FourSideAtt implements EnemyAttack {
 
 	private RoomModel currentRoom;
 	private Enemy enemy;
@@ -33,7 +33,7 @@ public class FourSideAtt implements MonsterAttack {
 
 	@Override
 	public void createBullets(Pair<Integer, Integer> pos, Direction dir, int dmg) {
-		MonsterAttack attack = new OneSideAtt(currentRoom, enemy);
+		EnemyAttack attack = new OneSideAtt(currentRoom, enemy);
 		if (normalDir.contains(dir)) {
 			normalDir.forEach(d -> attack.createBullets(pos, d, dmg));
 		} else {
