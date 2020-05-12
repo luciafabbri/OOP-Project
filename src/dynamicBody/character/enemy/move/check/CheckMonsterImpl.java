@@ -9,27 +9,29 @@ import worldModel.utilities.Pair;
 
 public class CheckMonsterImpl extends CheckPosImpl implements CheckMonster, GameSettings {
 
-	public CheckMonsterImpl(Character character) {
-		super(character);
-	}
-
 	private int x, y;
 	private Direction newDir;
+	private Character character;
+	
+	public CheckMonsterImpl(Character character) {
+		super(character);
+		this.character = character;
+	}
 
 	@Override
 	public Direction changeDir(RoomModel room, Pair<Integer, Integer> pos, Direction dir) {
 
-		if (pos.getX() + rightPix > LIMITRIGHT) {
+		if (pos.getX() + character.getDimension().getRight() > LIMITRIGHT) {
 			this.x = -dir.getAbscissa();
-		} else if (pos.getX() + leftPix < LIMITLEFT) {
+		} else if (pos.getX() + character.getDimension().getLeft() < LIMITLEFT) {
 			this.x = -dir.getAbscissa();
 		} else {
 			this.x = dir.getAbscissa();
 		}
 
-		if (pos.getY() + downPix > LIMITDOWN) {
+		if (pos.getY() + character.getDimension().getDown() > LIMITDOWN) {
 			this.y = -dir.getOrdinate();
-		} else if (pos.getY() + upPix < LIMITUP) {
+		} else if (pos.getY() + character.getDimension().getUp() < LIMITUP) {
 			this.y = -dir.getOrdinate();
 		} else {
 			this.y = dir.getOrdinate();
@@ -37,11 +39,10 @@ public class CheckMonsterImpl extends CheckPosImpl implements CheckMonster, Game
 
 		if (checkObstaclesRoom(room, pos)) {
 			for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
-//				System.out.println(obstacleSet.size());
-				if ( pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE || pos.getX() + rightPix > obst.getX()) {
+				if ( pos.getX() + character.getDimension().getLeft() < obst.getX() + GameSettings.TILESIZE || pos.getX() + character.getDimension().getRight() > obst.getX()) {
 					this.x = -dir.getAbscissa();
 				}
-				if (pos.getY() < obst.getY() + (TILESIZE - upPix) || pos.getY() + downPix > obst.getY()) {
+				if (pos.getY() + character.getDimension().getDown() < obst.getY() + GameSettings.OBST_DOWN || pos.getY() + character.getDimension().getUp() > obst.getY()) {
 					this.y = -dir.getOrdinate();
 				}
 			}
