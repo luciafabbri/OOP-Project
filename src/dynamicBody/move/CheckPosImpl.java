@@ -13,11 +13,6 @@ import worldModel.utilities.Pair;
 
 public class CheckPosImpl implements CheckPos, GameSettings{
 	
-	// REMEMBER TO CHANGE FROM PROTECTED TO PRIVATE 
-	protected int leftPix;
-	protected int rightPix;
-	protected int downPix;
-	protected int upPix;
 	private DynamicBody entity;
 	
 	/**
@@ -31,7 +26,6 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 	
 	@Override
 	public boolean possiblePos(RoomModel room, Pair<Integer, Integer> pos) {
-		updateDimension();
 		return !(isOutOfLimits(pos) || checkObstaclesRoom(room, pos));
 	}
 	
@@ -45,10 +39,10 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 	protected boolean checkObstaclesRoom(RoomModel room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
 		for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
-			checkX = pos.getX() + leftPix < obst.getX() + GameSettings.TILESIZE &&
-					pos.getX() + rightPix > obst.getX() ;
-			checkY = pos.getY() + upPix < obst.getY() + GameSettings.OBST_DOWN  && 
-					pos.getY() + downPix > obst.getY();
+			checkX = pos.getX() + entity.getDimension().getLeft() < obst.getX() + GameSettings.TILESIZE &&
+					pos.getX() + entity.getDimension().getRight() > obst.getX() ;
+			checkY = pos.getY() + entity.getDimension().getUp() < obst.getY() + GameSettings.OBST_DOWN  && 
+					pos.getY() + entity.getDimension().getDown() > obst.getY();
 			if (checkX && checkY) {
 				return true;
 			}
@@ -63,18 +57,8 @@ public class CheckPosImpl implements CheckPos, GameSettings{
 	 * @return true if the dynamic body is out of bounds
 	 */
 	private boolean isOutOfLimits(Pair<Integer, Integer> pos) {
-		return ((pos.getX() + leftPix < LIMITLEFT || pos.getX() + rightPix > LIMITRIGHT)
-				|| (pos.getY() + upPix < LIMITUP || pos.getY() + downPix > LIMITDOWN));
-	}
-
-	/**
-	 * Method used to update dynamic body's dimensions in the dungeon according to his current direction
-	 */
-	private void updateDimension() {
-		this.upPix = entity.getDimension().getUp();
-		this.downPix = entity.getDimension().getDown();
-		this.leftPix = entity.getDimension().getLeft();
-		this.rightPix = entity.getDimension().getRight();
+		return ((pos.getX() + entity.getDimension().getLeft() < LIMITLEFT || pos.getX() + entity.getDimension().getRight() > LIMITRIGHT)
+				|| (pos.getY() + entity.getDimension().getUp() < LIMITUP || pos.getY() + entity.getDimension().getDown() > LIMITDOWN));
 	}
 	
 }
