@@ -29,8 +29,8 @@ public class BossImpl extends EnemyImpl implements Enemy {
 	 * @param mon,    TypeEnemy of Boss
 	 */
 	public BossImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
-			TypeAttack att, RoomModel room, TypeEnemy mon) {
-		super(pos, damage, speed, health, move, dir, att, room, mon);
+			TypeAttack att, RoomModel room) {
+		super(pos, damage, speed, health, move, dir, att, room, TypeEnemy.NINJA);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class BossImpl extends EnemyImpl implements Enemy {
 	 */
 	public BossImpl(Pair<Integer, Integer> pos, RoomModel room) {
 		this(pos, BossDefault.DAMAGE.getValue(), 1, BossDefault.HEALTH.getValue(), TypeMove.TO_PLAYER,
-				Direction.getRandomDir(), TypeAttack.getBossAtt(), room, TypeEnemy.BOSS);
+				Direction.getRandomDir(), TypeAttack.getBossAtt(), room);
 	}
 
 }

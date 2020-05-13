@@ -41,10 +41,10 @@ public class ToPlayerMove implements EnemyMovement {
 	@Override
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, int speed, Direction dir) {
 
-		Pair<Integer, Integer> enemyDownRight = new Pair<>(pos.getX() + character.getDimension().getRight() - 1,
-				pos.getY() + character.getDimension().getDown() - 1);
-		Pair<Integer, Integer> enemyUpLeft = new Pair<>(pos.getX() + character.getDimension().getLeft() - 1,
-				pos.getY() + character.getDimension().getUp() - 1);
+		Pair<Integer, Integer> enemyDownRight = new Pair<>(pos.getX() + character.getDimension().getRight(),
+				pos.getY() + character.getDimension().getDown());
+		Pair<Integer, Integer> enemyUpLeft = new Pair<>(pos.getX() + character.getDimension().getLeft(),
+				pos.getY() + 48);
 
 		if (!checkPlayer.equals(ToPlayerUtil.findTile(ToPlayerUtil.getPlayerPos())) || !inizialized) {
 			this.buildGraph();

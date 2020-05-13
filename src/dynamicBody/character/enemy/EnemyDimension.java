@@ -9,9 +9,9 @@ import dynamicBody.character.enemy.creator.TypeEnemy;
 
 public enum EnemyDimension {
 
-	DEFAULT(0, 64, 15, 46),
+	DEFAULT(0, 63, 15, 46),
 	
-	PLANT(0, 64, 0, 64);
+	PLANT(0, 63, 0, 63);
 
 	private UpDownLeftRight<Integer> dim;
 

@@ -9,7 +9,7 @@ import worldModel.utilities.Pair;
 
 public enum PlayerDimensions {
 	
-	DIMENSIONS (0, 64, 15, 46);
+	DIMENSIONS (0, 63, 15, 46);
 	
 	private UpDownLeftRight<Integer> dimensions;
 	
