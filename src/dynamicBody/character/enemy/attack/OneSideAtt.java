@@ -1,7 +1,7 @@
 package dynamicBody.character.enemy.attack;
 
 import dynamicBody.bullet.Bullet;
-import dynamicBody.bullet.BulletMonsterImpl;
+import dynamicBody.bullet.BulletEnemy;
 import dynamicBody.bullet.DistanceBull;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.move.Direction;
@@ -30,7 +30,7 @@ public class OneSideAtt implements EnemyAttack {
 	@Override
 	public void createBullets(Pair<Integer, Integer> pos, Direction dir, int dmg) {
 
-		Bullet bull = new BulletMonsterImpl(DistanceBull.calculateBullPos(dir, enemy), dmg, dir, currentRoom);
+		Bullet bull = new BulletEnemy(DistanceBull.calculateBullPos(dir, enemy), dmg, dir, currentRoom);
 
 		enemy.addBullet(bull);
 

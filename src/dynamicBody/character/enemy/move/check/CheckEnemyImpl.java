@@ -7,13 +7,13 @@ import worldModel.RoomModel;
 import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;
 
-public class CheckMonsterImpl extends CheckPosImpl implements CheckMonster, GameSettings {
+public class CheckEnemyImpl extends CheckPosImpl implements CheckEnemy, GameSettings {
 
 	private int x, y;
 	private Direction newDir;
 	private Character character;
 	
-	public CheckMonsterImpl(Character character) {
+	public CheckEnemyImpl(Character character) {
 		super(character);
 		this.character = character;
 	}

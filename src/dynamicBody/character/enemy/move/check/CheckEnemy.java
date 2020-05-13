@@ -5,7 +5,7 @@ import dynamicBody.move.Direction;
 import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
-public interface CheckMonster extends CheckPos {
+public interface CheckEnemy extends CheckPos {
 	
 	/**
 	 * Methods use to change the Direction of monster

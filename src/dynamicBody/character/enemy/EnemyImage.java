@@ -17,16 +17,16 @@ public enum EnemyImage {
 	FRONT_BOWMAN("./res/chars/enemies/Enemy1_front.png"), BACK_BOWMAN("./res/chars/enemies/Enemy1_back.png"),
 	LEFT_BOWMAN("./res/chars/enemies/Enemy1_left.png"), RIGHT_BOWMAN("./res/chars/enemies/Enemy1_right.png"),
 
-	FRONT_MAGE("./res/chars/enemies/Enemy2_front.png"), BACK_MAGE("./res/chars/enemies/Enemy2_back.png"),
-	LEFT_MAGE("./res/chars/enemies/Enemy2_left.png"), RIGHT_MAGE("./res/chars/enemies/Enemy2_right.png"),
+	FRONT_MAGE("./res/chars/enemies/Enemy3_front.png"), BACK_MAGE("./res/chars/enemies/Enemy3_back.png"),
+	LEFT_MAGE("./res/chars/enemies/Enemy3_left.png"), RIGHT_MAGE("./res/chars/enemies/Enemy3_right.png"),
 	
-	FRONT_NINJA("./res/chars/enemies/Enemy3_front.png"), BACK_NINJA("./res/chars/enemies/Enemy3_back.png"),
-	LEFT_NINJA("./res/chars/enemies/Enemy3_left.png"), RIGHT_NINJA("./res/chars/enemies/Enemy3_right.png"),
+	FRONT_NINJA("./res/chars/enemies/Enemy2_front.png"), BACK_NINJA("./res/chars/enemies/Enemy2_back.png"),
+	LEFT_NINJA("./res/chars/enemies/Enemy2_left.png"), RIGHT_NINJA("./res/chars/enemies/Enemy2_right.png"),
 	
 	PLANT("./res/chars/enemies/plan.png"),
 
 	FRONT_BOSS("./res/chars/enemies/mainChar6_front.png"), BACK_BOSS("./res/chars/enemies/mainChar6_back.png"),
-	LEFT_BOSS("./res/chars/enemies/mainChar6_left.png"), RIGHT_BOSS("./res/chars/enemies/mainChar6_right.png");
+	LEFT_BOSS("./res/charsz/enemies/mainChar6_left.png"), RIGHT_BOSS("./res/chars/enemies/mainChar6_right.png");
 
 	String image;
 

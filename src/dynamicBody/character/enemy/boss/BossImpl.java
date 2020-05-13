@@ -26,7 +26,6 @@ public class BossImpl extends EnemyImpl implements Enemy {
 	 * @param dir,    Direction of Boss
 	 * @param att,    TypeAttack of Boss
 	 * @param room,   RoomModel where Boss spawn
-	 * @param mon,    TypeEnemy of Boss
 	 */
 	public BossImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
 			TypeAttack att, RoomModel room) {

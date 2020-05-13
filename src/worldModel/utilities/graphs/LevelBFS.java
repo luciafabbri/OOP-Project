@@ -7,10 +7,6 @@ import worldModel.RoomModel;
  * methods for the game's levels
  *
  */
-/**
- * @author Gian Camion
- *
- */
 public class LevelBFS extends BreadthFirstSearch<RoomModel> {
 
 	/**
