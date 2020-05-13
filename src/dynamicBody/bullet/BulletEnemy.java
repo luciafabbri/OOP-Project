@@ -11,7 +11,7 @@ import worldModel.utilities.Pair;
  * Class that implements interface Bullet, used to create a bullet of type Enemy
  */
 
-public class BulletMonsterImpl extends BulletImpl implements Bullet {
+public class BulletEnemy extends BulletImpl implements Bullet {
 
 	/**
 	 * Default constructor
@@ -21,7 +21,7 @@ public class BulletMonsterImpl extends BulletImpl implements Bullet {
 	 * @param direction, bullet's direction
 	 * @param room,      bullet's current room
 	 */
-	public BulletMonsterImpl(Pair<Integer, Integer> position, int damage, Direction direction, RoomModel room) {
+	public BulletEnemy(Pair<Integer, Integer> position, int damage, Direction direction, RoomModel room) {
 		super(position, damage, direction, room, TypeBullet.ENEMY);
 		try {
 			this.setTexture(new Image("./res/proj/EnemyProj.png"));

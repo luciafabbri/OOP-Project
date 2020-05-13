@@ -3,8 +3,8 @@ package dynamicBody.character.enemy.move;
 import java.util.Random;
 
 import dynamicBody.character.Character;
-import dynamicBody.character.enemy.move.check.CheckMonster;
-import dynamicBody.character.enemy.move.check.CheckMonsterImpl;
+import dynamicBody.character.enemy.move.check.CheckEnemy;
+import dynamicBody.character.enemy.move.check.CheckEnemyImpl;
 import dynamicBody.move.Direction;
 import worldModel.RoomModel;
 import worldModel.utilities.GameSettings;
@@ -15,7 +15,7 @@ import worldModel.utilities.Pair;
  */
 public class TeleportMove implements EnemyMovement {
 
-	private CheckMonster check;
+	private CheckEnemy check;
 	private Random rand = new Random();
 	private Pair<Integer, Integer> newPos;
 	private Direction nextDir = null;
@@ -34,7 +34,7 @@ public class TeleportMove implements EnemyMovement {
 	 */
 	public TeleportMove(RoomModel room, Character character) {
 		currentRoom = room;
-		check = new CheckMonsterImpl(character);
+		check = new CheckEnemyImpl(character);
 	}
 
 	@Override

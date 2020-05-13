@@ -19,15 +19,14 @@ public interface EnemyCreator {
 	 * @param room
 	 * @return Enemy
 	 */
-
-	public Enemy getMonsterA(Pair<Integer, Integer> pos, int damage, int health, RoomModel room);
-
-	public Enemy getMonsterB(Pair<Integer, Integer> pos, int damage, int health, RoomModel room);
-
-	public Enemy getMonsterC(Pair<Integer, Integer> pos, int damage, int health, RoomModel room);
-
-	public Enemy getMonsterD(Pair<Integer, Integer> pos, int damage, int health, RoomModel room);
-
+	public Enemy getMonsterA(Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
+	
+	public Enemy getMonsterB(Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
+	
+	public Enemy getMonsterC(Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
+	
+	public Enemy getMonsterD(Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
+	
 	public Enemy getMonster(int type, Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
 	/**
 	 * Create Boss
