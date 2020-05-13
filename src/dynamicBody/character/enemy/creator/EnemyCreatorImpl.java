@@ -36,7 +36,7 @@ public class EnemyCreatorImpl implements EnemyCreator {
 
 	@Override
 	public Enemy getMonsterA(Pair<Integer, Integer> pos, int health, int damage, RoomModel room) {
-		return new EnemyImpl(pos, damage, health, TypeMove.TO_PLAYER, TypeAttack.ONE_SIDE, room, TypeEnemy.BOWMAN);
+		return new EnemyImpl(pos, damage, health, TypeMove.STRAIGHT, TypeAttack.ONE_SIDE, room, TypeEnemy.BOWMAN);
 	}
 
 	@Override
