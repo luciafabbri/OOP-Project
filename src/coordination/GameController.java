@@ -77,6 +77,7 @@ public class GameController extends BasicGameState {
 			e.printStackTrace();
 		}
 		player.setCurrentRoom(level.getLevel().get(0).getRoom());
+		player.transitionPos(new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE));
 		
 		graphics = new GameViewImpl(level, player);
 	
