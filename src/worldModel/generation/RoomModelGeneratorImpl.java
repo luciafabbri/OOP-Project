@@ -41,6 +41,8 @@ public class RoomModelGeneratorImpl implements RoomModelGenerator {
 		entitiesGen = new EntitiesGeneratorImpl(room, currentConfig);
 		if (index == specialRoomID) {
 			if (isFinalLevel) {
+				Pair<Integer, Integer> bossTile = new Pair<Integer, Integer>(512, 256);
+				room.addOccupiedTile(bossTile);
 				entitiesGen.generateBoss();
 			} else {
 				entitiesGen.generateStairs();
