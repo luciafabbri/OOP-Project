@@ -79,9 +79,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateStairs() throws SlickException {
 		room.setStairsPresence(true);
-		pos = generateCoherentPos();
-		room.setStairs(new Stairs(pos));
-		// System.out.println("Stairs are in room: " + room.getRoomID() + " in position: " + room.getStairs().getPosition());
+		room.setStairs(new Stairs(this.generateCoherentPos()));
 
 	}
 
@@ -104,8 +102,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateObstacles(int numOfObstacles) throws SlickException {
 		for (int k = 0; k < numOfObstacles; k++) {
-			pos = generateCoherentPos();
-			room.addObstacle(new Obstacle(pos));
+			room.addObstacle(new Obstacle(this.generateCoherentPos()));
 		}
 	}
 
@@ -124,21 +121,20 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	 * @return monster for the current level
 	 */
 	private Enemy generateMonster() {
-		pos = generateCoherentPos();
 		if(currentConfig.get("level") == 1) {
-			return enemyGen.getMonsterA(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
+			return enemyGen.getMonsterA(this.generateCoherentPos(), currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
 					room);
 		}
 		else if (currentConfig.get("level") == 2) {
-			return enemyGen.getMonsterB(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
+			return enemyGen.getMonsterB(this.generateCoherentPos(), currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
 					room);
 		}
 		else if (currentConfig.get("level") == 3) {
-			return enemyGen.getMonsterC(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
+			return enemyGen.getMonsterC(this.generateCoherentPos(), currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
 					room);
 		}
 		else if (currentConfig.get("level") == 4) {
-			return enemyGen.getMonsterD(pos, currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
+			return enemyGen.getMonsterD(this.generateCoherentPos(), currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
 					room);
 		}
 		else {
