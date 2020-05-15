@@ -5,6 +5,9 @@ package dynamicBody.character.enemy.move;
  */
 public enum TypeMove {
 
-	STRAIGHT, IMMOBILIZED, TELEPORT, RANDOM, TO_PLAYER
+	STRAIGHT, IMMOBILIZED, TELEPORT, RANDOM, TO_PLAYER;
 
+	public static TypeMove getBossMove() {
+		return TO_PLAYER;
+	}
 }
