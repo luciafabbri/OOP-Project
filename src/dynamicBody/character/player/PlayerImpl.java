@@ -65,7 +65,7 @@ public class PlayerImpl implements Player {
 		this.inventory = new InventoryImpl(this);
 		this.health = new HealthImpl(100);
 		this.move = new MovementImpl();
-		this.check = new CheckPlayerMovementImpl(this,this);
+		this.check = new CheckPlayerMovementImpl(this);
 		this.bullet = new ShootingPlayerImpl(this);
 		this.dimensions = PlayerDimensions.getPlayerDimensions(this);
 		this.clearRoom = false;

@@ -60,8 +60,8 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	 *  @param entity, entity is used to inherit all the methods implemented in class CheckPosImpl
 	 *  @param player, current entity of which we will do the check
 	 */
-	public CheckPlayerMovementImpl(DynamicBody entity, PlayerImpl player) {
-		super(entity);
+	public CheckPlayerMovementImpl(PlayerImpl player) {
+		super(player);
 		this.player = player;
 
 		try {
