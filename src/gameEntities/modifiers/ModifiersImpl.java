@@ -1,7 +1,5 @@
 package gameEntities.modifiers;
 
-import org.newdawn.slick.Image;
-
 import dynamicBody.character.Stats;
 import gameEntities.Pickupable;
 import worldModel.utilities.Pair;
@@ -31,8 +29,8 @@ public class ModifiersImpl extends Pickupable{
 	 * @param texture, to associate a texture with the Modifier
 	 * @param typeEnt to denote which type of Modifier it is
 	 */
-	public ModifiersImpl(final Pair<Integer, Integer> position, final Stats stat, final int qty, final String name, final Image texture, final Entities typeEnt) {
-		super(position, texture, typeEnt);
+	public ModifiersImpl(final Pair<Integer, Integer> position, final Stats stat, final int qty, final String name, final Entities typeEnt) {
+		super(position, typeEnt);
 		this.stat = stat;
 		this.modQty = qty;
 		this.name = name;

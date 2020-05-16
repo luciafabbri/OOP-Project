@@ -1,8 +1,5 @@
 package gameEntities.items;
 
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-
 import worldModel.utilities.Pair;
 import worldModel.utilities.enums.Entities;
 
@@ -14,8 +11,8 @@ public class Coin extends ItemImpl {
 	 * @throws SlickException
 	 * @see SlickException
 	 */
-	public Coin(final Pair<Integer, Integer> coord) throws SlickException {
-		super(coord, new Image("./res/items/coin.png"), Entities.COIN);
+	public Coin(final Pair<Integer, Integer> coord) {
+		super(coord, Entities.COIN);
 	}
 
 }

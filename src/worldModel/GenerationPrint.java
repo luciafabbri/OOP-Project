@@ -1,72 +1,25 @@
 package worldModel;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.Game;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
-import coordination.GameController;
 import worldModel.generation.LevelModelGeneratorImpl;
-import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;
 import worldModel.utilities.enums.Door;
 import worldModel.utilities.graphs.BidirectionalGraph;
-import worldModel.utilities.graphs.BreadthFirstSearch;
 import worldModel.utilities.graphs.RoomBFS;
 
 import java.util.Optional;
 
 /**
- * A class that includes tests for all the features implemented in the worldModel
+ * A class that includes prints for all the features implemented in the worldModel
  * package
  *
  */
-public class GenerationTest implements Game {
+public class GenerationPrint  {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		// Set the path for Slick2D libraries
-		System.setProperty("java.library.path", new File("./lib/libraries").getAbsolutePath());
-
-		// Set the path for Slick2D natives
-		System.setProperty("org.lwjgl.librarypath", new File("./lib/natives").getAbsolutePath());
-
-		// Set the path for JInput
-		System.setProperty("net.java.games.input.librarypath", new File("./lib/natives").getAbsolutePath());
-
-		try {
-			AppGameContainer appgc;
-			appgc = new AppGameContainer(new GenerationTest());
-			appgc.setDisplayMode(GameSettings.WIDTH, GameSettings.HEIGHT, false);
-			appgc.setShowFPS(false);
-//			appgc.setVSync(true);
-			appgc.setMaximumLogicUpdateInterval(80);
-			appgc.start();
-		} catch (SlickException e) {
-			Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, e);
-		}
-
-	}
-
-	@Override
-	public boolean closeRequested() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public String getTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void init(GameContainer arg0) throws SlickException {
+	
 		final LevelModelGeneratorImpl generator = new LevelModelGeneratorImpl();
 
 		LevelModel testLevel = new LevelModelImpl();
@@ -173,15 +126,5 @@ public class GenerationTest implements Game {
 
 	}
 
-	@Override
-	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void update(GameContainer arg0, int arg1) throws SlickException {
-		// TODO Auto-generated method stub
-		arg0.exit();
-	}
 }

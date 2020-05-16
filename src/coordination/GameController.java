@@ -13,6 +13,7 @@ import dynamicBody.character.player.Player;
 import levels.Level;
 import levels.LevelImpl;
 import worldModel.utilities.GameSettings;
+import worldModel.utilities.Pair;
 
 public class GameController extends BasicGameState {
 	

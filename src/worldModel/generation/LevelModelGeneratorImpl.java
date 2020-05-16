@@ -14,7 +14,7 @@ import worldModel.utilities.graphs.BidirectionalGraph;
 public class LevelModelGeneratorImpl implements LevelModelGenerator {
 
 	private final Random random = new Random();
-	private Map<String, Integer> currentConfig = new HashMap<>();
+	protected Map<String, Integer> currentConfig = new HashMap<>();
 	private final RoomsGraphGenerator graphGen = new RoomsGraphGeneratorImpl();
 	private RoomModelGenerator roomGen;
 
