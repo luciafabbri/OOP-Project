@@ -2,6 +2,8 @@ package dynamicBody.character.player.shoot;
 
 import org.newdawn.slick.Input;
 
+import coordination.SoundBoard;
+import coordination.SoundBoardFactory;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
 import dynamicBody.bullet.DistanceBull;
@@ -55,7 +57,7 @@ public class ShootingPlayerImpl implements ShootingPlayer {
 		Bullet bullet = new BulletPlayerImpl(DistanceBull.calculateBullPos(player.getDirection(), player), player.getDamage(),player.getDirection(), player.getRoom());  	
 		if (bullet.isAlive()) {
 			player.getRoomBullets().add(bullet);
-			player.getBowShoot().play(1.0f, 0.05f);
+			SoundBoardFactory.getEntitySound(SoundBoard.mainCharacterShoot);
 		}
 	}
 

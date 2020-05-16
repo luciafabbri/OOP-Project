@@ -1,5 +1,7 @@
 package dynamicBody.bullet.move;
 
+import org.newdawn.slick.SlickException;
+
 import coordination.StateCoord;
 import dynamicBody.DynamicBody;
 import dynamicBody.character.player.Player;
@@ -45,7 +47,12 @@ public class CheckMonsBull extends CheckPosImpl implements GameSettings, CheckPo
 		checkY = pos.getY() + entity.getDimension().getUp() < player.getPosition().getY() + player.getDimension().getDown() &&
 				pos.getY() + entity.getDimension().getDown() > player.getPosition().getY();
 		if (checkX && checkY) {
-			player.takeDamage(entity.getDamage());
+			try {
+				player.takeDamage(entity.getDamage());
+			} catch (SlickException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return true;
 		}
 		return false;

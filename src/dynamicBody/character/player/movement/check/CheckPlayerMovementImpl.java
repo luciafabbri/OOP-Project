@@ -23,6 +23,9 @@ import java.util.Set;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
+import coordination.SoundBoard;
+import coordination.SoundBoardFactory;
+
 /**
  * Class that implements interface CheckPlayer used to check and then to force the player 
  * to do the specific chosen actions
@@ -48,13 +51,6 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	private long stopMillis;
 	
 	/**
-	 * Sounds variables used when the player picks an item or a modifier up
-	 */
-	private Sound keyPickup;
-	private Sound coinPickup;
-	private Sound modPickup;
-	
-	/**
 	 * Default constructor
 	 * 
 	 *  @param entity, entity is used to inherit all the methods implemented in class CheckPosImpl
@@ -63,14 +59,6 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	public CheckPlayerMovementImpl(PlayerImpl player) {
 		super(player);
 		this.player = player;
-
-		try {
-			keyPickup = new Sound("./res/audio/pickups/keyPickup.wav");
-			coinPickup = new Sound("./res/audio/pickups/coinPickup.wav");
-			modPickup = new Sound("./res/audio/pickups/modifierPickup.wav");
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@Override
@@ -104,7 +92,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	}
 
 	@Override
-	public boolean checkEnemyRoom(RoomModel room, Pair<Integer, Integer> pos) {
+	public boolean checkEnemyRoom(RoomModel room, Pair<Integer, Integer> pos) throws SlickException {
 		boolean checkX, checkY;
 		Set<Enemy> enemySet = room.getEnemySet();
 		for (Enemy enemy : enemySet) {
@@ -151,7 +139,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 				if (item.getTypeEnt().equals(Entities.RECOVERHEALTH)) {
 					ModifiersImpl mod = new HealthUpgrade1(item.getPosition());
 					player.heal(mod.getModQty());
-					modPickup.play(1.0f, 0.2f);
+					SoundBoardFactory.getEntitySound(SoundBoard.modPickUp);
 					room.getPickupablesSet().remove(item);
 				}
 				/**
@@ -160,7 +148,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 				if (item.getTypeEnt().equals(Entities.HEALTHUPGRADE1)) {
 					ModifiersImpl mod = new HealthUpgrade1(item.getPosition());
 					player.upgradeMaxHealth(mod.getModQty());
-					modPickup.play(1.0f, 0.2f);
+					SoundBoardFactory.getEntitySound(SoundBoard.modPickUp);
 					room.getPickupablesSet().remove(item);
 				}
 				/**
@@ -169,7 +157,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 				if (item.getTypeEnt().equals(Entities.ATTACKUPGRADE1)) {
 					ModifiersImpl mod = new AttackUpgrade1(item.getPosition());
 					player.upgradeDamage(mod.getModQty());
-					modPickup.play(1.0f, 0.2f);
+					SoundBoardFactory.getEntitySound(SoundBoard.modPickUp);
 					room.getPickupablesSet().remove(item);
 				}
 				/**
@@ -181,7 +169,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 						player.upgradeRateOfFire(mod.getModQty());
 						System.out.println("rate : " +player.getRateOfFire());
 					}
-					modPickup.play(1.0f, 0.2f);
+					SoundBoardFactory.getEntitySound(SoundBoard.modPickUp);
 					room.getPickupablesSet().remove(item);
 				}
 				/**
@@ -190,7 +178,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 				if (item.getTypeEnt().equals(Entities.MOVEMENTSPEED1)) {
 					ModifiersImpl mod = new MovementSpeed1(item.getPosition());
 					player.upgradePlayerSpeed(mod.getModQty());
-					modPickup.play(1.0f, 0.2f);
+					SoundBoardFactory.getEntitySound(SoundBoard.modPickUp);
 					room.getPickupablesSet().remove(item);
 				}
 				return true;
@@ -216,9 +204,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 			checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - player.getDimension().getRight()) && 
 					pos.getY() + player.getDimension().getDown() > item.getPosition().getY();
 			if(checkX && checkY) {
-				if(!coinPickup.playing()) {
-					coinPickup.play(1.0f, 0.35f);
-				}
+				SoundBoardFactory.getEntitySound(SoundBoard.coinPickUp);
 				level.setGotLevelCoin(true);
 				player.getInventory().addCoin();
 				return true;
@@ -243,9 +229,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 		checkY = pos.getY() < item.getPosition().getY() + (TILESIZE - player.getDimension().getRight()) && 
 				pos.getY() + player.getDimension().getDown() > item.getPosition().getY();
 		if( (checkX && checkY) && !level.getLevel().get(level.getRoomID()).isGotRoomKey() ) {
-			if(!keyPickup.playing()) {
-				keyPickup.play(1.0f, 0.15f);	
-			}
+			SoundBoardFactory.getEntitySound(SoundBoard.keyPickUp);
 			level.getLevel().get(level.getRoomID()).setGotRoomKey(true);
 			return true;
 		}

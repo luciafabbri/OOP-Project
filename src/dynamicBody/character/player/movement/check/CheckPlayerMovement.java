@@ -52,7 +52,8 @@ public interface CheckPlayerMovement extends CheckPos{
 	 * @param room, current room where the player is
 	 * @param pos, player's coordinates inside the room	 
 	 * @return true if the player had a collision
+	 * @throws SlickException 
 	 */
-	boolean checkEnemyRoom(RoomModel room, Pair<Integer, Integer> pos);	
+	boolean checkEnemyRoom(RoomModel room, Pair<Integer, Integer> pos) throws SlickException;	
 	
 }

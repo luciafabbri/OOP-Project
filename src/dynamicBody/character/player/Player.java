@@ -118,11 +118,6 @@ public interface Player extends dynamicBody.character.Character {
 	void setClearRoom(boolean clearRoom);
 	
 	/**
-	 * @return player's sound walking into the dungeon 
-	 */
-	Sound getBowShoot();
-
-	/**
 	 * Method used to upgrade player's rate of fire 
 	 * 
 	 * @param upgrade, an int value used to change player's current rate of fire in order to shoot faster 

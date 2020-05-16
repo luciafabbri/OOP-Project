@@ -115,3 +115,8 @@ once testing for entities has been done extensively;
 -Implemented a simple pause screen while playing;
 -Implemented a "How to Play" button on the menu screen, giving the user a tutorial;
 -Fixed again the way the door and transitioning works;
+
+16/05/2020
+-Reworked the rendering and update, now Controller has to call just one method from both class to respectively render and update entities and world objects;
+-Reimplemented the way images are stored and rendered in the game, now every texture is handled by two classes, ImageFactory and EntityImageFactory;
+-Implemented SoundBoard to eliminate Sound variables from various entities;

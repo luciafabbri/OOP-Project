@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 
 public interface GameView {
 
-	void render(Input input);
+	void render(Input input) throws SlickException;
 	
 //	/**
 //	 * Method used to draw the wall in each room

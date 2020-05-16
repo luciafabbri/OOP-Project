@@ -95,11 +95,7 @@ public class TestMove {
 		 */
 		testStraight = new EnemyImpl(new Pair<Integer, Integer>(64, 128), 10, 1, 100, TypeMove.STRAIGHT,
 				Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
-		try {
-			testRoom.addObstacle(new Obstacle(new Pair<Integer, Integer>(64, 128 + 65)));
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
+		testRoom.addObstacle(new Obstacle(new Pair<Integer, Integer>(64, 128 + 65)));
 		// IL NEMICO SI MUOVE CORRETTAMENTE VERSO IL BASSO ED ORA SI TROVA ATTACCATO
 		// ALL'OSTACOLO
 		testStraight.updatePos();

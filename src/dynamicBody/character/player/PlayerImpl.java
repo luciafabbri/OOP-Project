@@ -22,6 +22,9 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
+import coordination.SoundBoard;
+import coordination.SoundBoardFactory;
+
 /**
  * Class that implements interface Player used to define all the aspects concerning the player 
  */
@@ -42,8 +45,6 @@ public class PlayerImpl implements Player {
 	private Inventory inventory;
 //	private UpDownLeftRight<Animation> textures;
 	private Pair<PlayerDimensions, PlayerDimensions> dimensions;
-	private Sound bowShoot;
-	private Sound hurtSound;
 	private ShootingPlayer bullet ;
 	private Set<Bullet> roomBullets = new HashSet<>();
 
@@ -68,13 +69,6 @@ public class PlayerImpl implements Player {
 		this.bullet = new ShootingPlayerImpl(this);
 		this.dimensions = PlayerDimensions.getPlayerDimensions(this);
 		this.clearRoom = false;
-		
-		try {
-			bowShoot = new Sound("./res/audio/bow/bow_fired.wav");
-			hurtSound = new Sound("./res/audio/mainChar/hurtSound.wav");
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@Override 
@@ -202,9 +196,7 @@ public class PlayerImpl implements Player {
 	
 	@Override
 	public void takeDamage(int damage) {
-		if(!hurtSound.playing()) {
-			hurtSound.play(1.0f, 0.4f);
-		}
+		SoundBoardFactory.getEntitySound(SoundBoard.mainCharacterHurt);
 		this.health.takeDmg(damage);
 	}
 	
@@ -228,11 +220,6 @@ public class PlayerImpl implements Player {
 		return this.roomBullets;
 	}
 
-	@Override
-	public Sound getBowShoot() {
-		return this.bowShoot;
-	}
-	
 //	@Override
 //	public void loadAnimations() throws SlickException {
 //		this.textures = PlayerImages.getTexture(this);

@@ -6,6 +6,8 @@ import java.util.Set;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
+import coordination.SoundBoard;
+import coordination.SoundBoardFactory;
 import dynamicBody.UpDownLeftRight;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.attack.AttackFactory;
@@ -45,8 +47,6 @@ public class EnemyImpl implements Enemy {
 	private long stopMillis;
 	private long startMillis;
 
-	private Sound enemyDamage;
-	
 	/**
 	 * Default constructor
 	 * 
@@ -71,12 +71,6 @@ public class EnemyImpl implements Enemy {
 		this.direction = dir;
 		this.dimensions = EnemyDimension.getDimensionMoster(mon);
 		this.typeEnemy = mon;
-		try {
-			this.enemyDamage = new Sound("./res/audio/enemy/takeDamage.wav");
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public EnemyImpl(Pair<Integer, Integer> pos, int damage, int health, TypeMove move, TypeAttack att, RoomModel room,
@@ -97,7 +91,7 @@ public class EnemyImpl implements Enemy {
 
 	@Override
 	public void takeDamage(int damage) {
-		enemyDamage.play(1.0f, 0.2f);
+		SoundBoardFactory.getEntitySound(SoundBoard.enemyDamageHurt);
 		health.takeDmg(damage);
 	}
 
