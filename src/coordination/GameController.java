@@ -87,27 +87,15 @@ public class GameController extends BasicGameState {
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		input = arg0.getInput();
 		
-		graphics.drawFloor();
-		graphics.drawWalls();
 		
-		graphics.drawItems();
-		graphics.drawMod();
-		graphics.drawObstacles();
-		
-		graphics.drawDoors();
-		
-		graphics.drawEnemies();
-		
-		graphics.drawMain(input);
-		
-		graphics.drawDoorTop();
+		graphics.render(input);
 		
 		ui.drawUI();
 		
 		
-		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 0);
-		arg2.drawString("Level: " + this.getID() + " | Room: " +level.getRoomID(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 16);
-		arg2.drawString("Stairs: " + level.getLevel().get(level.getRoomID()).getRoom().areStairsPresent(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 32);
+//		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 0);
+//		arg2.drawString("Level: " + this.getID() + " | Room: " +level.getRoomID(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 16);
+//		arg2.drawString("Stairs: " + level.getLevel().get(level.getRoomID()).getRoom().areStairsPresent(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 32);
 
 		arg2.clearClip();
 	}
@@ -121,17 +109,17 @@ public class GameController extends BasicGameState {
 		
 		logic.setRoomCleared();
 		
+		logic.pauseMenu(input);	
+		
 		if(!level.isPauseMenu()) {
 			logic.moveMain(input);
 			logic.shootMain(input);
 			
-			logic.moveEnemies();
+			logic.moveEnemies(); 
 			logic.shootEnemies();
 			
 			logic.switchRooms(input);
 		}
-		
-		logic.pauseMenu(input);
 		
 		if(player.getCheck().checkStairs(level.getLevel().get(level.getRoomID()).getRoom(), player.getPosition())) {
 			this.levelID++;
