@@ -1,12 +1,10 @@
 package coordination;
 import java.io.IOException;
 
-import org.lwjgl.opengl.Display;
-import org.newdawn.slick.Color;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -15,7 +13,6 @@ import dynamicBody.character.player.Player;
 import levels.Level;
 import levels.LevelImpl;
 import worldModel.utilities.GameSettings;
-import worldModel.utilities.Pair;
 
 public class GameController extends BasicGameState {
 	
@@ -69,7 +66,7 @@ public class GameController extends BasicGameState {
 		
 		try {
 			level = new LevelImpl(this.levelID);
-			this.player.loadAnimations();
+//			this.player.loadAnimations();
 			
 			logic = new ModelCommunicatorImpl(level, player);
 		} catch (IOException e) {

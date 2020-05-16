@@ -1,8 +1,5 @@
 package dynamicBody.bullet;
 
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-
 import dynamicBody.move.Direction;
 import worldModel.RoomModel;
 import worldModel.utilities.Pair;
@@ -22,13 +19,7 @@ public class BulletEnemy extends BulletImpl implements Bullet {
 	 * @param room,      bullet's current room
 	 */
 	public BulletEnemy(Pair<Integer, Integer> position, int damage, Direction direction, RoomModel room) {
-		super(position, damage, direction, room, TypeBullet.ENEMY);
-		try {
-			this.setTexture(new Image("./res/proj/EnemyProj.png"));
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		super(position, damage, direction, room, TypeBullet.ENEMY_BULL);
 	}
 
 }

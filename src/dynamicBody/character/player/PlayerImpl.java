@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -41,7 +40,7 @@ public class PlayerImpl implements Player {
 	private Health health;
 	private RoomModel currentRoom;
 	private Inventory inventory;
-	private UpDownLeftRight<Animation> textures;
+//	private UpDownLeftRight<Animation> textures;
 	private Pair<PlayerDimensions, PlayerDimensions> dimensions;
 	private Sound bowShoot;
 	private Sound hurtSound;
@@ -139,21 +138,21 @@ public class PlayerImpl implements Player {
 		return this.inventory;
 	}
 
-	@Override
-	public Animation getAnimation() {
-		switch (this.direction) {
-		case NORTH:
-			return textures.getUp();
-		case SOUTH:
-			return textures.getDown();
-		case WEST:
-			return textures.getLeft();
-		case EAST:
-			return textures.getRight();
-		default:
-			throw new IllegalArgumentException();
-		}
-	}
+//	@Override
+//	public Animation getAnimation() {
+//		switch (this.direction) {
+//		case NORTH:
+//			return textures.getUp();
+//		case SOUTH:
+//			return textures.getDown();
+//		case WEST:
+//			return textures.getLeft();
+//		case EAST:
+//			return textures.getRight();
+//		default:
+//			throw new IllegalArgumentException();
+//		}
+//	}
 	
 	@Override
 	public UpDownLeftRight<Integer> getDimension() {
@@ -234,10 +233,10 @@ public class PlayerImpl implements Player {
 		return this.bowShoot;
 	}
 	
-	@Override
-	public void loadAnimations() throws SlickException {
-		this.textures = PlayerImages.getTexture(this);
-	}
+//	@Override
+//	public void loadAnimations() throws SlickException {
+//		this.textures = PlayerImages.getTexture(this);
+//	}
 
 	@Override
 	public void setClearRoom(boolean clearRoom) {

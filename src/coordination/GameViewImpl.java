@@ -1,17 +1,20 @@
 package coordination;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+import dynamicBody.ImageFactory;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.Enemy;
-import dynamicBody.character.enemy.creator.TypeEnemy;
+import dynamicBody.character.enemy.TypeEnemy;
 import dynamicBody.character.player.Player;
 import dynamicBody.move.Direction;
 import gameEntities.Stairs;
@@ -39,27 +42,42 @@ public class GameViewImpl implements GameView {
 	 */
 	private Room currentRoom;
 
+	private Map<Bullet, Image> bulletsPlayer = new HashMap<>();
+	
+	private Map<Enemy, Animation> enemyImage = new HashMap<>();
+
+	private Animation playerAnimation;
+
 	/**
 	 * Constructor for RenderingImpl
-	 * @param level, to keep track of current Level
+	 * 
+	 * @param level,  to keep track of current Level
 	 * @param player, to keep track of current Player
 	 */
 	public GameViewImpl(final Level level, final Player player) {
 		this.level = level;
 		this.player = player;
 		this.currentRoom = level.getLevel().get(level.getRoomID());
+		currentRoom.getRoom().getEnemySet().forEach(b -> {
+			try {
+				enemyImage.put(b,ImageFactory.getAnimation(ImageFactory.getEnemyImage(b.getType(), b.getDirection())));
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
-	public void drawMain(final Input input) {
+	public void drawMain(final Input input) throws SlickException {
 		this.currentRoom = level.getLevel().get(level.getRoomID());
 
+		playerAnimation = ImageFactory.getAnimation(ImageFactory.getPlayerImage(player.getDirection()));
 		if (input.isKeyDown(Input.KEY_W) || input.isKeyDown(Input.KEY_S) || input.isKeyDown(Input.KEY_A)
 				|| input.isKeyDown(Input.KEY_D)) {
-			player.getAnimation().draw(player.getPosition().getX(), player.getPosition().getY(), GameSettings.TILESIZE,
+			playerAnimation.draw(player.getPosition().getX(), player.getPosition().getY(), GameSettings.TILESIZE,
 					GameSettings.TILESIZE);
 		} else {
-			player.getAnimation().setCurrentFrame(0);
-			player.getAnimation().getCurrentFrame().draw(player.getPosition().getX(), player.getPosition().getY(),
+			playerAnimation.setCurrentFrame(0);
+			playerAnimation.getCurrentFrame().draw(player.getPosition().getX(), player.getPosition().getY(),
 					GameSettings.TILESIZE, GameSettings.TILESIZE);
 		}
 
@@ -67,15 +85,26 @@ public class GameViewImpl implements GameView {
 	}
 
 	/**
-	 * Method called by drawMain, so it renders the bullets while also rendering the Player
+	 * Method called by drawMain, so it renders the bullets while also rendering the
+	 * Player
 	 */
 	private void drawMainProj() {
 		Set<Bullet> bullets = player.getRoomBullets();
 
+		bullets.forEach(b -> {
+			if (!bulletsPlayer.containsKey(b)) {
+				try {
+					bulletsPlayer.put(b, ImageFactory.getPlayerBull());
+				} catch (SlickException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 		if (!bullets.isEmpty()) {
 			bullets.forEach(s -> {
 				if (s.getRoom().getRoomID() == player.getRoom().getRoomID()) {
-					this.rotateMainProj(s);
+						rotateMainProj(s);
 				}
 			});
 		}
@@ -83,40 +112,43 @@ public class GameViewImpl implements GameView {
 	}
 
 	/**
-	 * Method called by drawMainProj for each projectile, to draw it appropriately based on direction
+	 * Method called by drawMainProj for each projectile, to draw it appropriately
+	 * based on direction
+	 * 
 	 * @param bullet, to check the stored direction of each bullet
+	 * @throws SlickException
 	 */
-	private void rotateMainProj(final Bullet bullet) {
+	private void rotateMainProj(final Bullet bullet){
 		if (bullet.getDirection().equals(Direction.NORTH)) {
-			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE,
+			bulletsPlayer.get(bullet).draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE,
 					GameSettings.TILESIZE);
 		} else if (bullet.getDirection().equals(Direction.EAST)) {
-			bullet.getTexture().rotate(90);
-			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE,
+			bulletsPlayer.get(bullet).rotate(90);
+			bulletsPlayer.get(bullet).draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE,
 					GameSettings.TILESIZE);
-			bullet.getTexture().rotate(270);
+			bulletsPlayer.get(bullet).rotate(270);
 		} else if (bullet.getDirection().equals(Direction.SOUTH)) {
-			bullet.getTexture().rotate(180);
-			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE,
+			bulletsPlayer.get(bullet).rotate(180);
+			bulletsPlayer.get(bullet).draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE,
 					GameSettings.TILESIZE);
-			bullet.getTexture().rotate(180);
+			bulletsPlayer.get(bullet).rotate(180);
 		} else if (bullet.getDirection().equals(Direction.WEST)) {
-			bullet.getTexture().rotate(270);
-			bullet.getTexture().draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE,
+			bulletsPlayer.get(bullet).rotate(270);
+			bulletsPlayer.get(bullet).draw(bullet.getPos().getX(), bullet.getPos().getY(), GameSettings.TILESIZE,
 					GameSettings.TILESIZE);
-			bullet.getTexture().rotate(90);
+			bulletsPlayer.get(bullet).rotate(90);
 		}
 	}
 
 	public void drawEnemies() {
 		currentRoom.getRoom().getEnemySet().forEach(s -> {
-			
-			if(s.getTypeEnemy().equals(TypeEnemy.MAGE)) {
-				s.getAnimation().setCurrentFrame(0);
-				s.getAnimation().getCurrentFrame().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			if (s.getType().equals(TypeEnemy.MAGE)) {
+				enemyImage.get(s).setCurrentFrame(0);
+				enemyImage.get(s).getCurrentFrame().draw(s.getPosition().getX(), s.getPosition().getY(),
+						GameSettings.TILESIZE, GameSettings.TILESIZE);
 			} else {
-				s.getAnimation().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE,
-						GameSettings.TILESIZE);
+				enemyImage.get(s).draw(s.getPosition().getX(), s.getPosition().getY(),
+						GameSettings.TILESIZE, GameSettings.TILESIZE);
 			}
 		});
 
@@ -124,7 +156,8 @@ public class GameViewImpl implements GameView {
 	}
 
 	/**
-	 * Method called by drawEnemies, to draw the appropriate bullet according to each enemy
+	 * Method called by drawEnemies, to draw the appropriate bullet according to
+	 * each enemy
 	 */
 	private void drawEnemyProj() {
 		Set<Enemy> enemys = currentRoom.getRoom().getEnemySet();
@@ -134,8 +167,13 @@ public class GameViewImpl implements GameView {
 
 			if (!bulletMon.isEmpty()) {
 				bulletMon.forEach(s -> {
-					s.getTexture().draw(s.getPos().getX(), s.getPos().getY(), GameSettings.TILESIZE,
-							GameSettings.TILESIZE);
+					try {
+						ImageFactory.getEnemyBull().draw(s.getPos().getX(), s.getPos().getY(),
+								GameSettings.TILESIZE, GameSettings.TILESIZE);
+					} catch (SlickException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				});
 			}
 		});
@@ -151,20 +189,21 @@ public class GameViewImpl implements GameView {
 	@Override
 	public void drawItems() {
 		Pair<Integer, Integer> tmp = currentRoom.getRoom().getKey().getPosition();
-		if(!currentRoom.isGotRoomKey())
-			currentRoom.getRoom().getKey().getTexture().draw(tmp.getX(), tmp.getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
-		
-		if(currentRoom.getRoom().getCoin().isPresent() && !level.isGotLevelCoin()) {
+		if (!currentRoom.isGotRoomKey())
+			currentRoom.getRoom().getKey().getTexture().draw(tmp.getX(), tmp.getY(), GameSettings.TILESIZE,
+					GameSettings.TILESIZE);
+
+		if (currentRoom.getRoom().getCoin().isPresent() && !level.isGotLevelCoin()) {
 			tmp = currentRoom.getRoom().getCoin().get().getPosition();
-			currentRoom.getRoom().getCoin().get().getTexture().draw(tmp.getX(), tmp.getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
+			currentRoom.getRoom().getCoin().get().getTexture().draw(tmp.getX(), tmp.getY(), GameSettings.TILESIZE,
+					GameSettings.TILESIZE);
 		}
 	}
 
 	public void drawMod() {
-		currentRoom.getRoom().getPickupablesSet().stream().filter(
-				s -> s.getTypeEnt().equals(Entities.ATTACKUPGRADE1) || s.getTypeEnt().equals(Entities.HEALTHUPGRADE1)
-				|| s.getTypeEnt().equals(Entities.MOVEMENTSPEED1) || s.getTypeEnt().equals(Entities.ATTACKSPEED1)
-				|| s.getTypeEnt().equals(Entities.RECOVERHEALTH))
+		currentRoom.getRoom().getPickupablesSet().stream().filter(s -> s.getTypeEnt().equals(Entities.ATTACKUPGRADE1)
+				|| s.getTypeEnt().equals(Entities.HEALTHUPGRADE1) || s.getTypeEnt().equals(Entities.MOVEMENTSPEED1)
+				|| s.getTypeEnt().equals(Entities.ATTACKSPEED1) || s.getTypeEnt().equals(Entities.RECOVERHEALTH))
 				.forEach(s -> s.getTexture().draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE,
 						GameSettings.TILESIZE));
 
@@ -173,8 +212,7 @@ public class GameViewImpl implements GameView {
 	public void drawFloor() {
 		for (int x = 0; x < GameSettings.WIDTH; x += GameSettings.TILESIZE) {
 			for (int y = 0; y < GameSettings.HEIGHT; y += GameSettings.TILESIZE) {
-				currentRoom.getFloor().getTexture().draw(x, y, GameSettings.TILESIZE,
-						GameSettings.TILESIZE);
+				currentRoom.getFloor().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 			}
 		}
 		if (currentRoom.getRoom().areStairsPresent()) {
@@ -195,19 +233,17 @@ public class GameViewImpl implements GameView {
 		for (int x = 0; x < GameSettings.WIDTH; x += GameSettings.TILESIZE) {
 			for (int y = 0; y < GameSettings.HEIGHT; y += GameSettings.TILESIZE) {
 				if (x == 0 && y > 0 && y < GameSettings.HEIGHT - GameSettings.TILESIZE) {
-					currentRoom.getWallVert().getTexture().draw(x, y, GameSettings.TILESIZE,
-							GameSettings.TILESIZE);
+					currentRoom.getWallVert().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				} else if (x == GameSettings.WIDTH - GameSettings.TILESIZE && y > 0
 						&& y < GameSettings.HEIGHT - GameSettings.TILESIZE) {
-					currentRoom.getWallVert().getTexture().getFlippedCopy(true, false)
-							.draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
+					currentRoom.getWallVert().getTexture().getFlippedCopy(true, false).draw(x, y, GameSettings.TILESIZE,
+							GameSettings.TILESIZE);
 				} else if (y == 0 && x > 0 && x < GameSettings.WIDTH - GameSettings.TILESIZE) {
-					currentRoom.getWallHor().getTexture().getFlippedCopy(false, true)
-							.draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
+					currentRoom.getWallHor().getTexture().getFlippedCopy(false, true).draw(x, y, GameSettings.TILESIZE,
+							GameSettings.TILESIZE);
 				} else if (y == GameSettings.HEIGHT - GameSettings.TILESIZE && x > 0
 						&& x < GameSettings.WIDTH - GameSettings.TILESIZE) {
-					currentRoom.getWallHor().getTexture().draw(x, y, GameSettings.TILESIZE,
-							GameSettings.TILESIZE);
+					currentRoom.getWallHor().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				}
 			}
 		}
@@ -226,7 +262,7 @@ public class GameViewImpl implements GameView {
 
 	public void drawDoors() {
 		Map<Door, Optional<RoomModel>> doors = currentRoom.getDoorAccess();
-		
+
 		for (Entry<Door, Optional<RoomModel>> entry : doors.entrySet()) {
 			if (entry.getValue().isPresent()) {
 				if (entry.getKey().equals(Door.NORTH)) {
@@ -244,9 +280,11 @@ public class GameViewImpl implements GameView {
 	}
 
 	/**
-	 * Method called by drawDoors, to draw the right animation based on the Door cardinality, and if the room has been cleared
+	 * Method called by drawDoors, to draw the right animation based on the Door
+	 * cardinality, and if the room has been cleared
+	 * 
 	 * @param animation, the right animation based on the Door cardinality
-	 * @param door, the according Door Cardinality
+	 * @param door,      the according Door Cardinality
 	 */
 	private void renderDoor(final AnimatedTile animation, Door door) {
 		if (currentRoom.isGotRoomKey()) {

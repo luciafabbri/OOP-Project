@@ -9,7 +9,6 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.SlickException;
 
 import dynamicBody.character.enemy.attack.TypeAttack;
-import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.enemy.move.TypeMove;
 import dynamicBody.move.Direction;
 import levels.Level;
@@ -56,7 +55,7 @@ public class TestEnemy {
 		assertTrue(testEnemy.isAlive());
 		assertEquals(new Pair<>(128,128), testEnemy.getPosition());
 		assertEquals(Direction.SOUTH, testEnemy.getDirection());
-		assertEquals(TypeEnemy.BOWMAN, testEnemy.getTypeEnemy());
+		assertEquals(TypeEnemy.BOWMAN, testEnemy.getType());
 		testEnemy.takeDamage(70);
 		assertFalse(testEnemy.isAlive());
 	}

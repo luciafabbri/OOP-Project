@@ -38,8 +38,9 @@ public interface GameView {
 	/**
 	 * Method used to draw the right animation of the Player, based on if he's moving or not
 	 * @param input, used to see if the Player is moved or not
+	 * @throws SlickException 
 	 */
-	void drawMain(Input input);
+	void drawMain(Input input) throws SlickException;
 	
 	/**
 	 * Method used to draw the modifiers placed in each room

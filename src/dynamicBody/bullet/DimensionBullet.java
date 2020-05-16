@@ -35,9 +35,9 @@ public enum DimensionBullet {
 
 	public static Pair<DimensionBullet, DimensionBullet> getDimensionBullet(TypeBullet bull) {
 		switch (bull) {
-		case PLAYER:
+		case PLAYER_BULL:
 			return new Pair<>(ORIZONTAL_PLAYER, VERTICAL_PLAYER);
-		case ENEMY:
+		case ENEMY_BULL:
 			return new Pair<>(MONSTER, MONSTER);
 		default:
 			throw new IllegalArgumentException();

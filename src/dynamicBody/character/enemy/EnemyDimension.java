@@ -1,7 +1,6 @@
 package dynamicBody.character.enemy;
 
 import dynamicBody.UpDownLeftRight;
-import dynamicBody.character.enemy.creator.TypeEnemy;
 
 /**
  * Enumeration used to get enemy's dimensions based on his current direction
@@ -37,7 +36,7 @@ public enum EnemyDimension {
 	 * @param mon, TypeMonster of the monster
 	 * @return the a Pair<DimensionMonster, DimensionMonster> of the TypeEnemy
 	 */
-	public static  EnemyDimension getDimensionMoster(TypeEnemy mon) {
+	public static EnemyDimension getDimensionMoster(TypeEnemy mon) {
 		switch (mon) {
 		case PLANT:
 			return PLANT;

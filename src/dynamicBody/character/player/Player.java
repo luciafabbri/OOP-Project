@@ -102,12 +102,12 @@ public interface Player extends dynamicBody.character.Character {
 	 */
 	int getRateOfFire();
 	
-	/**
-	 * Method used to load all player's animations 
-	 * 
-	 * @throws SlickException
-	 */
-	void loadAnimations() throws SlickException;
+//	/**
+//	 * Method used to load all player's animations 
+//	 * 
+//	 * @throws SlickException
+//	 */
+//	void loadAnimations() throws SlickException;
 	
 	/**
 	 * Method used to check the presence of any enemy in the room

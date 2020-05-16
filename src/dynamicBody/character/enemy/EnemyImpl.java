@@ -3,7 +3,6 @@ package dynamicBody.character.enemy;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
@@ -12,7 +11,6 @@ import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.attack.AttackFactory;
 import dynamicBody.character.enemy.attack.EnemyAttack;
 import dynamicBody.character.enemy.attack.TypeAttack;
-import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.enemy.move.MoveFactory;
 import dynamicBody.character.enemy.move.EnemyMovement;
 import dynamicBody.character.enemy.move.TypeMove;
@@ -37,7 +35,6 @@ public class EnemyImpl implements Enemy {
 	private Direction direction;
 	private EnemyDimension dimensions;
 	private TypeEnemy typeEnemy;
-	private UpDownLeftRight<Animation> textures;
 	private Set<Bullet> bullets = new HashSet<>();
 	
 	private MoveFactory moveFactory = new MoveFactory();
@@ -75,7 +72,6 @@ public class EnemyImpl implements Enemy {
 		this.typeEnemy = mon;
 		try {
 			this.enemyDamage = new Sound("./res/audio/enemy/takeDamage.wav");
-			this.textures = EnemyImage.getTexture(mon);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -102,28 +98,6 @@ public class EnemyImpl implements Enemy {
 	public void takeDamage(int damage) {
 		enemyDamage.play(1.0f, 0.2f);
 		health.takeDmg(damage);
-	}
-
-	@Override
-	public TypeEnemy getTypeEnemy() {
-		return this.typeEnemy;
-	}
-
-	@Override
-	public Animation getAnimation() {
-		switch (this.direction) {
-		case NORTH:
-			return textures.getUp();
-		case SOUTH:
-			return textures.getDown();
-		case WEST:
-			return textures.getLeft();
-		case EAST:
-			return textures.getRight();
-		default:
-			throw new IllegalArgumentException("The Animation of the Direction isn't implemented");
-
-		}
 	}
 
 	@Override
@@ -163,6 +137,11 @@ public class EnemyImpl implements Enemy {
 	@Override
 	public int getDamage() {
 		return this.damage;
+	}
+
+	@Override
+	public TypeEnemy getType() {
+		return typeEnemy;
 	}
 
 }

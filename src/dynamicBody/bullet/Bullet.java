@@ -1,7 +1,5 @@
 package dynamicBody.bullet;
 
-import org.newdawn.slick.Image;
-
 import dynamicBody.DynamicBody;
 import dynamicBody.move.Direction;
 import worldModel.RoomModel;
@@ -28,15 +26,17 @@ public interface Bullet extends DynamicBody {
 	 */
 	Direction getDirection();
 
-	/**
-	 * @return bullet's image
-	 */
-	Image getTexture();
-
-	/**
-	 * @param texture, image used to represent bullets
-	 */
-	void setTexture(Image texture);
+//	/**
+//	 * @return bullet's image
+//	 */
+//	Image getTexture();
+//
+//	/**
+//	 * @param texture, image used to represent bullets
+//	 */
+//	void setTexture(Image texture);
+	
+	TypeBullet getType();
 	
 	/**
 	 * @return bullet's current room

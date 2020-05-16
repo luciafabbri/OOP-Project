@@ -34,7 +34,7 @@ public final class DistanceBull {
 	 * @return
 	 */
 	private static Pair<Integer, Integer> calcDistance(Direction dir, Character character) {
-		UpDownLeftRight<Integer> dim = DimensionBullet.getDimensionBullet(TypeBullet.ENEMY).getX().getDimension();
+		UpDownLeftRight<Integer> dim = DimensionBullet.getDimensionBullet(TypeBullet.ENEMY_BULL).getX().getDimension();
 		int distanceSpawn = BulletDefault.DISTANCESPAWNBULL.getValue();
 		switch (dir) {
 		case NORTH:
