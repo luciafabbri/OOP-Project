@@ -37,7 +37,7 @@ public enum EnemyDimension {
 	 * @param mon, TypeMonster of the monster
 	 * @return the a Pair<DimensionMonster, DimensionMonster> of the TypeEnemy
 	 */
-	public static  EnemyDimension getDimensionMoster(TypeEnemy mon) {
+	public static EnemyDimension getDimensionMoster(TypeEnemy mon) {
 		switch (mon) {
 		case PLANT:
 			return PLANT;

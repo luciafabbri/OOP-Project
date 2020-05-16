@@ -70,25 +70,30 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 			level.setRoomID(getRoomID(Door.EAST));
 			player.transitionPos(
 					new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE * 5 - GameSettings.TILESIZE / 2));
+			level.setChangedRoom(true);
 		} else if ((check.transWest(player.getPosition()) || input.isKeyPressed(Input.KEY_LEFT))
 				&& checkEmpty(Door.WEST)) {
 			level.setRoomID(getRoomID(Door.WEST));
 			player.transitionPos(new Pair<>(GameSettings.LIMITRIGHT - GameSettings.TILESIZE,
 					GameSettings.TILESIZE * 5 - GameSettings.TILESIZE / 2));
+			level.setChangedRoom(true);
 		} else if ((check.transNorth(player.getPosition()) || input.isKeyPressed(Input.KEY_UP))
 				&& checkEmpty(Door.NORTH)) {
 			level.setRoomID(getRoomID(Door.NORTH));
 			player.transitionPos(new Pair<>(GameSettings.TILESIZE * 9, GameSettings.LIMITDOWN - GameSettings.TILESIZE));
+			level.setChangedRoom(true);
 		} else if ((check.transSouth(player.getPosition()) || input.isKeyPressed(Input.KEY_DOWN))
 				&& checkEmpty(Door.SOUTH)) {
 			level.setRoomID(getRoomID(Door.SOUTH));
 			player.transitionPos(new Pair<>(GameSettings.TILESIZE * 9, GameSettings.TILESIZE));
+			level.setChangedRoom(true);
 		}
 		player.setCurrentRoom(level.getLevel().get(level.getRoomID()).getRoom());
 
 		currentRoom = level.getLevel().get(level.getRoomID());
 		if(!currentRoom.isGotRoomKey())
 			playSound = true;
+		
 	}
 
 	@Override

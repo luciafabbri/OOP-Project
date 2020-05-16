@@ -3,7 +3,6 @@ package dynamicBody.character.enemy;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
@@ -37,7 +36,6 @@ public class EnemyImpl implements Enemy {
 	private Direction direction;
 	private EnemyDimension dimensions;
 	private TypeEnemy typeEnemy;
-	private UpDownLeftRight<Animation> textures;
 	private Set<Bullet> bullets = new HashSet<>();
 	
 	private MoveFactory moveFactory = new MoveFactory();
@@ -75,7 +73,6 @@ public class EnemyImpl implements Enemy {
 		this.typeEnemy = mon;
 		try {
 			this.enemyDamage = new Sound("./res/audio/enemy/takeDamage.wav");
-			this.textures = EnemyImage.getTexture(mon);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -107,23 +104,6 @@ public class EnemyImpl implements Enemy {
 	@Override
 	public TypeEnemy getTypeEnemy() {
 		return this.typeEnemy;
-	}
-
-	@Override
-	public Animation getAnimation() {
-		switch (this.direction) {
-		case NORTH:
-			return textures.getUp();
-		case SOUTH:
-			return textures.getDown();
-		case WEST:
-			return textures.getLeft();
-		case EAST:
-			return textures.getRight();
-		default:
-			throw new IllegalArgumentException("The Animation of the Direction isn't implemented");
-
-		}
 	}
 
 	@Override

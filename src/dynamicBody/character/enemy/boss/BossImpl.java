@@ -39,7 +39,7 @@ public class BossImpl extends EnemyImpl implements Enemy {
 	 * @param room, RoomModel where Boss spawn
 	 */
 	public BossImpl(Pair<Integer, Integer> pos, RoomModel room) {
-		this(pos, BossDefault.DAMAGE.getValue(), 1, BossDefault.HEALTH.getValue(), TypeMove.TO_PLAYER,
+		this(pos, BossDefault.DAMAGE.getValue(), 1, BossDefault.HEALTH.getValue(), TypeMove.getBossMove(),
 				Direction.getRandomDir(), TypeAttack.getBossAtt(), room);
 	}
 

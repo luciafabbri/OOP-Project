@@ -1,6 +1,15 @@
 package levels;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.SlickException;
+
+import dynamicBody.character.enemy.creator.TypeEnemy;
+import dynamicBody.move.Direction;
+import worldModel.utilities.Pair;
 
 public interface Level {
 	
@@ -42,4 +51,10 @@ public interface Level {
 	public boolean isPauseMenu();
 	
 	public void setPauseMenu(boolean pauseMenu);
+	
+	public void setChangedRoom(boolean changedRoom);
+	
+	public boolean isChangedRoom();
+	
+	public Map<TypeEnemy, Set<Pair<Direction, Animation>>> loadAnimations() throws SlickException;
 }

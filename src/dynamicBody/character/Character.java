@@ -32,10 +32,10 @@ public interface Character extends DynamicBody {
 	 */
 	void takeDamage(int damage);
 	
-	/**
-	 * @return character's Animation
-	 */
-	Animation getAnimation();
+//	/**
+//	 * @return character's Animation
+//	 */
+//	Animation getAnimation();
 	
 	/**
 	 * @return character's bullet set 

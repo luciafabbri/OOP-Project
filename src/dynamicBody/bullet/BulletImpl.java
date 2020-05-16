@@ -1,7 +1,5 @@
 package dynamicBody.bullet;
 
-import org.newdawn.slick.Image;
-
 import dynamicBody.UpDownLeftRight;
 import dynamicBody.bullet.move.CheckMonsBull;
 import dynamicBody.bullet.move.CheckPlayerBull;
@@ -22,10 +20,10 @@ public class BulletImpl implements Bullet {
 	private int dmg;
 	private Direction direction;
 	private MoveBull move;
-	private Image texture;
 	private RoomModel room;
 	private Pair<DimensionBullet, DimensionBullet> dimensions;
 	private CheckPos check;
+	private TypeBullet typeBull;
 
 	/**
 	 * Default constructor
@@ -43,6 +41,7 @@ public class BulletImpl implements Bullet {
 		this.direction = direction;
 		this.room = room;
 		this.move = new MoveBullImpl(room);
+		this.typeBull = type;
 		this.dimensions = DimensionBullet.getDimensionBullet(type);
 		this.check = findCheck(type);
 	}
@@ -55,9 +54,9 @@ public class BulletImpl implements Bullet {
 	 */
 	private CheckPos findCheck(TypeBullet type) {
 		switch (type) {
-		case ENEMY:
+		case ENEMY_BULL:
 			return new CheckMonsBull(this);
-		case PLAYER:
+		case PLAYER_BULL:
 			return new CheckPlayerBull(this);
 		default:
 			throw new IllegalArgumentException();
@@ -89,10 +88,10 @@ public class BulletImpl implements Bullet {
 		return this.direction;
 	}
 
-	@Override
-	public Image getTexture() {
-		return this.texture;
-	}
+//	@Override
+//	public Image getTexture() {
+//		return this.texture;
+//	}
 
 	@Override
 	public UpDownLeftRight<Integer> getDimension() {
@@ -103,14 +102,19 @@ public class BulletImpl implements Bullet {
 		}
 	}
 
-	@Override
-	public void setTexture(Image texture) {
-		this.texture = texture;
-	}
+//	@Override
+//	public void setTexture(Image texture) {
+//		this.texture = texture;
+//	}
 
 	@Override
 	public RoomModel getRoom() {
 		return room;
+	}
+
+	@Override
+	public TypeBullet getType() {
+		return typeBull;
 	}
 
 }

@@ -1,12 +1,10 @@
 package coordination;
 import java.io.IOException;
 
-import org.lwjgl.opengl.Display;
-import org.newdawn.slick.Color;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -15,7 +13,6 @@ import dynamicBody.character.player.Player;
 import levels.Level;
 import levels.LevelImpl;
 import worldModel.utilities.GameSettings;
-import worldModel.utilities.Pair;
 
 public class GameController extends BasicGameState {
 	
@@ -69,7 +66,7 @@ public class GameController extends BasicGameState {
 		
 		try {
 			level = new LevelImpl(this.levelID);
-			this.player.loadAnimations();
+//			this.player.loadAnimations();
 			
 			logic = new ModelCommunicatorImpl(level, player);
 		} catch (IOException e) {
@@ -91,27 +88,15 @@ public class GameController extends BasicGameState {
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		input = arg0.getInput();
 		
-		graphics.drawFloor();
-		graphics.drawWalls();
 		
-		graphics.drawItems();
-		graphics.drawMod();
-		graphics.drawObstacles();
-		
-		graphics.drawDoors();
-		
-		graphics.drawEnemies();
-		
-		graphics.drawMain(input);
-		
-		graphics.drawDoorTop();
+		graphics.render(input);
 		
 		ui.drawUI();
 		
 		
-		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 0);
-		arg2.drawString("Level: " + this.getID() + " | Room: " +level.getRoomID(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 16);
-		arg2.drawString("Stairs: " + level.getLevel().get(level.getRoomID()).getRoom().areStairsPresent(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 32);
+//		arg2.drawString("X: " + player.getPosition().getX() + " | Y: " +player.getPosition().getY(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 0);
+//		arg2.drawString("Level: " + this.getID() + " | Room: " +level.getRoomID(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 16);
+//		arg2.drawString("Stairs: " + level.getLevel().get(level.getRoomID()).getRoom().areStairsPresent(), GameSettings.WIDTH - GameSettings.TILESIZE * 5, 32);
 
 		arg2.clearClip();
 	}
@@ -125,17 +110,17 @@ public class GameController extends BasicGameState {
 		
 		logic.setRoomCleared();
 		
+		logic.pauseMenu(input);	
+		
 		if(!level.isPauseMenu()) {
 			logic.moveMain(input);
 			logic.shootMain(input);
 			
-			logic.moveEnemies();
+			logic.moveEnemies(); 
 			logic.shootEnemies();
 			
 			logic.switchRooms(input);
 		}
-		
-		logic.pauseMenu(input);
 		
 		if(player.getCheck().checkStairs(level.getLevel().get(level.getRoomID()).getRoom(), player.getPosition())) {
 			this.levelID++;
