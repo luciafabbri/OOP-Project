@@ -1,6 +1,7 @@
 package dynamicBody.character.enemy;
 
 import dynamicBody.UpDownLeftRight;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 
 /**
  * Enumeration used to get enemy's dimensions based on his current direction

@@ -7,7 +7,7 @@ import java.util.Set;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 
-import dynamicBody.character.enemy.TypeEnemy;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.move.Direction;
 import worldModel.utilities.Pair;
 

@@ -15,7 +15,7 @@ import org.newdawn.slick.SlickException;
 import dynamicBody.ImageFactory;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.Enemy;
-import dynamicBody.character.enemy.TypeEnemy;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.player.Player;
 import dynamicBody.move.Direction;
 import gameEntities.Stairs;
@@ -175,9 +175,9 @@ public class GameViewImpl implements GameView {
 		
 		currentRoom.getRoom().getEnemySet().forEach(s -> {
 			
-			Animation tmp = enemyAnimation.get(s.getType()).stream().filter(p -> p.getX().equals(s.getDirection())).findFirst().get().getY();
+			Animation tmp = enemyAnimation.get(s.getTypeEnemy()).stream().filter(p -> p.getX().equals(s.getDirection())).findFirst().get().getY();
 			
-			if (s.getType().equals(TypeEnemy.MAGE)) {
+			if (s.getTypeEnemy().equals(TypeEnemy.MAGE)) {
 				
 				tmp.setCurrentFrame(0);
 				tmp.getCurrentFrame().draw(s.getPosition().getX(), s.getPosition().getY(),

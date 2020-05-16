@@ -2,7 +2,6 @@ package dynamicBody.character.enemy.creator;
 
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.EnemyImpl;
-import dynamicBody.character.enemy.TypeEnemy;
 import dynamicBody.character.enemy.attack.TypeAttack;
 import dynamicBody.character.enemy.boss.BossImpl;
 import dynamicBody.character.enemy.move.TypeMove;

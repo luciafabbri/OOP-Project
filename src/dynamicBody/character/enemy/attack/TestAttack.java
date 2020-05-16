@@ -12,7 +12,7 @@ import org.lwjgl.opengl.Display;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.EnemyImpl;
-import dynamicBody.character.enemy.TypeEnemy;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.enemy.move.TypeMove;
 import dynamicBody.move.Direction;
 import levels.Level;

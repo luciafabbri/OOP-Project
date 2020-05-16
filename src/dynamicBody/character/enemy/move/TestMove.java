@@ -10,8 +10,8 @@ import org.newdawn.slick.SlickException;
 
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.EnemyImpl;
-import dynamicBody.character.enemy.TypeEnemy;
 import dynamicBody.character.enemy.attack.TypeAttack;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.move.Direction;
 import gameEntities.Obstacle;
 import levels.Level;

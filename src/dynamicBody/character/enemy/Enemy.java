@@ -1,6 +1,7 @@
 package dynamicBody.character.enemy;
 
 import dynamicBody.bullet.Bullet;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 
 /**
  * Interface that presents all the methods needed or that can be used with
@@ -14,6 +15,11 @@ public interface Enemy extends dynamicBody.character.Character {
 	public void updatePos();
 
 	/**
+	 * @return the TypeEnemy of the enemy
+	 */
+	public TypeEnemy getTypeEnemy();
+
+	/**
 	 * Method use by Enemy.attack to put the bullet in the Set<Bullet>
 	 * 
 	 * @param bullet, the Bullet to add
@@ -24,7 +30,5 @@ public interface Enemy extends dynamicBody.character.Character {
 	 * Method use attack with the enemy
 	 */
 	public void attack();
-	
-	public TypeEnemy getType();
 
 }

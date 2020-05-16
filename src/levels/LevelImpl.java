@@ -12,7 +12,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 
 import dynamicBody.ImageFactory;
-import dynamicBody.character.enemy.TypeEnemy;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.move.Direction;
 import worldModel.LevelModel;
 import worldModel.generation.LevelModelGeneratorImpl;
@@ -61,7 +61,7 @@ public class LevelImpl implements Level {
 		Map<TypeEnemy, Set<Pair<Direction, Animation>>> tmpMap = new HashMap<>();
 		Set<Pair<Direction, Animation>> tmpSet = new HashSet<>();
 		
-		TypeEnemy temp = this.level.get(this.roomID).getRoom().getEnemySet().iterator().next().getType();
+		TypeEnemy temp = this.level.get(this.roomID).getRoom().getEnemySet().iterator().next().getTypeEnemy();
 		
 		tmpSet.add(new Pair<>(Direction.NORTH, ImageFactory.getAnimation(ImageFactory.getEnemyImage(temp, Direction.NORTH))));
 		tmpSet.add(new Pair<>(Direction.EAST, ImageFactory.getAnimation(ImageFactory.getEnemyImage(temp, Direction.EAST))));

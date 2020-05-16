@@ -11,6 +11,7 @@ import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.attack.AttackFactory;
 import dynamicBody.character.enemy.attack.EnemyAttack;
 import dynamicBody.character.enemy.attack.TypeAttack;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.enemy.move.MoveFactory;
 import dynamicBody.character.enemy.move.EnemyMovement;
 import dynamicBody.character.enemy.move.TypeMove;
@@ -101,6 +102,11 @@ public class EnemyImpl implements Enemy {
 	}
 
 	@Override
+	public TypeEnemy getTypeEnemy() {
+		return this.typeEnemy;
+	}
+
+	@Override
 	public Direction getDirection() {
 		return this.direction;
 	}
@@ -137,11 +143,6 @@ public class EnemyImpl implements Enemy {
 	@Override
 	public int getDamage() {
 		return this.damage;
-	}
-
-	@Override
-	public TypeEnemy getType() {
-		return typeEnemy;
 	}
 
 }
