@@ -1,12 +1,8 @@
 package worldModel.generation;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.Random;
-
 import org.newdawn.slick.SlickException;
-
-import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.creator.EnemyCreatorImpl;
 import gameEntities.*;
 import gameEntities.items.*;
@@ -94,7 +90,8 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateEnemies(int numOfEnemies) throws SlickException {
 		for (int j = 0; j < numOfEnemies; j++) {
-			room.addEnemy(this.generateMonster());
+			room.addEnemy(enemyGen.getMonster(this.currentConfig.get("level"),this.generateCoherentPos(), 
+					currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"), room));
 		}
 
 	}
@@ -115,32 +112,6 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateCoin() throws SlickException {
 		room.addCoin(new Coin(generateCoherentPos()));		
-	}
-	
-	/**
-	 * @return monster for the current level
-	 */
-	private Enemy generateMonster() {
-		if(currentConfig.get("level") == 1) {
-			return enemyGen.getMonsterA(this.generateCoherentPos(), currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
-					room);
-		}
-		else if (currentConfig.get("level") == 2) {
-			return enemyGen.getMonsterB(this.generateCoherentPos(), currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
-					room);
-		}
-		else if (currentConfig.get("level") == 3) {
-			return enemyGen.getMonsterC(this.generateCoherentPos(), currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
-					room);
-		}
-		else if (currentConfig.get("level") == 4) {
-			return enemyGen.getMonsterD(this.generateCoherentPos(), currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"),
-					room);
-		}
-		else {
-			throw new IllegalStateException();
-		}
-		
 	}
 
 }
