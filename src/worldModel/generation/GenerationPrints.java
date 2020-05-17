@@ -1,9 +1,12 @@
-package worldModel;
+package worldModel.generation;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
-import worldModel.generation.LevelModelGeneratorImpl;
+
+import worldModel.LevelModel;
+import worldModel.LevelModelImpl;
+import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 import worldModel.utilities.enums.Door;
 import worldModel.utilities.graphs.BidirectionalGraph;
@@ -16,18 +19,12 @@ import java.util.Optional;
  * package
  *
  */
-public class GenerationPrint  {
+public class GenerationPrints  {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 	
 		final LevelModelGeneratorImpl generator = new LevelModelGeneratorImpl();
-
-		LevelModel testLevel = new LevelModelImpl();
-		try {
-			testLevel = generator.generateLevel(3);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		final LevelModel testLevel = generator.generateLevel(3);	
 
 		// game entities listing for each room
 
