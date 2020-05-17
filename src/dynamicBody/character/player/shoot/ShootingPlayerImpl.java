@@ -1,7 +1,6 @@
 package dynamicBody.character.player.shoot;
 
 import org.newdawn.slick.Input;
-
 import coordination.SoundBoard;
 import coordination.SoundBoardFactory;
 import dynamicBody.bullet.Bullet;

@@ -12,6 +12,8 @@ import levels.Level;
 import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 import worldModel.utilities.enums.Door;
+import coordination.SoundBoard;
+import coordination.SoundBoardFactory;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -20,10 +22,6 @@ import java.util.Set;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
-
-import coordination.SoundBoard;
-import coordination.SoundBoardFactory;
 
 /**
  * Class that implements interface Player used to define all the aspects concerning the player 
@@ -43,7 +41,6 @@ public class PlayerImpl implements Player {
 	private Health health;
 	private RoomModel currentRoom;
 	private Inventory inventory;
-//	private UpDownLeftRight<Animation> textures;
 	private Pair<PlayerDimensions, PlayerDimensions> dimensions;
 	private ShootingPlayer bullet ;
 	private Set<Bullet> roomBullets = new HashSet<>();
@@ -76,8 +73,11 @@ public class PlayerImpl implements Player {
 		Pair<Integer,Integer> newPos;
 		Map<Door, Optional<RoomModel>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
 		newPos = move.movePlayer(input, this.position, this.direction, this.playerSpeed); 
+		
 		check.checkEnemyRoom(this.currentRoom, newPos);
+		
 		check.checkGameEntities(this.currentRoom, newPos, level);
+		
 		if( check.possiblePos(this.currentRoom, newPos) || (check.checkDoors(newPos, map) && clearRoom)) {
 			this.position = newPos;  
 		}
@@ -131,22 +131,6 @@ public class PlayerImpl implements Player {
 	public Inventory getInventory() {
 		return this.inventory;
 	}
-
-//	@Override
-//	public Animation getAnimation() {
-//		switch (this.direction) {
-//		case NORTH:
-//			return textures.getUp();
-//		case SOUTH:
-//			return textures.getDown();
-//		case WEST:
-//			return textures.getLeft();
-//		case EAST:
-//			return textures.getRight();
-//		default:
-//			throw new IllegalArgumentException();
-//		}
-//	}
 	
 	@Override
 	public UpDownLeftRight<Integer> getDimension() {
@@ -219,11 +203,6 @@ public class PlayerImpl implements Player {
 	public Set<Bullet> getRoomBullets() {
 		return this.roomBullets;
 	}
-
-//	@Override
-//	public void loadAnimations() throws SlickException {
-//		this.textures = PlayerImages.getTexture(this);
-//	}
 
 	@Override
 	public void setClearRoom(boolean clearRoom) {

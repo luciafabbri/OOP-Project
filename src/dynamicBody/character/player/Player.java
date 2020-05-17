@@ -7,10 +7,8 @@ import dynamicBody.character.player.shoot.ShootingPlayer;
 import levels.Level;
 import worldModel.RoomModel;
 import worldModel.utilities.Pair;
-
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 
 /**
  * An interface that presents all the methods needed or that can be used with regards to the player 
@@ -101,13 +99,6 @@ public interface Player extends dynamicBody.character.Character {
 	 * @return player's rate of fire 
 	 */
 	int getRateOfFire();
-	
-//	/**
-//	 * Method used to load all player's animations 
-//	 * 
-//	 * @throws SlickException
-//	 */
-//	void loadAnimations() throws SlickException;
 	
 	/**
 	 * Method used to check the presence of any enemy in the room

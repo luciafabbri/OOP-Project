@@ -14,7 +14,7 @@ public enum SoundBoard {
 	
 	mainCharacterHurt("./res/audio/mainChar/hurtSound.wav"), mainCharacterShoot("./res/audio/bow/bow_fired.wav"),
 	enemyDamageHurt("./res/audio/enemy/takeDamage.wav"),
-	
+	// mainCharacterFootsteps("./res/audio/footsteps.wav"), 
 	keyPickUp("./res/audio/pickups/keyPickup.wav"), coinPickUp("./res/audio/pickups/coinPickup.wav"), modPickUp("./res/audio/pickups/modifierPickup.wav");
 	
 	String image;

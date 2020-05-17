@@ -76,9 +76,9 @@ public class PlayerAndBulletCreationTest {
 		assertEquals(1, testPlayer.getPlayerSpeed());
 		testPlayer.upgradePlayerSpeed(10);
 		assertEquals(11, testPlayer.getPlayerSpeed());
-		assertEquals(1000, testPlayer.getRateOfFire());	
+		assertEquals(800, testPlayer.getRateOfFire());	
 		testPlayer.upgradeRateOfFire(500);
-		assertEquals(500, testPlayer.getRateOfFire());
+		assertEquals(300, testPlayer.getRateOfFire());
 		assertEquals(testPlayer.getRoom(), testRoom);
 	}
 	

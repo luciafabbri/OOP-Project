@@ -1,6 +1,5 @@
 package dynamicBody.character.player.movement.check;
 
-import dynamicBody.DynamicBody;
 import dynamicBody.character.DoorCheck;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.player.PlayerImpl;
@@ -16,13 +15,10 @@ import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;
 import worldModel.utilities.enums.Door;
 import worldModel.utilities.enums.Entities;
-
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
-
 import coordination.SoundBoard;
 import coordination.SoundBoardFactory;
 
@@ -167,7 +163,6 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 					ModifiersImpl mod = new AttackSpeed1(item.getPosition());
 					if (player.getRateOfFire() > 400) {
 						player.upgradeRateOfFire(mod.getModQty());
-						System.out.println("rate : " +player.getRateOfFire());
 					}
 					SoundBoardFactory.getEntitySound(SoundBoard.modPickUp);
 					room.getPickupablesSet().remove(item);
