@@ -1,6 +1,7 @@
 package coordination;
 import java.io.IOException;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,8 +11,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import dynamicBody.character.player.Player;
-import levels.Level;
-import levels.LevelImpl;
+import levels.LevelComp;
+import levels.LevelCompImpl;
 import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;
 
@@ -36,7 +37,7 @@ public class GameController extends BasicGameState {
 	/**
 	 * Variable containing the Level class
 	 */
-	private Level level;
+	private LevelComp level;
 	/**
 	 * Variable containing which input is received from every computer controller
 	 */
@@ -64,16 +65,12 @@ public class GameController extends BasicGameState {
 	 */
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		
 		try {
-			level = new LevelImpl(this.levelID);
-//			this.player.loadAnimations();
-			
-			logic = new ModelCommunicatorImpl(level, player);
+			level = new LevelCompImpl(this.levelID);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(Level.class.getName()).log(Level.SEVERE, null, e);
 		}
+		logic = new ModelCommunicatorImpl(level, player);
 		player.setCurrentRoom(level.getLevel().get(0).getRoom());
 		player.transitionPos(new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE));
 		

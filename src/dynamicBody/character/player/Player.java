@@ -4,7 +4,7 @@ import dynamicBody.character.player.inventory.Inventory;
 import dynamicBody.character.player.movement.Movement;
 import dynamicBody.character.player.movement.check.CheckPlayerMovement;
 import dynamicBody.character.player.shoot.ShootingPlayer;
-import levels.Level;
+import levels.LevelComp;
 import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 import org.newdawn.slick.Input;
@@ -23,7 +23,7 @@ public interface Player extends dynamicBody.character.Character {
 	 * @param level, player's current level 
 	 * @throws SlickException 
 	 */
-	void setPosition(Input input, Level level) throws SlickException;
+	void setPosition(Input input, LevelComp level) throws SlickException;
 	
 	/**
 	 * Method used to set the level in which the player should go

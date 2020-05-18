@@ -3,9 +3,12 @@ package levels;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.newdawn.slick.SlickException;
 
+import coordination.SoundBoard;
 import gameEntities.Obstacle;
 import tiles.*;
 import worldModel.RoomModel;
@@ -91,8 +94,7 @@ public class RoomImpl implements Room {
 			
 			
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(Tile.class.getName()).log(Level.WARNING, null, e);
 		}
 	}
 	

@@ -1,5 +1,7 @@
 package worldModel.utilities;
 
+import java.nio.file.FileSystem;
+
 /**
  * An interface listing game parameters
  *
@@ -22,5 +24,7 @@ public interface GameSettings {
 	final static int OBST_DOWN = TILESIZE - 48;
 	
 	final static int TOTCOINS = 4;
+	
+	final static String SEP = System.getProperty("file.separator");
 	
 }

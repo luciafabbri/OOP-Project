@@ -1,5 +1,8 @@
 package coordination;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -19,48 +22,42 @@ public class SoundBoardFactory {
 			try {
 				tmpEnt = SoundBoard.mainCharacterHurt.getSound();
 			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 			}
 			break;
 		case mainCharacterShoot:
 			try {
 				tmpEnt = SoundBoard.mainCharacterShoot.getSound();
 			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 			}
 			break;	
 		case enemyDamageHurt:
 			try {
 				tmpEnt = SoundBoard.enemyDamageHurt.getSound();
 			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 			}
 			break;
 		case keyPickUp:
 			try {
 				tmpEnt = SoundBoard.keyPickUp.getSound();
 			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 			}
 			break;
 		case coinPickUp:
 			try {
 				tmpEnt = SoundBoard.coinPickUp.getSound();
 			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 			}
 			break;
 		case modPickUp:
 			try {
 				tmpEnt = SoundBoard.modPickUp.getSound();
 			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 			}
 			break;
 	/**	case mainCharacterFootsteps:

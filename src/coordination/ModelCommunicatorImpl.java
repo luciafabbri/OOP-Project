@@ -11,7 +11,7 @@ import dynamicBody.bullet.Bullet;
 import dynamicBody.character.DoorCheck;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.player.Player;
-import levels.Level;
+import levels.LevelComp;
 import levels.Room;
 import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;
@@ -22,7 +22,7 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	/**
 	 * Variable containing the current Level environment
 	 */
-	private Level level;
+	private LevelComp level;
 	/**
 	 * Variable containing the current Player environment
 	 */
@@ -48,7 +48,7 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	 * @throws SlickException
 	 * @see SlickException
 	 */
-	public ModelCommunicatorImpl(final Level level, final Player player) throws SlickException {
+	public ModelCommunicatorImpl(final LevelComp level, final Player player) throws SlickException {
 		this.level = level;
 		this.player = player;
 		this.currentRoom = level.getLevel().get(level.getRoomID());

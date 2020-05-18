@@ -9,7 +9,7 @@ import gameEntities.Pickupable;
 import gameEntities.items.Coin;
 import gameEntities.items.Key;
 import gameEntities.modifiers.*;
-import levels.Level;
+import levels.LevelComp;
 import worldModel.RoomModel;
 import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;
@@ -107,7 +107,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
     }
 	
 	@Override
-	public boolean checkGameEntities(RoomModel room, Pair<Integer,Integer> pos, Level level) throws SlickException {
+	public boolean checkGameEntities(RoomModel room, Pair<Integer,Integer> pos, LevelComp level) throws SlickException {
 		return ( checkCoin(pos, level) || checkKey(pos, level) || checkModifiers(room,pos) ) ;
 	}
 	
@@ -190,7 +190,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	 * @param level, player's current level
 	 * @return true if the player is above the coin and can collect it 
 	 */
-	private boolean checkCoin(Pair<Integer, Integer> pos, Level level) {
+	private boolean checkCoin(Pair<Integer, Integer> pos, LevelComp level) {
 		boolean checkX, checkY;
 		if( level.getLevel().get(level.getRoomID()).getRoom().getCoin().isPresent() && !level.isGotLevelCoin() ){
 			Coin item = level.getLevel().get(level.getRoomID()).getRoom().getCoin().get();
@@ -216,7 +216,7 @@ public class CheckPlayerMovementImpl extends CheckPosImpl implements CheckPlayer
 	 * @param level, player's current level 
 	 * @return true if the player is above the key and can collect it 
 	 */
-	private boolean checkKey(Pair<Integer, Integer> pos, Level level) {
+	private boolean checkKey(Pair<Integer, Integer> pos, LevelComp level) {
 		boolean checkX, checkY;
 		Key item = level.getLevel().get(level.getRoomID()).getRoom().getKey();
 		checkX = pos.getX() + player.getDimension().getLeft() < item.getPosition().getX() + GameSettings.TILESIZE &&

@@ -8,7 +8,7 @@ import dynamicBody.character.player.movement.*;
 import dynamicBody.character.player.movement.check.*;
 import dynamicBody.character.player.shoot.*;
 import dynamicBody.move.Direction;
-import levels.Level;
+import levels.LevelComp;
 import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 import worldModel.utilities.enums.Door;
@@ -69,7 +69,7 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override 
-	public void setPosition(Input input, Level level) throws SlickException {
+	public void setPosition(Input input, LevelComp level) throws SlickException {
 		Pair<Integer,Integer> newPos;
 		Map<Door, Optional<RoomModel>> map = level.getLevel().get(level.getRoomID()).getDoorAccess();
 		newPos = move.movePlayer(input, this.position, this.direction, this.playerSpeed); 

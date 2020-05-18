@@ -4,19 +4,22 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 
+import coordination.SoundBoard;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.EnemyImpl;
 import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.enemy.move.TypeMove;
 import dynamicBody.move.Direction;
-import levels.Level;
-import levels.LevelImpl;
+import levels.LevelComp;
+import levels.LevelCompImpl;
 import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
@@ -35,10 +38,9 @@ public class TestAttack {
 			// contains an Image
 			Display.create();
 		} catch (LWJGLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, e);
 		}
-		Level level = new LevelImpl(1);
+		LevelComp level = new LevelCompImpl(1);
 		level.loadRooms();
 		testRoom = level.getLevel().get(0).getRoom();
 		// RIMUOVO TUTTI GLI OSCACOLI PER IL TEST

@@ -120,3 +120,7 @@ once testing for entities has been done extensively;
 -Reworked the rendering and update, now Controller has to call just one method from both class to respectively render and update entities and world objects;
 -Reimplemented the way images are stored and rendered in the game, now every texture is handled by two classes, ImageFactory and EntityImageFactory;
 -Implemented SoundBoard to eliminate Sound variables from various entities;
+
+-18/05/2020
+-Targeted lib and res directory as source folders;
+-Updated exceptions with the right methods to call;

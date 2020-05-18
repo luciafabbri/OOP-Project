@@ -11,7 +11,7 @@ import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.move.Direction;
 import worldModel.utilities.Pair;
 
-public interface Level {
+public interface LevelComp {
 	
 	/**
 	 * Method that creates a List of RoomImpl that contain the information of each room of the level

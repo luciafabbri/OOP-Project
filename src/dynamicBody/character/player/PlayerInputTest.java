@@ -1,6 +1,8 @@
 package dynamicBody.character.player;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -8,9 +10,11 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+
+import coordination.SoundBoard;
 import dynamicBody.move.Direction;
-import levels.Level;
-import levels.LevelImpl;
+import levels.LevelComp;
+import levels.LevelCompImpl;
 import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
@@ -24,7 +28,7 @@ public class PlayerInputTest extends BasicGame {
 	private Input input;
 	
 	private static Player testPlayer;
-	private static Level testLevel; 
+	private static LevelComp testLevel; 
 	private static RoomModel testRoom;
 
 	/** Input variables to check, true if pressed */
@@ -52,9 +56,9 @@ public class PlayerInputTest extends BasicGame {
 		}
 		input = container.getInput();
 		try {
-			testLevel = new LevelImpl(1);
+			testLevel = new LevelCompImpl(1);
 		} catch (IOException e) {
-			e.printStackTrace();
+			Logger.getLogger(LevelComp.class.getName()).log(Level.SEVERE, null, e);
 		} 
 		testRoom = testLevel.getLevel().get(0).getRoom();
 		testPlayer = new PlayerImpl(new Pair<>(128, 128), Direction.SOUTH, testRoom.getRoomID());
@@ -111,7 +115,7 @@ public class PlayerInputTest extends BasicGame {
 			container.setDisplayMode(800,600,false);
 			container.start();
 		} catch (SlickException e) {
-			e.printStackTrace();
+			Logger.getLogger(AppGameContainer.class.getName()).log(Level.SEVERE, null, e);
 		}
 	}
 }

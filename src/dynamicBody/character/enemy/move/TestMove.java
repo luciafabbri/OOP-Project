@@ -3,19 +3,22 @@ package dynamicBody.character.enemy.move;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.SlickException;
 
+import coordination.SoundBoard;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.EnemyImpl;
 import dynamicBody.character.enemy.attack.TypeAttack;
 import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.move.Direction;
 import gameEntities.Obstacle;
-import levels.Level;
-import levels.LevelImpl;
+import levels.LevelComp;
+import levels.LevelCompImpl;
 import worldModel.RoomModel;
 import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;
@@ -36,10 +39,9 @@ public class TestMove {
 			// contains an Image
 			Display.create();
 		} catch (LWJGLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, e);
 		}
-		Level level = new LevelImpl(1);
+		LevelComp level = new LevelCompImpl(1);
 		level.loadRooms();
 		testRoom = level.getLevel().get(0).getRoom();
 		// RIMUOVO TUTTI GLI OSCACOLI PER IL TEST

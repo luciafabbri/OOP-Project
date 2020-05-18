@@ -2,8 +2,12 @@ package worldModel.generation;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.newdawn.slick.SlickException;
 
+import coordination.SoundBoard;
 import worldModel.*;
 import worldModel.utilities.graphs.BidirectionalGraph;
 
@@ -59,7 +63,7 @@ public class LevelModelGeneratorImpl implements LevelModelGenerator {
 			try {
 				level.addRoom(roomGen.generateRoom(i));
 			} catch (SlickException e) {
-				e.printStackTrace();
+				Logger.getLogger(LevelModel.class.getName()).log(Level.SEVERE, null, e);
 			}
 		}
 		BidirectionalGraph<RoomModel> graph = graphGen.generateRoomsGraph(level.getRooms());

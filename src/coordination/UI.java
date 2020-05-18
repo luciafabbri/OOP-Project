@@ -13,7 +13,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 import dynamicBody.character.player.Player;
-import levels.Level;
+import levels.LevelComp;
 import worldModel.utilities.GameSettings;
 
 public class UI {
@@ -29,7 +29,7 @@ public class UI {
 	/**
 	 * Variabile containing data regarding the Level
 	 */
-	private Level level;
+	private LevelComp level;
 	/**
 	 * Variable containing data of the HealthUpgrade modifier
 	 */
@@ -71,7 +71,7 @@ public class UI {
 	 * @throws SlickException
 	 * @see SlickException
 	 */
-	public UI(final Player player, final Graphics graphics, final Level level) throws SlickException {
+	public UI(final Player player, final Graphics graphics, final LevelComp level) throws SlickException {
 		this.player = player;
 		this.level = level;
 		this.graphics = graphics;

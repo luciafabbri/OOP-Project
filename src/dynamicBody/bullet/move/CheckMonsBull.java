@@ -1,7 +1,11 @@
 package dynamicBody.bullet.move;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.newdawn.slick.SlickException;
 
+import coordination.SoundBoard;
 import coordination.StateCoord;
 import dynamicBody.DynamicBody;
 import dynamicBody.character.player.Player;
@@ -50,8 +54,7 @@ public class CheckMonsBull extends CheckPosImpl implements GameSettings, CheckPo
 			try {
 				player.takeDamage(entity.getDamage());
 			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger(SoundBoard.class.getName()).log(Level.SEVERE, null, e);
 			}
 			return true;
 		}

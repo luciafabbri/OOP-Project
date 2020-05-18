@@ -18,7 +18,7 @@ import worldModel.LevelModel;
 import worldModel.generation.LevelModelGeneratorImpl;
 import worldModel.utilities.Pair;
 
-public class LevelImpl implements Level {
+public class LevelCompImpl implements LevelComp {
 	
 	/**
 	 * Variable containing the List of the rooms of the level
@@ -40,7 +40,7 @@ public class LevelImpl implements Level {
 	private boolean pauseMenu;
 	private boolean changedRoom;
 	
-	public LevelImpl(final int levelID) throws IOException {
+	public LevelCompImpl(final int levelID) throws IOException {
 		testLevel = new LevelModelGeneratorImpl().generateLevel(levelID);
 		this.loadRooms();
 		this.pauseMenu = false;

@@ -2,15 +2,19 @@ package dynamicBody.character.player;
 
 import static org.junit.Assert.*;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.SlickException;
 
+import coordination.SoundBoard;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
 import dynamicBody.move.Direction;
-import levels.Level;
-import levels.LevelImpl;
+import levels.LevelComp;
+import levels.LevelCompImpl;
 import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 
@@ -23,7 +27,7 @@ public class PlayerAndBulletCreationTest {
 	private static Player testPlayer;
 	private static Bullet testBullet;
 	private static RoomModel testRoom;
-	private static Level testLevel; 
+	private static LevelComp testLevel; 
 			
 	@org.junit.BeforeClass
 	public static void initTest() throws IOException {
@@ -33,9 +37,9 @@ public class PlayerAndBulletCreationTest {
 		try {
 			Display.create();
 		} catch (LWJGLException e) {
-			e.printStackTrace();
+			Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, e);
 		} 
-		testLevel = new LevelImpl(1); 
+		testLevel = new LevelCompImpl(1); 
 		testRoom = testLevel.getLevel().get(0).getRoom();
 		testPlayer = new PlayerImpl(new Pair<Integer,Integer>(64, 64), Direction.SOUTH, testRoom.getRoomID());
 		testPlayer.setCurrentRoom(testRoom);

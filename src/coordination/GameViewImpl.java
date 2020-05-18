@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,7 +22,7 @@ import dynamicBody.character.player.Player;
 import dynamicBody.move.Direction;
 import gameEntities.EntityImageFactory;
 import gameEntities.Stairs;
-import levels.Level;
+import levels.LevelComp;
 import levels.Room;
 import tiles.AnimatedTile;
 import worldModel.RoomModel;
@@ -34,7 +36,7 @@ public class GameViewImpl implements GameView {
 	/**
 	 * Variable containing data of current Level
 	 */
-	private Level level;
+	private LevelComp level;
 	/**
 	 * Variable containing data of current Player
 	 */
@@ -55,7 +57,7 @@ public class GameViewImpl implements GameView {
 	 * @param player, to keep track of current Player
 	 * @throws SlickException
 	 */
-	public GameViewImpl(final Level level, final Player player) throws SlickException {
+	public GameViewImpl(final LevelComp level, final Player player) throws SlickException {
 		this.level = level;
 		this.player = player;
 		this.currentRoom = level.getLevel().get(level.getRoomID());
@@ -82,8 +84,8 @@ public class GameViewImpl implements GameView {
 			this.drawMain(input);
 			this.drawDoorTop();
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(GameView.class.getName()).log(Level.WARNING, null, e);
+			Logger.getLogger(GameView.class.getName()).log(Level.WARNING, null, e);
 		}
 
 	}
@@ -132,7 +134,7 @@ public class GameViewImpl implements GameView {
 				try {
 					bulletsPlayer.put(b, ImageFactory.getPlayerBull());
 				} catch (SlickException e) {
-					e.printStackTrace();
+					Logger.getLogger(Bullet.class.getName()).log(Level.WARNING, null, e);
 				}
 			}
 		});
@@ -212,8 +214,7 @@ public class GameViewImpl implements GameView {
 						ImageFactory.getEnemyBull().draw(s.getPos().getX(), s.getPos().getY(), GameSettings.TILESIZE,
 								GameSettings.TILESIZE);
 					} catch (SlickException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						Logger.getLogger(ImageFactory.class.getName()).log(Level.WARNING, null, e);
 					}
 				});
 			}
@@ -226,8 +227,7 @@ public class GameViewImpl implements GameView {
 				EntityImageFactory.getEntityTexture(s.getTypeEnt()).draw(s.getPosition().getX(), s.getPosition().getY(),
 						GameSettings.TILESIZE, GameSettings.TILESIZE);
 			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger(EntityImageFactory.class.getName()).log(Level.WARNING, null, e);
 			}
 		});
 	}
@@ -254,8 +254,7 @@ public class GameViewImpl implements GameView {
 						EntityImageFactory.getEntityTexture(s.getTypeEnt()).draw(s.getPosition().getX(),
 								s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
 					} catch (SlickException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						Logger.getLogger(EntityImageFactory.class.getName()).log(Level.WARNING, null, e);
 					}
 				});
 

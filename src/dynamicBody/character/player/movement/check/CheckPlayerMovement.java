@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.newdawn.slick.SlickException;
 
 import dynamicBody.move.CheckPos;
-import levels.Level;
+import levels.LevelComp;
 import worldModel.RoomModel;
 import worldModel.utilities.Pair;
 import worldModel.utilities.enums.Door;
@@ -35,7 +35,7 @@ public interface CheckPlayerMovement extends CheckPos{
 	 * @return true if the player had a collision 
 	 * @throws SlickException 
 	 */
-	boolean checkGameEntities(RoomModel room,Pair<Integer, Integer> pos, Level level) throws SlickException;	
+	boolean checkGameEntities(RoomModel room,Pair<Integer, Integer> pos, LevelComp level) throws SlickException;	
 	
 	/**
 	 * Method used to check if the player has found and he's above the stairs
