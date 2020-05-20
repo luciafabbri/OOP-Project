@@ -11,7 +11,7 @@ import java.util.Set;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 
-import dynamicBody.ImageFactory;
+import coordination.ImageFactory;
 import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.move.Direction;
 import worldModel.LevelModel;

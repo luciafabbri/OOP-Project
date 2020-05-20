@@ -82,7 +82,7 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateBoss() throws SlickException {
 		Pair<Integer, Integer> bossTile = new Pair<Integer, Integer>(512, 256);
-		room.addEnemy(enemyGen.getBossA(bossTile, room));
+		room.addEnemy(enemyGen.getBoss(bossTile, room));
 
 	}
 
