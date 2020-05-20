@@ -11,30 +11,24 @@ import worldModel.utilities.Pair;
 public interface EnemyCreator {
 
 	/**
-	 * The following methods create Monster with some specific characteristics
+	 * This methods create Monster with some specific characteristics based on the level where is located
 	 * 
-	 * @param pos,
-	 * @param damage
-	 * @param health
-	 * @param room
-	 * @return Enemy
+	 * @param lvl, the number of the level where is located 
+	 * @param pos, position of monster
+	 * @param damage, damage of monster
+	 * @param health, health of monster
+	 * @param room, the Room where monster is located
+	 * @return Enemy created
 	 */
-	public Enemy getMonsterA(Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
 	
-	public Enemy getMonsterB(Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
-	
-	public Enemy getMonsterC(Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
-	
-	public Enemy getMonsterD(Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
-	
-	public Enemy getMonster(int type, Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
+	public Enemy getMonster(int lvl, Pair<Integer, Integer> pos, int health, int damage, RoomModel room);
 	/**
 	 * Create Boss
 	 * 
-	 * @param pos
-	 * @param room
+	 * @param pos, position of the Boss
+	 * @param room, room of the Boss
 	 * @return Boss
 	 */
-	public Enemy getBossA(Pair<Integer, Integer> pos, RoomModel room);
+	public Enemy getBoss(Pair<Integer, Integer> pos, RoomModel room);
 
 }

@@ -3,9 +3,6 @@ package dynamicBody.character.enemy;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
-
 import coordination.SoundBoard;
 import coordination.SoundBoardFactory;
 import dynamicBody.UpDownLeftRight;

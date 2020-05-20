@@ -1,4 +1,4 @@
-package dynamicBody;
+package coordination;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
