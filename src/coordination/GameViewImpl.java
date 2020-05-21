@@ -64,7 +64,7 @@ public class GameViewImpl implements GameView {
 		this.playerAnimation = new HashSet<>();
 
 		this.loadMainAnimations();
-		this.enemyAnimation = level.loadAnimations();
+		this.enemyAnimation = level.checkAnimations();
 	}
 
 	public void render(Input input) throws SlickException {
@@ -180,11 +180,11 @@ public class GameViewImpl implements GameView {
 
 	private void drawEnemies() {
 
-		currentRoom.getRoom().getEnemySet().forEach(s -> {
-
+		currentRoom.getRoom().getEnemySet().forEach(s -> {			
+			
 			Animation tmp = enemyAnimation.get(s.getTypeEnemy()).stream().filter(p -> p.getX().equals(s.getDirection()))
 					.findFirst().get().getY();
-
+			
 			if (s.getTypeEnemy().equals(TypeEnemy.MAGE)) {
 
 				tmp.setCurrentFrame(0);

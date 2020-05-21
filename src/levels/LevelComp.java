@@ -56,5 +56,5 @@ public interface LevelComp {
 	
 	public boolean isChangedRoom();
 	
-	public Map<TypeEnemy, Set<Pair<Direction, Animation>>> loadAnimations() throws SlickException;
+	public Map<TypeEnemy, Set<Pair<Direction, Animation>>> checkAnimations() throws SlickException;
 }

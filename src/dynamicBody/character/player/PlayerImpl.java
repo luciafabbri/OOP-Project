@@ -87,6 +87,14 @@ public class PlayerImpl implements Player {
 		this.direction = move.getDirection();   
 	}
 	
+	public void resetStats() {
+		this.playerSpeed = 1;
+		this.rateOfFire = 800;
+		this.damage = 10;
+		this.inventory = new InventoryImpl(this);
+		this.health = new HealthImpl(100);
+	}
+	
 	@Override
 	public void transitionPos(Pair<Integer, Integer> position) {
 		this.position = position;

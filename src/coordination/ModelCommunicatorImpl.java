@@ -3,9 +3,11 @@ package coordination;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
+import org.newdawn.slick.state.StateBasedGame;
 
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.DoorCheck;
@@ -40,7 +42,9 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	 * Variable containing the data to play the "opening doors" sound
 	 */
 	private Sound doorOpen;
-
+	private StateBasedGame states;
+	private GameContainer game;
+	
 	/**
 	 * Constructor for LogicImpl
 	 * @param level, to let LogicImpl keep track of the current state of the level layout
@@ -48,22 +52,48 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	 * @throws SlickException
 	 * @see SlickException
 	 */
-	public ModelCommunicatorImpl(final LevelComp level, final Player player) throws SlickException {
+	public ModelCommunicatorImpl(final LevelComp level, final Player player, final StateBasedGame state, final GameContainer game) throws SlickException {
 		this.level = level;
 		this.player = player;
 		this.currentRoom = level.getLevel().get(level.getRoomID());
 		this.doorOpen = new Sound("./res/audio/doors/door_open.wav");
 		this.playSound = true;
+		this.states = state;
+		this.game = game;
 	}
 	
-	public void pauseMenu(final Input input) {
+	public void update() throws SlickException {
+		this.setRoomCleared();
+		this.dieUpdate();
+		
+		this.pauseMenu(game.getInput());	
+		
+		if(!level.isPauseMenu()) {
+			this.moveMain(game.getInput());
+			this.shootMain(game.getInput());
+			
+			this.moveEnemies(); 
+			this.shootEnemies();
+			
+			this.switchRooms(game.getInput());
+		}
+		
+	}
+	
+	private void dieUpdate() throws SlickException {
+		if(!player.isAlive()) {
+			states.init(game);
+			states.enterState(0);
+		}
+	}
+	
+	private void pauseMenu(final Input input) {
 		if(input.isKeyPressed(Input.KEY_ESCAPE))
 			this.level.setPauseMenu(!this.level.isPauseMenu());
 	}
 	
 
-	@Override
-	public void switchRooms(final Input input) {
+	private void switchRooms(final Input input) {
 		DoorCheck check = new DoorCheck();
 
 		if ((check.transEast(player.getPosition()) || input.isKeyPressed(Input.KEY_RIGHT)) && checkEmpty(Door.EAST)) {
@@ -96,8 +126,7 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		
 	}
 
-	@Override
-	public void setRoomCleared() {
+	private void setRoomCleared() {
 		player.setClearRoom(currentRoom.isGotRoomKey());
 		
 		if(currentRoom.isGotRoomKey() && !doorOpen.playing() && playSound) {
@@ -106,14 +135,12 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		}
 	}
 
-	@Override
-	public void moveMain(final Input input) throws SlickException {
+	private void moveMain(final Input input) throws SlickException {
 		player.setPosition(input, level);
 
 	}
 
-	@Override
-	public void shootMain(final Input input) {
+	private void shootMain(final Input input) {
 		player.getShootingBullet().checkShooting(input);
 
 		this.moveMainProj();
@@ -146,15 +173,13 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 
 	}
 
-	@Override
-	public void moveEnemies() {
+	private void moveEnemies() {
 		level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().forEach(s -> s.updatePos());
 
 		this.eliminateEnemies();
 	}
 
-	@Override
-	public  void shootEnemies() {
+	private  void shootEnemies() {
 		level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().forEach(s -> s.attack());
 
 		this.moveEnemyProj();

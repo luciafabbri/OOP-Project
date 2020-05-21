@@ -159,7 +159,7 @@ public class Menu extends BasicGameState{
 		
 	}
 	
-	private void mainMenuUpdate(final GameContainer arg0, final StateBasedGame arg1) {
+	private void mainMenuUpdate(final GameContainer arg0, final StateBasedGame arg1) throws SlickException {
 		if((x > (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8) && x < (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8 + 240)) &&
 		   (y < ((GameSettings.HEIGHT / 2) - 20) && y > ((GameSettings.HEIGHT / 2) - 60))) {
 			hoverButtonStart = true;
