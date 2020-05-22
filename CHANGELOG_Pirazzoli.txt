@@ -121,6 +121,11 @@ once testing for entities has been done extensively;
 -Reimplemented the way images are stored and rendered in the game, now every texture is handled by two classes, ImageFactory and EntityImageFactory;
 -Implemented SoundBoard to eliminate Sound variables from various entities;
 
--18/05/2020
+18/05/2020
 -Targeted lib and res directory as source folders;
 -Updated exceptions with the right methods to call;
+
+21/05/2020
+-Fixed exception when entering Boss room;
+-Implemented Boss textures;
+-Implemented death logic, now once health is below zero game will go back to the menu screen

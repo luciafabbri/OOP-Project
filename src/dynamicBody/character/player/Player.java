@@ -145,4 +145,7 @@ public interface Player extends dynamicBody.character.Character {
 	 * @return new current player's coordinates and his direction  
 	 */
 	Movement getMove();	
+
+	void resetStats();
+
 }

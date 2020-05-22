@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
@@ -15,6 +17,7 @@ import coordination.ImageFactory;
 import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.move.Direction;
 import worldModel.LevelModel;
+import worldModel.RoomModel;
 import worldModel.generation.LevelModelGeneratorImpl;
 import worldModel.utilities.Pair;
 
@@ -55,22 +58,45 @@ public class LevelCompImpl implements LevelComp {
 			
 			level.add(tmpRoom);
 		}
+		
+//		level.forEach(s -> {
+//			
+//			s.getRoom().getEnemySet().forEach(d -> {
+//				System.out.print(d.getTypeEnemy().toString() + " ");
+//			});
+//			System.out.println();
+//		});
+		
 	}
 	
-	public Map<TypeEnemy, Set<Pair<Direction, Animation>>> loadAnimations() throws SlickException {
+	public Map<TypeEnemy, Set<Pair<Direction, Animation>>> checkAnimations() throws SlickException {
 		Map<TypeEnemy, Set<Pair<Direction, Animation>>> tmpMap = new HashMap<>();
-		Set<Pair<Direction, Animation>> tmpSet = new HashSet<>();
 		
-		TypeEnemy temp = this.level.get(this.roomID).getRoom().getEnemySet().iterator().next().getTypeEnemy();
-		
-		tmpSet.add(new Pair<>(Direction.NORTH, ImageFactory.getAnimation(ImageFactory.getEnemyImage(temp, Direction.NORTH))));
-		tmpSet.add(new Pair<>(Direction.EAST, ImageFactory.getAnimation(ImageFactory.getEnemyImage(temp, Direction.EAST))));
-		tmpSet.add(new Pair<>(Direction.WEST, ImageFactory.getAnimation(ImageFactory.getEnemyImage(temp, Direction.WEST))));
-		tmpSet.add(new Pair<>(Direction.SOUTH, ImageFactory.getAnimation(ImageFactory.getEnemyImage(temp, Direction.SOUTH))));
-		
-		tmpMap.put(temp, tmpSet);
+		level.forEach(s -> {
+			s.getRoom().getEnemySet().forEach(d -> {
+				
+				if(!tmpMap.containsKey(	d.getTypeEnemy())) {
+					try {
+						tmpMap.put(s.getRoom().getEnemySet().iterator().next().getTypeEnemy(), this.loadAnimations(d.getTypeEnemy()));
+					} catch (SlickException e) {
+						Logger.getLogger(LevelComp.class.getName()).log(Level.SEVERE, null, e);
+					}
+				}
+			});
+		});
 		
 		return tmpMap;
+	}
+	
+	private Set<Pair<Direction, Animation>> loadAnimations(final TypeEnemy type) throws SlickException {
+		Set<Pair<Direction, Animation>> tmpSet = new HashSet<>();
+			
+		tmpSet.add(new Pair<>(Direction.NORTH, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.NORTH))));
+		tmpSet.add(new Pair<>(Direction.EAST, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.EAST))));
+		tmpSet.add(new Pair<>(Direction.WEST, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.WEST))));
+		tmpSet.add(new Pair<>(Direction.SOUTH, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.SOUTH))));
+			
+		return tmpSet;
 	}
 	
 	
