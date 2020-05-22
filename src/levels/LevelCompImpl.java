@@ -57,16 +57,7 @@ public class LevelCompImpl implements LevelComp {
 			tmpRoom = new RoomImpl(testLevel.getRooms().get(i), testLevel.getDoorsLayout());
 			
 			level.add(tmpRoom);
-		}
-		
-//		level.forEach(s -> {
-//			
-//			s.getRoom().getEnemySet().forEach(d -> {
-//				System.out.print(d.getTypeEnemy().toString() + " ");
-//			});
-//			System.out.println();
-//		});
-		
+		}		
 	}
 	
 	public Map<TypeEnemy, Set<Pair<Direction, Animation>>> checkAnimations() throws SlickException {
@@ -77,7 +68,7 @@ public class LevelCompImpl implements LevelComp {
 				
 				if(!tmpMap.containsKey(	d.getTypeEnemy())) {
 					try {
-						tmpMap.put(s.getRoom().getEnemySet().iterator().next().getTypeEnemy(), this.loadAnimations(d.getTypeEnemy()));
+						tmpMap.put(d.getTypeEnemy(), this.loadAnimations(d.getTypeEnemy()));
 					} catch (SlickException e) {
 						Logger.getLogger(LevelComp.class.getName()).log(Level.SEVERE, null, e);
 					}
@@ -90,7 +81,7 @@ public class LevelCompImpl implements LevelComp {
 	
 	private Set<Pair<Direction, Animation>> loadAnimations(final TypeEnemy type) throws SlickException {
 		Set<Pair<Direction, Animation>> tmpSet = new HashSet<>();
-			
+		
 		tmpSet.add(new Pair<>(Direction.NORTH, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.NORTH))));
 		tmpSet.add(new Pair<>(Direction.EAST, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.EAST))));
 		tmpSet.add(new Pair<>(Direction.WEST, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.WEST))));

@@ -65,16 +65,19 @@ public class GameController extends BasicGameState {
 	 */
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
+		level = null;
+		logic = null;
+		graphics = null;
+		
 		try {
 			level = new LevelCompImpl(this.levelID);
 		} catch (IOException e) {
 			Logger.getLogger(Level.class.getName()).log(Level.SEVERE, null, e);
 		}
-		logic = new ModelCommunicatorImpl(level, player, arg1, arg0);
+		logic = new ModelCommunicatorImpl(level, player, arg1, arg0, this);
 		
 		player.setCurrentRoom(level.getLevel().get(0).getRoom());
 		player.transitionPos(new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE));
-		player.resetStats();
 		
 		graphics = new GameViewImpl(level, player);
 	
@@ -111,10 +114,6 @@ public class GameController extends BasicGameState {
 		
 		logic.update();
 		
-		if(player.getCheck().checkStairs(level.getLevel().get(level.getRoomID()).getRoom(), player.getPosition())) {
-			this.levelID++;
-			this.init(arg0, arg1);
-		}
 		
 		
 		
@@ -143,5 +142,9 @@ public class GameController extends BasicGameState {
 	 */
 	public int getID() {
 		return levelID;
+	}
+
+	public void setLevelID(int levelID) {
+		this.levelID = levelID;
 	}
 }

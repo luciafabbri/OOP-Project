@@ -44,15 +44,17 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	private Sound doorOpen;
 	private StateBasedGame states;
 	private GameContainer game;
+	private GameController gameController;
 	
 	/**
 	 * Constructor for LogicImpl
+	 * @param gameController 
 	 * @param level, to let LogicImpl keep track of the current state of the level layout
 	 * @param player, to let LogicImpl keep track of the current state of the Player
 	 * @throws SlickException
 	 * @see SlickException
 	 */
-	public ModelCommunicatorImpl(final LevelComp level, final Player player, final StateBasedGame state, final GameContainer game) throws SlickException {
+	public ModelCommunicatorImpl(final LevelComp level, final Player player, final StateBasedGame state, final GameContainer game, GameController gameController) throws SlickException {
 		this.level = level;
 		this.player = player;
 		this.currentRoom = level.getLevel().get(level.getRoomID());
@@ -60,10 +62,12 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		this.playSound = true;
 		this.states = state;
 		this.game = game;
+		this.gameController = gameController;
 	}
 	
 	public void update() throws SlickException {
 		this.setRoomCleared();
+		this.changeLevel();
 		this.dieUpdate();
 		
 		this.pauseMenu(game.getInput());	
@@ -80,8 +84,17 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		
 	}
 	
+	private void changeLevel() throws SlickException {
+		if(player.getCheck().checkStairs(level.getLevel().get(level.getRoomID()).getRoom(), player.getPosition())) {
+			gameController.setLevelID(gameController.getID() + 1);
+			gameController.init(game, states);
+		}
+	}
+	
 	private void dieUpdate() throws SlickException {
 		if(!player.isAlive()) {
+			player.resetStats();
+			gameController.setLevelID(1);
 			states.init(game);
 			states.enterState(0);
 		}
@@ -137,7 +150,6 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 
 	private void moveMain(final Input input) throws SlickException {
 		player.setPosition(input, level);
-
 	}
 
 	private void shootMain(final Input input) {

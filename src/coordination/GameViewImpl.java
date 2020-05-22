@@ -87,6 +87,8 @@ public class GameViewImpl implements GameView {
 			Logger.getLogger(GameView.class.getName()).log(Level.WARNING, null, e);
 		}
 
+
+		
 	}
 
 	private void loadMainAnimations() throws SlickException {

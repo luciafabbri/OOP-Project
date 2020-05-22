@@ -129,3 +129,8 @@ once testing for entities has been done extensively;
 -Fixed exception when entering Boss room;
 -Implemented Boss textures;
 -Implemented death logic, now once health is below zero game will go back to the menu screen
+
+22/05/2020
+-Fixed problem when rendering enemies in the last floor;
+-Fixed issue when dying, the level wouldn't reset to the first one;
+-Cleaned code;

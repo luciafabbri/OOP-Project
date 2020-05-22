@@ -11,8 +11,10 @@ public enum EnemyDimension {
 
 	DEFAULT(0, 63, 15, 46),
 	
-	PLANT(0, 63, 0, 63);
+	PLANT(0, 63, 0, 63),
 
+	BOSS(0, 62, 11, 54);
+	
 	private UpDownLeftRight<Integer> dim;
 
 	/**
