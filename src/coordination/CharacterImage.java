@@ -20,7 +20,7 @@ public enum CharacterImage {
 	PLANT("./res/chars/enemies/plan.png"),
 
 	FRONT_BOSS("./res/chars/enemies/Boss_front.png"), BACK_BOSS("./res/chars/enemies/Boss_back.png"),
-	LEFT_BOSS("./res/charsz/enemies/Boss_left.png"), RIGHT_BOSS("./res/chars/enemies/Boss_right.png"),
+	LEFT_BOSS("./res/chars/enemies/Boss_left.png"), RIGHT_BOSS("./res/chars/enemies/Boss_right.png"),
 
 	PLAYER_BULLET("./res/proj/MainProj.png"),
 	

@@ -29,7 +29,7 @@ public class BossImpl extends EnemyImpl implements Enemy {
 	 */
 	public BossImpl(Pair<Integer, Integer> pos, int damage, int speed, int health, TypeMove move, Direction dir,
 			TypeAttack att, RoomModel room) {
-		super(pos, damage, speed, health, move, dir, att, room, TypeEnemy.NINJA);
+		super(pos, damage, speed, health, move, dir, att, room, TypeEnemy.BOSS);
 	}
 
 	/**
