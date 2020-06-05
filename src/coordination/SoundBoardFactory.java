@@ -60,14 +60,21 @@ public class SoundBoardFactory {
 				Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 			}
 			break;
-	/**	case mainCharacterFootsteps:
+		case doorOpen:
 			try {
-				tmpEnt = SoundBoard.mainCharacterFootsteps.getSound();
+				tmpEnt = SoundBoard.doorOpen.getSound();
 			} catch (SlickException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 			}
-			break; */
+			break;	
+//		case mainCharacterFootsteps:
+//			try {
+//				tmpEnt = SoundBoard.mainCharacterFootsteps.getSound();
+//			} catch (SlickException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			break; 
 		default:
 			throw new IllegalArgumentException("Sound is missing");
 		}
@@ -76,8 +83,13 @@ public class SoundBoardFactory {
 	}
 
 	private static void playSound(final Sound tmp) {
-		tmp.play(1.0f, 0.4f);
+		if(!tmp.playing())
+			tmp.play(1.0f, 0.4f);
 	}
 	
+	private static void playLoop(final Sound tmp) {
+		if(!tmp.playing())
+			tmp.loop(1.0f, 0.4f);
+	}
 	
 }

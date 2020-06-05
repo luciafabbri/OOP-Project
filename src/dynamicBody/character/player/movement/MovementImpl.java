@@ -44,7 +44,7 @@ public class MovementImpl implements Movement {
 		 */		
 		if( input.isKeyDown(Input.KEY_W) ) {
 			this.direction = Direction.NORTH;
-			//	SoundBoardFactory.getEntitySound(SoundBoard.mainCharacterFootsteps);
+//			SoundBoardFactory.getEntitySound(SoundBoard.mainCharacterFootsteps);
 			if(!footsteps.playing()) {
 				footsteps.play(1.0f, 0.5f);
 			}

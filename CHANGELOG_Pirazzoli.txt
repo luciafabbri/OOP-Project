@@ -134,3 +134,6 @@ once testing for entities has been done extensively;
 -Fixed problem when rendering enemies in the last floor;
 -Fixed issue when dying, the level wouldn't reset to the first one;
 -Cleaned code;
+
+06/06/2020
+-Implemented SoundBoard sounds for footsteps;

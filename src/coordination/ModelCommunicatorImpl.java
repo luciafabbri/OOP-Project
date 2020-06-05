@@ -41,7 +41,6 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	/**
 	 * Variable containing the data to play the "opening doors" sound
 	 */
-	private Sound doorOpen;
 	private StateBasedGame states;
 	private GameContainer game;
 	private GameController gameController;
@@ -58,7 +57,6 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		this.level = level;
 		this.player = player;
 		this.currentRoom = level.getLevel().get(level.getRoomID());
-		this.doorOpen = new Sound("./res/audio/doors/door_open.wav");
 		this.playSound = true;
 		this.states = state;
 		this.game = game;
@@ -142,8 +140,8 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	private void setRoomCleared() {
 		player.setClearRoom(currentRoom.isGotRoomKey());
 		
-		if(currentRoom.isGotRoomKey() && !doorOpen.playing() && playSound) {
-			doorOpen.play(1.0f, 0.10f);
+		if(currentRoom.isGotRoomKey() && playSound) {
+			SoundBoardFactory.getEntitySound(SoundBoard.doorOpen);
 			playSound = false;
 		}
 	}
