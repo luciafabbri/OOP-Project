@@ -58,6 +58,7 @@ public class GameController extends BasicGameState {
 		super();
 		this.levelID = state;
 		this.player = player;
+		SoundBoardFactory.storeSound();
 	}
 	
 	/**

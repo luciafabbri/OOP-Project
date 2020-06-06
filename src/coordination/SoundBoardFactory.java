@@ -11,8 +11,10 @@ import worldModel.utilities.enums.Entities;
 
 public class SoundBoardFactory {
 	
-	public void storeSound() {
-		
+	private static Sound footsteps;
+	
+	public static void storeSound() throws SlickException {
+		SoundBoardFactory.footsteps = SoundBoard.mainCharacterFootsteps.getSound();
 	}
 	
 	public static void getEntitySound(final SoundBoard sound) {
@@ -67,15 +69,7 @@ public class SoundBoardFactory {
 				Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 			}
 			break;	
-//		case mainCharacterFootsteps:
-//			try {
-//				tmpEnt = SoundBoard.mainCharacterFootsteps.getSound();
-//			} catch (SlickException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			break; 
-		default:
+			default:
 			throw new IllegalArgumentException("Sound is missing");
 		}
 
@@ -87,9 +81,9 @@ public class SoundBoardFactory {
 			tmp.play(1.0f, 0.4f);
 	}
 	
-	private static void playLoop(final Sound tmp) {
-		if(!tmp.playing())
-			tmp.loop(1.0f, 0.4f);
+	public static void playFootsteps() {
+		if(!footsteps.playing())
+			footsteps.play(1.0f, 0.4f);
 	}
 	
 }

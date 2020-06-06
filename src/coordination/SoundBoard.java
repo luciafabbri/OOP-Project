@@ -16,18 +16,18 @@ public enum SoundBoard {
 	
 	mainCharacterHurt("." + GameSettings.SEP + "res" + GameSettings.SEP + "audio" + GameSettings.SEP + "mainChar" + GameSettings.SEP + "hurtSound.wav"), mainCharacterShoot("./res/audio/bow/bow_fired.wav"),
 	enemyDamageHurt("./res/audio/enemy/takeDamage.wav"),
-//	mainCharacterFootsteps("./res/audio/footsteps/footsteps.wav"), 
+	mainCharacterFootsteps("./res/audio/footsteps/footsteps.wav"), 
 	keyPickUp("./res/audio/pickups/keyPickup.wav"), coinPickUp("./res/audio/pickups/coinPickup.wav"), modPickUp("./res/audio/pickups/modifierPickup.wav"),
 	doorOpen("./res/audio/doors/door_open.wav");
 	
-	String image;
+	String sound;
 	
 	SoundBoard(String image) {
-		this.image = image;
+		this.sound = image;
 	}
 	
 	public Sound getSound() throws SlickException {
-		return new Sound(image);
+		return new Sound(sound);
 	}
 
 }
