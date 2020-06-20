@@ -9,6 +9,10 @@ import dynamicBody.character.enemy.creator.TypeEnemy;
 
 public enum EnemyDimension {
 
+	/**
+	 * Size of different Type of Enemy
+	 */
+	
 	DEFAULT(0, 63, 15, 46),
 	
 	PLANT(0, 63, 0, 63),
@@ -29,6 +33,10 @@ public enum EnemyDimension {
 		this.dim = new UpDownLeftRight<>(up, down, left, right);
 	}
 
+	/**
+	 * Get the dimension of an Enemy
+	 * @return
+	 */
 	public UpDownLeftRight<Integer> getDimension() {
 		return dim;
 	}

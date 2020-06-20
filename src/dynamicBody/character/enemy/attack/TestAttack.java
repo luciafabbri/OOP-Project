@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 
-import coordination.SoundBoard;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.character.enemy.EnemyImpl;

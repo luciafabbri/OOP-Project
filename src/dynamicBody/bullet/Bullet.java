@@ -26,16 +26,9 @@ public interface Bullet extends DynamicBody {
 	 */
 	Direction getDirection();
 
-//	/**
-//	 * @return bullet's image
-//	 */
-//	Image getTexture();
-//
-//	/**
-//	 * @param texture, image used to represent bullets
-//	 */
-//	void setTexture(Image texture);
-	
+	/**
+	 * @return bullet's type direction
+	 */	
 	TypeBullet getType();
 	
 	/**

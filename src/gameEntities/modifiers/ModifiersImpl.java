@@ -1,6 +1,6 @@
 package gameEntities.modifiers;
 
-import dynamicBody.character.Stats;
+import dynamicBody.character.player.Stats;
 import gameEntities.Pickupable;
 import worldModel.utilities.Pair;
 import worldModel.utilities.enums.Entities;

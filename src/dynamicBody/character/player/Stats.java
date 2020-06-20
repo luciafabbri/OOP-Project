@@ -1,4 +1,4 @@
-package dynamicBody.character;
+package dynamicBody.character.player;
 
 /**
  *  Enums containing the Player attributes

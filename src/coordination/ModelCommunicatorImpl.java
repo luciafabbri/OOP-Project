@@ -10,8 +10,8 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 import dynamicBody.bullet.Bullet;
-import dynamicBody.character.DoorCheck;
 import dynamicBody.character.enemy.Enemy;
+import dynamicBody.character.player.DoorCheck;
 import dynamicBody.character.player.Player;
 import levels.LevelComp;
 import levels.Room;

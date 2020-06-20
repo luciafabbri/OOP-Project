@@ -11,7 +11,6 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.SlickException;
 
-import coordination.SoundBoard;
 import dynamicBody.character.enemy.attack.TypeAttack;
 import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.enemy.move.TypeMove;

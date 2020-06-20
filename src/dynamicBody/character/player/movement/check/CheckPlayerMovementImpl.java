@@ -1,7 +1,7 @@
 package dynamicBody.character.player.movement.check;
 
-import dynamicBody.character.DoorCheck;
 import dynamicBody.character.enemy.Enemy;
+import dynamicBody.character.player.DoorCheck;
 import dynamicBody.character.player.PlayerImpl;
 import dynamicBody.move.CheckPosImpl;
 import gameEntities.GameEntity;

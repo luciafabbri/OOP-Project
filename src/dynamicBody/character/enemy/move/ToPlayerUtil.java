@@ -125,6 +125,10 @@ public final class ToPlayerUtil {
 
 	}
 
+	/**
+	 * Method use to known the pixel in the middle of Player
+	 * @return Coordinate of the middle of player
+	 */
 	public static Pair<Integer, Integer> getPlayerPos() {
 		return new Pair<>(player.getPosition().getX() + disPX, player.getPosition().getY() + disPY);
 	}

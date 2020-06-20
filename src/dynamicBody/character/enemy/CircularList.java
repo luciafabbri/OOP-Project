@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * CircularList extends ArrayList
  *
- * @param <E> the element's tipe
+ * @param <E> the element's type
  */
 
 public class CircularList<E> extends ArrayList<E> {

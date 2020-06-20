@@ -1,4 +1,4 @@
-package dynamicBody.character;
+package dynamicBody.character.player;
 
 import worldModel.utilities.GameSettings;
 import worldModel.utilities.Pair;

@@ -2,7 +2,6 @@ package dynamicBody.character;
 
 import java.util.Set;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 
 import dynamicBody.DynamicBody;

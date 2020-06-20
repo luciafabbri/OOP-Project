@@ -88,11 +88,6 @@ public class BulletImpl implements Bullet {
 		return this.direction;
 	}
 
-//	@Override
-//	public Image getTexture() {
-//		return this.texture;
-//	}
-
 	@Override
 	public UpDownLeftRight<Integer> getDimension() {
 		if (direction.equals(Direction.NORTH) || direction.equals(Direction.SOUTH)) {
@@ -101,11 +96,6 @@ public class BulletImpl implements Bullet {
 			return dimensions.getY().getDimension();
 		}
 	}
-
-//	@Override
-//	public void setTexture(Image texture) {
-//		this.texture = texture;
-//	}
 
 	@Override
 	public RoomModel getRoom() {
