@@ -39,6 +39,7 @@ public class EnemyImpl implements Enemy {
 	
 	private MoveFactory moveFactory = new MoveFactory();
 	private AttackFactory attackFactory = new AttackFactory();
+	private EnemyDimFactory dimFactory = new EnemyDimFactory();
 
 	private int sleepTime = EnemyDefault.ROF.getValue();
 	private long stopMillis;
@@ -66,7 +67,7 @@ public class EnemyImpl implements Enemy {
 		this.move = moveFactory.selectMove(move, room, this);
 		this.attack = attackFactory.selectAttack(att, room, this);
 		this.direction = dir;
-		this.dimensions = EnemyDimension.getDimensionMoster(mon);
+		this.dimensions = dimFactory.getDimensionMoster(mon);
 		this.typeEnemy = mon;
 	}
 

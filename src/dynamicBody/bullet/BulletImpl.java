@@ -24,6 +24,8 @@ public class BulletImpl implements Bullet {
 	private Pair<DimensionBullet, DimensionBullet> dimensions;
 	private CheckPos check;
 	private TypeBullet typeBull;
+	
+	private BulletDimFactory dimFactory = new BulletDimFactory();
 
 	/**
 	 * Default constructor
@@ -42,7 +44,7 @@ public class BulletImpl implements Bullet {
 		this.room = room;
 		this.move = new MoveBullImpl(room);
 		this.typeBull = type;
-		this.dimensions = DimensionBullet.getDimensionBullet(type);
+		this.dimensions = dimFactory.getDimensionBullet(type);
 		this.check = findCheck(type);
 	}
 

@@ -15,14 +15,15 @@ import worldModel.utilities.Pair;
  */
 public class TeleportMove implements EnemyMovement {
 
+	private static final int SLEEP_TIME = 5000;
+	
 	private CheckEnemy check;
 	private Random rand = new Random();
 	private Pair<Integer, Integer> newPos;
 	private Direction nextDir = null;
 
 	private RoomModel currentRoom;
-
-	private int sleepTime = 5000;
+	
 	private long startMillis = 0;
 	private long stopMillis;
 
@@ -41,7 +42,7 @@ public class TeleportMove implements EnemyMovement {
 	public Pair<Integer, Integer> nextPos(Pair<Integer, Integer> pos, int speed, Direction dir) {
 
 		stopMillis = System.currentTimeMillis();
-		if (stopMillis - startMillis > sleepTime) {
+		if (stopMillis - startMillis > SLEEP_TIME) {
 			int x, y;
 			do {
 				x = rand.nextInt(GameSettings.WIDTH);
