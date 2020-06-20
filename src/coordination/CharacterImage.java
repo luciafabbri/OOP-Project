@@ -31,7 +31,7 @@ public enum CharacterImage {
 	/**
 	 * Default constructor
 	 * 
-	 * @param String, a string where you can find the .png
+	 * @param String, a string where you can find the spritesheet
 	 */
 	CharacterImage(String image) {
 		this.image = image;

@@ -1,17 +1,11 @@
 package coordination;
 
 import java.awt.Font;
-import java.math.BigDecimal;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.font.effects.OutlineEffect;
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Shape;
-
 import dynamicBody.character.player.Player;
 import levels.LevelComp;
 import worldModel.utilities.GameSettings;
@@ -31,10 +25,6 @@ public class UI {
 	 */
 	private LevelComp level;
 	/**
-	 * Variable containing data of the HealthUpgrade modifier
-	 */
-	private Image healthImage;
-	/**
 	 * Variable containing data of current Graphics environment
 	 */
 	private Graphics graphics;
@@ -50,48 +40,44 @@ public class UI {
 	 * Variable containing data to choose Color (in this case white)
 	 */
 	private Color color;
-
-	private long timeNow;
-	private long timeEnd;
-
-	private boolean gotCoin;
-	private boolean gotCoin2;
-	private boolean gotCoin3;
-
-	private int index;
-	private Color tmp2;
+	/**
+	 * Variable containing data to choose the Color for the emerging text
+	 */
+	private Color textGeneral;
+	/**
+	 * Variable containing data to choose the Color for the background while paused
+	 */
 	private Color pauseBackground;
-
+	/**
+	 * Variable containing data of the UI logic
+	 */
+	private UILogic logic;
+	
 	/**
 	 * Constructor for UI
 	 * 
 	 * @param level
+	 * @param arg0 
 	 * @param player,   containing data of current Player
 	 * @param graphics, containing data of current Graphics
 	 * @throws SlickException
 	 * @see SlickException
 	 */
-	public UI(final Player player, final Graphics graphics, final LevelComp level) throws SlickException {
+	public UI(final Player player, final Graphics graphics, final LevelComp level, final UILogic logic) throws SlickException {
 		this.player = player;
 		this.level = level;
 		this.graphics = graphics;
-		
-		this.timeEnd = 0;
-		this.index = 0;
+		this.logic = logic;
 		
 		this.coinImage = new Image("./res/UI/CoinUI.png");
-		this.healthImage = new Image("./res/UI/healthUI.png");
+		new Image("./res/UI/healthUI.png");
 		
 		this.font = new Font("Default", Font.ROMAN_BASELINE, 30);
 		this.tmp = new TrueTypeFont(font, false);
 		
-		this.tmp2 = new Color(255, 255, 255, 0);
+		this.textGeneral = new Color(255, 255, 255, 0);
 		this.color = new Color(72, 59, 58, 75);
 		this.pauseBackground = new Color(0, 0, 0, 150);
-
-		this.gotCoin = true;
-		this.gotCoin2 = false;
-		this.gotCoin3 = false;
 
 	}
 
@@ -113,6 +99,11 @@ public class UI {
 		
 		graphics.setColor(Color.white);
 		
+		
+		if(level.isGameWon()) {
+			this.wonMenu();
+		}
+			
 		if(level.isGotLevelCoin()) {
 			if(player.getInventory().getCoin() == GameSettings.TOTCOINS) {
 				this.congratsTextFinal();
@@ -123,6 +114,9 @@ public class UI {
 			
 	}
 	
+	/**
+	 * Method used to display the screen while the game is paused
+	 */
 	private void pauseMenu() {
 		if(this.level.isPauseMenu()) {
 			
@@ -141,6 +135,49 @@ public class UI {
 		}
 	}
 	
+	/**
+	 * Method used to display the 'Won' screen
+	 */
+	private void wonMenu() {
+		textGeneral = new Color(0, 0, 0, logic.fadeWonMenu());
+
+		this.graphics.setColor(textGeneral);
+		
+		this.graphics.fillRect(0, 0, GameSettings.WIDTH, GameSettings.HEIGHT);
+	
+		Color tmp3 = new Color(255, 255, 255, logic.fadeWonMenu());
+		
+		this.graphics.setColor(tmp3);
+		
+		if(logic.isHoverButtonPlay()) {
+			graphics.setColor(Color.gray);
+		} else {
+			graphics.setColor(Color.white);
+		}
+		this.graphics.fillRect(GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8, GameSettings.HEIGHT / 2 + 120, 240, 40);
+		
+		if(logic.isHoverButtonQuit()) {
+			graphics.setColor(Color.gray);
+		} else {
+			graphics.setColor(Color.white);
+		}
+		
+		
+		this.graphics.fillRect(GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8, GameSettings.HEIGHT / 2 + 220, 240, 40);
+		
+		graphics.setColor(Color.black);
+		graphics.drawString("Main Menu", (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8) + 70, (GameSettings.HEIGHT / 2) + 130);
+		
+		graphics.setColor(Color.black);
+		graphics.drawString("Quit Game", (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8) + 70, (GameSettings.HEIGHT / 2) + 230);
+			
+			
+		
+	}
+	
+	/**
+	 * Method that updates the health bar dinamically based on the players health
+	 */
 	private void healthUpdate() {
 		float healthPer = (((3f * (float) GameSettings.TILESIZE) / 4f * 6f) - 8f) / (float) player.getMaxHealth();
 		
@@ -156,93 +193,22 @@ public class UI {
 		graphics.fillRect(GameSettings.TILESIZE / 2 + 4, GameSettings.TILESIZE / 6 + 4, (((3 * GameSettings.TILESIZE) / 4 * 6) - 8) - remainingHealth, (3 * GameSettings.TILESIZE) / 4 - 8);
 	}
 
+	/**
+	 * Method used to alert the player to the amount of coins picked up
+	 */
 	private void congratsTextEachCoin() {
-		timeNow = System.currentTimeMillis();
+		textGeneral = new Color(255, 255, 255, logic.congratsTextEachCoin());
 
-		if (this.gotCoin) {
-
-			if (timeNow - timeEnd > 4) {
-				tmp2 = new Color(255, 255, 255, index);
-
-				index++;
-				timeEnd = System.currentTimeMillis();
-
-				if (tmp2.getAlpha() >= 255) {
-					this.gotCoin = false;
-					this.gotCoin2 = true;
-				}
-
-			}
-		} else if (this.gotCoin2) {
-
-			if (timeNow - timeEnd > 2000) {
-				this.gotCoin2 = false;
-				this.gotCoin3 = true;
-				timeEnd = System.currentTimeMillis();
-			}
-
-		} else if (this.gotCoin3) {
-
-			if (timeNow - timeEnd > 4) {
-				tmp2 = new Color(255, 255, 255, index);
-
-				index--;
-				timeEnd = System.currentTimeMillis();
-
-				if (tmp2.getAlpha() <= 0) {
-					this.gotCoin3 = false;
-				}
-
-			}
-		}
 		tmp.drawString(GameSettings.TILESIZE * 10 + GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 4, "Bravo! Monete rimanenti da collezionare: "
-				+ Integer.toString(GameSettings.TOTCOINS - player.getInventory().getCoin()), tmp2);
+				+ Integer.toString(GameSettings.TOTCOINS - player.getInventory().getCoin()), textGeneral);
 	}
 	
-	private void congratsTextFinal() {
-		timeNow = System.currentTimeMillis();
-
-		if (this.gotCoin) {
-
-			if (timeNow - timeEnd > 4) {
-				tmp2 = new Color(255, 255, 255, index);
-
-				index++;
-				timeEnd = System.currentTimeMillis();
-
-				if (tmp2.getAlpha() >= 255) {
-					this.gotCoin = false;
-					this.gotCoin2 = true;
-				}
-
-			}
-		} else if (this.gotCoin2) {
-
-			if (timeNow - timeEnd > 2000) {
-				this.gotCoin2 = false;
-				this.gotCoin3 = true;
-				timeEnd = System.currentTimeMillis();
-			}
-
-		} else if (this.gotCoin3) {
-
-			if (timeNow - timeEnd > 4) {
-				tmp2 = new Color(255, 255, 255, index);
-
-				index--;
-				timeEnd = System.currentTimeMillis();
-
-				if (tmp2.getAlpha() <= 0) {
-					this.gotCoin3 = false;
-				}
-
-			}
-		}
-		tmp.drawString(GameSettings.TILESIZE * 10 + GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 4, "Complimenti! Hai trovato tutte le monete!"
-				+ Integer.toString(GameSettings.TOTCOINS - player.getInventory().getCoin()), tmp2);
+	/**
+	 * Method used to alert the player for picking up all the coins
+	 */
+	private void congratsTextFinal() {	
+		textGeneral = new Color(255, 255, 255, logic.congratsTextEachCoin());
+				
+		tmp.drawString(GameSettings.TILESIZE * 10 + GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 4, "Complimenti! Hai trovato tutte le monete!", textGeneral);
 	}
-	
-	
-	
-	
 }

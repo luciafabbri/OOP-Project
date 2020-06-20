@@ -12,6 +12,13 @@ import dynamicBody.move.Direction;
 public class ImageFactory {
 	
 	
+	/**
+	 * Method used to retrieve the right animations based on the enemy
+	 * @param mon, the type of enemy
+	 * @return UpDownLeftRight of Image
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	private static UpDownLeftRight<Image> getEnemyImages(TypeEnemy mon) throws SlickException {
 		Image front, back, left, right;
 		switch (mon) {		
@@ -50,6 +57,14 @@ public class ImageFactory {
 		}
 		return new UpDownLeftRight<>(back, front, left, right);
 	}
+	/**
+	 * Method that returns an Image based on their direction
+	 * @param type, the type of enemy
+	 * @param dir, the direction of the enemy
+	 * @return Image, the spritesheet of the enemy
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public static Image getEnemyImage(TypeEnemy type, Direction dir) throws SlickException {
 		UpDownLeftRight<Image> enemyImages = getEnemyImages(type);
 		switch (dir) {
@@ -66,18 +81,42 @@ public class ImageFactory {
 		}
 	}
 	
+	/**
+	 * Method that returns builds and returns the Animation
+	 * @param image, the spritsheet chosen
+	 * @return Animation, the animation of character
+	 */
 	public static Animation getAnimation(Image image) {
 		return new Animation(new SpriteSheet(image, 64, 64), 100);
 	}
 	
+	/**
+	 * Method that returns the MainCharacter bullets .png
+	 * @return Image, the .png
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public static Image getPlayerBull() throws SlickException {
 		return CharacterImage.PLAYER_BULLET.getImage();
 	}
 	
+	/**
+	 * Method that returns the enemies projectile, the .png
+	 * @return Image, the .png
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public static Image getEnemyBull() throws SlickException {
 		return CharacterImage.ENEMY_BULLET.getImage();
 	}
 
+	/**
+	 * Method that returns the player spritesheet based on the player direction
+	 * @param dir, the player direction
+	 * @return Image, the spritesheet
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public static Image getPlayerImage(Direction dir) throws SlickException {
 		switch (dir) {
 		case NORTH:

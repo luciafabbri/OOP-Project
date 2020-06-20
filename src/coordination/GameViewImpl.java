@@ -45,8 +45,17 @@ public class GameViewImpl implements GameView {
 	 */
 	private Room currentRoom;
 
+	/**
+	 * Variable containing the bullets of the MainCharacter of the current room
+	 */
 	private Map<Bullet, Image> bulletsPlayer = new HashMap<>();
+	/**
+	 * Variable containing the bullets of the enemies of the current room
+	 */
 	private Map<TypeEnemy, Set<Pair<Direction, Animation>>> enemyAnimation;
+	/**
+	 * Variable containing the MainCharacter animations
+	 */
 	private Set<Pair<Direction, Animation>> playerAnimation;
 
 	/**
@@ -66,6 +75,9 @@ public class GameViewImpl implements GameView {
 		this.enemyAnimation = level.checkAnimations();
 	}
 
+	/**
+	 * Method used by GameController to render everything on screen
+	 */
 	public void render(Input input) throws SlickException {
 
 		this.drawFloor();
@@ -77,20 +89,26 @@ public class GameViewImpl implements GameView {
 
 		this.drawDoors();
 
-		this.drawEnemies();
+		if(!this.level.isPauseMenu() && !this.level.isGameWon()) {
+		
+			this.drawEnemies();
 
-		try {
-			this.drawMain(input);
-			this.drawDoorTop();
-		} catch (SlickException e) {
-			Logger.getLogger(GameView.class.getName()).log(Level.WARNING, null, e);
-			Logger.getLogger(GameView.class.getName()).log(Level.WARNING, null, e);
+			try {
+				this.drawMain(input);
+				this.drawDoorTop();
+			} catch (SlickException e) {
+				Logger.getLogger(GameView.class.getName()).log(Level.WARNING, null, e);
+			}
+
 		}
-
-
 		
 	}
 
+	
+	/**
+	 * Method used to preemptively load the animations to lighten the CPU work
+	 * @throws SlickException
+	 */
 	private void loadMainAnimations() throws SlickException {
 
 		playerAnimation.add(
@@ -104,6 +122,11 @@ public class GameViewImpl implements GameView {
 
 	}
 
+	/**
+	 * Method used to draw the right animation of the Player, based on if he's moving or not
+	 * @param input, used to see if the Player is moved or not
+	 * @throws SlickException 
+	 */
 	private void drawMain(final Input input) throws SlickException {
 		this.currentRoom = level.getLevel().get(level.getRoomID());
 
@@ -124,8 +147,7 @@ public class GameViewImpl implements GameView {
 	}
 
 	/**
-	 * Method called by drawMain, so it renders the bullets while also rendering the
-	 * Player
+	 * Method called by drawMain, so it renders the bullets while also rendering the Player 
 	 */
 	private void drawMainProj() {
 		Set<Bullet> bullets = player.getRoomBullets();
@@ -179,8 +201,10 @@ public class GameViewImpl implements GameView {
 		}
 	}
 
+	/**
+	 * Method used to draw the enemies in each room
+	 */
 	private void drawEnemies() {
-
 		currentRoom.getRoom().getEnemySet().forEach(s -> {			
 			
 			Animation tmp = enemyAnimation.get(s.getTypeEnemy()).stream().filter(p -> p.getX().equals(s.getDirection()))
@@ -200,8 +224,7 @@ public class GameViewImpl implements GameView {
 	}
 
 	/**
-	 * Method called by drawEnemies, to draw the appropriate bullet according to
-	 * each enemy
+	 * Method called by drawEnemies, to draw the appropriate bullet according to each enemy
 	 */
 	private void drawEnemyProj() {
 		Set<Enemy> enemys = currentRoom.getRoom().getEnemySet();
@@ -222,6 +245,9 @@ public class GameViewImpl implements GameView {
 		});
 	}
 
+	/**
+	 * Method used to draw the obstacles place in each room
+	 */
 	private void drawObstacles() throws SlickException {
 		currentRoom.getRoom().getObstacleSet().forEach(s -> {
 			try {
@@ -233,6 +259,9 @@ public class GameViewImpl implements GameView {
 		});
 	}
 
+	/**
+	 * Method used to draw the items placed in each room
+	 */
 	private void drawItems() throws SlickException {
 		Pair<Integer, Integer> tmp = currentRoom.getRoom().getKey().getPosition();
 		if (!currentRoom.isGotRoomKey())
@@ -246,6 +275,9 @@ public class GameViewImpl implements GameView {
 		}
 	}
 
+	/**
+	 * Method used to draw the modifiers placed in each room
+	*/
 	private void drawMod() throws SlickException {
 		currentRoom.getRoom().getPickupablesSet().stream().filter(s -> s.getTypeEnt().equals(Entities.ATTACKUPGRADE1)
 				|| s.getTypeEnt().equals(Entities.HEALTHUPGRADE1) || s.getTypeEnt().equals(Entities.MOVEMENTSPEED1)
@@ -261,6 +293,9 @@ public class GameViewImpl implements GameView {
 
 	}
 
+	/**
+	 * Method used to draw the floor in each room
+	 */
 	private void drawFloor() throws SlickException {
 		for (int x = 0; x < GameSettings.WIDTH; x += GameSettings.TILESIZE) {
 			for (int y = 0; y < GameSettings.HEIGHT; y += GameSettings.TILESIZE) {
@@ -281,6 +316,9 @@ public class GameViewImpl implements GameView {
 				GameSettings.TILESIZE, GameSettings.TILESIZE);
 	}
 
+	/**
+	 * Method used to draw the wall in each room
+	 */
 	private void drawWalls() {
 		for (int x = 0; x < GameSettings.WIDTH; x += GameSettings.TILESIZE) {
 			for (int y = 0; y < GameSettings.HEIGHT; y += GameSettings.TILESIZE) {
@@ -312,6 +350,9 @@ public class GameViewImpl implements GameView {
 				GameSettings.TILESIZE, GameSettings.TILESIZE);
 	}
 
+	/**
+	 * Method used to draw the doors (if they're present) in each room
+	 */
 	private void drawDoors() {
 		Map<Door, Optional<RoomModel>> doors = currentRoom.getDoorAccess();
 
@@ -378,6 +419,12 @@ public class GameViewImpl implements GameView {
 		}
 	}
 
+	
+	/**
+	 * Method used to draw the top of the doors in each room, so that the it gives the Player the illusion of traversing room
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	private void drawDoorTop() throws SlickException {
 		Map<Door, Optional<RoomModel>> doors = level.getLevel().get(level.getRoomID()).getDoorAccess();
 

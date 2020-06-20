@@ -6,11 +6,11 @@ import java.util.Set;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 import dynamicBody.bullet.Bullet;
 import dynamicBody.character.enemy.Enemy;
+import dynamicBody.character.enemy.creator.TypeEnemy;
 import dynamicBody.character.player.DoorCheck;
 import dynamicBody.character.player.Player;
 import levels.LevelComp;
@@ -42,8 +42,18 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	 * Variable containing the data to play the "opening doors" sound
 	 */
 	private StateBasedGame states;
+	/**
+	 * Variable containing the data regarding GameContainer
+	 */
 	private GameContainer game;
+	/**
+	 * Variable containing the data regarding GameController
+	 */
 	private GameController gameController;
+	/**
+	 * Variable containing the data regarding room prior to the current one
+	 */
+	private Room previousRoom;
 	
 	/**
 	 * Constructor for LogicImpl
@@ -57,12 +67,16 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		this.level = level;
 		this.player = player;
 		this.currentRoom = level.getLevel().get(level.getRoomID());
+		this.previousRoom = level.getLevel().get(level.getRoomID());
 		this.playSound = true;
 		this.states = state;
 		this.game = game;
 		this.gameController = gameController;
 	}
 	
+	/**
+	 * Method that coordinates all game logic
+	 */
 	public void update() throws SlickException {
 		this.setRoomCleared();
 		this.changeLevel();
@@ -70,7 +84,7 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		
 		this.pauseMenu(game.getInput());	
 		
-		if(!level.isPauseMenu()) {
+		if(!level.isPauseMenu() && !level.isGameWon()) {
 			this.moveMain(game.getInput());
 			this.shootMain(game.getInput());
 			
@@ -82,6 +96,11 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		
 	}
 	
+	/**
+	 * Method used to change level if player is on stairs
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	private void changeLevel() throws SlickException {
 		if(player.getCheck().checkStairs(level.getLevel().get(level.getRoomID()).getRoom(), player.getPosition())) {
 			gameController.setLevelID(gameController.getID() + 1);
@@ -89,6 +108,11 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		}
 	}
 	
+	/**
+	 * Method used to check if the player has died
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	private void dieUpdate() throws SlickException {
 		if(!player.isAlive()) {
 			player.resetStats();
@@ -98,12 +122,19 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		}
 	}
 	
+	/**
+	 * Method used to pause the game
+	 * @param input, the appropiate key (Escape key)
+	 */
 	private void pauseMenu(final Input input) {
 		if(input.isKeyPressed(Input.KEY_ESCAPE))
 			this.level.setPauseMenu(!this.level.isPauseMenu());
 	}
 	
-
+	/**
+	 * Method used to check if the Player has used one of the doors to, and then changes the room to the appropriate one
+	 * @param input //TODO DELETE THE PARAM CAUSE ITS JUST FOR TESTING
+	 */
 	private void switchRooms(final Input input) {
 		DoorCheck check = new DoorCheck();
 
@@ -132,11 +163,37 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		player.setCurrentRoom(level.getLevel().get(level.getRoomID()).getRoom());
 
 		currentRoom = level.getLevel().get(level.getRoomID());
+		
+		if(currentRoom.getRoom().getRoomID() != previousRoom.getRoom().getRoomID()) {
+			this.cleanPreviousRoom();
+			this.previousRoom = currentRoom;
+		}
+		
 		if(!currentRoom.isGotRoomKey())
 			playSound = true;
 		
 	}
 
+	/**
+	 * Method used to remove the enemy projectiles from the previous visited room
+	 */
+	private void cleanPreviousRoom() {
+		Set<Enemy> enemy = previousRoom.getRoom().getEnemySet();
+
+		enemy.forEach(e -> {
+			Iterator<Bullet> enemyIt = e.getRoomBullets().iterator();
+			while (enemyIt.hasNext()) {
+				Bullet tmp = enemyIt.next();
+				
+				if (tmp.getRoom().getRoomID() != currentRoom.getRoom().getRoomID())
+					enemyIt.remove();
+			}
+		});
+	}
+	
+	/**
+	 * Method that sets a variable inside Player to check if the room is clear of enemies
+	 */
 	private void setRoomCleared() {
 		player.setClearRoom(currentRoom.isGotRoomKey());
 		
@@ -146,10 +203,20 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		}
 	}
 
+	/**
+	 * Method that calls the movement method insde Player to move him, changing his coordinates
+	 * @param input, so that the Player can see in which direction to move
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	private void moveMain(final Input input) throws SlickException {
 		player.setPosition(input, level);
 	}
 
+	/**
+	 * Method that calls the shoot method inside Player
+	 * @param input, so that the Player can check if the right button for shooting has been pressed
+	 */
 	private void shootMain(final Input input) {
 		player.getShootingBullet().checkShooting(input);
 
@@ -177,18 +244,25 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		Iterator<Bullet> it = player.getRoomBullets().iterator();
 
 		while (it.hasNext()) {
-			if (!it.next().isAlive())
-				it.remove();
+			Bullet tmp = it.next();
+	
+			if (!tmp.isAlive() || tmp.getRoom().getRoomID() != currentRoom.getRoom().getRoomID())
+				it.remove();	
 		}
+}
 
-	}
-
+	/**
+	 * Method calls the movement method for every enemy placed inside each room
+	 */
 	private void moveEnemies() {
 		level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().forEach(s -> s.updatePos());
 
 		this.eliminateEnemies();
 	}
 
+	/**
+	 * Method that calls the shoot method for every enemy placed inside each room
+	 */
 	private  void shootEnemies() {
 		level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().forEach(s -> s.attack());
 
@@ -216,12 +290,14 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	 * Method called by moveEnemyProj so that after moving each bullet, it also checks if the bullet needs to be destroyed
 	 */
 	private void eliminateEnemyProj() {
-		Set<Enemy> enemy = level.getLevel().get(level.getRoomID()).getRoom().getEnemySet();
+		Set<Enemy> enemy = currentRoom.getRoom().getEnemySet();
 
 		enemy.forEach(e -> {
 			Iterator<Bullet> enemyIt = e.getRoomBullets().iterator();
 			while (enemyIt.hasNext()) {
-				if (!enemyIt.next().isAlive())
+				Bullet tmp = enemyIt.next();
+				
+				if (!tmp.isAlive() || tmp.getRoom().getRoomID() != currentRoom.getRoom().getRoomID())
 					enemyIt.remove();
 			}
 		});
@@ -235,8 +311,14 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		Iterator<Enemy> it = level.getLevel().get(level.getRoomID()).getRoom().getEnemySet().iterator();
 
 		while (it.hasNext()) {
-			if (!it.next().isAlive())
+			Enemy tmp = it.next();
+			
+			if (!tmp.isAlive()) {
+				if(tmp.getTypeEnemy().equals(TypeEnemy.BOSS))
+					level.setGameWon(true);
+				
 				it.remove();
+			}
 		}
 	}
 

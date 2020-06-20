@@ -3,20 +3,29 @@ package coordination;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
-import worldModel.utilities.enums.Entities;
-
 public class SoundBoardFactory {
 	
+	/**
+	 * Variable containing the footsteps to dinamically check if they're being played
+	 */
 	private static Sound footsteps;
 	
+	/**
+	 * Method used to retrieve the footsteps sound
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public static void storeSound() throws SlickException {
 		SoundBoardFactory.footsteps = SoundBoard.mainCharacterFootsteps.getSound();
 	}
 	
+	/**
+	 * Method used to get and play sounds
+	 * @param sound
+	 */
 	public static void getEntitySound(final SoundBoard sound) {
 		Sound tmpEnt = null;
 		switch (sound) {		
@@ -76,11 +85,18 @@ public class SoundBoardFactory {
 		playSound(tmpEnt);
 	}
 
+	/**
+	 * Method used to play sounds
+	 * @param tmp, the choosen sound
+	 */
 	private static void playSound(final Sound tmp) {
 		if(!tmp.playing())
 			tmp.play(1.0f, 0.4f);
 	}
 	
+	/**
+	 * Method used to only play footsteps dinamically
+	 */
 	public static void playFootsteps() {
 		if(!footsteps.playing())
 			footsteps.play(1.0f, 0.4f);

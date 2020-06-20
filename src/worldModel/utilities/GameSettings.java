@@ -27,4 +27,5 @@ public interface GameSettings {
 	
 	final static String SEP = System.getProperty("file.separator");
 	
+	final static int FINALLEVEL = 4;
 }

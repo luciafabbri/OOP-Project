@@ -1,11 +1,9 @@
 package coordination;
 
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
 import worldModel.utilities.GameSettings;
-import worldModel.utilities.enums.Entities;
 		
 
 /**
@@ -26,6 +24,12 @@ public enum SoundBoard {
 		this.sound = image;
 	}
 	
+	/**
+	 * Method used to get the chosen sound
+	 * @return Sound
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public Sound getSound() throws SlickException {
 		return new Sound(sound);
 	}
