@@ -21,7 +21,7 @@ public final class ToPlayerUtil {
 	private static Player player = StateCoord.getPlayer();
 
 	private static int disPX = (player.getDimension().getRight() + player.getDimension().getLeft()) / 2;
-	private static int disPY = (48 + player.getDimension().getDown()) / 2;
+	private static int disPY = (GameSettings.TILESIZE + player.getDimension().getDown()) / 2;
 
 	/**
 	 * Private constructors to prevent instantiation

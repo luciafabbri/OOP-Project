@@ -6,6 +6,7 @@ import coordination.SoundBoardFactory;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletPlayerImpl;
 import dynamicBody.bullet.DistanceBull;
+import dynamicBody.bullet.TypeBullet;
 import dynamicBody.character.player.Player;
 
 /**
@@ -53,7 +54,7 @@ public class ShootingPlayerImpl implements ShootingPlayer {
 	 * A new BulletPlayerImpl() object is created
 	 */	
 	private void shoot(){
-		Bullet bullet = new BulletPlayerImpl(DistanceBull.calculateBullPos(player.getDirection(), player), player.getDamage(),player.getDirection(), player.getRoom());  	
+		Bullet bullet = new BulletPlayerImpl(DistanceBull.calculateBullPos(player.getDirection(), player, TypeBullet.PLAYER_BULL), player.getDamage(),player.getDirection(), player.getRoom());  	
 		if (bullet.isAlive()) {
 			player.getRoomBullets().add(bullet);
 			SoundBoardFactory.getEntitySound(SoundBoard.mainCharacterShoot);

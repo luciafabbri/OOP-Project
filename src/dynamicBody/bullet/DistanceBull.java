@@ -7,6 +7,8 @@ import worldModel.utilities.Pair;
 
 public final class DistanceBull {
 
+	private static BulletDimFactory dimFactory = new BulletDimFactory();
+	
 	/**
 	 * Private constructor to prevent instantiation
 	 */
@@ -20,8 +22,8 @@ public final class DistanceBull {
 	 * @param character, the Character who create that
 	 * @return return a Pair with the coordinates
 	 */
-	public static Pair<Integer, Integer> calculateBullPos(Direction dir, Character character) {
-		Pair<Integer, Integer> distance = calcDistance(dir, character);
+	public static Pair<Integer, Integer> calculateBullPos(Direction dir, Character character, TypeBullet type) {
+		Pair<Integer, Integer> distance = calcDistance(dir, character, type);
 		return new Pair<Integer, Integer>(character.getPosition().getX() + distance.getX(),
 				character.getPosition().getY() + distance.getY());
 	}
@@ -33,8 +35,8 @@ public final class DistanceBull {
 	 * @param character
 	 * @return
 	 */
-	private static Pair<Integer, Integer> calcDistance(Direction dir, Character character) {
-		UpDownLeftRight<Integer> dim = DimensionBullet.getDimensionBullet(TypeBullet.ENEMY_BULL).getX().getDimension();
+	private static Pair<Integer, Integer> calcDistance(Direction dir, Character character, TypeBullet type) {
+		UpDownLeftRight<Integer> dim = dimFactory.getDimensionBullet(type).getX().getDimension();
 		int distanceSpawn = BulletDefault.DISTANCESPAWNBULL.getValue();
 		switch (dir) {
 		case NORTH:

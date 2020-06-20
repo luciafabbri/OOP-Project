@@ -5,6 +5,7 @@ import java.util.List;
 import dynamicBody.bullet.Bullet;
 import dynamicBody.bullet.BulletEnemy;
 import dynamicBody.bullet.DistanceBull;
+import dynamicBody.bullet.TypeBullet;
 import dynamicBody.character.enemy.Enemy;
 import dynamicBody.move.Direction;
 import worldModel.RoomModel;
@@ -36,7 +37,7 @@ public class TwoSideAtt implements EnemyAttack {
 		List<Direction> bullDir = Direction.getNearDistance(dir, 1);
 
 		for (int i = 0; i < 2; i++) {
-			Bullet bull = new BulletEnemy(DistanceBull.calculateBullPos(dirSpawn.get(i), enemy), dmg, bullDir.get(i),
+			Bullet bull = new BulletEnemy(DistanceBull.calculateBullPos(dirSpawn.get(i), enemy, TypeBullet.ENEMY_BULL), dmg, bullDir.get(i),
 					currentRoom);
 
 			enemy.addBullet(bull);

@@ -1,7 +1,6 @@
 package dynamicBody.bullet;
 
 import dynamicBody.UpDownLeftRight;
-import worldModel.utilities.Pair;
 
 /**
  * Enumeration used to represent bullet's dimension, which means that for each
@@ -31,17 +30,6 @@ public enum DimensionBullet {
 
 	public UpDownLeftRight<Integer> getDimension() {
 		return dim;
-	}
-
-	public static Pair<DimensionBullet, DimensionBullet> getDimensionBullet(TypeBullet bull) {
-		switch (bull) {
-		case PLAYER_BULL:
-			return new Pair<>(ORIZONTAL_PLAYER, VERTICAL_PLAYER);
-		case ENEMY_BULL:
-			return new Pair<>(MONSTER, MONSTER);
-		default:
-			throw new IllegalArgumentException();
-		}
 	}
 
 }
