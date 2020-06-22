@@ -10,9 +10,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-
-import main.coordination.SoundBoard;
 import main.dynamicBody.character.player.Player;
+import main.dynamicBody.character.player.PlayerImpl;
 import main.dynamicBody.move.Direction;
 import main.levels.LevelComp;
 import main.levels.LevelCompImpl;

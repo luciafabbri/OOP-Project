@@ -1,6 +1,5 @@
 package test.player;
 
-import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,11 +7,12 @@ import java.util.logging.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.SlickException;
+import static org.junit.Assert.*;
 
-import main.coordination.SoundBoard;
 import main.dynamicBody.bullet.Bullet;
 import main.dynamicBody.bullet.BulletPlayerImpl;
 import main.dynamicBody.character.player.Player;
+import main.dynamicBody.character.player.PlayerImpl;
 import main.dynamicBody.move.Direction;
 import main.levels.LevelComp;
 import main.levels.LevelCompImpl;
