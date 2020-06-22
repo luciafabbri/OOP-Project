@@ -19,7 +19,7 @@ public enum CharacterImage {
 
 	FRONT_MAGE("." + GameSettings.SEP + "res" + GameSettings.SEP + "chars" + GameSettings.SEP + "enemies" + GameSettings.SEP + "Enemy3_front.png"), 
 	BACK_MAGE("." + GameSettings.SEP + "res" + GameSettings.SEP + "chars" + GameSettings.SEP + "enemies" + GameSettings.SEP + "Enemy3_back.png"),
-	LEFT_MAGE("." + GameSettings.SEP + "res" + GameSettings.SEP + "char" + GameSettings.SEP + "enemies" + GameSettings.SEP + "Enemy3_left.png"), 
+	LEFT_MAGE("." + GameSettings.SEP + "res" + GameSettings.SEP + "chars" + GameSettings.SEP + "enemies" + GameSettings.SEP + "Enemy3_left.png"), 
 	RIGHT_MAGE("." + GameSettings.SEP + "res" + GameSettings.SEP + "chars" + GameSettings.SEP + "enemies" + GameSettings.SEP + "Enemy3_right.png"),
 
 	FRONT_NINJA("." + GameSettings.SEP + "res" + GameSettings.SEP + "chars" + GameSettings.SEP + "enemies" + GameSettings.SEP + "Enemy2_front.png"), 
