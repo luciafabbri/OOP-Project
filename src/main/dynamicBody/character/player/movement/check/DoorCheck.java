@@ -1,4 +1,4 @@
-package main.dynamicBody.character.player;
+package main.dynamicBody.character.player.movement.check;
 
 import main.worldModel.utilities.GameSettings;
 import main.worldModel.utilities.Pair;

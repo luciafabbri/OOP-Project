@@ -3,7 +3,6 @@ package main.dynamicBody.character.player.movement.check;
 import main.coordination.SoundBoard;
 import main.coordination.SoundBoardFactory;
 import main.dynamicBody.character.enemy.Enemy;
-import main.dynamicBody.character.player.DoorCheck;
 import main.dynamicBody.character.player.PlayerImpl;
 import main.dynamicBody.move.check.CheckPosImpl;
 import main.gameEntities.GameEntity;
