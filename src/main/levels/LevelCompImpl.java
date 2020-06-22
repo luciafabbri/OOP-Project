@@ -42,13 +42,16 @@ public class LevelCompImpl implements LevelComp {
 	private boolean gotLevelCoin;
 	private boolean pauseMenu;
 	private boolean changedRoom;
+	private boolean gameWon;
 	
 	public LevelCompImpl(final int levelID) throws IOException {
 		testLevel = new LevelModelGeneratorImpl().generateLevel(levelID);
+		
 		this.loadRooms();
 		this.pauseMenu = false;
 		this.roomID = 0;
 		this.changedRoom = false;
+		this.gameWon = false;
 	}
 	
 	@Override
@@ -126,5 +129,13 @@ public class LevelCompImpl implements LevelComp {
 
 	public void setChangedRoom(boolean changedRoom) {
 		this.changedRoom = changedRoom;
+	}
+
+	public boolean isGameWon() {
+		return gameWon;
+	}
+
+	public void setGameWon(boolean gameWon) {
+		this.gameWon = gameWon;
 	}
 }

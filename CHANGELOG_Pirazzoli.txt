@@ -137,3 +137,6 @@ once testing for entities has been done extensively;
 
 06/06/2020
 -Implemented SoundBoard sounds for footsteps;
+
+22/06/2020
+-Fixed some path issues with the resources and libraries;

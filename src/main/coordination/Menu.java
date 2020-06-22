@@ -1,11 +1,8 @@
 package main.coordination;
 
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -15,45 +12,16 @@ import main.worldModel.utilities.GameSettings;
 public class Menu extends BasicGameState{
 
 	/**
-	 * Variable containing which input has been given from any controller
+	 * Variable containing the logics of the menu
 	 */
-	private Input input;
-	/**
-	 * Variable containing the current X coordinates of the mouse cursor
-	 */
-	private int x;
-	/**
-	 * Variable containing the current Y coordinates of the mouse cursor
-	 */
-	private int y;
-	/**
-	 * Variable that is true if the mouse cursor is on the Start button, otherwise false
-	 */
-	private boolean hoverButtonStart;
-	/**
-	 * Variable that is true if the mouse cursor is on the End button, otherwise false
-	 */
-	private boolean hoverButtonEnd;
-	/**
-	 * Variable containing the data regarding the music to play upon clicking the Start button
-	 */
-	private Music music;
-	private boolean hoverButtonTutorial;
-	private boolean tutorialScreen;
-	private boolean hoverButtonBack;
+	private MenuLogic logic;
 	
 	/**
 	 *{@inheritDoc}
 	 */
 	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		hoverButtonStart = false;
-		hoverButtonEnd = false;
-		this.hoverButtonTutorial = false;
-		this.tutorialScreen = false;
-		this.hoverButtonBack = false;
-		this.music = new Music("./res/audio/music/Ominous_Music.wav");
-		
+	public void init(final GameContainer arg0, final StateBasedGame arg1) throws SlickException {
+		this.logic = new MenuLogic(arg0, arg1);		
 	}
 
 	/**
@@ -61,12 +29,11 @@ public class Menu extends BasicGameState{
 	 */
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
-		
 		//Here I will render the main screen via buttons
 		arg2.setColor(Color.black);
 		arg2.drawRect(0, 0, GameSettings.WIDTH, GameSettings.HEIGHT);
 		
-		if(!tutorialScreen) {
+		if(!logic.isTutorialScreen()) {
 			this.mainMenu(arg2);
 		} else {
 			this.tutorialMenu(arg2);
@@ -74,6 +41,10 @@ public class Menu extends BasicGameState{
 		
 	}
 	
+	/**
+	 * Method that displays the Tutorial screen
+	 * @param arg2, the graphics variable to print the screen
+	 */
 	private void tutorialMenu(final Graphics arg2) {
 		arg2.setColor(Color.white);
 		
@@ -90,7 +61,7 @@ public class Menu extends BasicGameState{
 		arg2.drawString("-Coins, ancient relics stolen by the Darklord from your family Crypt.", width, height + 50 * 7);
 		arg2.drawString("Now you have everything you need to know to defeat Evil and bring peace to your family, Good Luck!.", width, height + 50 * 8);
 	
-		if(hoverButtonBack) {
+		if(logic.isHoverButtonBack()) {
 			arg2.setColor(Color.gray);
 		} else {
 			arg2.setColor(Color.white);
@@ -101,22 +72,26 @@ public class Menu extends BasicGameState{
 		arg2.drawString("Back", width + 100, (height + 50 * 10) + 10);
 	}
 
+	/**
+	 * Method that displays the main menu screen
+	 * @param arg2, the graphics variable to print the screen
+	 */
 	private void mainMenu(final Graphics arg2) {
-		if(hoverButtonStart) {
+		if(logic.isHoverButtonStart()) {
 			arg2.setColor(Color.gray);
 		} else {
 			arg2.setColor(Color.white);
 		}
 		arg2.fillRect(GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8, GameSettings.HEIGHT / 2 + 20, 240, 40);
 		
-		if(hoverButtonEnd) {
+		if(logic.isHoverButtonEnd()) {
 			arg2.setColor(Color.gray);
 		} else {
 			arg2.setColor(Color.white);
 		}
 		arg2.fillRect(GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8, GameSettings.HEIGHT / 2 + 120, 240, 40);
 		
-		if(hoverButtonTutorial) {
+		if(logic.isHoverButtonTutorial()) {
 			arg2.setColor(Color.gray);
 		} else {
 			arg2.setColor(Color.white);
@@ -145,68 +120,12 @@ public class Menu extends BasicGameState{
 	 */
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		input = arg0.getInput();
-		x = Mouse.getX();
-		y = Mouse.getY();
-		
-		
-		if(!tutorialScreen) {
-			this.mainMenuUpdate(arg0, arg1);
+		if(!logic.isTutorialScreen()) {
+			logic.mainMenuUpdate();
 		} else {
-			this.tutorialMenuUpdate();
-		}
-		
-		
+			logic.tutorialMenuUpdate();;
+		}	
 	}
-	
-	private void mainMenuUpdate(final GameContainer arg0, final StateBasedGame arg1) throws SlickException {
-		if((x > (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8) && x < (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8 + 240)) &&
-		   (y < ((GameSettings.HEIGHT / 2) - 20) && y > ((GameSettings.HEIGHT / 2) - 60))) {
-			hoverButtonStart = true;
-			if(input.isMousePressed(0)) {
-				music.loop(1.0f, 0.04f);
-				arg1.enterState(1);
-			}
-		} else {
-			hoverButtonStart = false;
-		}
-				
-		if((x > (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8) && x < (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8 + 240)) &&
-		   (y < (GameSettings.HEIGHT / 2 - 120) && y > (GameSettings.HEIGHT / 2 - 160))) {
-			hoverButtonEnd = true;
-			if(input.isMousePressed(0)) {
-				arg0.exit();
-			}
-		} else {
-			hoverButtonEnd = false;
-		}
-				
-		if((x > (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8) && x < (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8 + 240)) &&
-		   (y < (GameSettings.HEIGHT / 2 - 220) && y > (GameSettings.HEIGHT / 2 - 260))) {
-			hoverButtonTutorial = true;
-			if(input.isMousePressed(0)) {
-				tutorialScreen = true;
-			}
-		} else {
-			hoverButtonTutorial = false;
-		}
-	}
-	
-	private void tutorialMenuUpdate() {
-		int width = GameSettings.TILESIZE;
-		int height = (GameSettings.TILESIZE / 2) + 60;
-		
-		if((x > width && x < width + 240) &&
-		   ((y < (height + 45) + 40 && y > height + 45))) {
-			hoverButtonBack = true;
-			if(input.isMousePressed(0)) {
-				tutorialScreen = false;
-			}
-		} else {
-			hoverButtonBack = false;
-		}
-	}
-	
 	
 	/**
 	 *Method that isn't used, must have because of inheritance

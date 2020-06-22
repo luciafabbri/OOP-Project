@@ -26,10 +26,6 @@ public class StateCoord extends StateBasedGame {
 	 */
 	private static final String GAMENAME = "JARG";
 	/**
-	 * Variable containing the ID for the Menu
-	 */
-	private static final int MENU = 0;  
-	/**
 	 * Variable containing the ID for the first level
 	 */
 	private static final int LEVEL1 = 1;

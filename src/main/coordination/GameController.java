@@ -35,6 +35,10 @@ public class GameController extends BasicGameState {
 	 */
 	private UI ui;
 	/**
+	 * Variable containing the UI logic
+	 */
+	private UILogic uilogic;
+	/**
 	 * Variable containing the Level class
 	 */
 	private LevelComp level;
@@ -66,10 +70,7 @@ public class GameController extends BasicGameState {
 	 */
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		level = null;
-		logic = null;
-		graphics = null;
-		
+
 		try {
 			level = new LevelCompImpl(this.levelID);
 		} catch (IOException e) {
@@ -81,8 +82,9 @@ public class GameController extends BasicGameState {
 		player.transitionPos(new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE));
 		
 		graphics = new GameViewImpl(level, player);
-	
-		ui = new UI(player, arg0.getGraphics(), level);
+		
+		uilogic = new UILogic(player, level, arg0, this, arg1, player);
+		ui = new UI(player, arg0.getGraphics(), level, uilogic);
 	}
 
 	/**
@@ -111,30 +113,17 @@ public class GameController extends BasicGameState {
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		input = arg0.getInput();
+		uilogic.update();
 		
+		//TEMP
+		player.heal(100);
+		player.upgradeDamage(1000);
 		
 		logic.update();
 		
 		
-		
-		
-		/*
-		ItemImpl tmp = level.getLevel().get(0).getItems().get(0);
-		
-		if((tmp.getCoord().getY() - 1 >= GameSettings.TILESIZE && tmp.getCoord().getX() - 1 >= GameSettings.TILESIZE) && input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_A)) {
-			level.getLevel().get(0).getItems().get(0).setCoord(new Pair<>(tmp.getCoord().getX() - 1, tmp.getCoord().getY() - 1));
-			
-		} else if(tmp.getCoord().getY() - 1 >= GameSettings.TILESIZE - 70 && input.isKeyDown(Input.KEY_W)) {
-			level.getLevel().get(0).getItems().get(0).setCoord(new Pair<>(tmp.getCoord().getX(), tmp.getCoord().getY() - 1));
-		} else if(tmp.getCoord().getX() - 1 >= GameSettings.TILESIZE && input.isKeyDown(Input.KEY_A)){
-			level.getLevel().get(0).getItems().get(0).setCoord(new Pair<>(tmp.getCoord().getX() - 1, tmp.getCoord().getY()));
-		} else if(tmp.getCoord().getY() + 1 <= GameSettings.HEIGHT - GameSettings.TILESIZE * 2 && input.isKeyDown(Input.KEY_S)){
-			level.getLevel().get(0).getItems().get(0).setCoord(new Pair<>(tmp.getCoord().getX(), tmp.getCoord().getY() + 1));
-		} else if(tmp.getCoord().getX() + 1 <= GameSettings.WIDTH - GameSettings.TILESIZE * 2 && input.isKeyDown(Input.KEY_D)){
-			level.getLevel().get(0).getItems().get(0).setCoord(new Pair<>(tmp.getCoord().getX() + 1, tmp.getCoord().getY()));
-		}
-	
-		*/
+		if(input.isKeyPressed(Input.KEY_B))
+			level.setGameWon(true);
 	}
 	
 	/**
@@ -145,6 +134,10 @@ public class GameController extends BasicGameState {
 		return levelID;
 	}
 
+	/**
+	 * Method that sets the ID for the current level to be played
+	 * @param levelID, an int that specifies the level being played
+	 */
 	public void setLevelID(int levelID) {
 		this.levelID = levelID;
 	}

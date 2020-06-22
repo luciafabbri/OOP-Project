@@ -57,4 +57,8 @@ public interface LevelComp {
 	public boolean isChangedRoom();
 	
 	public Map<TypeEnemy, Set<Pair<Direction, Animation>>> checkAnimations() throws SlickException;
+	
+	public boolean isGameWon();
+	
+	public void setGameWon(boolean gameWon);
 }
