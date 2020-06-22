@@ -10,6 +10,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+
+import main.coordination.SoundBoardFactory;
 import main.dynamicBody.character.player.Player;
 import main.dynamicBody.character.player.PlayerImpl;
 import main.dynamicBody.move.Direction;
@@ -51,6 +53,8 @@ public class PlayerInputTest extends BasicGame {
 	}
 	
 	public void init(GameContainer container) throws SlickException {
+		SoundBoardFactory.storeSound();
+		
 		if (container instanceof AppGameContainer) {
 			app = (AppGameContainer) container;
 		}

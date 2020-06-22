@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: coordination/StateCoord
-Class-Path: ./lib/libraries/jinput.jar ./lib/libraries/lwjgl.jar ./lib/libraries/lwjgl_util.jar ./lib/libraries/lwjgl-natives-windows.jar ./lib/libraries/lwjgl-sources.jar ./lib/libraries/natives-windows.jar ./lib/libraries/slick.jar
+Main-Class: coordination.StateCoord
+Class-Path: ./lib/libraries ./lib/natives
