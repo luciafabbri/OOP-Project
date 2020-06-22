@@ -30,7 +30,7 @@ public final class DistanceBull {
 	}
 
 	/**
-	 * Method used to 
+	 * Method used to calculate the distance where the bullet should be created 
 	 * 
 	 * @param dir
 	 * @param character

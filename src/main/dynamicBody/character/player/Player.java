@@ -147,6 +147,9 @@ public interface Player extends main.dynamicBody.character.Character {
 	 */
 	Movement getMove();	
 
+	/**
+	 * Method used to reset player's stats
+	 */
 	void resetStats();
 
 }

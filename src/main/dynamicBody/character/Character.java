@@ -33,11 +33,6 @@ public interface Character extends DynamicBody {
 	 */
 	void takeDamage(int damage) throws SlickException;
 	
-//	/**
-//	 * @return character's Animation
-//	 */
-//	Animation getAnimation();
-	
 	/**
 	 * @return character's bullet set 
 	 */

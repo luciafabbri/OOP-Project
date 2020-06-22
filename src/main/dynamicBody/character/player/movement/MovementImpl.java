@@ -1,13 +1,9 @@
 package main.dynamicBody.character.player.movement;
 
-import main.coordination.SoundBoard;
 import main.coordination.SoundBoardFactory;
 import main.dynamicBody.move.Direction;
 import main.worldModel.utilities.Pair;
-
 import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 
 /**
  * Class that implements interface Movement used to move the player through the different rooms in the dungeon 
