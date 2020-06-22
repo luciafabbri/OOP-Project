@@ -1,4 +1,4 @@
-package main.dynamicBody.character.player;
+package test.player;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -12,6 +12,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import main.coordination.SoundBoard;
+import main.dynamicBody.character.player.Player;
 import main.dynamicBody.move.Direction;
 import main.levels.LevelComp;
 import main.levels.LevelCompImpl;
