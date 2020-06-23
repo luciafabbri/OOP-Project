@@ -37,6 +37,9 @@ public class EntityImageFactory {
 		case RECOVERHEALTH:
 			tmpEnt = EntityImage.RECOVERHEALTH.getImage();
 			break;
+		case UICOIN:
+			tmpEnt = EntityImage.UICOIN.getImage();
+			break;
 		default:
 			throw new IllegalArgumentException("Entity image not found");
 		}

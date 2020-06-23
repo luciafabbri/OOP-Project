@@ -17,7 +17,9 @@ public class DoorWest extends AnimatedTile {
 	 * {@inheritDoc}
 	 */
 	public DoorWest() throws SlickException {
-		super(new Animation(new SpriteSheet(new Image("./res/walls/doors/door1.png"), GameSettings.TILESIZE, GameSettings.TILESIZE), 100));
+		super(new Animation
+				(new SpriteSheet
+						(new Image(Tile.returnURL(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP + "door1.png"), GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP + "door1.png", false), GameSettings.TILESIZE, GameSettings.TILESIZE), 100));
 	}
 
 }

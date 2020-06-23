@@ -102,4 +102,12 @@ public class SoundBoardFactory {
 			footsteps.play(1.0f, 0.4f);
 	}
 	
+	public static void loopMusic() {
+		try {
+			SoundBoard.ominousMusic.getSound().loop(1.0f, 0.04f);
+		} catch (SlickException e) {
+			Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
+		}
+	}
+	
 }

@@ -17,7 +17,9 @@ public class DoorNorth extends AnimatedTile {
 	 * {@inheritDoc}
 	 */
 	public DoorNorth() throws SlickException {
-		super(new Animation(new SpriteSheet(new Image("./res/walls/doors/door2.png"), GameSettings.TILESIZE, GameSettings.TILESIZE), 100));
+		super(new Animation
+				(new SpriteSheet
+						(new Image(Tile.returnURL(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP + "door2.png"), GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP + "door2.png", false), GameSettings.TILESIZE, GameSettings.TILESIZE), 100));
 	}
 
 }

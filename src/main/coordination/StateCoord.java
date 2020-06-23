@@ -1,6 +1,14 @@
 package main.coordination;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,6 +17,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import loadNatives.LoadNatives;
 import main.dynamicBody.character.player.Player;
 import main.dynamicBody.character.player.PlayerImpl;
 import main.dynamicBody.move.Direction;
@@ -29,6 +38,8 @@ public class StateCoord extends StateBasedGame {
 	 * Variable containing the ID for the first level
 	 */
 	private static final int LEVEL1 = 1;
+	
+	private static LoadNatives load = new LoadNatives();
 	
 	/**
 	 * Constructor for StateCoord
@@ -56,23 +67,43 @@ public class StateCoord extends StateBasedGame {
 //		this.enterState(MENU); //FIRST SCREEN USER SEES
 	}
 	
+	
+	
 	//QUI VA MAIN PER INIZIALIZZARE PRIMA IL MENU
 
 	/**
 	 * Main method for initializing the OpenGL context of the game, and the Player resource itself
 	 * @param args
 	 * @throws SlickException
+	 * @throws IOException 
 	 * @see SlickException
 	 */
-	public static void main(String[] args) throws SlickException {
+	public static void main(String[] args) throws SlickException, IOException {
+		
+		String destPath = System.getProperty("java.io.tmpdir") + "jarg" + GameSettings.SEP + "libJars";
+		
 		//Set the path for Slick2D libraries
-		System.setProperty("java.library.path", new File("./lib/libraries").getAbsolutePath());
+		System.setProperty("java.library.path", new File(destPath).getAbsolutePath());
+		
 		
 		//Set the path for Slick2D natives
-		System.setProperty("org.lwjgl.librarypath", new File("./lib/natives").getAbsolutePath());
+		System.setProperty("org.lwjgl.librarypath", new File(destPath).getAbsolutePath());
+		
 		
 		//Set the path for JInput
-		System.setProperty("net.java.games.input.librarypath", new File("./lib/natives").getAbsolutePath());
+		System.setProperty("net.java.games.input.librarypath", new File(destPath).getAbsolutePath());
+		
+		
+		load.loadJarDll("jinput-dx8_64.dll");
+//		load.loadJarDll("jinput-dx8.dll");
+//		load.loadJarDll("jinput-raw_64.dll");
+//		load.loadJarDll("jinput-raw.dll");
+//		load.loadJarDll("lwjgl.dll");s
+//		load.loadJarDll("lwjgl64.dll");
+//		load.loadJarDll("OpenAL32.dll");
+//		load.loadJarDll("OpenAL64.dll");
+		
+		
 		
 		try {
 			AppGameContainer appgc;

@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 
 import main.coordination.SoundBoard;
 import main.worldModel.*;
+import main.worldModel.utilities.GameSettings;
 import main.worldModel.utilities.graphs.BidirectionalGraph;
 
 /**
@@ -35,7 +36,7 @@ public class LevelModelGeneratorImpl implements LevelModelGenerator {
 	 */
 	private Map<String, Integer> getLevelConfig(Integer levelNumber) throws IOException {
 		Map<String, Integer> configMap = new HashMap<>();
-		File file = new File("res/levelConfigs/level" + levelNumber + ".txt");
+		File file = new File(GameSettings.RESPATH + "res" + GameSettings.SEP + "levelConfigs" + GameSettings.SEP + "level" + levelNumber + ".txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line;
 		while ((line = br.readLine()) != null) {

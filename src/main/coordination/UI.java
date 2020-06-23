@@ -8,8 +8,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 
 import main.dynamicBody.character.player.Player;
+import main.gameEntities.EntityImageFactory;
 import main.levels.LevelComp;
 import main.worldModel.utilities.GameSettings;
+import main.worldModel.utilities.enums.Entities;
 
 public class UI {
 
@@ -17,10 +19,6 @@ public class UI {
 	 * Variable containing data of current Player environment
 	 */
 	private Player player;
-	/**
-	 * Variable containing data of the Coins
-	 */
-	private Image coinImage;
 	/**
 	 * Variabile containing data regarding the Level
 	 */
@@ -70,8 +68,6 @@ public class UI {
 		this.graphics = graphics;
 		this.logic = logic;
 		
-		this.coinImage = new Image("./res/UI/CoinUI.png");
-		new Image("./res/UI/healthUI.png");
 		
 		this.font = new Font("Default", Font.ROMAN_BASELINE, 30);
 		this.tmp = new TrueTypeFont(font, false);
@@ -84,14 +80,17 @@ public class UI {
 
 	/**
 	 * Method used to draw each element of the UI
+	 * @throws SlickException
+	 * @see SlickException
 	 */
-	public void drawUI() {
+	public void drawUI() throws SlickException {
 		graphics.setColor(color);
 		
 		graphics.fillRect(0, 0, GameSettings.TILESIZE, GameSettings.TILESIZE * 3);
 		
 		
-		coinImage.draw(-5, GameSettings.TILESIZE, 40, 40);
+		
+		EntityImageFactory.getEntityTexture(Entities.UICOIN).draw(-5, GameSettings.TILESIZE, 40, 40);
 		tmp.drawString(30, GameSettings.TILESIZE + 2, Integer.toString(player.getInventory().getCoin()), Color.white);
 		
 		this.healthUpdate();

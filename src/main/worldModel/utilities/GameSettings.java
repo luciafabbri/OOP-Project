@@ -28,4 +28,6 @@ public interface GameSettings {
 	final static String SEP = System.getProperty("file.separator");
 	
 	final static int FINALLEVEL = 4;
+	
+	final static String RESPATH = System.getProperty("java.io.tmpdir") + "jarg" + SEP  ;
 }

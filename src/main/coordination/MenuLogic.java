@@ -30,10 +30,6 @@ public class MenuLogic {
 	 */
 	private boolean hoverButtonEnd;
 	/**
-	 * Variable containing the data regarding the music to play upon clicking the Start button
-	 */
-	private Music music;
-	/**
 	 * Variable that is true if the mouse cursor is on the Tutorial button, otherwise false
 	 */
 	private boolean hoverButtonTutorial;
@@ -71,7 +67,6 @@ public class MenuLogic {
 		this.hoverButtonTutorial = false;
 		this.tutorialScreen = false;
 		this.hoverButtonBack = false;
-		this.music = new Music("./res/audio/music/Ominous_Music.wav");
 	}
 
 	/**
@@ -129,7 +124,7 @@ public class MenuLogic {
 		   (y < ((GameSettings.HEIGHT / 2) - 20) && y > ((GameSettings.HEIGHT / 2) - 60))) {
 			hoverButtonStart = true;
 			if(input.isMousePressed(0)) {
-				music.loop(1.0f, 0.04f);
+				SoundBoardFactory.loopMusic();
 				state.enterState(1);
 			}
 		} else {

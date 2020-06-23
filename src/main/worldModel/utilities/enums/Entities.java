@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public enum Entities {
 
-	COIN(0), KEY(1), ATTACKUPGRADE1(2), HEALTHUPGRADE1(3), BOULDER(4), STAIR(5), ATTACKSPEED1(6), MOVEMENTSPEED1(7), RECOVERHEALTH(8);
+	COIN(0), KEY(1), ATTACKUPGRADE1(2), HEALTHUPGRADE1(3), BOULDER(4), STAIR(5), ATTACKSPEED1(6), MOVEMENTSPEED1(7), RECOVERHEALTH(8), UICOIN(9);
 
 	private Integer entityCode;
 	private static final Map<Integer, Entities> map = new HashMap<>();

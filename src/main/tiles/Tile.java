@@ -1,5 +1,10 @@
 package main.tiles;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.newdawn.slick.Image;
 
 public class Tile {
@@ -25,7 +30,18 @@ public class Tile {
 		return texture;
 	}
 
-	
+	public static InputStream returnURL(final String res) {
+		try {
+			return new URL("file:///" + res).openStream();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 }
