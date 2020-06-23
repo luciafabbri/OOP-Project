@@ -17,7 +17,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import loadNatives.LoadNatives;
 import main.dynamicBody.character.player.Player;
 import main.dynamicBody.character.player.PlayerImpl;
 import main.dynamicBody.move.Direction;
@@ -98,7 +97,7 @@ public class StateCoord extends StateBasedGame {
 //		load.loadJarDll("jinput-dx8.dll");
 //		load.loadJarDll("jinput-raw_64.dll");
 //		load.loadJarDll("jinput-raw.dll");
-//		load.loadJarDll("lwjgl.dll");s
+//		load.loadJarDll("lwjgl.dll");
 //		load.loadJarDll("lwjgl64.dll");
 //		load.loadJarDll("OpenAL32.dll");
 //		load.loadJarDll("OpenAL64.dll");

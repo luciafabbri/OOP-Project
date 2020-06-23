@@ -1,4 +1,4 @@
-package loadNatives;
+package main.coordination;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
