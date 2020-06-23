@@ -7,6 +7,10 @@ import main.worldModel.RoomModel;
 import main.worldModel.utilities.GameSettings;
 import main.worldModel.utilities.Pair;
 
+/**
+ * Class that implements interface CheckEnemy used to check and then to force the enemy 
+ * to do the specific chosen actions
+ */
 public class CheckEnemyImpl extends CheckPosImpl implements CheckEnemy, GameSettings {
 
 	private int x, y;
