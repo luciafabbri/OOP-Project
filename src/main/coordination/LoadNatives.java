@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,37 +16,82 @@ import java.nio.file.StandardCopyOption;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 import main.worldModel.utilities.GameSettings;
 
 public class LoadNatives {
 	
+	/**
+	 * Variable containing the name of the current OS
+	 */
 	private static String OS = System.getProperty("os.name").toLowerCase();
 
+	/**
+	 * Method used to check if current OS is Windows
+	 * @return true if Windows, otherwise false
+	 */
 	public static boolean isWindows() {
 
 		return (OS.indexOf("win") >= 0);
 
 	}
 
+	/**
+	 * Method used to check if current OS is MacOS
+	 * @return true if MacOS, otherwise false
+	 */
 	public static boolean isMac() {
 
 		return (OS.indexOf("mac") >= 0);
 
 	}
 
+	/**
+	 * Method used to check if current OS is Linux
+	 * @return true if Linux, otherwise false
+	 */
 	public static boolean isUnix() {
 
 		return (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 );
 
 	}
 
-	public static boolean isSolaris() {
-
-		return (OS.indexOf("sunos") >= 0);
-
+	/**
+	 * Method used to check if application launched in jar file or Eclipse project
+	 * @param checkJar, string of the resource in the module
+	 * @return true if app launched in jar file, otherwise false
+	 */
+	public static boolean isJar(final String checkJar) {
+		return (checkJar.indexOf("jar") >= 0);
 	}
 	
+	public static Image loadTile(final String path) throws SlickException {	
+		if(!LoadNatives.isJar(StateCoord.class.getResource("StateCoord.class").toString())) {
+			try {
+				return new Image(new URL("file:///" + path).openStream(), path, false);
+			} catch (MalformedURLException e) {
+				Logger.getLogger(LoadNatives.class.getName()).log(Level.SEVERE, null, e);
+			} catch (SlickException e) {
+				Logger.getLogger(LoadNatives.class.getName()).log(Level.SEVERE, null, e);
+			} catch (IOException e) {
+				Logger.getLogger(LoadNatives.class.getName()).log(Level.SEVERE, null, e);
+			}
+		} else {
+			return new Image(path);
+		}
+		return null;
+	}
+	
+	/**
+	 * Method used to load all libraries and natives to make the project run
+	 * @throws IOException
+	 * @see IOException
+	 */
 	public void loadLibs() throws IOException {
 		
 		String destPath;
@@ -96,24 +142,32 @@ public class LoadNatives {
 	    	System.out.println("Could not find file ");
 	    }
 		
+		String libPath;
+		
+		if(!LoadNatives.isJar(StateCoord.class.getResource("StateCoord.class").toString())) {
+			libPath = destPath + "libJars" + GameSettings.SEP;
+		} else {	
+			libPath = "." + GameSettings.SEP + "lib" + GameSettings.SEP + "libJars" + GameSettings.SEP;
+		}
+		
 		if(isWindows()) {
-			System.load(new File(destPath + "libJars" + GameSettings.SEP + "lwjgl64.dll").getAbsolutePath());
-			System.load(new File(destPath + "libJars" + GameSettings.SEP + "OpenAL64.dll").getAbsolutePath());
-			System.load(new File(destPath + "libJars" + GameSettings.SEP + "jinput-dx8_64.dll").getAbsolutePath());
-			System.load(new File(destPath + "libJars" + GameSettings.SEP + "jinput-raw_64.dll").getAbsolutePath());
+			System.load(new File(libPath + "lwjgl64.dll").getAbsolutePath());
+			System.load(new File(libPath + "OpenAL64.dll").getAbsolutePath());
+			System.load(new File(libPath + "jinput-dx8_64.dll").getAbsolutePath());
+			System.load(new File(libPath + "jinput-raw_64.dll").getAbsolutePath());
 		}
 		
 		if(isUnix()) {
-			System.load(destPath + "libJars" + GameSettings.SEP + "liblwjgl64.so");
-			System.load(new File(destPath + "libJars" + GameSettings.SEP + "libjinput-linux64.so").getAbsolutePath());
-			System.load(new File(destPath + "libJars" + GameSettings.SEP + "libopenal64.so").getAbsolutePath());
+			System.load(new File(libPath + "liblwjgl64.so").getAbsolutePath());
+			System.load(new File(libPath + "libjinput-linux64.so").getAbsolutePath());
+			System.load(new File(libPath + "libopenal64.so").getAbsolutePath());
 		}
 		
 		if(isMac()) {
-			System.load(destPath + "libJars" + GameSettings.SEP + "libjinput-osx.dylib");
-			System.load(destPath + "libJars" + GameSettings.SEP + "liblwjgl.dylib");
-			System.load(destPath + "libJars" + GameSettings.SEP + "openal.dylib");
-			System.load(destPath + "libJars" + GameSettings.SEP + "libjinput-osx.jnilib");
+			System.load(libPath + "libjinput-osx.dylib");
+			System.load(libPath + "liblwjgl.dylib");
+			System.load(libPath + "openal.dylib");
+			System.load(libPath + "libjinput-osx.jnilib");
 		}
 	}
 	

@@ -4,8 +4,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+
+import main.coordination.CharacterImage;
+import main.coordination.LoadNatives;
+import main.gameEntities.EntityImage;
 
 public class Tile {
 	
@@ -25,23 +32,27 @@ public class Tile {
 	/**
 	 * Method that returns the texture of the Tile
 	 * @return Image, the texture of the Tile
+	 * @throws SlickException
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @see SlickException
+	 * @see MalformedURLException
+	 * @see IOException
 	 */
 	public Image getTexture() {
+		try {
+			if(!LoadNatives.isJar(CharacterImage.class.getResource("CharacterImage.class").toString())) {
+				return new Image(new URL("file:///" + texture.getResourceReference()).openStream(), texture.getResourceReference(), false);
+			} else {
+				return texture;
+			}
+		} catch (MalformedURLException e) {
+			Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, e);
+		} catch (SlickException e) {
+			Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, e);
+		} catch (IOException e) {
+			Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, e);
+		}
 		return texture;
 	}
-
-	public static InputStream returnURL(final String res) {
-		try {
-			return new URL("file:///" + res).openStream();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	
 }

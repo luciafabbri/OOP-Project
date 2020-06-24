@@ -3,6 +3,7 @@ package main.tiles;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import main.coordination.LoadNatives;
 import main.worldModel.utilities.GameSettings;
 
 public class WallHor1 extends Tile {
@@ -15,6 +16,6 @@ public class WallHor1 extends Tile {
 	 * {@inheritDoc}
 	 */
 	public WallHor1() throws SlickException {
-		super(new Image(Tile.returnURL(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "wall_inner_down_1.png"), GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "wall_inner_down_1.png", false));
+		super(LoadNatives.loadTile(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "wall_inner_down_1.png"));
 	}
 }

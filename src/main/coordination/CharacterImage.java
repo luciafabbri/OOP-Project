@@ -3,6 +3,8 @@ package main.coordination;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -53,18 +55,26 @@ public enum CharacterImage {
 		this.image = image;
 	}
 	
+	/**
+	 * Method used to return the image of a Character
+	 * @return image, of the character
+	 * @throws SlickException
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
 	public Image getImage() throws SlickException {
 		try {
-			return new Image(new URL("file:///" + image).openStream(), image, false);
+			if(!LoadNatives.isJar(CharacterImage.class.getResource("CharacterImage.class").toString())) {
+				return new Image(new URL("file:///" + image).openStream(), image, false);
+			} else {
+				return new Image(image);	
+			}
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(CharacterImage.class.getName()).log(Level.SEVERE, null, e);
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(CharacterImage.class.getName()).log(Level.SEVERE, null, e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(CharacterImage.class.getName()).log(Level.SEVERE, null, e);
 		}
 		return null;
 	}

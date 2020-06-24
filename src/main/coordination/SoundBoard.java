@@ -2,6 +2,9 @@ package main.coordination;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import main.worldModel.utilities.GameSettings;	
@@ -32,17 +35,21 @@ public enum SoundBoard {
 	 * Method used to get the chosen sound
 	 * @return Sound
 	 * @throws SlickException
+	 * @throws MalformedURLException
 	 * @see SlickException
+	 * @see MalformedURLException
 	 */
 	public Sound getSound() throws SlickException {	
 		try {
-			return new Sound(new URL("file:///" + sound));
+			if(!LoadNatives.isJar(SoundBoard.class.getResource("SoundBoard.class").toString())) {
+				return new Sound(new URL("file:///" + sound));
+			} else {
+				return new Sound(sound);
+			}
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(SoundBoard.class.getName()).log(Level.WARNING, null, e);
 		}
 		return null;
 	}

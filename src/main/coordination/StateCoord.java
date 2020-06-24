@@ -76,17 +76,21 @@ public class StateCoord extends StateBasedGame {
 	 * @throws SlickException
 	 * @throws IOException 
 	 * @see SlickException
+	 * @see IOException
 	 */
 	public static void main(String[] args) throws SlickException, IOException {
-		
-		
 		String destPath;
 		
-		if(LoadNatives.isWindows()) {
-			destPath = System.getProperty("java.io.tmpdir") + "jarg" + GameSettings.SEP + "libJars";
+		if(!LoadNatives.isJar(StateCoord.class.getResource("StateCoord.class").toString())) {
+			if(LoadNatives.isWindows()) {
+				destPath = System.getProperty("java.io.tmpdir") + "jarg" + GameSettings.SEP + "libJars";
+			} else {
+				destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + GameSettings.SEP + "libJars" + File.separator;
+			}
 		} else {
-			destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + GameSettings.SEP + "libJars" + File.separator;
+			destPath = "." + GameSettings.SEP + "lib" + GameSettings.SEP + "libJars";
 		}
+		
 		
 		//Set the path for Slick2D libraries
 		System.setProperty("java.library.path", new File(destPath).getAbsolutePath());
@@ -107,9 +111,11 @@ public class StateCoord extends StateBasedGame {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new StateCoord(GAMENAME));
 			appgc.setDisplayMode(GameSettings.WIDTH, GameSettings.HEIGHT, false);
-			appgc.setShowFPS(false);
+			appgc.setShowFPS(true);
 			appgc.setVSync(true);
-			appgc.setMaximumLogicUpdateInterval(80);
+			appgc.setSmoothDeltas(true);
+			appgc.setMaximumLogicUpdateInterval(60);
+			appgc.setTargetFrameRate(60);
 			appgc.start();
 		} catch (SlickException e) {
 			Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, e);
