@@ -59,13 +59,13 @@ public class PlayerAndBulletCreationTest {
 		testPlayer.takeDamage(30);
 		assertEquals(70, testPlayer.getCurrentHealth());
 		testPlayer.heal(40);
-		assertEquals(100, testPlayer.getCurrentHealth()); /**perchè maxHealth è 100 (non va fino a 110)*/
+		assertEquals(100, testPlayer.getCurrentHealth()); /**because maxHealth is 100 (110 not valid)*/
 		testPlayer.upgradeMaxHealth(10);
 		assertEquals(110, testPlayer.getMaxHealth());
 		testPlayer.takeDamage(30);
 		assertEquals(70, testPlayer.getCurrentHealth());
 		testPlayer.heal(50);
-		assertEquals(110, testPlayer.getCurrentHealth()); /** perchè maxHealth è 110 (non va fino a 120)*/
+		assertEquals(110, testPlayer.getCurrentHealth()); /** because maxHealth is 110 (120 not valid)*/
 		assertEquals(new Pair<>(64,64), testPlayer.getPosition());
 		assertEquals(Direction.SOUTH, testPlayer.getDirection());
 		assertEquals(10, testPlayer.getDamage());
@@ -78,9 +78,9 @@ public class PlayerAndBulletCreationTest {
 		testPlayer.getInventory().addKey();
 		assertEquals(1,testPlayer.getInventory().getKey());	
 		assertEquals(1, testPlayer.getInventory().getCoin());	
-		assertEquals(1, testPlayer.getPlayerSpeed());
+		assertEquals(2, testPlayer.getPlayerSpeed());
 		testPlayer.upgradePlayerSpeed(10);
-		assertEquals(11, testPlayer.getPlayerSpeed());
+		assertEquals(12, testPlayer.getPlayerSpeed());
 		assertEquals(800, testPlayer.getRateOfFire());	
 		testPlayer.upgradeRateOfFire(500);
 		assertEquals(300, testPlayer.getRateOfFire());
