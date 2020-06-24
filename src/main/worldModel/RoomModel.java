@@ -2,8 +2,6 @@ package main.worldModel;
 
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 import main.dynamicBody.character.enemy.Enemy;
 import main.gameEntities.Obstacle;
 import main.gameEntities.Pickupable;

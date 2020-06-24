@@ -1,6 +1,6 @@
 package main.dynamicBody.character.enemy.move;
 
-import main.coordination.StateCoord;
+import main.coordination.init.StateCoord;
 import main.dijkstra.DijkstraAlg;
 import main.dijkstra.Node;
 import main.dynamicBody.character.Character;

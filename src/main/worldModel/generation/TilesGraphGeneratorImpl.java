@@ -6,7 +6,6 @@ import main.worldModel.RoomModel;
 import main.worldModel.utilities.GameSettings;
 import main.worldModel.utilities.Pair;
 import main.worldModel.utilities.graphs.BidirectionalGraph;
-import main.worldModel.utilities.graphs.Graph;
 
 /**
  * Implementation of TilesGraphGenerator interface

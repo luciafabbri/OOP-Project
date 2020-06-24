@@ -1,9 +1,8 @@
 package main.tiles;
 
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import main.coordination.LoadNatives;
+import main.coordination.init.LoadNatives;
 import main.worldModel.utilities.GameSettings;
 
 public class WallVert1 extends Tile {

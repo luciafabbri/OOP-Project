@@ -1,7 +1,6 @@
 package main.tiles;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -11,8 +10,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import main.coordination.CharacterImage;
-import main.coordination.LoadNatives;
-import main.gameEntities.EntityImage;
+import main.coordination.init.LoadNatives;
 
 public class Tile {
 	

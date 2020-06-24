@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import main.coordination.init.LoadNatives;
 import main.worldModel.utilities.GameSettings;
 
 public enum CharacterImage {

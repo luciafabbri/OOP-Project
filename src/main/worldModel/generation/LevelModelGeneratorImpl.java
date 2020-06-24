@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import org.newdawn.slick.SlickException;
 
-import main.coordination.SoundBoard;
 import main.worldModel.*;
 import main.worldModel.utilities.GameSettings;
 import main.worldModel.utilities.graphs.BidirectionalGraph;
@@ -43,6 +42,7 @@ public class LevelModelGeneratorImpl implements LevelModelGenerator {
 			String[] words = line.split(" ");
 			configMap.put(words[0], Integer.valueOf(words[1]));
 		}
+		br.close();
 		return configMap;
 	}
 

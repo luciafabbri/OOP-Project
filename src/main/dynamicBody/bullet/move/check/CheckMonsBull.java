@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import org.newdawn.slick.SlickException;
 
 import main.coordination.SoundBoard;
-import main.coordination.StateCoord;
+import main.coordination.init.StateCoord;
 import main.dynamicBody.DynamicBody;
 import main.dynamicBody.character.player.Player;
 import main.dynamicBody.move.check.CheckPos;

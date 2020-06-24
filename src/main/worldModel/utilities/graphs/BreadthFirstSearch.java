@@ -2,8 +2,6 @@ package main.worldModel.utilities.graphs;
 
 import java.util.*;
 
-import main.worldModel.RoomModelImpl;
-
 /**
  * A class containing methods to explore a graph of type
  * worldModel.utilities.graphs.Graph<T> via Breadth First Search

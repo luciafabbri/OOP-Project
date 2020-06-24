@@ -2,18 +2,13 @@ package main.levels;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.newdawn.slick.SlickException;
 
-import main.coordination.SoundBoard;
-import main.gameEntities.Obstacle;
 import main.tiles.*;
 import main.worldModel.RoomModel;
-import main.worldModel.utilities.GameSettings;
-import main.worldModel.utilities.Pair;
 import main.worldModel.utilities.enums.Door;
 
 

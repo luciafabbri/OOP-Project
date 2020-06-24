@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="main.gameEntities.modifiers.AttackUpgrade1" project="OOP19-JARG" 
+    file="/OOP19-JARG/src/main/gameEntities/modifiers/AttackUpgrade1.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="210" x="102" y="230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="main.gameEntities.modifiers.HealthUpgrade1" project="OOP19-JARG" 
+    file="/OOP19-JARG/src/main/gameEntities/modifiers/HealthUpgrade1.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="209" x="352" y="230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="main.gameEntities.modifiers.AttackSpeed1" project="OOP19-JARG" 
+    file="/OOP19-JARG/src/main/gameEntities/modifiers/AttackSpeed1.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="200" x="601" y="230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="main.gameEntities.modifiers.ModifiersImpl" project="OOP19-JARG" 
+    file="/OOP19-JARG/src/main/gameEntities/modifiers/ModifiersImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="304" x="474" y="73"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="main.gameEntities.modifiers.MovementSpeed1" project="OOP19-JARG" 
+    file="/OOP19-JARG/src/main/gameEntities/modifiers/MovementSpeed1.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="218" x="841" y="230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="6">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="7">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="8">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="9">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="false" static="true"/>    
+    <operations public="true" package="true" protected="true" private="false" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

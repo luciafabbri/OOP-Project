@@ -1,13 +1,8 @@
 package main.tiles;
 
-import java.io.InputStream;
-import java.net.URL;
-
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import main.coordination.LoadNatives;
-import main.coordination.StateCoord;
+import main.coordination.init.LoadNatives;
 import main.worldModel.utilities.GameSettings;
 
 public class Floor1 extends Tile {

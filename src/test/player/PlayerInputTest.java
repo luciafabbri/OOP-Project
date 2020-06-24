@@ -26,6 +26,7 @@ import main.worldModel.utilities.Pair;
 
 public class PlayerInputTest extends BasicGame {
 	
+	@SuppressWarnings("unused")
 	private AppGameContainer app;
 	private Input input;
 	

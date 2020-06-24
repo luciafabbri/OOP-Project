@@ -88,7 +88,7 @@ public class PlayerImpl implements Player {
 	}
 	
 	public void resetStats() {
-		this.playerSpeed = 1;
+		this.playerSpeed = 2;
 		this.rateOfFire = 800;
 		this.damage = 10;
 		this.inventory = new InventoryImpl(this);

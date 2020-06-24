@@ -1,9 +1,6 @@
 package main.worldModel.utilities;
 
-import java.nio.file.FileSystem;
-
-import main.coordination.LoadNatives;
-import main.coordination.StateCoord;
+import main.coordination.init.LoadNatives;
 
 /**
  * An interface listing game parameters

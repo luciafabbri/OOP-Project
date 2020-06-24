@@ -5,9 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import main.worldModel.LevelModel;
-import main.worldModel.LevelModelImpl;
 import main.worldModel.RoomModel;
-import main.worldModel.utilities.Pair;
 import main.worldModel.utilities.enums.Door;
 import main.worldModel.utilities.graphs.BidirectionalGraph;
 import main.worldModel.utilities.graphs.RoomBFS;
@@ -100,7 +98,7 @@ public class GenerationPrints  {
 		});
 
 		// tileGraph and path finding
-		final BidirectionalGraph<Pair<Integer, Integer>> tileGraph = testLevel.getRooms().get(0).getTilesGraph();
+//		final BidirectionalGraph<Pair<Integer, Integer>> tileGraph = testLevel.getRooms().get(0).getTilesGraph();
 		/*
 		 * System.out.println("Room graph: "); for (Pair<Integer, Integer> t :
 		 * tileGraph.getNodes()) { System.out.print("Tile " + t +

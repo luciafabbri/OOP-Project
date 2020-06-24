@@ -1,11 +1,10 @@
 package main.tiles;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-import main.coordination.LoadNatives;
+import main.coordination.init.LoadNatives;
 import main.worldModel.utilities.GameSettings;
 
 public class DoorEast extends AnimatedTile {

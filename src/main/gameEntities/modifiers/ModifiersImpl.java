@@ -16,11 +16,6 @@ public class ModifiersImpl extends Pickupable{
 	 */
 	private int modQty;
 	/**
-	 * Variable containing the name of the Modifier
-	 */
-	private String name;
-	
-	/**
 	 * Constructor for ModifiersImpl, to create Modifiers to pickup
 	 * @param position, to associate every Modifier with a position to be placed
 	 * @param stat, to associate which statistic is supposed to change in the Player
@@ -33,7 +28,6 @@ public class ModifiersImpl extends Pickupable{
 		super(position, typeEnt);
 		this.stat = stat;
 		this.modQty = qty;
-		this.name = name;
 	}
 
 	/**

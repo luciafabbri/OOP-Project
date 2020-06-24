@@ -11,8 +11,7 @@ import org.newdawn.slick.SlickException;
 
 import main.worldModel.utilities.enums.Entities;
 import main.coordination.CharacterImage;
-import main.coordination.LoadNatives;
-import main.coordination.SoundBoard;
+import main.coordination.init.LoadNatives;
 import main.worldModel.utilities.GameSettings;
 
 /**
@@ -23,7 +22,7 @@ public enum EntityImage {
 	
 	OBSTACLE(GameSettings.RESPATH + "res" + GameSettings.SEP + "obstacles" + GameSettings.SEP + "obstacle_stone1.png", Entities.BOULDER),
 	STAIRS(GameSettings.RESPATH + "res" + GameSettings.SEP + "floor" + GameSettings.SEP + "stairs.png", Entities.STAIR),
-	COIN(GameSettings.RESPATH + "res" + GameSettings.SEP + "items" + GameSettings.SEP + "coin.png", Entities.COIN),
+	COIN(GameSettings.RESPATH + "res" + GameSettings.SEP + "items" + GameSettings.SEP + "Coin.png", Entities.COIN),
 	KEY(GameSettings.RESPATH + "res" + GameSettings.SEP + "items" + GameSettings.SEP + "key.png", Entities.KEY),
 	ATTACKSPEED1(GameSettings.RESPATH + "res" + GameSettings.SEP + "items" + GameSettings.SEP + "mod" + GameSettings.SEP + "attackMod1.png", Entities.ATTACKSPEED1),
 	ATTACKUPGRADE1(GameSettings.RESPATH + "res" + GameSettings.SEP + "items" + GameSettings.SEP + "mod" + GameSettings.SEP + "AttackSpeedMod1.png", Entities.ATTACKUPGRADE1),
