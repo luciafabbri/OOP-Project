@@ -2,6 +2,8 @@ package main.worldModel.utilities;
 
 import java.nio.file.FileSystem;
 
+import main.coordination.LoadNatives;
+
 /**
  * An interface listing game parameters
  *
@@ -29,5 +31,6 @@ public interface GameSettings {
 	
 	final static int FINALLEVEL = 4;
 	
-	final static String RESPATH = System.getProperty("java.io.tmpdir") + "jarg" + SEP  ;
+	
+	final static String RESPATH = LoadNatives.isWindows() ? System.getProperty("java.io.tmpdir") + "jarg" + SEP : System.getProperty("java.io.tmpdir") + SEP + "jarg" + SEP;
 }

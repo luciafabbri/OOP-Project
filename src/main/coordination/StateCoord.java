@@ -83,9 +83,9 @@ public class StateCoord extends StateBasedGame {
 		String destPath;
 		
 		if(LoadNatives.isWindows()) {
-			destPath = System.getProperty("java.io.tmpdir") + "jarg" + GameSettings.SEP;
+			destPath = System.getProperty("java.io.tmpdir") + "jarg" + GameSettings.SEP + "libJars";
 		} else {
-			destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + File.separator + "libJars" + File.separator;
+			destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + GameSettings.SEP + "libJars" + File.separator;
 		}
 		
 		//Set the path for Slick2D libraries
@@ -108,7 +108,7 @@ public class StateCoord extends StateBasedGame {
 			appgc = new AppGameContainer(new StateCoord(GAMENAME));
 			appgc.setDisplayMode(GameSettings.WIDTH, GameSettings.HEIGHT, false);
 			appgc.setShowFPS(false);
-//			appgc.setVSync(true);
+			appgc.setVSync(true);
 			appgc.setMaximumLogicUpdateInterval(80);
 			appgc.start();
 		} catch (SlickException e) {

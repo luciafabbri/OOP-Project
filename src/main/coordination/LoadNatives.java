@@ -104,8 +104,7 @@ public class LoadNatives {
 		}
 		
 		if(isUnix()) {
-			System.out.println(destPath + "libJars" + GameSettings.SEP + "liblwjgl64.so");
-			System.load("/tmp/jarg/libJars/liblwjgl64.so");
+			System.load(destPath + "libJars" + GameSettings.SEP + "liblwjgl64.so");
 			System.load(new File(destPath + "libJars" + GameSettings.SEP + "libjinput-linux64.so").getAbsolutePath());
 			System.load(new File(destPath + "libJars" + GameSettings.SEP + "libopenal64.so").getAbsolutePath());
 		}
