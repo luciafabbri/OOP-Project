@@ -1,4 +1,4 @@
-package test.enemy.generation;
+package test.enemy;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,8 +42,6 @@ public class TestEnemy {
 		LevelComp level = new LevelCompImpl(1);
 		level.loadRooms();
 		testRoom = level.getLevel().get(0).getRoom();
-		// RIMUOVO TUTTI GLI OSCACOLI PER IL TEST
-		testRoom.getObstacleSet().removeAll(testRoom.getObstacleSet());
 
 	}
 

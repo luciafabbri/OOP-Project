@@ -1,4 +1,4 @@
-package test.enemy.dijkstra;
+package test.enemy;
 
 import static org.junit.Assert.*;
 

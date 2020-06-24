@@ -1,4 +1,4 @@
-package test.enemy.attack;
+package test.enemy;
 
 import static org.junit.Assert.*;
 
