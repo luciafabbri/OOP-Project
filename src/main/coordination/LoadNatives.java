@@ -20,15 +20,52 @@ import main.worldModel.utilities.GameSettings;
 
 public class LoadNatives {
 	
-	public void loadJarDll(String name) throws IOException {
+	private static String OS = System.getProperty("os.name").toLowerCase();
+
+	public static boolean isWindows() {
+
+		return (OS.indexOf("win") >= 0);
+
+	}
+
+	public static boolean isMac() {
+
+		return (OS.indexOf("mac") >= 0);
+
+	}
+
+	public static boolean isUnix() {
+
+		return (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 );
+
+	}
+
+	public static boolean isSolaris() {
+
+		return (OS.indexOf("sunos") >= 0);
+
+	}
+	
+	public void loadLibs() throws IOException {
 		
-		String destPath = System.getProperty("java.io.tmpdir") + "jarg" + File.separator;
-        
+		String destPath;
+		
+		if(isWindows()) {
+			destPath = System.getProperty("java.io.tmpdir") + "jarg" + GameSettings.SEP;
+		} else {
+			destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + File.separator;
+		}
+		
 		
 		try {
-			String jarPath = "C:/Users/kryas/OneDrive/Desktop/test.jar";
+			String jarPath = "C:/Users/kryas/OneDrive/Desktop/jarg.jar";
+	        String currPath = System.getProperty("user.dir") + GameSettings.SEP +"jarg.jar";
+			
+	        System.out.println("     "+currPath);
+	        System.out.println("     "+destPath);
 	        
-	        JarFile jarFile = new JarFile(jarPath);
+	        
+	        JarFile jarFile = new JarFile(currPath);
 	        Enumeration<JarEntry> enums = jarFile.entries();
 	        while (enums.hasMoreElements()) {
 	        	JarEntry entry = enums.nextElement();
@@ -53,93 +90,32 @@ public class LoadNatives {
 	                out.close();
 	                in.close();
 	            }
-//	            System.out.println(entry.getName());
 	        }
 	        jarFile.close();
 	    } catch (IOException ex) {
 	    	System.out.println("Could not find file ");
 	    }
 		
+		if(isWindows()) {
+			System.load(new File(destPath + "libJars" + GameSettings.SEP + "lwjgl64.dll").getAbsolutePath());
+			System.load(new File(destPath + "libJars" + GameSettings.SEP + "OpenAL64.dll").getAbsolutePath());
+			System.load(new File(destPath + "libJars" + GameSettings.SEP + "jinput-dx8_64.dll").getAbsolutePath());
+			System.load(new File(destPath + "libJars" + GameSettings.SEP + "jinput-raw_64.dll").getAbsolutePath());
+		}
 		
+		if(isUnix()) {
+			System.out.println(destPath + "libJars" + GameSettings.SEP + "liblwjgl64.so");
+			System.load("/tmp/jarg/libJars/liblwjgl64.so");
+			System.load(new File(destPath + "libJars" + GameSettings.SEP + "libjinput-linux64.so").getAbsolutePath());
+			System.load(new File(destPath + "libJars" + GameSettings.SEP + "libopenal64.so").getAbsolutePath());
+		}
 		
-		System.load(destPath + "libJars" + GameSettings.SEP + "OpenAL64.dll");
-		System.load(destPath + "libJars" + GameSettings.SEP + "jinput-dx8_64.dll");
-		System.load(destPath + "libJars" + GameSettings.SEP + "jinput-raw_64.dll");
-		System.load(destPath + "libJars" + GameSettings.SEP + "lwjgl64.dll");
-		
-		
-		
-		
-		
-		
-		
-//		String path = "C:"+ GameSettings.SEP +"Users"+ GameSettings.SEP +"kryas"+ GameSettings.SEP +"OneDrive"+ GameSettings.SEP +"Desktop"+ GameSettings.SEP;
-//		
-//		java.util.jar.JarFile jar = new java.util.jar.JarFile(path + "test.jar");
-//		java.util.Enumeration<java.util.jar.JarEntry> enumEntries = jar.entries();
-//		new File(System.getProperty("java.io.tmpdir") + GameSettings.SEP + "jarg").mkdir();
-//		while (enumEntries.hasMoreElements()) {
-//			String destdir = System.getProperty("java.io.tmpdir") + GameSettings.SEP + "jarg" + GameSettings.SEP;     //abc is my destination directory
-//	        java.util.jar.JarEntry je = enumEntries.nextElement();
-//
-//	        System.out.println(je.getName());
-//
-//	        java.io.File fl = new java.io.File(destdir, je.getName());
-//	        if(!fl.exists())
-//	        {
-//	            fl.getParentFile().mkdirs();
-//	            fl = new java.io.File(destdir, je.getName());
-//	        }
-//	        if(je.isDirectory())
-//	        {
-//	            continue;
-//	        }
-//	        java.io.InputStream is = jar.getInputStream(je);
-//	        java.io.FileOutputStream fo = new java.io.FileOutputStream(fl);
-//	        while(is.available()>0)
-//	        {
-//	            fo.write(is.read());
-//	        }
-//	        fo.close();
-//	        is.close();
-//		}
-//		jar.close();
-		
-		
-//		String path = GameSettings.SEP + "lib" + GameSettings.SEP + "natives" + GameSettings.SEP + name;
-//		
-//		Path dst = Paths.get(System.getProperty("java.io.tmpdir") + GameSettings.SEP + name);
-//		
-//		Path src = Paths.get(System.getProperty("user.dir") + GameSettings.SEP + "test.jar" + GameSettings.SEP + "loadNatives" + GameSettings.SEP + name);
-//		
-//	    InputStream in = LoadNatives.class.getResourceAsStream(GameSettings.SEP + name);
-//	    
-//	    System.out.println(GameSettings.SEP + name);
-//	    Files.copy(src, dst, StandardCopyOption.REPLACE_EXISTING);
-//		
-//	    byte[] buffer = new byte[1024];
-//	    int read = -1;
-//	    File temp = new File(new File(System.getProperty("java.io.tmpdir")), name);
-		
-//		InputStream in = new URL().openStream();
-//				LoadNatives.class.getResourceAsStream(GameSettings.SEP + name);
-//		System.out.println(System.getProperty("user.dir"));
-//		System.out.println(in == null);
-//		System.out.println(GameSettings.SEP + name);
-	    
-//		byte[] buffer = new byte[1024];
-//	    int read = -1;
-//	    System.out.println(System.getProperty("java.io.tmpdir") + name);
-//	    File temp = new File(new File(System.getProperty("java.io.tmpdir")), name);
-//	    FileOutputStream fos = new FileOutputStream(temp);
-//
-//	    while((read = in.read(buffer)) != -1) {
-//	        fos.write(buffer, 0, read);
-//	    }
-//	    fos.close();
-//	    in.close();
-
-//	    System.load(System.getProperty("java.io.tmpdir") + GameSettings.SEP + name);
+		if(isMac()) {
+			System.load(destPath + "libJars" + GameSettings.SEP + "libjinput-osx.dylib");
+			System.load(destPath + "libJars" + GameSettings.SEP + "liblwjgl.dylib");
+			System.load(destPath + "libJars" + GameSettings.SEP + "openal.dylib");
+			System.load(destPath + "libJars" + GameSettings.SEP + "libjinput-osx.jnilib");
+		}
 	}
 	
 }

@@ -79,7 +79,14 @@ public class StateCoord extends StateBasedGame {
 	 */
 	public static void main(String[] args) throws SlickException, IOException {
 		
-		String destPath = System.getProperty("java.io.tmpdir") + "jarg" + GameSettings.SEP + "libJars";
+		
+		String destPath;
+		
+		if(LoadNatives.isWindows()) {
+			destPath = System.getProperty("java.io.tmpdir") + "jarg" + GameSettings.SEP;
+		} else {
+			destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + File.separator + "libJars" + File.separator;
+		}
 		
 		//Set the path for Slick2D libraries
 		System.setProperty("java.library.path", new File(destPath).getAbsolutePath());
@@ -92,15 +99,7 @@ public class StateCoord extends StateBasedGame {
 		//Set the path for JInput
 		System.setProperty("net.java.games.input.librarypath", new File(destPath).getAbsolutePath());
 		
-		
-		load.loadJarDll("jinput-dx8_64.dll");
-//		load.loadJarDll("jinput-dx8.dll");
-//		load.loadJarDll("jinput-raw_64.dll");
-//		load.loadJarDll("jinput-raw.dll");
-//		load.loadJarDll("lwjgl.dll");
-//		load.loadJarDll("lwjgl64.dll");
-//		load.loadJarDll("OpenAL32.dll");
-//		load.loadJarDll("OpenAL64.dll");
+		load.loadLibs();
 		
 		
 		
