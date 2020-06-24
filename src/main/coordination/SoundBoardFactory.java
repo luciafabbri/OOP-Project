@@ -9,7 +9,7 @@ import org.newdawn.slick.Sound;
 public class SoundBoardFactory {
 	
 	/**
-	 * Variable containing the footsteps to dinamically check if they're being played
+	 * Variable containing the footsteps to dynamically check if they're being played
 	 */
 	private static Sound footsteps;
 	
@@ -87,7 +87,7 @@ public class SoundBoardFactory {
 
 	/**
 	 * Method used to play sounds
-	 * @param tmp, the choosen sound
+	 * @param tmp, the chosen sound
 	 */
 	private static void playSound(final Sound tmp) {
 		if(!tmp.playing())
@@ -95,7 +95,7 @@ public class SoundBoardFactory {
 	}
 	
 	/**
-	 * Method used to only play footsteps dinamically
+	 * Method used to only play footsteps dynamically
 	 */
 	public static void playFootsteps() {
 		if(!footsteps.playing())

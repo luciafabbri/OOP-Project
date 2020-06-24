@@ -124,7 +124,7 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	
 	/**
 	 * Method used to pause the game
-	 * @param input, the appropiate key (Escape key)
+	 * @param input, the appropriate key (Escape key)
 	 */
 	private void pauseMenu(final Input input) {
 		if(input.isKeyPressed(Input.KEY_ESCAPE))
@@ -204,7 +204,7 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	}
 
 	/**
-	 * Method that calls the movement method insde Player to move him, changing his coordinates
+	 * Method that calls the movement method inside Player to move him, changing his coordinates
 	 * @param input, so that the Player can see in which direction to move
 	 * @throws SlickException
 	 * @see SlickException

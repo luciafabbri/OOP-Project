@@ -2,13 +2,9 @@ package main.coordination;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
-
-import main.worldModel.utilities.GameSettings;
-
-		
+import main.worldModel.utilities.GameSettings;	
 
 /**
  * Enum listing the texture for each GameEntity object

@@ -83,7 +83,7 @@ public class ImageFactory {
 	
 	/**
 	 * Method that returns builds and returns the Animation
-	 * @param image, the spritsheet chosen
+	 * @param image, the spritesheet chosen
 	 * @return Animation, the animation of character
 	 */
 	public static Animation getAnimation(Image image) {

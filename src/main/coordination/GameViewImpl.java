@@ -339,7 +339,7 @@ public class GameViewImpl implements GameView {
 		}
 
 		// Here a draw the corners, since they're always in the same position (the
-		// corners), I don't need to draw the dinamically
+		// corners), I don't need to draw the dynamically
 		currentRoom.getCorners().getTexture().draw(0, 0, GameSettings.TILESIZE, GameSettings.TILESIZE);
 		currentRoom.getCorners().getTexture().getFlippedCopy(false, true).draw(0,
 				GameSettings.HEIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);

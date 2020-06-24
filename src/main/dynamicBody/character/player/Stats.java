@@ -1,7 +1,7 @@
 package main.dynamicBody.character.player;
 
 /**
- *  Enums containing the Player attributes
+ *  Enumeration containing the Player attributes
  */
 
 public enum Stats {

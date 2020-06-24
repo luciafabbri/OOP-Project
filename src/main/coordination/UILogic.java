@@ -98,9 +98,7 @@ public class UILogic {
 	public void update() throws SlickException {
 		
 		if(level.isGameWon())
-			this.wonMenuUpdate();
-		
-		
+			this.wonMenuUpdate();		
 	}
 	
 	/**

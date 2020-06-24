@@ -3,7 +3,6 @@ package main.coordination;
 import java.awt.Font;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 
@@ -20,7 +19,7 @@ public class UI {
 	 */
 	private Player player;
 	/**
-	 * Variabile containing data regarding the Level
+	 * Variable containing data regarding the Level
 	 */
 	private LevelComp level;
 	/**
@@ -176,7 +175,7 @@ public class UI {
 	}
 	
 	/**
-	 * Method that updates the health bar dinamically based on the players health
+	 * Method that updates the health bar dynamically based on the players health
 	 */
 	private void healthUpdate() {
 		float healthPer = (((3f * (float) GameSettings.TILESIZE) / 4f * 6f) - 8f) / (float) player.getMaxHealth();

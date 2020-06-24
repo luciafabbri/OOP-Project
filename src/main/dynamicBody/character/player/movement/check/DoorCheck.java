@@ -6,7 +6,7 @@ import main.worldModel.utilities.Pair;
 public class DoorCheck {
 	
 	/**
-	 * Method that checks for the exact shape of the Door that the Player needs to go throught (Northern door)
+	 * Method that checks for the exact shape of the Door that the Player needs to go through (Northern door)
 	 * @param pos, the Player coordinates
 	 * @return true if the Player is inside the door boundaries, otherwise false
 	 */
@@ -15,7 +15,7 @@ public class DoorCheck {
 	}
 	
 	/**
-	 * Method that checks if the Player coords are inside the "transition area" to the next room (Northren door)
+	 * Method that checks if the Player coordinates are inside the "transition area" to the next room (Northern door)
 	 * @param pos, the Player coordinates
 	 * @return true if the Player is inside the designated area, otherwise false
 	 */
@@ -25,7 +25,7 @@ public class DoorCheck {
 	
 	
 	/**
-	 * Method that checks for the exact shape of the Door that the Player needs to go throught (Western door)
+	 * Method that checks for the exact shape of the Door that the Player needs to go through (Western door)
 	 * @param pos, the Player coordinates
 	 * @return true if the Player is inside the door boundaries, otherwise false
 	 */
@@ -34,9 +34,9 @@ public class DoorCheck {
 	}
 
 	/**
-	 * Method that checks if the Player coords are inside the "transition area" to the next room (Western door)
+	 * Method that checks if the Player coordinates are inside the "transition area" to the next room (Western door)
 	 * @param pos, the Player coordinates
-	 * @returntrue if the Player is inside the designated area, otherwise false
+	 * @return true if the Player is inside the designated area, otherwise false
 	 */
 	public boolean transWest(final Pair<Integer, Integer> pos) {
 		 return (pos.getX() < GameSettings.TILESIZE / 4) && (pos.getY() + 48 > (GameSettings.TILESIZE * 5) && pos.getY() + 48 < (GameSettings.TILESIZE * 5 + 44));
@@ -44,7 +44,7 @@ public class DoorCheck {
 	
 	
 	/**
-	 * Method that checks for the exact shape of the Door that the Player needs to go throught (Eastern door)
+	 * Method that checks for the exact shape of the Door that the Player needs to go through (Eastern door)
 	 * @param pos, the Player coordinates
 	 * @return true if the Player is inside the door boundaries, otherwise false
 	 */
@@ -53,7 +53,7 @@ public class DoorCheck {
 	}
 	
 	/**
-	 * Method that checks if the Player coords are inside the "transition area" to the next room (Eastern door)
+	 * Method that checks if the Player coordinates are inside the "transition area" to the next room (Eastern door)
 	 * @param pos, the Player coordinates
 	 * @return true if the Player is inside the designated area, otherwise false
 	 */
@@ -63,7 +63,7 @@ public class DoorCheck {
 	
 	
 	/**
-	 * Method that checks for the exact shape of the Door that the Player needs to go throught (Southern door)
+	 * Method that checks for the exact shape of the Door that the Player needs to go through (Southern door)
 	 * @param pos, the Player coordinates
 	 * @return true if the Player is inside the door boundaries, otherwise false
 	 */
@@ -72,7 +72,7 @@ public class DoorCheck {
 	}
 	
 	/**
-	 * Method that checks if the Player coords are inside the "transition area" to the next room (Southern door)
+	 * Method that checks if the Player coordinates are inside the "transition area" to the next room (Southern door)
 	 * @param pos, the Player coordinates
 	 * @return true if the Player is inside the designated area, otherwise false
 	 */
