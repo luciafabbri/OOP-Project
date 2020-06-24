@@ -51,15 +51,15 @@ public class LevelModelGeneratorImpl implements LevelModelGenerator {
 		LevelModelImpl level = new LevelModelImpl();
 		currentConfig = getLevelConfig(levelNumber);
 		// randomly pick number of rooms between configuration bounds
-		final int numOfRooms = currentConfig.get("minRooms")
-				+ random.nextInt(1 + currentConfig.get("maxRooms") - currentConfig.get("minRooms"));
+		final int numOfRooms = getCurrentConfig().get("minRooms")
+				+ random.nextInt(1 + getCurrentConfig().get("maxRooms") - getCurrentConfig().get("minRooms"));
 		// randomly pick special room ID
 		final Integer specialRoomID = setSpecialRoom(numOfRooms);
 		// randomly pick coin room ID
 		final Integer coinRoomID = random.nextInt(numOfRooms);
 		// set whether level is final level
 		final boolean isFinalLevel = (levelNumber == 4);
-		roomGen = new RoomModelGeneratorImpl(currentConfig, specialRoomID, coinRoomID, isFinalLevel);
+		roomGen = new RoomModelGeneratorImpl(getCurrentConfig(), specialRoomID, coinRoomID, isFinalLevel);
 		for (int i = 0; i < numOfRooms; i++) {
 			try {
 				level.addRoom(roomGen.generateRoom(i));
@@ -84,6 +84,10 @@ public class LevelModelGeneratorImpl implements LevelModelGenerator {
 	 */
 	private int setSpecialRoom(int numOfRooms) {
 		return random.nextInt(numOfRooms - 1) + 1;
+	}
+
+	public Map<String, Integer> getCurrentConfig() {
+		return currentConfig;
 	}
 
 }

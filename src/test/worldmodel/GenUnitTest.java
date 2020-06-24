@@ -1,4 +1,4 @@
-package main.worldModel.generation;
+package test.worldmodel;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,7 @@ import java.util.Random;
 
 import main.worldModel.LevelModel;
 import main.worldModel.RoomModel;
+import main.worldModel.generation.LevelModelGeneratorImpl;
 import main.worldModel.utilities.graphs.RoomBFS;
 
 /**
@@ -30,7 +31,7 @@ public class GenUnitTest {
 		testLevel = generator.generateLevel(3);
 		// random room for fair testing
 		testRoom = testLevel.getRooms().get(random.nextInt((int) testLevel.getRooms().stream().count()));
-		levelConfig = generator.currentConfig;
+		levelConfig = generator.getCurrentConfig();
 		
 	}
 	

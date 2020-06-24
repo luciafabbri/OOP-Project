@@ -1,4 +1,4 @@
-package main.worldModel.utilities.graphs;
+package test.worldmodel;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import main.worldModel.utilities.Pair;
+import main.worldModel.utilities.graphs.BidirectionalGraph;
+import main.worldModel.utilities.graphs.BreadthFirstSearch;
+import main.worldModel.utilities.graphs.Graph;
 
 /**
  * JUnit test for graph functionalities
