@@ -1,6 +1,5 @@
 package main.gameEntities.modifiers;
 
-
 import main.dynamicBody.character.player.Stats;
 import main.worldModel.utilities.Pair;
 import main.worldModel.utilities.enums.Entities;

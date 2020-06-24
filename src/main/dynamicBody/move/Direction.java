@@ -46,11 +46,6 @@ public enum Direction {
 		return this.ordinate;
 	}
 	
-	/*public static Direction getRandomDir() {
-		Random random = new Random();
-		return values()[random.nextInt(values().length)];
-	}*/
-	
 	public static Direction getRandomDir() {
 		Random random = new Random();
 		return values()[(random.nextInt(4))*2+1];

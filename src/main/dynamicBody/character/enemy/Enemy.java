@@ -25,7 +25,7 @@ public interface Enemy extends main.dynamicBody.character.Character {
 	 */
 	public void addBullet(Bullet bullet);
 
-	/*
+	/**
 	 * Method use attack with the enemy
 	 */
 	public void attack();

@@ -1,4 +1,5 @@
 package main.gameEntities;
+
 import main.worldModel.utilities.Pair;
 import main.worldModel.utilities.enums.Entities;
 

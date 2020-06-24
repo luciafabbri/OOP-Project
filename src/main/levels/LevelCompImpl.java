@@ -17,7 +17,6 @@ import main.coordination.ImageFactory;
 import main.dynamicBody.character.enemy.TypeEnemy;
 import main.dynamicBody.move.Direction;
 import main.worldModel.LevelModel;
-import main.worldModel.RoomModel;
 import main.worldModel.generation.LevelModelGeneratorImpl;
 import main.worldModel.utilities.Pair;
 

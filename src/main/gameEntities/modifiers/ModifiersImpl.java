@@ -37,7 +37,7 @@ public class ModifiersImpl extends Pickupable{
 	}
 
 	/**
-	 * Method that returns the Stat of the Modfier
+	 * Method that returns the Stat of the Modifier
 	 * @return Stats
 	 */
 	public Stats getStat() {

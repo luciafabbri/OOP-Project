@@ -1,4 +1,4 @@
-package main.dynamicBody.character.enemy.attack;
+package test.enemy.attack;
 
 import static org.junit.Assert.*;
 
@@ -15,6 +15,7 @@ import main.dynamicBody.bullet.Bullet;
 import main.dynamicBody.character.enemy.Enemy;
 import main.dynamicBody.character.enemy.EnemyImpl;
 import main.dynamicBody.character.enemy.TypeEnemy;
+import main.dynamicBody.character.enemy.attack.TypeAttack;
 import main.dynamicBody.character.enemy.move.TypeMove;
 import main.dynamicBody.move.Direction;
 import main.levels.LevelComp;
