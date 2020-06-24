@@ -9,7 +9,7 @@ public enum EnemyDefault {
 	 * Rate of Fire of bullet
 	 * Speed of Enemy
 	 */
-	ROF(2000), SPEED(1);
+	ROF(2000), SPEED(2);
 
 	private int value;
 

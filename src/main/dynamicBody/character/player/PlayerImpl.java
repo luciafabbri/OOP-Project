@@ -56,7 +56,7 @@ public class PlayerImpl implements Player {
 		this.position = pos;
 		this.level = level;
 		this.direction = dir;
-		this.playerSpeed = 1;
+		this.playerSpeed = 2;
 		this.rateOfFire = 800;
 		this.damage = 10;
 		this.inventory = new InventoryImpl(this);

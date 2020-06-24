@@ -7,7 +7,7 @@ public enum BulletDefault {
 	 * in order to attack 
 	 */
 	DISTANCESPAWNBULL(10),
-	SPEED(2);
+	SPEED(3);
 
 	private int value;
 
