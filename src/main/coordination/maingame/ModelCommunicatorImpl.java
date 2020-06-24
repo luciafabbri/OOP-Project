@@ -57,6 +57,7 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	 */
 	private Room previousRoom;
 	
+	private boolean cheats;
 	/**
 	 * Constructor for LogicImpl
 	 * @param gameController 
@@ -74,6 +75,7 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 		this.states = state;
 		this.game = game;
 		this.gameController = gameController;
+		this.cheats = false;
 	}
 	
 	/**
@@ -95,7 +97,16 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 			
 			this.switchRooms(game.getInput());
 		}
+		if(game.getInput().isKeyPressed(Input.KEY_L) && game.getInput().isKeyPressed(Input.KEY_P))
+			cheats = !cheats;
 		
+		this.cheatMode();
+	}
+	
+	private void cheatMode() {
+		if(cheats) {
+			player.heal(100);
+		}
 	}
 	
 	/**
@@ -120,6 +131,7 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 			player.resetStats();
 			gameController.setLevelID(1);
 			states.init(game);
+			SoundBoardFactory.storeSound();
 			states.enterState(0);
 		}
 	}
@@ -140,23 +152,23 @@ public class ModelCommunicatorImpl implements ModelCommunicator {
 	private void switchRooms(final Input input) {
 		DoorCheck check = new DoorCheck();
 
-		if ((check.transEast(player.getPosition()) || input.isKeyPressed(Input.KEY_RIGHT)) && checkEmpty(Door.EAST)) {
+		if ((check.transEast(player.getPosition()) || (input.isKeyPressed(Input.KEY_RIGHT)) && cheats) && checkEmpty(Door.EAST)) {
 			level.setRoomID(getRoomID(Door.EAST));
 			player.transitionPos(
 					new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE * 5 - GameSettings.TILESIZE / 2));
 			level.setChangedRoom(true);
-		} else if ((check.transWest(player.getPosition()) || input.isKeyPressed(Input.KEY_LEFT))
+		} else if ((check.transWest(player.getPosition()) || (input.isKeyPressed(Input.KEY_LEFT) && cheats))
 				&& checkEmpty(Door.WEST)) {
 			level.setRoomID(getRoomID(Door.WEST));
 			player.transitionPos(new Pair<>(GameSettings.LIMITRIGHT - GameSettings.TILESIZE,
 					GameSettings.TILESIZE * 5 - GameSettings.TILESIZE / 2));
 			level.setChangedRoom(true);
-		} else if ((check.transNorth(player.getPosition()) || input.isKeyPressed(Input.KEY_UP))
+		} else if ((check.transNorth(player.getPosition()) || (input.isKeyPressed(Input.KEY_UP) && cheats))
 				&& checkEmpty(Door.NORTH)) {
 			level.setRoomID(getRoomID(Door.NORTH));
 			player.transitionPos(new Pair<>(GameSettings.TILESIZE * 9, GameSettings.LIMITDOWN - GameSettings.TILESIZE));
 			level.setChangedRoom(true);
-		} else if ((check.transSouth(player.getPosition()) || input.isKeyPressed(Input.KEY_DOWN))
+		} else if ((check.transSouth(player.getPosition()) || (input.isKeyPressed(Input.KEY_DOWN) && cheats))
 				&& checkEmpty(Door.SOUTH)) {
 			level.setRoomID(getRoomID(Door.SOUTH));
 			player.transitionPos(new Pair<>(GameSettings.TILESIZE * 9, GameSettings.TILESIZE));

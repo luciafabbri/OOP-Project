@@ -119,10 +119,6 @@ public class GameController extends BasicGameState {
 		input = arg0.getInput();
 		uilogic.update();
 		
-		//TEMP
-		player.heal(100);
-		player.upgradeDamage(1000);
-		
 		logic.update();
 		
 		

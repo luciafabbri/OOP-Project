@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import main.coordination.SoundBoardFactory;
 import main.coordination.maingame.GameController;
 import main.dynamicBody.character.player.Player;
 import main.levels.LevelComp;
@@ -116,6 +117,7 @@ public class UILogic {
 					hoverButtonPlay = true;
 					if(game.getInput().isMousePressed(0)) {
 						player.resetStats();
+						SoundBoardFactory.storeSound();
 						gameController.setLevelID(1);
 						state.init(game);
 						state.enterState(0);

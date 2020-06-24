@@ -2,30 +2,10 @@ package main.tiles;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import main.coordination.CharacterImage;
-import main.coordination.init.LoadNatives;
-
 public class Tile {
-	
-	/**
-	 * Variable containing the texture of the tile
-	 */
-	private Image texture;
-	
-	/**
-	 * Constructor for Tile
-	 * @param tex, to associate with the texture
-	 */
-	public Tile (final Image tex) {
-		this.texture = tex;
-	}
 
 	/**
 	 * Method that returns the texture of the Tile
@@ -37,20 +17,30 @@ public class Tile {
 	 * @see MalformedURLException
 	 * @see IOException
 	 */
-	public Image getTexture() {
-		try {
-			if(!LoadNatives.isJar(CharacterImage.class.getResource("CharacterImage.class").toString())) {
-				return new Image(new URL("file:///" + texture.getResourceReference()).openStream(), texture.getResourceReference(), false);
-			} else {
-				return texture;
-			}
-		} catch (MalformedURLException e) {
-			Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, e);
-		} catch (SlickException e) {
-			Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, e);
-		} catch (IOException e) {
-			Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, e);
+	public static Image getTileTexture(final TileImage image) throws SlickException {
+		Image tmp;
+		switch (image) {		
+		case CORNER1:
+			tmp = TileImage.CORNER1.getTileImage();
+			break;
+		case DOORTOP1:
+			tmp = TileImage.DOORTOP1.getTileImage();
+			break;
+		case DOORTOP2:
+			tmp= TileImage.DOORTOP2.getTileImage();
+			break;
+		case FLOOR1:
+			tmp = TileImage.FLOOR1.getTileImage();
+			break;
+		case WALLHOR1:
+			tmp = TileImage.WALLHOR1.getTileImage();
+			break;
+		case WALLHOR2:
+			tmp = TileImage.WALLHOR2.getTileImage();
+			break;
+		default:
+			throw new IllegalArgumentException("Tile image not found");
 		}
-		return texture;
+		return tmp;
 	}
 }

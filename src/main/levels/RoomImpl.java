@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import main.tiles.*;
@@ -26,44 +28,44 @@ public class RoomImpl implements Room {
 	/**
 	 * Variable containing the Tile of the floor
 	 */
-	private Tile floor;
+	private Image floor;
 	/**
-	 * Variable containing the Tile of the vertical walls
+	 * Variable containing the Image of the vertical walls
 	 */
-	private Tile wallVert;
+	private Image wallVert;
 	/**
-	 * Variable containing the Tile of the horizontal walls
+	 * Variable containing the Image of the horizontal walls
 	 */
-	private Tile wallHor;
+	private Image wallHor;
 	/**
-	 * Variable containing the Tile of the corner walls
+	 * Variable containing the Image of the corner walls
 	 */
-	private Tile corners;
+	private Image corners;
 	/**
-	 * Variable containing the Tile of the top of the vertical door
+	 * Variable containing the Image of the top of the vertical door
 	 */
-	private Tile topDoorVert;
+	private Image topDoorVert;
 	/**
-	 * Variable containing the Tile of the top of the horizontal door
+	 * Variable containing the Image of the top of the horizontal door
 	 */
-	private Tile topDoorHor;
+	private Image topDoorHor;
 		
 	/**
-	 * Variable containing the AnimatedTile, so the animation of the west room
+	 * Variable containing the Animation, so the animation of the west room
 	 */
-	private AnimatedTile doorWest;
+	private Animation doorWest;
 	/**
-	 * Variable containing the AnimatedTile, so the animation of the north room
+	 * Variable containing the Animation, so the animation of the north room
 	 */
-	private AnimatedTile doorNorth;
+	private Animation doorNorth;
 	/**
-	 * Variable containing the AnimatedTile, so the animation of the east room
+	 * Variable containing the Animation, so the animation of the east room
 	 */
-	private AnimatedTile doorEast;
+	private Animation doorEast;
 	/**
-	 * Variable containing the AnimatedTile, so the animation of the south room
+	 * Variable containing the Animation, so the animation of the south room
 	 */
-	private AnimatedTile doorSouth;
+	private Animation doorSouth;
 	private boolean gotRoomKey;
 	
 	
@@ -74,18 +76,18 @@ public class RoomImpl implements Room {
 		
 		try {
 			
-			this.floor = new Floor1();
-			this.wallVert = new WallVert1();
-			this.wallHor = new WallHor1();
-			this.corners = new Corner1();
+			this.floor = Tile.getTileTexture(TileImage.FLOOR1);
+			this.wallVert = Tile.getTileTexture(TileImage.WALLHOR2);
+			this.wallHor = Tile.getTileTexture(TileImage.WALLHOR1);
+			this.corners = Tile.getTileTexture(TileImage.CORNER1);
 		
-			this.topDoorVert = new DoorTop1();
-			this.topDoorHor = new DoorTop2();
+			this.topDoorVert = Tile.getTileTexture(TileImage.DOORTOP1);
+			this.topDoorHor = Tile.getTileTexture(TileImage.DOORTOP2);
 					
-			this.doorWest = new DoorWest();
-			this.doorNorth = new DoorNorth();
-			this.doorEast = new DoorEast();
-			this.doorSouth = new DoorSouth();
+			this.doorWest = AnimatedTile.getAnimatedTile(AnimatedTileImage.DOORWEST);
+			this.doorNorth = AnimatedTile.getAnimatedTile(AnimatedTileImage.DOORNORTH);
+			this.doorEast = AnimatedTile.getAnimatedTile(AnimatedTileImage.DOOREAST);
+			this.doorSouth = AnimatedTile.getAnimatedTile(AnimatedTileImage.DOORSOUTH);
 			
 			
 		} catch (SlickException e) {
@@ -94,22 +96,22 @@ public class RoomImpl implements Room {
 	}
 	
 	@Override
-	public Tile getFloor() {
+	public Image getFloor() {
 		return floor;
 	}
 
 	@Override
-	public Tile getWallVert() {
+	public Image getWallVert() {
 		return wallVert;
 	}
 
 	@Override
-	public Tile getWallHor() {
+	public Image getWallHor() {
 		return wallHor;
 	}
 
 	@Override
-	public Tile getCorners() {
+	public Image getCorners() {
 		return corners;
 	}
 
@@ -124,32 +126,32 @@ public class RoomImpl implements Room {
 	}
 
 	@Override
-	public AnimatedTile getDoorWest() {
+	public Animation getDoorWest() {
 		return doorWest;
 	}
 
 	@Override
-	public AnimatedTile getDoorNorth() {
+	public Animation getDoorNorth() {
 		return doorNorth;
 	}
 
 	@Override
-	public AnimatedTile getDoorEast() {
+	public Animation getDoorEast() {
 		return doorEast;
 	}
 
 	@Override
-	public AnimatedTile getDoorSouth() {
+	public Animation getDoorSouth() {
 		return doorSouth;
 	}
 
 	@Override
-	public Tile getTopDoorVert() {
+	public Image getTopDoorVert() {
 		return topDoorVert;
 	}
 
 	@Override
-	public Tile getTopDoorHor() {
+	public Image getTopDoorHor() {
 		return topDoorHor;
 	}
 

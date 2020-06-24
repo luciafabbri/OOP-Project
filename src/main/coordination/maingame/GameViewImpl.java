@@ -24,7 +24,6 @@ import main.gameEntities.EntityImageFactory;
 import main.gameEntities.Stairs;
 import main.levels.LevelComp;
 import main.levels.Room;
-import main.tiles.AnimatedTile;
 import main.worldModel.RoomModel;
 import main.worldModel.utilities.GameSettings;
 import main.worldModel.utilities.Pair;
@@ -304,7 +303,7 @@ public class GameViewImpl implements GameView {
 	private void drawFloor() throws SlickException {
 		for (int x = 0; x < GameSettings.WIDTH; x += GameSettings.TILESIZE) {
 			for (int y = 0; y < GameSettings.HEIGHT; y += GameSettings.TILESIZE) {
-				currentRoom.getFloor().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
+				currentRoom.getFloor().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 			}
 		}
 		if (currentRoom.getRoom().areStairsPresent()) {
@@ -328,29 +327,29 @@ public class GameViewImpl implements GameView {
 		for (int x = 0; x < GameSettings.WIDTH; x += GameSettings.TILESIZE) {
 			for (int y = 0; y < GameSettings.HEIGHT; y += GameSettings.TILESIZE) {
 				if (x == 0 && y > 0 && y < GameSettings.HEIGHT - GameSettings.TILESIZE) {
-					currentRoom.getWallVert().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
+					currentRoom.getWallVert().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				} else if (x == GameSettings.WIDTH - GameSettings.TILESIZE && y > 0
 						&& y < GameSettings.HEIGHT - GameSettings.TILESIZE) {
-					currentRoom.getWallVert().getTexture().getFlippedCopy(true, false).draw(x, y, GameSettings.TILESIZE,
+					currentRoom.getWallVert().getFlippedCopy(true, false).draw(x, y, GameSettings.TILESIZE,
 							GameSettings.TILESIZE);
 				} else if (y == 0 && x > 0 && x < GameSettings.WIDTH - GameSettings.TILESIZE) {
-					currentRoom.getWallHor().getTexture().getFlippedCopy(false, true).draw(x, y, GameSettings.TILESIZE,
+					currentRoom.getWallHor().getFlippedCopy(false, true).draw(x, y, GameSettings.TILESIZE,
 							GameSettings.TILESIZE);
 				} else if (y == GameSettings.HEIGHT - GameSettings.TILESIZE && x > 0
 						&& x < GameSettings.WIDTH - GameSettings.TILESIZE) {
-					currentRoom.getWallHor().getTexture().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
+					currentRoom.getWallHor().draw(x, y, GameSettings.TILESIZE, GameSettings.TILESIZE);
 				}
 			}
 		}
 
 		// Here a draw the corners, since they're always in the same position (the
 		// corners), I don't need to draw the dynamically
-		currentRoom.getCorners().getTexture().draw(0, 0, GameSettings.TILESIZE, GameSettings.TILESIZE);
-		currentRoom.getCorners().getTexture().getFlippedCopy(false, true).draw(0,
+		currentRoom.getCorners().draw(0, 0, GameSettings.TILESIZE, GameSettings.TILESIZE);
+		currentRoom.getCorners().getFlippedCopy(false, true).draw(0,
 				GameSettings.HEIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
-		currentRoom.getCorners().getTexture().getFlippedCopy(true, false)
+		currentRoom.getCorners().getFlippedCopy(true, false)
 				.draw(GameSettings.WIDTH - GameSettings.TILESIZE, 0, GameSettings.TILESIZE, GameSettings.TILESIZE);
-		currentRoom.getCorners().getTexture().getFlippedCopy(true, true).draw(
+		currentRoom.getCorners().getFlippedCopy(true, true).draw(
 				GameSettings.WIDTH - GameSettings.TILESIZE, GameSettings.HEIGHT - GameSettings.TILESIZE,
 				GameSettings.TILESIZE, GameSettings.TILESIZE);
 	}
@@ -384,41 +383,41 @@ public class GameViewImpl implements GameView {
 	 * @param animation, the right animation based on the Door cardinality
 	 * @param door,      the according Door Cardinality
 	 */
-	private void renderDoor(final AnimatedTile animation, Door door) {
+	private void renderDoor(final Animation animation, Door door) {
 		if (currentRoom.isGotRoomKey()) {
 			if (door.equals(Door.NORTH)) {
-				animation.getAnimaton().stopAt(7);
-				animation.getAnimaton().draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, 0, GameSettings.TILESIZE,
+				animation.stopAt(7);
+				animation.draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, 0, GameSettings.TILESIZE,
 						GameSettings.TILESIZE);
 			} else if (door.equals(Door.EAST)) {
-				animation.getAnimaton().stopAt(7);
-				animation.getAnimaton().draw(GameSettings.LIMITRIGHT, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE,
+				animation.stopAt(7);
+				animation.draw(GameSettings.LIMITRIGHT, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE,
 						GameSettings.TILESIZE, GameSettings.TILESIZE);
 			} else if (door.equals(Door.SOUTH)) {
-				animation.getAnimaton().stopAt(7);
-				animation.getAnimaton().draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE,
+				animation.stopAt(7);
+				animation.draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE,
 						GameSettings.HEIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
 			} else if (door.equals(Door.WEST)) {
-				animation.getAnimaton().stopAt(7);
-				animation.getAnimaton().draw(0, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE,
+				animation.stopAt(7);
+				animation.draw(0, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE,
 						GameSettings.TILESIZE);
 			}
 		} else {
 			if (door.equals(Door.NORTH)) {
-				animation.getAnimaton().setCurrentFrame(0);
-				animation.getAnimaton().getCurrentFrame().draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, 0,
+				animation.setCurrentFrame(0);
+				animation.getCurrentFrame().draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, 0,
 						GameSettings.TILESIZE, GameSettings.TILESIZE);
 			} else if (door.equals(Door.EAST)) {
-				animation.getAnimaton().setCurrentFrame(0);
-				animation.getAnimaton().getCurrentFrame().draw(GameSettings.LIMITRIGHT,
+				animation.setCurrentFrame(0);
+				animation.getCurrentFrame().draw(GameSettings.LIMITRIGHT,
 						GameSettings.HEIGHT / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
 			} else if (door.equals(Door.SOUTH)) {
-				animation.getAnimaton().setCurrentFrame(0);
-				animation.getAnimaton().getCurrentFrame().draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE,
+				animation.setCurrentFrame(0);
+				animation.getCurrentFrame().draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE,
 						GameSettings.HEIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
 			} else if (door.equals(Door.WEST)) {
-				animation.getAnimaton().setCurrentFrame(0);
-				animation.getAnimaton().getCurrentFrame().draw(0, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE,
+				animation.setCurrentFrame(0);
+				animation.getCurrentFrame().draw(0, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE,
 						GameSettings.TILESIZE, GameSettings.TILESIZE);
 			}
 		}
@@ -436,16 +435,16 @@ public class GameViewImpl implements GameView {
 		for (Entry<Door, Optional<RoomModel>> entry : doors.entrySet()) {
 			if (entry.getValue().isPresent()) {
 				if (entry.getKey().equals(Door.NORTH)) {
-					currentRoom.getTopDoorHor().getTexture().getFlippedCopy(true, false)
+					currentRoom.getTopDoorHor().getFlippedCopy(true, false)
 							.draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, 0, 64, 14);
 				} else if (entry.getKey().equals(Door.SOUTH)) {
-					currentRoom.getTopDoorHor().getTexture().getFlippedCopy(true, true)
+					currentRoom.getTopDoorHor().getFlippedCopy(true, true)
 							.draw(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.HEIGHT - 14, 64, 14);
 				} else if (entry.getKey().equals(Door.EAST)) {
-					currentRoom.getTopDoorVert().getTexture().getFlippedCopy(true, false).draw(GameSettings.WIDTH - 14,
+					currentRoom.getTopDoorVert().getFlippedCopy(true, false).draw(GameSettings.WIDTH - 14,
 							GameSettings.HEIGHT / 2 - GameSettings.TILESIZE, 14, 64);
 				} else {
-					currentRoom.getTopDoorVert().getTexture().getFlippedCopy(false, false).draw(0,
+					currentRoom.getTopDoorVert().getFlippedCopy(false, false).draw(0,
 							GameSettings.HEIGHT / 2 - GameSettings.TILESIZE, 14, 64);
 				}
 			}

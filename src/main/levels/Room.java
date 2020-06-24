@@ -3,8 +3,9 @@ package main.levels;
 import java.util.Map;
 import java.util.Optional;
 
-import main.tiles.AnimatedTile;
-import main.tiles.Tile;
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
+
 import main.worldModel.RoomModel;
 import main.worldModel.utilities.enums.Door;
 
@@ -14,25 +15,25 @@ public interface Room {
 	 * method that returns the tiles regarding the floor
 	 * @return Tile, the floor tiles
 	 */
-	Tile getFloor();
+	Image getFloor();
 
 	/**
 	 * method that returns the tiles regarding the vertical walls
-	 * @return Tile, the vertical walls tiles
+	 * @return Image, the vertical walls tiles
 	 */
-	Tile getWallVert();
+	Image getWallVert();
 
 	/**
 	 * method that returns the tiles regarding the horizontal floor
-	 * @return Tile, the horizontal wall tiles
+	 * @return Image, the horizontal wall tiles
 	 */
-	Tile getWallHor();
+	Image getWallHor();
 
 	/**
 	 * method that returns the tiles regarding the four corners
-	 * @return Tile, the corners of the walls
+	 * @return Image, the corners of the walls
 	 */
-	Tile getCorners();
+	Image getCorners();
 
 	/**
 	 * method that returns the Map with the existing doors, based on which rooms are connected which
@@ -50,37 +51,37 @@ public interface Room {
 	 * method that returns the animated tiles with the western door
 	 * @return AnimatedTile
 	 */
-	AnimatedTile getDoorWest();
+	Animation getDoorWest();
 
 	/**
 	 * method that returns the animated tiles with the northren door
-	 * @return AnimatedTile
+	 * @return Animation
 	 */
-	AnimatedTile getDoorNorth();
+	Animation getDoorNorth();
 
 	/**
 	 * method that returns the animated tiles with the eastern door
-	 * @return AnimatedTile
+	 * @return Animation
 	 */
-	AnimatedTile getDoorEast();
+	Animation getDoorEast();
 
 	/**
 	 * method that returns the animated tiles with the southern door
-	 * @return AnimatedTile
+	 * @return Animation
 	 */
-	AnimatedTile getDoorSouth();
+	Animation getDoorSouth();
 
 	/**
 	 * Method that returns the tiles of the vertical top of the door
-	 * @return Tile, the vertical top of the door
+	 * @return Image, the vertical top of the door
 	 */
-	Tile getTopDoorVert();
+	Image getTopDoorVert();
 
 	/**
 	 * Method that returns the tiles of the horizontal top of the door
-	 * @return Tile, the horizontal top of the door
+	 * @return Image, the horizontal top of the door
 	 */
-	Tile getTopDoorHor();
+	Image getTopDoorHor();
 	
 	
 	/**

@@ -1,27 +1,33 @@
 package main.tiles;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.SlickException;
 
 public class AnimatedTile {
 
 	/**
-	 * Variable containing the animation of the Tile
-	 */
-	private Animation animaton;
-
-	/**
-	 * Constructor for AnimatedTile
-	 * @param animation, the animation of the Tile
-	 */
-	public AnimatedTile(final Animation animation) {
-		this.animaton = animation;
-	}
-
-	/**
 	 * Method that returns the animation of the Tile
 	 * @return Animation
+	 * @throws SlickException 
 	 */
-	public Animation getAnimaton() {
-		return animaton;
+	public static Animation getAnimatedTile(final AnimatedTileImage tile) throws SlickException {
+		Animation tmp;
+		switch (tile) {		
+		case DOORNORTH:
+			tmp = AnimatedTileImage.DOORNORTH.getAnimatedTileImage();
+			break;
+		case DOOREAST:
+			tmp = AnimatedTileImage.DOOREAST.getAnimatedTileImage();
+			break;
+		case DOORSOUTH:
+			tmp = AnimatedTileImage.DOORSOUTH.getAnimatedTileImage();
+			break;
+		case DOORWEST:
+			tmp = AnimatedTileImage.DOORWEST.getAnimatedTileImage();
+			break;
+		default:
+			throw new IllegalArgumentException("AnimatedTile image not found");
+		}
+		return tmp;
 	}
 }
