@@ -51,8 +51,11 @@ public class RoomModelGeneratorImpl implements RoomModelGenerator {
 		if(index == coinRoomID) {
 			entitiesGen.generateCoin();
 		}
-		// key generation
-		entitiesGen.generateKey();
+		// key generation, boss room requires no key to be present
+		if(!(isFinalLevel && index==specialRoomID)) {
+			entitiesGen.generateKey();
+		} 
+		
 		// enemies generation
 		int numOfEnemies = currentConfig.get("minEnemies")
 				+ random.nextInt(1 + currentConfig.get("maxEnemies") - currentConfig.get("minEnemies"));
