@@ -23,6 +23,13 @@ public final class ToPlayerUtil {
 	private static int disPX = (player.getDimension().getRight() + player.getDimension().getLeft()) / 2;
 	private static int disPY = (GameSettings.TILESIZE + player.getDimension().getDown()) / 2;
 
+	private static Pair<Integer, Integer> North = new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, 0);
+	private static Pair<Integer, Integer> South = new Pair<>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE,
+			GameSettings.HEIGHT - GameSettings.TILESIZE);
+	private static Pair<Integer, Integer> West = new Pair<>(0, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE);
+	private static Pair<Integer, Integer> East = new Pair<>(GameSettings.LIMITRIGHT,
+			GameSettings.HEIGHT / 2 - GameSettings.TILESIZE);
+
 	/**
 	 * Private constructors to prevent instantiation
 	 */
@@ -52,6 +59,22 @@ public final class ToPlayerUtil {
 				x.addDestination(ToPlayerUtil.findNode(y, graph), 1);
 			});
 		});
+
+		// AGGIUNGO LE PORTE AL GRAFICO
+		graph.addNode(new Node<Pair<Integer, Integer>>(North));
+		graph.addNode(new Node<Pair<Integer, Integer>>(South));
+		graph.addNode(new Node<Pair<Integer, Integer>>(West));
+		graph.addNode(new Node<Pair<Integer, Integer>>(East));
+
+		// COLLEGO CON I TILE VICINI
+		ToPlayerUtil.findNode(North, graph).addDestination(
+				findNode(new Pair<Integer, Integer>(North.getX(), North.getY() + GameSettings.TILESIZE), graph), 1);
+		ToPlayerUtil.findNode(South, graph).addDestination(
+				findNode(new Pair<Integer, Integer>(South.getX(), South.getY() - GameSettings.TILESIZE), graph), 1);
+		ToPlayerUtil.findNode(West, graph).addDestination(
+				findNode(new Pair<Integer, Integer>(West.getX() + GameSettings.TILESIZE, West.getY()), graph), 1);
+		ToPlayerUtil.findNode(East, graph).addDestination(
+				findNode(new Pair<Integer, Integer>(East.getX() - GameSettings.TILESIZE, East.getY()), graph), 1);
 
 		return graph;
 	}

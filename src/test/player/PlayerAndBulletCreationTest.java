@@ -101,5 +101,7 @@ public class PlayerAndBulletCreationTest {
 		assertEquals(new Pair<>(64, 64), testBullet.getPos());
 		assertEquals(Direction.SOUTH, testBullet.getDirection());
 		assertEquals(testRoom, testBullet.getRoom());
+		
+		Display.destroy();
 	}
 }

@@ -34,8 +34,11 @@ public class TestAttack {
 	@org.junit.BeforeClass
 	public static void initTest() throws IOException {
 		try {
-			// display.create is needed because default constructor of bulletPlayerImpl
-			// contains an Image
+			/**
+			 * Need to insert display.create inside try-catch because default constructor of
+			 * bulletPlayerImpl contains an Image, otherwise we will have a runtime
+			 * exception of type "No OpenGL context found"
+			 */
 			Display.create();
 		} catch (LWJGLException e) {
 			Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, e);
@@ -47,6 +50,7 @@ public class TestAttack {
 		testRoom.getObstacleSet().removeAll(testRoom.getObstacleSet());
 
 	}
+	
 
 	@org.junit.Test
 	public void testOneSideAttack() {
@@ -106,6 +110,8 @@ public class TestAttack {
 		// IL NEMICO CREA CORRETTAMENTE 4 PROIETTILE
 		testFourSide.attack();
 		assertEquals(testFourSide.getRoomBullets().size(), 4);
+		
+		Display.destroy();
 
 	}
 
