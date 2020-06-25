@@ -24,7 +24,8 @@ public class EnemyCreatorImpl implements EnemyCreator {
 		case 3:
 			return new EnemyImpl(pos, damage, health, TypeMove.RANDOM, TypeAttack.TRIPLE, room, TypeEnemy.NINJA);
 		case 4:
-			return new EnemyImpl(pos, damage, health, TypeMove.IMMOBILIZED, TypeAttack.FOUR_SIDE, room,	TypeEnemy.PLANT);
+			return new EnemyImpl(pos, damage, health, TypeMove.IMMOBILIZED, TypeAttack.FOUR_SIDE, room,
+					TypeEnemy.PLANT);
 		default:
 			throw new IllegalArgumentException("Number isn't between 1 and 4");
 		}

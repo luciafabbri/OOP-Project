@@ -23,13 +23,13 @@ import main.worldModel.RoomModel;
 import main.worldModel.utilities.Pair;
 
 /**
- * JUnit test for player's and bullet's initial functionalities
+ * JUnit test for enemy's and bullet's initial functionalities
  */
 
 public class TestEnemy {
 
 	private static RoomModel testRoom;
-	
+
 	@org.junit.BeforeClass
 	public static void initTest() throws IOException {
 		try {
@@ -46,22 +46,22 @@ public class TestEnemy {
 	}
 
 	/**
-	 * To check initial enemy's conditions  
-	 * @throws SlickException 
+	 * To check initial enemy's conditions
+	 * 
+	 * @throws SlickException
 	 */
 	@org.junit.Test
 	public void testStartPlayer() throws SlickException {
-		Enemy testEnemy = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
+		Enemy testEnemy = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100, TypeMove.STRAIGHT,
+				Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
 		assertTrue(testEnemy.isAlive());
 		testEnemy.takeDamage(30);
 		assertTrue(testEnemy.isAlive());
-		assertEquals(new Pair<>(128,128), testEnemy.getPosition());
+		assertEquals(new Pair<>(128, 128), testEnemy.getPosition());
 		assertEquals(Direction.SOUTH, testEnemy.getDirection());
 		assertEquals(TypeEnemy.BOWMAN, testEnemy.getTypeEnemy());
 		testEnemy.takeDamage(70);
 		assertFalse(testEnemy.isAlive());
 	}
-	
 
 }

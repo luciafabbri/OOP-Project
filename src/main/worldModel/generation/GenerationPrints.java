@@ -13,16 +13,16 @@ import main.worldModel.utilities.graphs.RoomBFS;
 import java.util.Optional;
 
 /**
- * A class that includes prints for all the features implemented in the worldModel
- * package
+ * A class that includes prints for all the features implemented in the
+ * worldModel package
  *
  */
-public class GenerationPrints  {
+public class GenerationPrints {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-	
+
 		final LevelModelGeneratorImpl generator = new LevelModelGeneratorImpl();
-		final LevelModel testLevel = generator.generateLevel(3);	
+		final LevelModel testLevel = generator.generateLevel(3);
 
 		// game entities listing for each room
 
@@ -113,13 +113,13 @@ public class GenerationPrints  {
 				"Inside room 0 all doors are reachable: " + roomBfs.areDoorsReachable(testLevel.getRooms().get(0)));
 
 		// stairs generation test
-		Long numOfStairsRooms = testLevel.getRooms().stream().filter(r -> r.areStairsPresent()).map(r -> r.getRoomID()).count();
+		Long numOfStairsRooms = testLevel.getRooms().stream().filter(r -> r.areStairsPresent()).map(r -> r.getRoomID())
+				.count();
 		System.out.println("Rooms with stairs are: " + numOfStairsRooms);
 		int stairsRoomID = testLevel.getRooms().stream().filter(r -> r.areStairsPresent()).findFirst().get()
 				.getRoomID();
 		System.out.println("Room with stairs has ID: " + stairsRoomID);
 
 	}
-
 
 }

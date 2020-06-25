@@ -7,6 +7,7 @@ public class Coin extends ItemImpl {
 
 	/**
 	 * Constructor for Coin item
+	 * 
 	 * @param coord, to know in which position it is
 	 * @throws SlickException
 	 * @see SlickException

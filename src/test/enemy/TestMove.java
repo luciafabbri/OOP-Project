@@ -53,7 +53,7 @@ public class TestMove {
 		/*
 		 * CONTROLLO CHE PER OGNI DIREZIONE IL NEMICO SI MUOVA DALLA PARTE GIUSTA
 		 */
-	    
+
 		Direction.getDirectionList(true).forEach(d -> {
 
 			Enemy testStraightD = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 2, 100, TypeMove.STRAIGHT, d,
@@ -117,9 +117,10 @@ public class TestMove {
 
 	@org.junit.Test
 	public void testRandomMove() {
-		Enemy testRandom = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 2, 100, TypeMove.RANDOM, Direction.SOUTH,
-				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
-		// IL MOVIMENTO RANDOM UNA VOLTA INIZIALIZZATO CAMBIA LA DIREZIONE OGNI TOT PASSI
+		Enemy testRandom = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 2, 100, TypeMove.RANDOM,
+				Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
+		// IL MOVIMENTO RANDOM UNA VOLTA INIZIALIZZATO CAMBIA LA DIREZIONE OGNI TOT
+		// PASSI
 		testRandom.updatePos();
 		testRandom.updatePos();
 		assertNotEquals(new Pair<Integer, Integer>(250, 250), testRandom.getPosition());
@@ -129,9 +130,9 @@ public class TestMove {
 
 	@org.junit.Test
 	public void testImmobilizedMove() {
-		Enemy testImmobilized = new EnemyImpl(new Pair<Integer, Integer>(64, 64), 10, 2, 100, TypeMove.IMMOBILIZED, Direction.SOUTH,
-				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
-		//AGGIORNARE LA POSIZIONE RITORNERA SEMPRE QUELLA PRECEDENTE		
+		Enemy testImmobilized = new EnemyImpl(new Pair<Integer, Integer>(64, 64), 10, 2, 100, TypeMove.IMMOBILIZED,
+				Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
+		// AGGIORNARE LA POSIZIONE RITORNERA SEMPRE QUELLA PRECEDENTE
 		testImmobilized.updatePos();
 		testImmobilized.updatePos();
 		testImmobilized.updatePos();
@@ -142,9 +143,10 @@ public class TestMove {
 
 	@org.junit.Test
 	public void testTeleportMove() {
-		Enemy testTeleport = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 2, 100, TypeMove.TELEPORT, Direction.SOUTH,
-				TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
-		// IL MOVIMENTO TELEPORT SI TELETRASPORTA IN UNA POSIZIONE E RIMANI LI PER UN PAIO DI SECONDI
+		Enemy testTeleport = new EnemyImpl(new Pair<Integer, Integer>(250, 250), 10, 2, 100, TypeMove.TELEPORT,
+				Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
+		// IL MOVIMENTO TELEPORT SI TELETRASPORTA IN UNA POSIZIONE E RIMANI LI PER UN
+		// PAIO DI SECONDI
 		testTeleport.updatePos();
 		assertNotEquals(new Pair<Integer, Integer>(250, 250), testTeleport.getPosition());
 		Pair<Integer, Integer> newPos = testTeleport.getPosition();
@@ -152,7 +154,7 @@ public class TestMove {
 		testTeleport.updatePos();
 		assertEquals(newPos, testTeleport.getPosition());
 		assertEquals(newDirection, testTeleport.getDirection());
-		
+
 	}
 
 }

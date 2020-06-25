@@ -7,12 +7,13 @@ public class AnimatedTile {
 
 	/**
 	 * Method that returns the animation of the Tile
+	 * 
 	 * @return Animation
-	 * @throws SlickException 
+	 * @throws SlickException
 	 */
 	public static Animation getAnimatedTile(final AnimatedTileImage tile) throws SlickException {
 		Animation tmp;
-		switch (tile) {		
+		switch (tile) {
 		case DOORNORTH:
 			tmp = AnimatedTileImage.DOORNORTH.getAnimatedTileImage();
 			break;

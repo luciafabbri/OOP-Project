@@ -24,8 +24,10 @@ public enum Modifiers {
 		}
 	}
 
-	/** 
-	 * Through a statically generated map association, the enumeration elements can be accessed through an integer code
+	/**
+	 * Through a statically generated map association, the enumeration elements can
+	 * be accessed through an integer code
+	 * 
 	 * @param pickupable code
 	 * @return associated modifier entity
 	 */

@@ -26,10 +26,14 @@ public class RoomBFS extends BreadthFirstSearch<Pair<Integer, Integer>> {
 	// static map generation for door tiles
 	static {
 		doorPositions = new HashSet<>();
-		doorPositions.add(new Pair<Integer, Integer>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE));
-		doorPositions.add(new Pair<Integer, Integer>(GameSettings.LIMITRIGHT - GameSettings.TILESIZE, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE));
-		doorPositions.add(new Pair<Integer, Integer>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.HEIGHT - GameSettings.TILESIZE * 2));
-		doorPositions.add(new Pair<Integer, Integer>(GameSettings.TILESIZE, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE));
+		doorPositions
+				.add(new Pair<Integer, Integer>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE, GameSettings.TILESIZE));
+		doorPositions.add(new Pair<Integer, Integer>(GameSettings.LIMITRIGHT - GameSettings.TILESIZE,
+				GameSettings.HEIGHT / 2 - GameSettings.TILESIZE));
+		doorPositions.add(new Pair<Integer, Integer>(GameSettings.WIDTH / 2 - GameSettings.TILESIZE,
+				GameSettings.HEIGHT - GameSettings.TILESIZE * 2));
+		doorPositions.add(
+				new Pair<Integer, Integer>(GameSettings.TILESIZE, GameSettings.HEIGHT / 2 - GameSettings.TILESIZE));
 	}
 
 	/**

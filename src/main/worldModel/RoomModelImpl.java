@@ -156,7 +156,7 @@ public class RoomModelImpl implements RoomModel {
 	public Optional<Coin> getCoin() {
 		return this.coin;
 	}
-	
+
 	public void addCoin(Coin coin) {
 		this.coin = Optional.of(coin);
 	}

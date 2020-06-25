@@ -53,17 +53,17 @@ public class TestAttack {
 		/*
 		 * CONTROLLO CHE IL NEMICO CREI I PROIETTILI
 		 */
-		Enemy testOneSide = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
+		Enemy testOneSide = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100, TypeMove.STRAIGHT,
+				Direction.SOUTH, TypeAttack.ONE_SIDE, testRoom, TypeEnemy.BOWMAN);
 
-		//IL NEMICO CREA CORRETTAMENTE IL PROIETTILE
+		// IL NEMICO CREA CORRETTAMENTE IL PROIETTILE
 		testOneSide.attack();
 		assertEquals(testOneSide.getRoomBullets().size(), 1);
-		//LA DIREZIONE ED IL DANNO DEL PROIETTILE SARANNO UGUALI A QUELLI DEL GIOCATORE
+		// LA DIREZIONE ED IL DANNO DEL PROIETTILE SARANNO UGUALI A QUELLI DEL GIOCATORE
 		List<Bullet> bullets = testOneSide.getRoomBullets().stream().collect(Collectors.toList());
 		assertEquals(testOneSide.getDirection(), bullets.get(0).getDirection());
 		assertEquals(testOneSide.getDamage(), bullets.get(0).getDamage());
-		//IL NEMICO PRIMA DI CREARE UN ALTRO PROIETTILE DEVE ASPETTARE 2 SECONDI
+		// IL NEMICO PRIMA DI CREARE UN ALTRO PROIETTILE DEVE ASPETTARE 2 SECONDI
 		testOneSide.attack();
 		assertNotEquals(testOneSide.getRoomBullets().size(), 2);
 	}
@@ -73,10 +73,10 @@ public class TestAttack {
 		/*
 		 * CONTROLLO CHE IL NEMICO CREI I PROIETTILI
 		 */
-		Enemy testTwoSide = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.TWO_SIDE, testRoom, TypeEnemy.BOWMAN);
+		Enemy testTwoSide = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100, TypeMove.STRAIGHT,
+				Direction.SOUTH, TypeAttack.TWO_SIDE, testRoom, TypeEnemy.BOWMAN);
 
-		//IL NEMICO CREA CORRETTAMENTE 2 PROIETTILE
+		// IL NEMICO CREA CORRETTAMENTE 2 PROIETTILE
 		testTwoSide.attack();
 		assertEquals(testTwoSide.getRoomBullets().size(), 2);
 	}
@@ -86,10 +86,10 @@ public class TestAttack {
 		/*
 		 * CONTROLLO CHE IL NEMICO CREI I PROIETTILI
 		 */
-		Enemy testTriple = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.TRIPLE, testRoom, TypeEnemy.BOWMAN);
+		Enemy testTriple = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100, TypeMove.STRAIGHT,
+				Direction.SOUTH, TypeAttack.TRIPLE, testRoom, TypeEnemy.BOWMAN);
 
-		//IL NEMICO CREA CORRETTAMENTE 3 PROIETTILE
+		// IL NEMICO CREA CORRETTAMENTE 3 PROIETTILE
 		testTriple.attack();
 		assertEquals(testTriple.getRoomBullets().size(), 3);
 
@@ -100,14 +100,13 @@ public class TestAttack {
 		/*
 		 * CONTROLLO CHE IL NEMICO CREI I PROIETTILI
 		 */
-		Enemy testFourSide = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100,
-				TypeMove.STRAIGHT, Direction.SOUTH, TypeAttack.FOUR_SIDE, testRoom, TypeEnemy.BOWMAN);
+		Enemy testFourSide = new EnemyImpl(new Pair<Integer, Integer>(128, 128), 10, 1, 100, TypeMove.STRAIGHT,
+				Direction.SOUTH, TypeAttack.FOUR_SIDE, testRoom, TypeEnemy.BOWMAN);
 
-		//IL NEMICO CREA CORRETTAMENTE 4 PROIETTILE
+		// IL NEMICO CREA CORRETTAMENTE 4 PROIETTILE
 		testFourSide.attack();
 		assertEquals(testFourSide.getRoomBullets().size(), 4);
-		
+
 	}
 
 }
-

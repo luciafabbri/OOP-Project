@@ -6,8 +6,8 @@ import main.worldModel.RoomModel;
 import main.worldModel.utilities.Pair;
 
 /**
- * Class implements EnemyAttack use to create 3 bullet in 3 different direction when enemy
- * attack
+ * Class implements EnemyAttack use to create 3 bullet in 3 different direction
+ * when enemy attack
  */
 public class TripleAtt implements EnemyAttack {
 

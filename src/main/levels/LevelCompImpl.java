@@ -21,7 +21,7 @@ import main.worldModel.generation.LevelModelGeneratorImpl;
 import main.worldModel.utilities.Pair;
 
 public class LevelCompImpl implements LevelComp {
-	
+
 	/**
 	 * Variable containing the List of the rooms of the level
 	 */
@@ -35,40 +35,40 @@ public class LevelCompImpl implements LevelComp {
 	 */
 	private RoomImpl tmpRoom;
 	/**
-	 * Variable containing ID of the current room loaded 
+	 * Variable containing ID of the current room loaded
 	 */
 	private int roomID;
 	private boolean gotLevelCoin;
 	private boolean pauseMenu;
 	private boolean changedRoom;
 	private boolean gameWon;
-	
+
 	public LevelCompImpl(final int levelID) throws IOException {
 		testLevel = new LevelModelGeneratorImpl().generateLevel(levelID);
-		
+
 		this.loadRooms();
 		this.pauseMenu = false;
 		this.roomID = 0;
 		this.changedRoom = false;
 		this.gameWon = false;
 	}
-	
+
 	@Override
-	public void loadRooms() {	
-		for(int i = 0; i < testLevel.getRooms().size(); i++) {
+	public void loadRooms() {
+		for (int i = 0; i < testLevel.getRooms().size(); i++) {
 			tmpRoom = new RoomImpl(testLevel.getRooms().get(i), testLevel.getDoorsLayout());
-			
+
 			level.add(tmpRoom);
-		}		
+		}
 	}
-	
+
 	public Map<TypeEnemy, Set<Pair<Direction, Animation>>> checkAnimations() throws SlickException {
 		Map<TypeEnemy, Set<Pair<Direction, Animation>>> tmpMap = new HashMap<>();
-		
+
 		level.forEach(s -> {
 			s.getRoom().getEnemySet().forEach(d -> {
-				
-				if(!tmpMap.containsKey(	d.getTypeEnemy())) {
+
+				if (!tmpMap.containsKey(d.getTypeEnemy())) {
 					try {
 						tmpMap.put(d.getTypeEnemy(), this.loadAnimations(d.getTypeEnemy()));
 					} catch (SlickException e) {
@@ -77,22 +77,24 @@ public class LevelCompImpl implements LevelComp {
 				}
 			});
 		});
-		
+
 		return tmpMap;
 	}
-	
+
 	private Set<Pair<Direction, Animation>> loadAnimations(final TypeEnemy type) throws SlickException {
 		Set<Pair<Direction, Animation>> tmpSet = new HashSet<>();
-		
-		tmpSet.add(new Pair<>(Direction.NORTH, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.NORTH))));
-		tmpSet.add(new Pair<>(Direction.EAST, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.EAST))));
-		tmpSet.add(new Pair<>(Direction.WEST, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.WEST))));
-		tmpSet.add(new Pair<>(Direction.SOUTH, ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.SOUTH))));
-			
+
+		tmpSet.add(new Pair<>(Direction.NORTH,
+				ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.NORTH))));
+		tmpSet.add(new Pair<>(Direction.EAST,
+				ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.EAST))));
+		tmpSet.add(new Pair<>(Direction.WEST,
+				ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.WEST))));
+		tmpSet.add(new Pair<>(Direction.SOUTH,
+				ImageFactory.getAnimation(ImageFactory.getEnemyImage(type, Direction.SOUTH))));
+
 		return tmpSet;
 	}
-	
-	
 
 	public List<RoomImpl> getLevel() {
 		return level;

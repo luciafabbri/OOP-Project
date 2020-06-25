@@ -12,8 +12,8 @@ import main.worldModel.RoomModel;
 import main.worldModel.utilities.Pair;
 
 /**
- * Class implements EnemyAttack use to create 2 bullet when enemy attack in 2 different
- * direction
+ * Class implements EnemyAttack use to create 2 bullet when enemy attack in 2
+ * different direction
  */
 public class TwoSideAtt implements EnemyAttack {
 
@@ -37,8 +37,8 @@ public class TwoSideAtt implements EnemyAttack {
 		List<Direction> bullDir = Direction.getNearDistance(dir, 1);
 
 		for (int i = 0; i < 2; i++) {
-			Bullet bull = new BulletEnemy(DistanceBull.calculateBullPos(dirSpawn.get(i), enemy, TypeBullet.ENEMY_BULL), dmg, bullDir.get(i),
-					currentRoom);
+			Bullet bull = new BulletEnemy(DistanceBull.calculateBullPos(dirSpawn.get(i), enemy, TypeBullet.ENEMY_BULL),
+					dmg, bullDir.get(i), currentRoom);
 
 			enemy.addBullet(bull);
 		}

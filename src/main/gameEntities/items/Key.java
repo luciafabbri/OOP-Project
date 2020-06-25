@@ -3,10 +3,11 @@ package main.gameEntities.items;
 import main.worldModel.utilities.Pair;
 import main.worldModel.utilities.enums.Entities;
 
-public class Key extends ItemImpl{
-	
+public class Key extends ItemImpl {
+
 	/**
 	 * Constructor for Key item
+	 * 
 	 * @param coord, to know in which position it is
 	 * @throws SlickException
 	 * @see SlickException

@@ -6,10 +6,10 @@ import org.newdawn.slick.SlickException;
 import main.worldModel.utilities.enums.Entities;
 
 public class EntityImageFactory {
-	
+
 	public static Image getEntityTexture(final Entities entity) throws SlickException {
 		Image tmpEnt;
-		switch (entity) {		
+		switch (entity) {
 		case BOULDER:
 			tmpEnt = EntityImage.OBSTACLE.getImage();
 			break;
@@ -46,5 +46,4 @@ public class EntityImageFactory {
 		return tmpEnt;
 	}
 
-	
 }

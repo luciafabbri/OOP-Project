@@ -9,6 +9,7 @@ public class Tile {
 
 	/**
 	 * Method that returns the texture of the Tile
+	 * 
 	 * @return Image, the texture of the Tile
 	 * @throws SlickException
 	 * @throws MalformedURLException
@@ -19,7 +20,7 @@ public class Tile {
 	 */
 	public static Image getTileTexture(final TileImage image) throws SlickException {
 		Image tmp;
-		switch (image) {		
+		switch (image) {
 		case CORNER1:
 			tmp = TileImage.CORNER1.getTileImage();
 			break;
@@ -27,7 +28,7 @@ public class Tile {
 			tmp = TileImage.DOORTOP1.getTileImage();
 			break;
 		case DOORTOP2:
-			tmp= TileImage.DOORTOP2.getTileImage();
+			tmp = TileImage.DOORTOP2.getTileImage();
 			break;
 		case FLOOR1:
 			tmp = TileImage.FLOOR1.getTileImage();

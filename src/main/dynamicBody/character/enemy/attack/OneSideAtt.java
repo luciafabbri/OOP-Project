@@ -31,7 +31,8 @@ public class OneSideAtt implements EnemyAttack {
 	@Override
 	public void createBullets(Pair<Integer, Integer> pos, Direction dir, int dmg) {
 
-		Bullet bull = new BulletEnemy(DistanceBull.calculateBullPos(dir, enemy, TypeBullet.ENEMY_BULL), dmg, dir, currentRoom);
+		Bullet bull = new BulletEnemy(DistanceBull.calculateBullPos(dir, enemy, TypeBullet.ENEMY_BULL), dmg, dir,
+				currentRoom);
 
 		enemy.addBullet(bull);
 

@@ -6,8 +6,7 @@ package main.dynamicBody.character.enemy;
 public enum EnemyDefault {
 
 	/**
-	 * Rate of Fire of bullet
-	 * Speed of Enemy
+	 * Rate of Fire of bullet Speed of Enemy
 	 */
 	ROF(2000), SPEED(2);
 

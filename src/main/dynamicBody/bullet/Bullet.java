@@ -10,17 +10,18 @@ import main.worldModel.utilities.Pair;
  */
 
 public interface Bullet extends DynamicBody {
-	
-	/** 
-	 * @return bullet's current position
-	 */
-	Pair<Integer,Integer> getPos();
 
 	/**
-     * Method used to check if bullet's next coordinates are considered to be in a possible position	
-     */
+	 * @return bullet's current position
+	 */
+	Pair<Integer, Integer> getPos();
+
+	/**
+	 * Method used to check if bullet's next coordinates are considered to be in a
+	 * possible position
+	 */
 	void updatePos();
-	
+
 	/**
 	 * @return bullet's current direction
 	 */
@@ -28,12 +29,12 @@ public interface Bullet extends DynamicBody {
 
 	/**
 	 * @return bullet's type direction
-	 */	
+	 */
 	TypeBullet getType();
-	
+
 	/**
 	 * @return bullet's current room
 	 */
 	RoomModel getRoom();
-	
+
 }

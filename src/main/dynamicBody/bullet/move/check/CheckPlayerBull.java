@@ -16,13 +16,13 @@ import main.worldModel.utilities.GameSettings;
 import main.worldModel.utilities.Pair;
 
 /**
- * Class used to represent all the specific checks for a bullet of type player 
+ * Class used to represent all the specific checks for a bullet of type player
  */
 
 public class CheckPlayerBull extends CheckPosImpl implements GameSettings, CheckPos {
-	
+
 	private DynamicBody entity;
-	
+
 	/**
 	 * Default constructor
 	 * 
@@ -35,24 +35,29 @@ public class CheckPlayerBull extends CheckPosImpl implements GameSettings, Check
 
 	@Override
 	public boolean possiblePos(RoomModel room, Pair<Integer, Integer> pos) {
-		return ( !checkEnemy(room, pos) && super.possiblePos(room, pos) );
+		return (!checkEnemy(room, pos) && super.possiblePos(room, pos));
 	}
-	
+
 	/**
-	 * Method used to check if player's bullet is in collision with any enemy in the current room
+	 * Method used to check if player's bullet is in collision with any enemy in the
+	 * current room
 	 * 
-	 * @param room, bullet's current room 
-	 * @param pos, bullet's current coordinates
-	 * @return true if the bullet had a collision with an enemy, otherwise return false
+	 * @param room, bullet's current room
+	 * @param pos,  bullet's current coordinates
+	 * @return true if the bullet had a collision with an enemy, otherwise return
+	 *         false
 	 */
 	private boolean checkEnemy(RoomModel room, Pair<Integer, Integer> pos) {
 		boolean checkX, checkY;
 		Set<Enemy> enemySet = room.getEnemySet();
 		for (Enemy enemy : enemySet) {
-			checkX = pos.getX() + entity.getDimension().getLeft() < enemy.getPosition().getX() + enemy.getDimension().getRight() &&
-					pos.getX() + entity.getDimension().getRight() > enemy.getPosition().getX() + enemy.getDimension().getLeft();
-			checkY = pos.getY() + entity.getDimension().getUp() < enemy.getPosition().getY() + enemy.getDimension().getDown() &&
-					pos.getY() + entity.getDimension().getDown() > enemy.getPosition().getY();
+			checkX = pos.getX() + entity.getDimension().getLeft() < enemy.getPosition().getX()
+					+ enemy.getDimension().getRight()
+					&& pos.getX() + entity.getDimension().getRight() > enemy.getPosition().getX()
+							+ enemy.getDimension().getLeft();
+			checkY = pos.getY() + entity.getDimension().getUp() < enemy.getPosition().getY()
+					+ enemy.getDimension().getDown()
+					&& pos.getY() + entity.getDimension().getDown() > enemy.getPosition().getY();
 			if (checkX && checkY) {
 				try {
 					enemy.takeDamage(this.entity.getDamage());
