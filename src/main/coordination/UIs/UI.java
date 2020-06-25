@@ -138,11 +138,9 @@ public class UI {
 	 * Method used to display the 'Won' screen
 	 */
 	private void wonMenu() {
-		textGeneral = new Color(0, 0, 0, logic.fadeWonMenu());
-
-		this.graphics.setColor(textGeneral);
+		graphics.setColor(new Color(0, 0, 0, logic.fadeWonMenu()));
 		
-		this.graphics.fillRect(0, 0, GameSettings.WIDTH, GameSettings.HEIGHT);
+		graphics.fillRect(0, 0, GameSettings.WIDTH, GameSettings.HEIGHT);
 	
 		Color tmp3 = new Color(255, 255, 255, logic.fadeWonMenu());
 		
@@ -153,7 +151,9 @@ public class UI {
 		} else {
 			graphics.setColor(Color.white);
 		}
-		this.graphics.fillRect(GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8, GameSettings.HEIGHT / 2 + 120, 240, 40);
+		
+		
+		graphics.fillRect(GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8, GameSettings.HEIGHT / 2 + 120, 240, 40);
 		
 		if(logic.isHoverButtonQuit()) {
 			graphics.setColor(Color.gray);
@@ -171,6 +171,9 @@ public class UI {
 		graphics.drawString("Quit Game", (GameSettings.WIDTH / 2 - GameSettings.WIDTH / 8) + 70, (GameSettings.HEIGHT / 2) + 230);
 			
 			
+		graphics.setColor(Color.white);
+		graphics.scale(2, 2);
+		graphics.drawString("You won!", GameSettings.WIDTH / 4 - 55, 130);
 		
 	}
 	

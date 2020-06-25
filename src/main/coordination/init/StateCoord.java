@@ -33,8 +33,6 @@ public class StateCoord extends StateBasedGame {
 	 */
 	private static final int LEVEL1 = 1;
 	
-	private static LoadNatives load = new LoadNatives();
-	
 	/**
 	 * Constructor for StateCoord
 	 * @param name, which is the name of the Window
@@ -54,17 +52,9 @@ public class StateCoord extends StateBasedGame {
 	 */
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
-//		DO NOT REMOVE THESE COMMENTS, DOCUMENTATION SAYS THAT INITSTATES IS BROKEN
-		
-//		this.getState(MENU).init(arg0, this); 
-//		this.getState(LEVEL1).init(arg0, this);
-//		this.enterState(MENU); //FIRST SCREEN USER SEES
+//		DOCUMENTATION SAYS THAT INITSTATES IS BROKEN
 	}
 	
-	
-	
-	//QUI VA MAIN PER INIZIALIZZARE PRIMA IL MENU
-
 	/**
 	 * Main method for initializing the OpenGL context of the game, and the Player resource itself
 	 * @param args
@@ -74,8 +64,7 @@ public class StateCoord extends StateBasedGame {
 	 * @see IOException
 	 */
 	public static void main(String[] args) throws SlickException, IOException {
-		
-		load.loadLibs();
+		LoadNatives.loadLibs();
 		
 		
 		String destPath;
@@ -90,7 +79,6 @@ public class StateCoord extends StateBasedGame {
 			destPath = "." + GameSettings.SEP + "lib" + GameSettings.SEP + "libJars";
 		}
 		
-		System.out.println("                                  " + destPath);
 		//Set the path for Slick2D libraries
 		System.setProperty("java.library.path", new File(destPath).getAbsolutePath());
 		
@@ -109,9 +97,9 @@ public class StateCoord extends StateBasedGame {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new StateCoord(GAMENAME));
 			appgc.setDisplayMode(GameSettings.WIDTH, GameSettings.HEIGHT, false);
-			appgc.setShowFPS(true);
 			appgc.setVSync(true);
 			appgc.setSmoothDeltas(true);
+			appgc.setShowFPS(false);
 			appgc.setMaximumLogicUpdateInterval(7);
 			appgc.setMinimumLogicUpdateInterval(10);
 			appgc.start();

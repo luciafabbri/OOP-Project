@@ -92,7 +92,7 @@ public class LoadNatives {
 	 * @throws IOException
 	 * @see IOException
 	 */
-	public void loadLibs() throws IOException {
+	public static void loadLibs() throws IOException {
 		
 		String destPath;
 		
@@ -102,44 +102,47 @@ public class LoadNatives {
 			destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + GameSettings.SEP;
 		}
 		
+		if(!LoadNatives.isJar(StateCoord.class.getResource("StateCoord.class").toString())) {
 		
-		try {
-			String currPath = System.getProperty("user.dir") + GameSettings.SEP +"jarg.jar";
-			
-	        System.out.println("     "+currPath);
-	        System.out.println("     "+destPath);
-	        
-	        
-	        JarFile jarFile = new JarFile(currPath);
-	        Enumeration<JarEntry> enums = jarFile.entries();
-	        while (enums.hasMoreElements()) {
-	        	JarEntry entry = enums.nextElement();
-	        	if (entry.getName().startsWith("libJars") || entry.getName().startsWith("res")) {
-	        	int nBytes;
-	                File toWrite = new File(destPath + entry.getName());
-	                if (entry.isDirectory()) {
-	                    toWrite.mkdirs();
-	                    continue;
-	                }
-	                InputStream in = new BufferedInputStream(jarFile.getInputStream(entry));
-	                final OutputStream out = new BufferedOutputStream(new FileOutputStream(toWrite));
-	                byte[] buffer = new byte[2048];
-	                while(true) {
-	                    nBytes = in.read(buffer);
-	                    if (nBytes <= 0) {
-	                        break;
-	                    }
-	                    out.write(buffer, 0, nBytes);
-	                }
-	                out.flush();
-	                out.close();
-	                in.close();
-	            }
-	        }
-	        jarFile.close();
-	    } catch (IOException ex) {
-	    	System.out.println("Could not find file ");
-	    }
+			try {
+				String currPath = System.getProperty("user.dir") + GameSettings.SEP +"jarg.jar";
+				
+//		        System.out.println("     "+currPath);
+//		        System.out.println("     "+destPath);
+		        
+		        
+		        JarFile jarFile = new JarFile(currPath);
+		        Enumeration<JarEntry> enums = jarFile.entries();
+		        while (enums.hasMoreElements()) {
+		        	JarEntry entry = enums.nextElement();
+		        	if (entry.getName().startsWith("libJars") || entry.getName().startsWith("res")) {
+		        	int nBytes;
+		                File toWrite = new File(destPath + entry.getName());
+		                if (entry.isDirectory()) {
+		                    toWrite.mkdirs();
+		                    continue;
+		                }
+		                InputStream in = new BufferedInputStream(jarFile.getInputStream(entry));
+		                final OutputStream out = new BufferedOutputStream(new FileOutputStream(toWrite));
+		                byte[] buffer = new byte[2048];
+		                while(true) {
+		                    nBytes = in.read(buffer);
+		                    if (nBytes <= 0) {
+		                        break;
+		                    }
+		                    out.write(buffer, 0, nBytes);
+		                }
+		                out.flush();
+		                out.close();
+		                in.close();
+		            }
+		        }
+		        jarFile.close();
+		    } catch (IOException ex) {
+		    	System.out.println("Could not find file ");
+		    }
+		
+		}
 		
 		String libPath;
 		

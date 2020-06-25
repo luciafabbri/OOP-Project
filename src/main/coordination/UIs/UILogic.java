@@ -67,6 +67,14 @@ public class UILogic {
 	private Player player;
 	
 	/**
+	 * Variable containing the amount of time for fading in
+	 */
+	private int fadeIn;
+	/**
+	 * Variable containing the amount of time for fading out
+	 */
+	private int fadeOut;
+	/**
 	 * Public constructor for UILogic
 	 * @param player, the player data
 	 * @param level, the current level data
@@ -90,6 +98,8 @@ public class UILogic {
 		
 		this.timeEnd = 0;
 		this.index = 0;
+		this.fadeIn = 2;
+		this.fadeOut = 2;
 	}
 	
 	/**
@@ -146,7 +156,7 @@ public class UILogic {
 
 		if (this.firstStop) {
 
-			if (timeNow - timeEnd > 4) {
+			if (timeNow - timeEnd > fadeIn) {
 				index++;
 				timeEnd = System.currentTimeMillis();
 
@@ -158,7 +168,7 @@ public class UILogic {
 			}
 		} else if (this.secondStop) {
 
-			if (timeNow - timeEnd > 2000) {
+			if (timeNow - timeEnd > fadeOut + 1) {
 				this.secondStop = false;
 				this.thirdStop = true;
 				timeEnd = System.currentTimeMillis();
@@ -166,7 +176,7 @@ public class UILogic {
 
 		} else if (this.thirdStop) {
 
-			if (timeNow - timeEnd > 4) {
+			if (timeNow - timeEnd > fadeIn) {
 				index--;
 				timeEnd = System.currentTimeMillis();
 
@@ -188,7 +198,7 @@ public class UILogic {
 		timeNow = System.currentTimeMillis();
 
 		if (this.firstStop) {
-			if (timeNow - timeEnd > 4) {
+			if (timeNow - timeEnd > fadeIn - 1) {
 				index++;
 				timeEnd = System.currentTimeMillis();
 

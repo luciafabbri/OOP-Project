@@ -120,10 +120,6 @@ public class GameController extends BasicGameState {
 		uilogic.update();
 		
 		logic.update();
-		
-		
-		if(input.isKeyPressed(Input.KEY_B))
-			level.setGameWon(true);
 	}
 	
 	/**
