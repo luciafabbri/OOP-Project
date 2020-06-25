@@ -111,9 +111,6 @@ public class LoadNatives {
 			try {
 				String currPath = System.getProperty("user.dir") + GameSettings.SEP + System.getProperty("java.class.path");
 
-//		        System.out.println("     "+currPath);
-//		        System.out.println("     "+destPath);
-
 				JarFile jarFile = new JarFile(currPath);
 				Enumeration<JarEntry> enums = jarFile.entries();
 				while (enums.hasMoreElements()) {
