@@ -53,12 +53,8 @@ public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 		});
 		// level-to-level path check, if false generate new level
 		while (!bfs.areRoomsReachable(graph)) {
-			// print for test purposes
-			System.out.println("Some room isn't reachable, generating level anew");
 			return (this.generateRoomsGraph(rooms));
 		}
-		// print for test purposes
-		System.out.println("All rooms are reachable, adding level");
 		return graph;
 
 	}
