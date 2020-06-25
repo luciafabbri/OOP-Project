@@ -12,6 +12,14 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/libJars/jinput.jar"/>
-    <classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+    <classpathentry kind="lib" path="lib/libJars/jogg-0.0.7.jar"/>
+    <classpathentry kind="lib" path="lib/libJars/jorbis-0.0.15.jar"/>
+    <classpathentry kind="lib" path="lib/libJars/lwjgl.jar"/>
+    <classpathentry kind="lib" path="lib/libJars/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="lib/libJars/lwjgl-sources.jar"/>
+	<classpathentry kind="lib" path="lib/libJars/slick.jar"/>
+	
+	
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
