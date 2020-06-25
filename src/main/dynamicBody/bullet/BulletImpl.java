@@ -13,7 +13,8 @@ import main.worldModel.RoomModel;
 import main.worldModel.utilities.Pair;
 
 /**
- * Class that implements interface Bullet used to represent a character's generic bullet in the dungeon
+ * Class that implements interface Bullet used to represent a character's
+ * generic bullet in the dungeon
  */
 
 public class BulletImpl implements Bullet {
@@ -26,7 +27,7 @@ public class BulletImpl implements Bullet {
 	private Pair<DimensionBullet, DimensionBullet> dimensions;
 	private CheckPos check;
 	private TypeBullet typeBull;
-	
+
 	private BulletDimFactory dimFactory = new BulletDimFactory();
 
 	/**
@@ -51,7 +52,8 @@ public class BulletImpl implements Bullet {
 	}
 
 	/**
-	 * Method used to check which control type the bullet should used according to his type
+	 * Method used to check which control type the bullet should used according to
+	 * his type
 	 * 
 	 * @param type, bullet's type
 	 * @return type of check that the bullet will use while shooting in the dungeon

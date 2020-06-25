@@ -60,6 +60,7 @@ public class GameViewImpl implements GameView {
 	private Image playerBull;
 	private Image enemyBull;
 	private Image obstacle;
+
 	/**
 	 * Constructor for RenderingImpl
 	 * 
@@ -91,8 +92,8 @@ public class GameViewImpl implements GameView {
 
 		this.drawDoors();
 
-		if(!this.level.isPauseMenu() && !this.level.isGameWon()) {
-		
+		if (!this.level.isPauseMenu() && !this.level.isGameWon()) {
+
 			this.drawEnemies();
 
 			try {
@@ -103,12 +104,12 @@ public class GameViewImpl implements GameView {
 			}
 
 		}
-		
+
 	}
 
-	
 	/**
 	 * Method used to preemptively load the animations to lighten the CPU work
+	 * 
 	 * @throws SlickException
 	 */
 	private void loadMainAnimations() throws SlickException {
@@ -125,20 +126,21 @@ public class GameViewImpl implements GameView {
 		playerBull = ImageFactory.getPlayerBull();
 		enemyBull = ImageFactory.getEnemyBull();
 		obstacle = EntityImageFactory.getEntityTexture(Entities.BOULDER);
-		
+
 //		modifiers.add(EntityImage.ATTACKSPEED1);
 //		modifiers.add(EntityImage.ATTACKUPGRADE1);
 //		modifiers.add(EntityImage.HEALTHUPGRADE1);
 //		modifiers.add(EntityImage.MOVEMENTSPEED1);
 //		modifiers.add(EntityImage.RECOVERHEALTH);
-		
-		
+
 	}
 
 	/**
-	 * Method used to draw the right animation of the Player, based on if he's moving or not
+	 * Method used to draw the right animation of the Player, based on if he's
+	 * moving or not
+	 * 
 	 * @param input, used to see if the Player is moved or not
-	 * @throws SlickException 
+	 * @throws SlickException
 	 */
 	private void drawMain(final Input input) throws SlickException {
 		this.currentRoom = level.getLevel().get(level.getRoomID());
@@ -160,7 +162,8 @@ public class GameViewImpl implements GameView {
 	}
 
 	/**
-	 * Method called by drawMain, so it renders the bullets while also rendering the Player 
+	 * Method called by drawMain, so it renders the bullets while also rendering the
+	 * Player
 	 */
 	private void drawMainProj() {
 		Set<Bullet> bullets = player.getRoomBullets();
@@ -214,11 +217,11 @@ public class GameViewImpl implements GameView {
 	 * Method used to draw the enemies in each room
 	 */
 	private void drawEnemies() {
-		currentRoom.getRoom().getEnemySet().forEach(s -> {			
-			
+		currentRoom.getRoom().getEnemySet().forEach(s -> {
+
 			Animation tmp = enemyAnimation.get(s.getTypeEnemy()).stream().filter(p -> p.getX().equals(s.getDirection()))
 					.findFirst().get().getY();
-			
+
 			if (s.getTypeEnemy().equals(TypeEnemy.MAGE)) {
 
 				tmp.setCurrentFrame(0);
@@ -233,7 +236,8 @@ public class GameViewImpl implements GameView {
 	}
 
 	/**
-	 * Method called by drawEnemies, to draw the appropriate bullet according to each enemy
+	 * Method called by drawEnemies, to draw the appropriate bullet according to
+	 * each enemy
 	 */
 	private void drawEnemyProj() {
 		Set<Enemy> enemys = currentRoom.getRoom().getEnemySet();
@@ -243,8 +247,7 @@ public class GameViewImpl implements GameView {
 
 			if (!bulletMon.isEmpty()) {
 				bulletMon.forEach(s -> {
-					enemyBull.draw(s.getPos().getX(), s.getPos().getY(), GameSettings.TILESIZE,
-							GameSettings.TILESIZE);
+					enemyBull.draw(s.getPos().getX(), s.getPos().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
 				});
 			}
 		});
@@ -255,8 +258,7 @@ public class GameViewImpl implements GameView {
 	 */
 	private void drawObstacles() throws SlickException {
 		currentRoom.getRoom().getObstacleSet().forEach(s -> {
-			obstacle.draw(s.getPosition().getX(), s.getPosition().getY(),
-					GameSettings.TILESIZE, GameSettings.TILESIZE);
+			obstacle.draw(s.getPosition().getX(), s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
 		});
 	}
 
@@ -278,15 +280,13 @@ public class GameViewImpl implements GameView {
 
 	/**
 	 * Method used to draw the modifiers placed in each room
-	*/
+	 */
 	private void drawMod() throws SlickException {
 		currentRoom.getRoom().getPickupablesSet().stream().filter(s -> s.getTypeEnt().equals(Entities.ATTACKUPGRADE1)
 				|| s.getTypeEnt().equals(Entities.HEALTHUPGRADE1) || s.getTypeEnt().equals(Entities.MOVEMENTSPEED1)
 				|| s.getTypeEnt().equals(Entities.ATTACKSPEED1) || s.getTypeEnt().equals(Entities.RECOVERHEALTH))
 				.forEach(s -> {
-					
-					
-					
+
 					try {
 						EntityImageFactory.getEntityTexture(s.getTypeEnt()).draw(s.getPosition().getX(),
 								s.getPosition().getY(), GameSettings.TILESIZE, GameSettings.TILESIZE);
@@ -345,13 +345,12 @@ public class GameViewImpl implements GameView {
 		// Here a draw the corners, since they're always in the same position (the
 		// corners), I don't need to draw the dynamically
 		currentRoom.getCorners().draw(0, 0, GameSettings.TILESIZE, GameSettings.TILESIZE);
-		currentRoom.getCorners().getFlippedCopy(false, true).draw(0,
-				GameSettings.HEIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
-		currentRoom.getCorners().getFlippedCopy(true, false)
-				.draw(GameSettings.WIDTH - GameSettings.TILESIZE, 0, GameSettings.TILESIZE, GameSettings.TILESIZE);
-		currentRoom.getCorners().getFlippedCopy(true, true).draw(
-				GameSettings.WIDTH - GameSettings.TILESIZE, GameSettings.HEIGHT - GameSettings.TILESIZE,
+		currentRoom.getCorners().getFlippedCopy(false, true).draw(0, GameSettings.HEIGHT - GameSettings.TILESIZE,
 				GameSettings.TILESIZE, GameSettings.TILESIZE);
+		currentRoom.getCorners().getFlippedCopy(true, false).draw(GameSettings.WIDTH - GameSettings.TILESIZE, 0,
+				GameSettings.TILESIZE, GameSettings.TILESIZE);
+		currentRoom.getCorners().getFlippedCopy(true, true).draw(GameSettings.WIDTH - GameSettings.TILESIZE,
+				GameSettings.HEIGHT - GameSettings.TILESIZE, GameSettings.TILESIZE, GameSettings.TILESIZE);
 	}
 
 	/**
@@ -423,9 +422,10 @@ public class GameViewImpl implements GameView {
 		}
 	}
 
-	
 	/**
-	 * Method used to draw the top of the doors in each room, so that the it gives the Player the illusion of traversing room
+	 * Method used to draw the top of the doors in each room, so that the it gives
+	 * the Player the illusion of traversing room
+	 * 
 	 * @throws SlickException
 	 * @see SlickException
 	 */

@@ -87,11 +87,10 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 
 	}
 
-
 	@Override
 	public void generateEnemies(int numOfEnemies) throws SlickException {
 		for (int j = 0; j < numOfEnemies; j++) {
-			room.addEnemy(enemyGen.getMonster(this.currentConfig.get("level"),this.generateCoherentPos(), 
+			room.addEnemy(enemyGen.getMonster(this.currentConfig.get("level"), this.generateCoherentPos(),
 					currentConfig.get("enemyHealth"), currentConfig.get("enemyDamage"), room));
 		}
 
@@ -107,12 +106,12 @@ public class EntitiesGeneratorImpl implements EntitiesGenerator {
 	@Override
 	public void generateKey() throws SlickException {
 		room.setRoomKey(new Key(generateCoherentPos()));
-		
+
 	}
 
 	@Override
 	public void generateCoin() throws SlickException {
-		room.addCoin(new Coin(generateCoherentPos()));		
+		room.addCoin(new Coin(generateCoherentPos()));
 	}
 
 }

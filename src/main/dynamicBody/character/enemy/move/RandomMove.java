@@ -36,7 +36,7 @@ public class RandomMove implements EnemyMovement {
 		if (moveCounter <= 0 || enableMov(dir)) {
 			moveCounter = random.nextInt(RANDOM_ADD) + MINIMUM_STEPS;
 			nextDir = Direction.getRandomDir();
-			while(nextDir.equals(dir)) {				
+			while (nextDir.equals(dir)) {
 				nextDir = Direction.getRandomDir();
 			}
 			nextPos = pos;

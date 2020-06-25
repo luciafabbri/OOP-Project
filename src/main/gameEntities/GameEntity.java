@@ -8,22 +8,21 @@ import main.worldModel.utilities.enums.Entities;
  *
  */
 public abstract class GameEntity {
-	
+
 	private Pair<Integer, Integer> position;
 	private Entities typeEnt;
-	
+
 	/**
 	 * Constructor
 	 * 
 	 * @param position, the entity's position in the room
-	 * @param typeEnt, the type of the entity
+	 * @param typeEnt,  the type of the entity
 	 */
 	public GameEntity(final Pair<Integer, Integer> position, final Entities typeEnt) {
 		this.position = position;
 		this.typeEnt = typeEnt;
 	}
 
-	
 	/**
 	 * @return the entity's position
 	 */
@@ -31,13 +30,11 @@ public abstract class GameEntity {
 		return position;
 	}
 
-
 	/**
 	 * @return typeEnt, the entity's type
 	 */
 	public Entities getTypeEnt() {
 		return typeEnt;
 	}
-
 
 }

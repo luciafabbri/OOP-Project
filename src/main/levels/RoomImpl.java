@@ -13,7 +13,6 @@ import main.tiles.*;
 import main.worldModel.RoomModel;
 import main.worldModel.utilities.enums.Door;
 
-
 public class RoomImpl implements Room {
 
 	/**
@@ -21,10 +20,11 @@ public class RoomImpl implements Room {
 	 */
 	private RoomModel room;
 	/**
-	 * Variable containing the Map with the door and rooms the current room is connected to
+	 * Variable containing the Map with the door and rooms the current room is
+	 * connected to
 	 */
 	private Map<Door, Optional<RoomModel>> doorAccess;
-	
+
 	/**
 	 * Variable containing the Tile of the floor
 	 */
@@ -49,7 +49,7 @@ public class RoomImpl implements Room {
 	 * Variable containing the Image of the top of the horizontal door
 	 */
 	private Image topDoorHor;
-		
+
 	/**
 	 * Variable containing the Animation, so the animation of the west room
 	 */
@@ -66,35 +66,37 @@ public class RoomImpl implements Room {
 	 * Variable containing the Animation, so the animation of the south room
 	 */
 	private Animation doorSouth;
+	/**
+	 * Variable containing the boolean to check if the room key has been takens
+	 */
 	private boolean gotRoomKey;
-	
-	
-	public RoomImpl(final RoomModel room, Map<RoomModel, Map<Door, Optional<RoomModel>>> doorAccess) {	
+
+	public RoomImpl(final RoomModel room, Map<RoomModel, Map<Door, Optional<RoomModel>>> doorAccess) {
 		this.room = room;
-		this.doorAccess = doorAccess.entrySet().stream().filter(s -> s.getKey().getRoomID() == room.getRoomID()).findFirst().get().getValue();
+		this.doorAccess = doorAccess.entrySet().stream().filter(s -> s.getKey().getRoomID() == room.getRoomID())
+				.findFirst().get().getValue();
 		this.gotRoomKey = false;
-		
+
 		try {
-			
+
 			this.floor = Tile.getTileTexture(TileImage.FLOOR1);
 			this.wallVert = Tile.getTileTexture(TileImage.WALLHOR2);
 			this.wallHor = Tile.getTileTexture(TileImage.WALLHOR1);
 			this.corners = Tile.getTileTexture(TileImage.CORNER1);
-		
+
 			this.topDoorVert = Tile.getTileTexture(TileImage.DOORTOP1);
 			this.topDoorHor = Tile.getTileTexture(TileImage.DOORTOP2);
-					
+
 			this.doorWest = AnimatedTile.getAnimatedTile(AnimatedTileImage.DOORWEST);
 			this.doorNorth = AnimatedTile.getAnimatedTile(AnimatedTileImage.DOORNORTH);
 			this.doorEast = AnimatedTile.getAnimatedTile(AnimatedTileImage.DOOREAST);
 			this.doorSouth = AnimatedTile.getAnimatedTile(AnimatedTileImage.DOORSOUTH);
-			
-			
+
 		} catch (SlickException e) {
 			Logger.getLogger(Tile.class.getName()).log(Level.WARNING, null, e);
 		}
 	}
-	
+
 	@Override
 	public Image getFloor() {
 		return floor;

@@ -16,11 +16,15 @@ import main.worldModel.utilities.GameSettings;
 
 public enum AnimatedTileImage {
 
-	DOORNORTH(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP + "door2.png"),
-	DOOREAST(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP + "door3.png"),
-	DOORSOUTH(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP + "door4.png"),
-	DOORWEST(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP + "door1.png");
-	
+	DOORNORTH(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP
+			+ "door2.png"),
+	DOOREAST(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP
+			+ "door3.png"),
+	DOORSOUTH(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP
+			+ "door4.png"),
+	DOORWEST(GameSettings.RESPATH + "res" + GameSettings.SEP + "walls" + GameSettings.SEP + "doors" + GameSettings.SEP
+			+ "door1.png");
+
 	String image;
 
 	/**
@@ -31,9 +35,10 @@ public enum AnimatedTileImage {
 	AnimatedTileImage(String image) {
 		this.image = image;
 	}
-	
+
 	/**
 	 * Method used to return the image of a Character
+	 * 
 	 * @return image, of the character
 	 * @throws SlickException
 	 * @throws MalformedURLException
@@ -41,10 +46,12 @@ public enum AnimatedTileImage {
 	 */
 	public Animation getAnimatedTileImage() throws SlickException {
 		try {
-			if(!LoadNatives.isJar(AnimatedTileImage.class.getResource("AnimatedTileImage.class").toString())) {
-				return new Animation(new SpriteSheet(new Image(new URL("file:///" + image).openStream(), image, false), GameSettings.TILESIZE, GameSettings.TILESIZE), 100);
+			if (!LoadNatives.isJar(AnimatedTileImage.class.getResource("AnimatedTileImage.class").toString())) {
+				return new Animation(new SpriteSheet(new Image(new URL("file:///" + image).openStream(), image, false),
+						GameSettings.TILESIZE, GameSettings.TILESIZE), 100);
 			} else {
-				return new Animation(new SpriteSheet(new Image(image), GameSettings.TILESIZE, GameSettings.TILESIZE), 100);	
+				return new Animation(new SpriteSheet(new Image(image), GameSettings.TILESIZE, GameSettings.TILESIZE),
+						100);
 			}
 		} catch (MalformedURLException e) {
 			Logger.getLogger(AnimatedTileImage.class.getName()).log(Level.SEVERE, null, e);

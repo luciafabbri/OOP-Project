@@ -37,7 +37,7 @@ public class EnemyImpl implements Enemy {
 	private EnemyDimension dimensions;
 	private TypeEnemy typeEnemy;
 	private Set<Bullet> bullets = new HashSet<>();
-	
+
 	private MoveFactory moveFactory = new MoveFactory();
 	private AttackFactory attackFactory = new AttackFactory();
 	private EnemyDimFactory dimFactory = new EnemyDimFactory();

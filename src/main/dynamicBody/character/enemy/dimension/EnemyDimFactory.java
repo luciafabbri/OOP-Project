@@ -2,6 +2,9 @@ package main.dynamicBody.character.enemy.dimension;
 
 import main.dynamicBody.character.enemy.TypeEnemy;
 
+/**
+ * Factory use to get dimension of Enemy
+ */
 public class EnemyDimFactory {
 	/**
 	 * Method use to know the dimension of a monster

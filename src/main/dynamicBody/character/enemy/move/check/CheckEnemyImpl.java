@@ -8,15 +8,15 @@ import main.worldModel.utilities.GameSettings;
 import main.worldModel.utilities.Pair;
 
 /**
- * Class that implements interface CheckEnemy used to check and then to force the enemy 
- * to do the specific chosen actions
+ * Class that implements interface CheckEnemy used to check and then to force
+ * the enemy to do the specific chosen actions
  */
 public class CheckEnemyImpl extends CheckPosImpl implements CheckEnemy, GameSettings {
 
 	private int x, y;
 	private Direction newDir;
 	private Character character;
-	
+
 	public CheckEnemyImpl(Character character) {
 		super(character);
 		this.character = character;
@@ -43,10 +43,12 @@ public class CheckEnemyImpl extends CheckPosImpl implements CheckEnemy, GameSett
 
 		if (checkObstaclesRoom(room, pos)) {
 			for (Pair<Integer, Integer> obst : room.getObstaclePositions()) {
-				if ( pos.getX() + character.getDimension().getLeft() < obst.getX() + GameSettings.TILESIZE || pos.getX() + character.getDimension().getRight() > obst.getX()) {
+				if (pos.getX() + character.getDimension().getLeft() < obst.getX() + GameSettings.TILESIZE
+						|| pos.getX() + character.getDimension().getRight() > obst.getX()) {
 					this.x = -dir.getAbscissa();
 				}
-				if (pos.getY() + character.getDimension().getDown() < obst.getY() + GameSettings.OBST_DOWN || pos.getY() + character.getDimension().getUp() > obst.getY()) {
+				if (pos.getY() + character.getDimension().getDown() < obst.getY() + GameSettings.OBST_DOWN
+						|| pos.getY() + character.getDimension().getUp() > obst.getY()) {
 					this.y = -dir.getOrdinate();
 				}
 			}
@@ -60,7 +62,5 @@ public class CheckEnemyImpl extends CheckPosImpl implements CheckEnemy, GameSett
 
 		return newDir;
 	}
-
-	
 
 }

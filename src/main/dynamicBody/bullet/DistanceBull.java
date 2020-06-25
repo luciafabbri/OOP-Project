@@ -6,10 +6,13 @@ import main.dynamicBody.character.Character;
 import main.dynamicBody.move.Direction;
 import main.worldModel.utilities.Pair;
 
+/**
+ * Class use to get distance of bullet from character
+ */
 public final class DistanceBull {
 
 	private static BulletDimFactory dimFactory = new BulletDimFactory();
-	
+
 	/**
 	 * Private constructor to prevent instantiation
 	 */
@@ -19,7 +22,7 @@ public final class DistanceBull {
 	/**
 	 * Method that calculate the position where spawn bullet
 	 * 
-	 * @param dir, direction where to spawn
+	 * @param dir,       direction where to spawn
 	 * @param character, the Character who create that
 	 * @return return a Pair with the coordinates
 	 */
@@ -30,7 +33,7 @@ public final class DistanceBull {
 	}
 
 	/**
-	 * Method used to calculate the distance where the bullet should be created 
+	 * Method used to calculate the distance where the bullet should be created
 	 * 
 	 * @param dir
 	 * @param character

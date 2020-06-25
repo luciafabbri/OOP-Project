@@ -10,9 +10,10 @@ public class AttackFactory {
 
 	/**
 	 * Method use from an Enemy to get the type of the Attack
+	 * 
 	 * @param typeAttack, the type of attack
-	 * @param room, room where enemy is located
-	 * @param enemy, the enemy that will use this type of attack
+	 * @param room,       room where enemy is located
+	 * @param enemy,      the enemy that will use this type of attack
 	 * @return the EnemyAttack
 	 */
 	public EnemyAttack selectAttack(TypeAttack typeAttack, RoomModel room, Enemy enemy) {

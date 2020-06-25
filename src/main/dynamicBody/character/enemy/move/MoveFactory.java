@@ -7,12 +7,13 @@ import main.worldModel.RoomModel;
  * Factory use to get the type of the Movement of an Enemy
  */
 public class MoveFactory {
-	
+
 	/**
 	 * Method use from an Enemy to get the type of the Movement
+	 * 
 	 * @param typeAttack, the type of attack
-	 * @param room, room where enemy is located
-	 * @param enemy, the enemy that will use this type of attack
+	 * @param room,       room where enemy is located
+	 * @param enemy,      the enemy that will use this type of attack
 	 * @return the EnemyMovement
 	 */
 	public EnemyMovement selectMove(TypeMove typeMove, RoomModel room, Enemy enemy) {

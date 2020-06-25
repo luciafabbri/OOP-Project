@@ -5,7 +5,8 @@ import main.worldModel.RoomModel;
 import main.worldModel.utilities.Pair;
 
 /**
- * Class that implements interface Bullet, used to create a bullet of type player 
+ * Class that implements interface Bullet, used to create a bullet of type
+ * player
  */
 
 public class BulletPlayerImpl extends BulletImpl implements Bullet {
@@ -13,10 +14,10 @@ public class BulletPlayerImpl extends BulletImpl implements Bullet {
 	/**
 	 * Default constructor
 	 * 
-	 * @param position, bullet's position
-	 * @param damage, bullet's damage power
+	 * @param position,  bullet's position
+	 * @param damage,    bullet's damage power
 	 * @param direction, bullet's direction
-	 * @param room, bullet's current room
+	 * @param room,      bullet's current room
 	 */
 	public BulletPlayerImpl(Pair<Integer, Integer> position, int damage, Direction direction, RoomModel room) {
 		super(position, damage, direction, room, TypeBullet.PLAYER_BULL);

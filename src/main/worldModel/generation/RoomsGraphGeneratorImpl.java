@@ -45,7 +45,7 @@ public class RoomsGraphGeneratorImpl implements RoomsGraphGenerator {
 							graph.addEdge(n, rooms.get(randomNodeIndex));
 							numOfRemainingEdges--;
 						}
-						
+
 					}
 				}
 			}

@@ -9,6 +9,7 @@ public enum TypeMove {
 
 	/**
 	 * Method use to get the movement of Boss
+	 * 
 	 * @return TypeMove of Boss
 	 */
 	public static TypeMove getBossMove() {
