@@ -201,7 +201,7 @@ public class UI {
 	private void congratsTextEachCoin() {
 		textGeneral = new Color(255, 255, 255, logic.congratsTextEachCoin());
 
-		tmp.drawString(GameSettings.TILESIZE * 10 + GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 4,
+		tmp.drawString(GameSettings.TILESIZE * 5 + GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 4,
 				"Bravo! Monete rimanenti da collezionare: "
 						+ Integer.toString(GameSettings.TOTCOINS - player.getInventory().getCoin()),
 				textGeneral);
@@ -213,7 +213,7 @@ public class UI {
 	private void congratsTextFinal() {
 		textGeneral = new Color(255, 255, 255, logic.congratsTextEachCoin());
 
-		tmp.drawString(GameSettings.TILESIZE * 10 + GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 4,
+		tmp.drawString(GameSettings.TILESIZE * 5 + GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 4,
 				"Complimenti! Hai trovato tutte le monete!", textGeneral);
 	}
 }
