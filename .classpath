@@ -13,7 +13,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="OOP19-JARG/lib/libJars"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/libJars/jinput.jar"/>
 	<classpathentry kind="lib" path="lib/libJars/jogg-0.0.7.jar"/>
 	<classpathentry kind="lib" path="lib/libJars/jorbis-0.0.15.jar"/>
 	<classpathentry kind="lib" path="lib/libJars/lwjgl.jar"/>
