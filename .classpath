@@ -11,8 +11,8 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="OOP19-JARG/lib/libJars"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="OOP19-JARG/lib/libjars/jinput.jar"
-    sourcepath="OOP19-JARG/lib/libjars/jinput.jar"/>
+	<classpathentry kind="lib" path="/lib/libjars/jinput.jar"
+    sourcepath="/lib/libjars/jinput.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
