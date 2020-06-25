@@ -14,11 +14,30 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/libJars/jogg-0.0.7.jar"/>
+		<attributes>
+			<attribute name="javadoc_location" value="http://neurosdbm.sourceforge.net/javadoc/com/jcraft/jogg/package-summary.html"/>
+		</attributes>
 	<classpathentry kind="lib" path="lib/libJars/jorbis-0.0.15.jar"/>
+		<attributes>
+			<attribute name="javadoc_location" value="http://neurosdbm.sourceforge.net/javadoc/com/jcraft/jorbis/package-summary.html"/>
+		</attributes>
 	<classpathentry kind="lib" path="lib/libJars/lwjgl.jar"/>
+		<attributes>
+			<attribute name="javadoc_location" value="http://legacy.lwjgl.org/javadoc.html"/>
+		</attributes>
 	<classpathentry kind="lib" path="lib/libJars/lwjgl_util.jar"/>
+		<attributes>
+			<attribute name="javadoc_location" value="http://legacy.lwjgl.org/javadoc.html"/>
+		</attributes>
 	<classpathentry kind="lib" path="lib/libJars/lwjgl-sources.jar"/>
-	<classpathentry kind="lib" path="lib/libJars/slick.jar"/>
+		<attributes>
+			<attribute name="javadoc_location" value="http://legacy.lwjgl.org/javadoc.html"/>
+		</attributes>
+	<classpathentry kind="lib" path="lib/libJars/slick.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://slick.ninjacave.com/javadoc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
