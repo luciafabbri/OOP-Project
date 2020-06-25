@@ -102,6 +102,9 @@ public class StateCoord extends StateBasedGame {
 		//Set the path for JInput
 		System.setProperty("net.java.games.input.librarypath", new File(destPath).getAbsolutePath());
 	
+		LoadNatives.disableAccessWarning();
+		
+		
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new StateCoord(GAMENAME));
@@ -109,7 +112,7 @@ public class StateCoord extends StateBasedGame {
 			appgc.setShowFPS(true);
 			appgc.setVSync(true);
 			appgc.setSmoothDeltas(true);
-			appgc.setMaximumLogicUpdateInterval(10);
+			appgc.setMaximumLogicUpdateInterval(7);
 			appgc.setMinimumLogicUpdateInterval(10);
 			appgc.start();
 		} catch (SlickException e) {

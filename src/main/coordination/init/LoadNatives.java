@@ -7,16 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 import main.worldModel.utilities.GameSettings;
 
@@ -66,22 +63,29 @@ public class LoadNatives {
 		return (checkJar.indexOf("jar") >= 0);
 	}
 	
-	public static Image loadTile(final String path) throws SlickException {	
-		if(!LoadNatives.isJar(StateCoord.class.getResource("StateCoord.class").toString())) {
-			try {
-				return new Image(new URL("file:///" + path).openStream(), path, false);
-			} catch (MalformedURLException e) {
-				Logger.getLogger(LoadNatives.class.getName()).log(Level.SEVERE, null, e);
-			} catch (SlickException e) {
-				Logger.getLogger(LoadNatives.class.getName()).log(Level.SEVERE, null, e);
-			} catch (IOException e) {
-				Logger.getLogger(LoadNatives.class.getName()).log(Level.SEVERE, null, e);
-			}
-		} else {
-			return new Image(path);
-		}
-		return null;
+
+	/**
+	 * Method used to block Illegal Reflective Access, since issue happens 
+	 */
+	public static void disableAccessWarning() {
+		try {
+            Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
+            Field field = unsafeClass.getDeclaredField("theUnsafe");
+            field.setAccessible(true);
+            Object unsafe = field.get(null);
+
+            Method putObjectVolatile = unsafeClass.getDeclaredMethod("putObjectVolatile", Object.class, long.class, Object.class);
+            Method staticFieldOffset = unsafeClass.getDeclaredMethod("staticFieldOffset", Field.class);
+
+            Class<?> loggerClass = Class.forName("jdk.internal.module.IllegalAccessLogger");
+            Field loggerField = loggerClass.getDeclaredField("logger");
+            Long offset = (Long) staticFieldOffset.invoke(unsafe, loggerField);
+            putObjectVolatile.invoke(unsafe, loggerClass, offset, null);
+        } catch (Exception ignored) {
+        	Logger.getLogger(LoadNatives.class.getName()).log(Level.SEVERE, null, ignored);
+    	}
 	}
+	
 	
 	/**
 	 * Method used to load all libraries and natives to make the project run
