@@ -74,6 +74,10 @@ public class StateCoord extends StateBasedGame {
 	 * @see IOException
 	 */
 	public static void main(String[] args) throws SlickException, IOException {
+		
+		load.loadLibs();
+		
+		
 		String destPath;
 		
 		if(!LoadNatives.isJar(StateCoord.class.getResource("StateCoord.class").toString())) {
@@ -86,7 +90,7 @@ public class StateCoord extends StateBasedGame {
 			destPath = "." + GameSettings.SEP + "lib" + GameSettings.SEP + "libJars";
 		}
 		
-		
+		System.out.println("                                  " + destPath);
 		//Set the path for Slick2D libraries
 		System.setProperty("java.library.path", new File(destPath).getAbsolutePath());
 		
@@ -97,11 +101,7 @@ public class StateCoord extends StateBasedGame {
 		
 		//Set the path for JInput
 		System.setProperty("net.java.games.input.librarypath", new File(destPath).getAbsolutePath());
-		
-		load.loadLibs();
-		
-		
-		
+	
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new StateCoord(GAMENAME));

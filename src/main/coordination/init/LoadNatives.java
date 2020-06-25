@@ -95,7 +95,7 @@ public class LoadNatives {
 		if(isWindows()) {
 			destPath = System.getProperty("java.io.tmpdir") + "jarg" + GameSettings.SEP;
 		} else {
-			destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + File.separator;
+			destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + GameSettings.SEP;
 		}
 		
 		
@@ -110,8 +110,8 @@ public class LoadNatives {
 	        Enumeration<JarEntry> enums = jarFile.entries();
 	        while (enums.hasMoreElements()) {
 	        	JarEntry entry = enums.nextElement();
-	            if (entry.getName().startsWith("natives") || entry.getName().startsWith("libJars") || entry.getName().startsWith("res")) {
-	            int nBytes;
+	        	if (entry.getName().startsWith("libJars") || entry.getName().startsWith("res")) {
+	        	int nBytes;
 	                File toWrite = new File(destPath + entry.getName());
 	                if (entry.isDirectory()) {
 	                    toWrite.mkdirs();
