@@ -109,7 +109,7 @@ public class LoadNatives {
 		if (!LoadNatives.isJar(StateCoord.class.getResource("StateCoord.class").toString())) {
 
 			try {
-				String currPath = System.getProperty("user.dir") + GameSettings.SEP + "jarg.jar";
+				String currPath = System.getProperty("user.dir") + GameSettings.SEP + System.getProperty("java.class.path");
 
 //		        System.out.println("     "+currPath);
 //		        System.out.println("     "+destPath);

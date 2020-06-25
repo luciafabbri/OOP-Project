@@ -94,6 +94,8 @@ public class StateCoord extends StateBasedGame {
 
 		LoadNatives.disableAccessWarning();
 
+		System.out.println();
+		
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new StateCoord(GAMENAME));

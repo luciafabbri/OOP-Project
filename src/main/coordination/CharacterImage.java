@@ -47,7 +47,7 @@ public enum CharacterImage {
 			+ GameSettings.SEP + "Enemy2_right.png"),
 
 	PLANT(GameSettings.RESPATH + "res" + GameSettings.SEP + "chars" + GameSettings.SEP + "enemies" + GameSettings.SEP
-			+ "plan.png"),
+			+ "Plan.png"),
 
 	FRONT_BOSS(GameSettings.RESPATH + "res" + GameSettings.SEP + "chars" + GameSettings.SEP + "enemies"
 			+ GameSettings.SEP + "Boss_front.png"),

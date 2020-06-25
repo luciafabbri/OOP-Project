@@ -202,7 +202,7 @@ public class UI {
 		textGeneral = new Color(255, 255, 255, logic.congratsTextEachCoin());
 
 		tmp.drawString(GameSettings.TILESIZE * 5 + GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 4,
-				"Bravo! Monete rimanenti da collezionare: "
+				"Alright! Remaining coins to collect: "
 						+ Integer.toString(GameSettings.TOTCOINS - player.getInventory().getCoin()),
 				textGeneral);
 	}
@@ -214,6 +214,6 @@ public class UI {
 		textGeneral = new Color(255, 255, 255, logic.congratsTextEachCoin());
 
 		tmp.drawString(GameSettings.TILESIZE * 5 + GameSettings.TILESIZE / 2, GameSettings.TILESIZE / 4,
-				"Complimenti! Hai trovato tutte le monete!", textGeneral);
+				"Congratulations! You got all the coins!", textGeneral);
 	}
 }
