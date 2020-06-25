@@ -54,17 +54,55 @@ public interface LevelComp {
 	 */
 	public void setGotLevelCoin(boolean gotLevelCoin);
 
+	/**
+	 * Method that returns true if the game has been pause, otherwise false
+	 * 
+	 * @return true if menu paused, false otherwise
+	 */
 	public boolean isPauseMenu();
 
+	/**
+	 * Method that sets the boolean to check if the game has been paused
+	 * 
+	 * @param pauseMenu, the boolean
+	 */
 	public void setPauseMenu(boolean pauseMenu);
 
+	/**
+	 * Method that sets the boolean to check if the room has been changed
+	 * 
+	 * @param changedRoom, the boolean
+	 */
 	public void setChangedRoom(boolean changedRoom);
 
+	/**
+	 * Method that returns true if the room has been changed, otherwise false
+	 * 
+	 * @return true if room changes, false otherwise
+	 */
 	public boolean isChangedRoom();
 
+	/**
+	 * Method used to get a Map of all the enemies of a level, associated with their
+	 * texture
+	 * 
+	 * @return the Map containing the textures
+	 * @throws SlickException
+	 * @see SlickException
+	 */
 	public Map<TypeEnemy, Set<Pair<Direction, Animation>>> checkAnimations() throws SlickException;
 
+	/**
+	 * Method that returns true if the game has been won, otherwise false
+	 * 
+	 * @return true if the player wins, false otherwise
+	 */
 	public boolean isGameWon();
 
+	/**
+	 * Method that sets whether the game has been won
+	 * 
+	 * @param gameWon, the boolean
+	 */
 	public void setGameWon(boolean gameWon);
 }

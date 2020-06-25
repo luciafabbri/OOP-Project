@@ -66,6 +66,9 @@ public class RoomImpl implements Room {
 	 * Variable containing the Animation, so the animation of the south room
 	 */
 	private Animation doorSouth;
+	/**
+	 * Variable containing the boolean to check if the room key has been takens
+	 */
 	private boolean gotRoomKey;
 
 	public RoomImpl(final RoomModel room, Map<RoomModel, Map<Door, Optional<RoomModel>>> doorAccess) {

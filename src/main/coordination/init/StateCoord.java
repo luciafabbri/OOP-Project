@@ -32,67 +32,68 @@ public class StateCoord extends StateBasedGame {
 	 * Variable containing the ID for the first level
 	 */
 	private static final int LEVEL1 = 1;
-	
+
 	/**
 	 * Constructor for StateCoord
+	 * 
 	 * @param name, which is the name of the Window
 	 * @throws SlickException
 	 * @see SlickException
 	 */
 	public StateCoord(String name) throws SlickException {
 		super(name);
-		StateCoord.player = new PlayerImpl(new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE), Direction.SOUTH, 0);
+		StateCoord.player = new PlayerImpl(new Pair<>(GameSettings.TILESIZE, GameSettings.TILESIZE), Direction.SOUTH,
+				0);
 
 		this.addState(new Menu());
-		this.addState(new GameController(LEVEL1, player));		
+		this.addState(new GameController(LEVEL1, player));
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
 //		DOCUMENTATION SAYS THAT INITSTATES IS BROKEN
 	}
-	
+
 	/**
-	 * Main method for initializing the OpenGL context of the game, and the Player resource itself
+	 * Main method for initializing the OpenGL context of the game, and the Player
+	 * resource itself
+	 * 
 	 * @param args
 	 * @throws SlickException
-	 * @throws IOException 
+	 * @throws IOException
 	 * @see SlickException
 	 * @see IOException
 	 */
 	public static void main(String[] args) throws SlickException, IOException {
 		LoadNatives.loadLibs();
-		
-		
+
 		String destPath;
-		
-		if(!LoadNatives.isJar(StateCoord.class.getResource("StateCoord.class").toString())) {
-			if(LoadNatives.isWindows()) {
+
+		if (!LoadNatives.isJar(StateCoord.class.getResource("StateCoord.class").toString())) {
+			if (LoadNatives.isWindows()) {
 				destPath = System.getProperty("java.io.tmpdir") + "jarg" + GameSettings.SEP + "libJars";
 			} else {
-				destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + GameSettings.SEP + "libJars" + File.separator;
+				destPath = System.getProperty("java.io.tmpdir") + File.separator + "jarg" + GameSettings.SEP + "libJars"
+						+ File.separator;
 			}
 		} else {
 			destPath = "." + GameSettings.SEP + "lib" + GameSettings.SEP + "libJars";
 		}
-		
-		//Set the path for Slick2D libraries
+
+		// Set the path for Slick2D libraries
 		System.setProperty("java.library.path", new File(destPath).getAbsolutePath());
-		
-		
-		//Set the path for Slick2D natives
+
+		// Set the path for Slick2D natives
 		System.setProperty("org.lwjgl.librarypath", new File(destPath).getAbsolutePath());
-		
-		
-		//Set the path for JInput
+
+		// Set the path for JInput
 		System.setProperty("net.java.games.input.librarypath", new File(destPath).getAbsolutePath());
-	
+
 		LoadNatives.disableAccessWarning();
-		
-		
+
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new StateCoord(GAMENAME));
@@ -110,6 +111,7 @@ public class StateCoord extends StateBasedGame {
 
 	/**
 	 * Method used by the enemies to get reference of Player
+	 * 
 	 * @return Player
 	 */
 	public static Player getPlayer() {

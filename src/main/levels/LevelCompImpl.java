@@ -38,11 +38,29 @@ public class LevelCompImpl implements LevelComp {
 	 * Variable containing ID of the current room loaded
 	 */
 	private int roomID;
+	/**
+	 * Variable containing the boolean to check if the level coin has been taken
+	 */
 	private boolean gotLevelCoin;
+	/**
+	 * Variable containing the boolean to check if the pause menu has been activated
+	 */
 	private boolean pauseMenu;
+	/**
+	 * Variable containing the boolean to check if the room has changed
+	 */
 	private boolean changedRoom;
+	/**
+	 * Variable containing the boolean to check if the game has been won
+	 */
 	private boolean gameWon;
 
+	/**
+	 * Public constructor for LevelCompImpl
+	 * 
+	 * @param levelID
+	 * @throws IOException
+	 */
 	public LevelCompImpl(final int levelID) throws IOException {
 		testLevel = new LevelModelGeneratorImpl().generateLevel(levelID);
 
