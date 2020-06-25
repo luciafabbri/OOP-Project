@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Node's class for dijkstra algorithm
+ */
 public class Node<T> {
 
 	private T name;

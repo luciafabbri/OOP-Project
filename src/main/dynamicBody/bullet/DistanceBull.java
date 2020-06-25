@@ -6,6 +6,9 @@ import main.dynamicBody.character.Character;
 import main.dynamicBody.move.Direction;
 import main.worldModel.utilities.Pair;
 
+/**
+ * Class use to get distance of bullet from character
+ */
 public final class DistanceBull {
 
 	private static BulletDimFactory dimFactory = new BulletDimFactory();
