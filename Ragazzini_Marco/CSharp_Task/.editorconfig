@@ -1,0 +1,34 @@
+﻿[*.{cs,vb}]
+
+# IDE0003: Rimuovi qualificazione
+dotnet_style_qualification_for_event = false:none
+
+# IDE0003: Rimuovi qualificazione
+dotnet_style_qualification_for_field = false:none
+
+# IDE0003: Rimuovi qualificazione
+dotnet_style_qualification_for_method = false:none
+
+# IDE0003: Rimuovi qualificazione
+dotnet_style_qualification_for_property = false:none
+
+# CS8602: Dereferenziamento di un possibile riferimento Null.
+dotnet_diagnostic.CS8602.severity = none
+
+# CS8604: Possibile argomento di riferimento Null.
+dotnet_diagnostic.CS8604.severity = none
+
+# IDE0058: Il valore dell'espressione non viene mai usato
+csharp_style_unused_value_expression_statement_preference = discard_variable:none
+
+# CS8618: Il campo che non ammette i valori Null non è inizializzato. Provare a dichiararlo in modo che ammetta i valori Null.
+dotnet_diagnostic.CS8618.severity = silent
+
+# CS8600: Conversione del valore letterale Null o di un possibile valore Null in un tipo che non ammette i valori Null.
+dotnet_diagnostic.CS8600.severity = silent
+
+# CS8603: Possibile restituzione di riferimento Null.
+dotnet_diagnostic.CS8603.severity = silent
+
+# IDE0005: La direttiva using non è necessaria.
+dotnet_diagnostic.IDE0005.severity = none
