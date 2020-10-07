@@ -1,0 +1,17 @@
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\obj\Debug\netcoreapp2.1\Test1.csprojAssemblyReference.cache
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\obj\Debug\netcoreapp2.1\Test1.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\obj\Debug\netcoreapp2.1\Test1.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\obj\Debug\netcoreapp2.1\Test1.AssemblyInfo.cs
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\bin\Debug\netcoreapp2.1\Test1.deps.json
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\bin\Debug\netcoreapp2.1\Test1.runtimeconfig.json
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\bin\Debug\netcoreapp2.1\Test1.runtimeconfig.dev.json
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\bin\Debug\netcoreapp2.1\Test1.dll
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\bin\Debug\netcoreapp2.1\Test1.pdb
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\bin\Debug\netcoreapp2.1\Csharp_LuciaFabbri.dll
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\bin\Debug\netcoreapp2.1\Csharp_LuciaFabbri.pdb
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\obj\Debug\netcoreapp2.1\Test1.csproj.CopyComplete
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\obj\Debug\netcoreapp2.1\Test1.dll
+C:\Users\User\Desktop\Programmazione ad Oggetti\Progetto - J.A.R.G\Csharp_LuciaFabbri\Test1\obj\Debug\netcoreapp2.1\Test1.pdb
