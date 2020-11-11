@@ -1,9 +1,0 @@
-C:\Users\kryas\source\repos\GameEntity\bin\Debug\netstandard2.0\GameEntity.deps.json
-C:\Users\kryas\source\repos\GameEntity\bin\Debug\netstandard2.0\GameEntity.dll
-C:\Users\kryas\source\repos\GameEntity\bin\Debug\netstandard2.0\GameEntity.pdb
-C:\Users\kryas\source\repos\GameEntity\obj\Debug\netstandard2.0\GameEntity.csprojAssemblyReference.cache
-C:\Users\kryas\source\repos\GameEntity\obj\Debug\netstandard2.0\GameEntity.csproj.CoreCompileInputs.cache
-C:\Users\kryas\source\repos\GameEntity\obj\Debug\netstandard2.0\GameEntity.AssemblyInfoInputs.cache
-C:\Users\kryas\source\repos\GameEntity\obj\Debug\netstandard2.0\GameEntity.AssemblyInfo.cs
-C:\Users\kryas\source\repos\GameEntity\obj\Debug\netstandard2.0\GameEntity.dll
-C:\Users\kryas\source\repos\GameEntity\obj\Debug\netstandard2.0\GameEntity.pdb
